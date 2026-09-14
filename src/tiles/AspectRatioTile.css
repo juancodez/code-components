@@ -1,0 +1,285 @@
+/* Tile is a row: card on the left, panel on the right (when open).
+   Both stay at a comfortable width; the panel appears next to the
+   card rather than below it. */
+.tile {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.tile-card {
+  position: relative;
+  flex: 0 0 480px;
+  background: #eeece9;
+  border-radius: 20px;
+  padding: 48px 24px;
+  display: grid;
+  place-items: center;
+  min-height: 480px;
+}
+
+/* Title — centered on the frame, fades in on hover so the resting
+   state is just the component. */
+.tile-chrome {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 180ms ease;
+  pointer-events: none;
+}
+.tile-card:hover .tile-chrome,
+.tile-card:focus-within .tile-chrome { opacity: 1; }
+.tile-chrome h2 {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+  color: #111;
+  letter-spacing: -0.005em;
+}
+
+/* Tools cluster — top-right, settings + sound side by side. */
+.tile-tools {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  gap: 4px;
+}
+.tile-tool {
+  width: 34px; height: 34px;
+  display: grid; place-items: center;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #6b6b6b;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease;
+}
+.tile-tool:hover { background: rgba(17,17,17,0.06); color: #111; }
+.tile-tool[aria-pressed="true"] { color: #111; }
+.tile-tool[aria-expanded="true"] { color: #111; }
+.tile-tool:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #eeece9, 0 0 0 4px rgba(17,17,17,0.35);
+}
+
+.tile-stage {
+  position: relative;
+  width: 276px;
+  height: 328px;
+  display: grid; place-items: center;
+}
+
+/* Play button — bottom-right of the card. */
+.tile-play {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: 38px;
+  height: 38px;
+  display: grid; place-items: center;
+  border: 0;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: transform 160ms cubic-bezier(0.3, 0.9, 0.4, 1), background 160ms;
+}
+.tile-play svg { transform: translateX(1px); } /* optical centering */
+.tile-play:hover { background: #333; }
+.tile-play:active { transform: scale(0.94); }
+.tile-play:disabled { opacity: 0.55; cursor: default; }
+.tile-play:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #eeece9, 0 0 0 4px rgba(17,17,17,0.35);
+}
+
+/* Fake cursor for the demo. */
+.tile-cursor {
+  position: absolute;
+  top: 0; left: 0;
+  width: 22px; height: 22px;
+  pointer-events: none;
+  transition: transform 550ms cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.25));
+  will-change: transform;
+  z-index: 5;
+}
+.tile-cursor svg { display: block; }
+.tile-cursor::after {
+  content: "";
+  position: absolute;
+  top: 4px; left: 4px;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: rgba(17,17,17,0.35);
+  transform: scale(0);
+  opacity: 0;
+}
+.tile-cursor-click::after { animation: cursor-tap 240ms ease-out forwards; }
+@keyframes cursor-tap {
+  0%   { transform: scale(0); opacity: 0.9; }
+  100% { transform: scale(5); opacity: 0; }
+}
+
+/* Panel — sits to the RIGHT of the card, matching Bencho's side
+   drawer. Same height as the card, own scroll if content grows. */
+.tile-panel {
+  flex: 0 0 340px;
+  min-height: 480px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  animation: panel-in 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes panel-in {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.tile-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.tile-panel-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 2px;
+  color: #111;
+}
+.tile-panel-header p {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #6b6b6b;
+  margin: 0;
+}
+.tile-panel-close {
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #6b6b6b;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease;
+}
+.tile-panel-close:hover { background: rgba(17,17,17,0.06); color: #111; }
+
+/* Segmented sliders/code toggle. */
+.tile-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(17,17,17,0.06);
+}
+.tile-tab {
+  display: grid; place-items: center;
+  height: 32px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #6b6b6b;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+.tile-tab:hover { color: #111; }
+.tile-tab.on {
+  background: #fff;
+  color: #111;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.tile-row {
+  display: grid;
+  grid-template-columns: 84px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #f4f3f0;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.tile-row span:first-child { font-size: 13px; color: #111; }
+.tile-row-val {
+  font-size: 13px; color: #111;
+  font-variant-numeric: tabular-nums;
+  min-width: 24px; text-align: right;
+}
+.tile-row input[type="range"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(17,17,17,0.12);
+  outline: none;
+}
+.tile-row input[type="range"]::-webkit-slider-thumb {
+  appearance: none; -webkit-appearance: none;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #111;
+  border: 2px solid #fff;
+  cursor: grab;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+.tile-row input[type="range"]::-moz-range-thumb {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #111;
+  border: 2px solid #fff;
+  cursor: grab;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+.tile-code {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+}
+.tile-code pre {
+  margin: 0;
+  padding: 16px;
+  background: #f4f3f0;
+  border-radius: 12px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #111;
+  flex: 1;
+  overflow: auto;
+  white-space: pre;
+}
+.tile-copy {
+  align-self: stretch;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+.tile-copy:hover { background: #333; }
+
+/* Narrow screens — stack card and panel */
+@media (max-width: 900px) {
+  .tile { flex-direction: column; align-items: center; }
+  .tile-panel { flex: 0 0 auto; width: 100%; max-width: 480px; }
+}

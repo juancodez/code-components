@@ -1,0 +1,59 @@
+.gallery {
+  min-height: 100vh;
+  padding: 48px 24px;
+  background: #f2f2f0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #111;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.gallery header {
+  text-align: center;
+  max-width: 480px;
+  width: 100%;
+}
+.gallery h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  letter-spacing: -0.01em;
+}
+.gallery header p {
+  font-size: 13px;
+  color: #6b6b6b;
+  margin: 0;
+}
+
+/* Stack is wide enough for card + panel side-by-side. Each li is
+   full width so its internal flex can center the tile contents. */
+.stack {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.stack > li { display: flex; justify-content: center; }
+
+/* Ghost tile placeholder for future components. Fixed to the
+   card width so ghosts don't stretch across the wider stack. */
+.ghost {
+  width: 480px;
+  min-height: 200px;
+  border-radius: 20px;
+  border: 1px dashed rgba(17,17,17,0.15);
+  display: grid;
+  place-items: center;
+  gap: 4px;
+  padding: 24px;
+  color: #aaa;
+}
+.ghost span { font-size: 14px; font-weight: 500; }
+.ghost small { font-size: 11px; letter-spacing: 0.08em; }
