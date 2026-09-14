@@ -1,14 +1,196 @@
-.gallery {
+/* ===== PAGE SHELL ===== */
+.page {
   min-height: 100vh;
-  padding: 48px 24px;
   background: #f2f2f0;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   color: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+/* ===== HERO ===== */
+.hero {
+  width: 100%;
+  max-width: 560px;
+  padding: 40px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* header row */
+.hero-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.hero-identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #d0d5dd;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #344054;
+  flex-shrink: 0;
+}
+.hero-name-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.hero-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1d2939;
+  letter-spacing: -0.015em;
+}
+.hero-role {
+  font-size: 13px;
+  color: #667085;
+  letter-spacing: -0.01em;
+  transition: opacity 0.3s ease;
+}
+.hero-role.fading { opacity: 0; }
+
+.hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.btn-primary {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: #000;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: inherit;
+}
+.btn-secondary {
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: #f8f9fa;
+  border: 1px solid #f2f4f7;
+  color: #1d2939;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+/* about */
+.hero-about { display: flex; flex-direction: column; gap: 16px; }
+.hero-h1 {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+  color: #1d2939;
+  margin: 0;
+}
+.hero-body {
+  font-size: 14px;
+  line-height: 1.72;
+  color: #667085;
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+
+/* logo ticker */
+.ticker-wrap { overflow: hidden; width: 100%; }
+.ticker-track {
+  display: flex;
+  gap: 56px;
+  animation: ticker 14s linear infinite;
+  width: max-content;
+}
+.ticker-item {
+  font-size: 13px;
+  color: #98a1b2;
+  font-weight: 500;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* projects */
+.projects-wrap { display: flex; flex-direction: column; gap: 16px; }
+.section-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1d2939;
+  margin: 0;
+  letter-spacing: -0.015em;
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.project-card {
+  border: 1px solid #f2f4f7;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.project-img {
+  height: 120px;
+  display: grid;
+  place-items: center;
+}
+.project-img-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(0,0,0,0.25);
+  letter-spacing: -0.01em;
+}
+.project-meta {
+  padding: 10px 12px;
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  border-top: 1px solid #f2f4f7;
+}
+.project-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: #222;
+}
+.project-type {
+  font-size: 12px;
+  color: #d0d5dd;
+}
+
+/* ===== COMPONENTS GALLERY ===== */
+.gallery {
+  padding: 48px 24px 64px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #111;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 40px;
+  border-top: 1px solid rgba(17,17,17,0.08);
 }
 
 .gallery header {
@@ -28,8 +210,6 @@
   margin: 0;
 }
 
-/* Stack is wide enough for card + panel side-by-side. Each li is
-   full width so its internal flex can center the tile contents. */
 .stack {
   list-style: none;
   padding: 0;
@@ -42,8 +222,6 @@
 }
 .stack > li { display: flex; justify-content: center; }
 
-/* Ghost tile placeholder for future components. Fixed to the
-   card width so ghosts don't stretch across the wider stack. */
 .ghost {
   width: 480px;
   min-height: 200px;

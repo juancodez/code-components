@@ -8,8 +8,6 @@ type Fill = "light" | "dark";
 
 export function PullToRefreshTile() {
   const [corner, setCorner] = useState(18);
-  const [spin, setSpin] = useState(50);
-  const [dots, setDots] = useState(6);
   const [fill, setFill] = useState<Fill>("light");
   const [soundOn, setSoundOn] = useState(true);
   const [panelOpen, setPanelOpen] = useState(false);
@@ -131,8 +129,6 @@ export function PullToRefreshTile() {
           <PullToRefresh
             ref={pullRef}
             corner={corner}
-            spin={spin}
-            dots={dots}
             fill={fill}
             onThreshold={threshold}
             onWorkStart={workStart}
@@ -195,20 +191,6 @@ export function PullToRefreshTile() {
             <input type="range" min={0} max={40} value={corner}
               onChange={(e) => { const v = Number(e.target.value); setCorner(v); bubble(v, 0, 40); }} />
             <span className="tile-row-val">{corner}</span>
-          </label>
-
-          <label className="tile-row">
-            <span>Spin</span>
-            <input type="range" min={0} max={100} value={spin}
-              onChange={(e) => { const v = Number(e.target.value); setSpin(v); bubble(v, 0, 100); }} />
-            <span className="tile-row-val">{spin}</span>
-          </label>
-
-          <label className="tile-row">
-            <span>Dots</span>
-            <input type="range" min={3} max={10} value={dots}
-              onChange={(e) => { const v = Number(e.target.value); setDots(v); bubble(v, 3, 10); }} />
-            <span className="tile-row-val">{dots}</span>
           </label>
 
           <button className="tile-copy" onClick={copy}>
