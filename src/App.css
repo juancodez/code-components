@@ -35,13 +35,10 @@
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: #d0d5dd;
-  display: grid;
-  place-items: center;
-  font-size: 13px;
-  font-weight: 600;
-  color: #344054;
+  object-fit: cover;
+  object-position: center top;
   flex-shrink: 0;
+  display: block;
 }
 .hero-name-block {
   display: flex;

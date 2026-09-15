@@ -1,55 +1,74 @@
 import { useCallback, useRef, useState } from "react";
-import { PullToRefresh, type PullToRefreshHandle } from "../components/PullToRefresh";
-import "../components/PullToRefresh.css";
-import pullSource from "../components/PullToRefresh.tsx?raw";
+import { Balance, type BalanceHandle } from "../components/Balance";
+import "../components/Balance.css";
+import balanceSource from "../components/Balance.tsx?raw";
 import "./AspectRatioTile.css";
 
-type Fill = "light" | "dark";
-
-export function PullToRefreshTile() {
-  const [corner, setCorner] = useState(18);
-  const [fill, setFill] = useState<Fill>("light");
+export function BalanceTile() {
+  const [corner, setCorner] = useState(26);
+  const [fill, setFill] = useState<"light" | "dark">("light");
   const [soundOn, setSoundOn] = useState(true);
   const [panelOpen, setPanelOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const stageRef = useRef<HTMLDivElement>(null);
-  const pullRef = useRef<PullToRefreshHandle>(null);
+  const balRef = useRef<BalanceHandle>(null);
   const [cursor, setCursor] = useState<{ x: number; y: number; visible: boolean; clicking: boolean }>({
     x: 0, y: 0, visible: false, clicking: false,
   });
   const [playing, setPlaying] = useState(false);
 
-  /* Web Audio — sharp click for state changes (threshold cross,
-     work start), bubbly bloop for slider drag. No asset files. */
   const ctxRef = useRef<AudioContext | null>(null);
   const beep = (freq: number, gain: number, dur: number) => {
     if (!soundOn) return;
     if (!ctxRef.current) ctxRef.current = new AudioContext();
-    const ctx = ctxRef.current, t = ctx.currentTime;
-    const o = ctx.createOscillator(), g = ctx.createGain();
+    const ctx = ctxRef.current;
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
     o.frequency.value = freq;
-    g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(gain, t + 0.015);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    g.gain.value = gain;
+    g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + dur);
     o.connect(g); g.connect(ctx.destination);
-    o.start(t); o.stop(t + dur + 0.01);
+    o.start(); o.stop(ctx.currentTime + dur + 0.01);
   };
-  const threshold = () => beep(880, 0.05, 0.12);
-  const workStart = () => beep(520, 0.035, 0.2);
-  const workEnd = () => beep(720, 0.03, 0.08);
+  const click = () => beep(720, 0.04, 0.08);
 
-  const lastBubble = useRef(0);
-  const bubble = (v: number, min: number, max: number) => {
+  /* Scrub tick: sine that tracks the sample index → sounds like
+     a sweep rather than 96 identical clicks. Throttled so raw
+     pointermove doesn't saturate the mix. */
+  const lastBubbleRef = useRef(0);
+  const scrubTick = (idx: number) => {
+    if (!soundOn || idx < 0) return;
+    const now = performance.now();
+    if (now - lastBubbleRef.current < 55) return;
+    lastBubbleRef.current = now;
+    if (!ctxRef.current) ctxRef.current = new AudioContext();
+    const ctx = ctxRef.current;
+    const t = ctx.currentTime;
+    const target = 500 + idx * 6;
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    o.type = "sine";
+    o.frequency.setValueAtTime(target * 0.6, t);
+    o.frequency.exponentialRampToValueAtTime(target, t + 0.05);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.04, t + 0.012);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.16);
+    o.connect(g); g.connect(ctx.destination);
+    o.start(t); o.stop(t + 0.17);
+  };
+
+  const bubble = (v: number) => {
     if (!soundOn) return;
     const now = performance.now();
-    if (now - lastBubble.current < 55) return;
-    lastBubble.current = now;
+    if (now - lastBubbleRef.current < 55) return;
+    lastBubbleRef.current = now;
     if (!ctxRef.current) ctxRef.current = new AudioContext();
-    const ctx = ctxRef.current, t = ctx.currentTime;
-    const norm = (v - min) / (max - min);
-    const target = 500 + norm * 800;
-    const o = ctx.createOscillator(), g = ctx.createGain();
+    const ctx = ctxRef.current;
+    const t = ctx.currentTime;
+    const target = 500 + v * 22;
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
     o.type = "sine";
     o.frequency.setValueAtTime(target * 0.55, t);
     o.frequency.exponentialRampToValueAtTime(target, t + 0.07);
@@ -61,56 +80,63 @@ export function PullToRefreshTile() {
   };
 
   const copy = async () => {
-    await navigator.clipboard.writeText(pullSource);
+    click();
+    await navigator.clipboard.writeText(balanceSource);
     setCopied(true);
     setTimeout(() => setCopied(false), 1400);
   };
 
-  /* Demo: cursor descends into the top of the viewport, then
-     the component's own demo() drives the pull physics. */
+  /* Demo: drop a fake cursor over the plot, then let the Balance
+     run its own scrub sequence. The cursor is decorative; the
+     real setScrub inside Balance is what makes the tip move. */
   const play = useCallback(() => {
-    if (playing) return;
     const stage = stageRef.current;
-    if (!stage) return;
-    const pull = pullRef.current;
-    if (!pull) return;
-    const rect = stage.getBoundingClientRect();
-    const viewport = stage.querySelector<HTMLDivElement>(".pull-viewport");
-    if (!viewport) return;
-    const vrect = viewport.getBoundingClientRect();
+    const bal = balRef.current;
+    if (!stage || !bal || playing) return;
+    const plot = stage.querySelector<HTMLElement>(".bal-plot");
+    if (!plot) return;
 
     setPlaying(true);
-    setCursor({
-      x: vrect.left - rect.left + vrect.width / 2 - 5,
-      y: vrect.top - rect.top + 24 - 3,
-      visible: true, clicking: false,
-    });
+    const cardRect = stage.getBoundingClientRect();
+    const plotRect = plot.getBoundingClientRect();
+    const len = bal.seriesLength();
+    let idx = 0;
 
-    window.setTimeout(() => {
-      setCursor((c) => ({ ...c, clicking: true }));
-      pull.demo();
-      window.setTimeout(() => setCursor((c) => ({ ...c, clicking: false })), 260);
-      /* Component demo ~= 750ms pull + 320ms dwell + 1400ms work + cleanup */
-      window.setTimeout(() => {
-        setCursor((c) => ({ ...c, visible: false }));
+    const step = () => {
+      if (idx > len - 1) {
+        setCursor(c => ({ ...c, visible: false }));
+        bal.scrub(-1);
         setPlaying(false);
-      }, 750 + 320 + 1400 + 400);
-    }, 500);
+        return;
+      }
+      bal.scrub(idx);
+      scrubTick(idx);
+      const xFrac = idx / (len - 1);
+      const yNorm = bal.getYNorm(idx);
+      setCursor({
+        x: plotRect.left - cardRect.left + xFrac * plotRect.width - 5,
+        y: plotRect.top - cardRect.top + 4 + yNorm * (plotRect.height - 8) - 11,
+        visible: true,
+        clicking: true,
+      });
+      idx++;
+      setTimeout(step, 25);
+    };
+
+    setTimeout(step, 400);
   }, [playing]);
 
   return (
     <article className="tile">
-      <div className="tile-card" data-fill={fill}>
-        <header className="tile-chrome">
-          <h2>Pull to refresh</h2>
-        </header>
+      <div className="tile-card">
+        <header className="tile-chrome"><h2>Balance</h2></header>
 
         <div className="tile-tools">
           <button
             className="tile-tool"
             aria-label={panelOpen ? "Close settings" : "Open settings"}
             aria-expanded={panelOpen}
-            onClick={() => setPanelOpen((v) => !v)}
+            onClick={() => { setPanelOpen(v => !v); click(); }}
           >
             <SlidersHorizontalIcon />
           </button>
@@ -119,25 +145,24 @@ export function PullToRefreshTile() {
             aria-pressed={soundOn}
             aria-label={soundOn ? "Turn sound off" : "Turn sound on"}
             title={soundOn ? "Sound on" : "Sound off"}
-            onClick={() => setSoundOn((v) => !v)}
+            onClick={() => setSoundOn(v => !v)}
           >
             {soundOn ? <VolumeOn /> : <VolumeOff />}
           </button>
         </div>
 
         <div className="tile-stage" ref={stageRef}>
-          <PullToRefresh
-            ref={pullRef}
+          <Balance
+            ref={balRef}
             corner={corner}
             fill={fill}
-            onThreshold={threshold}
-            onWorkStart={workStart}
-            onWorkEnd={workEnd}
+            onScrub={scrubTick}
+            onWindow={click}
           />
           {cursor.visible && (
             <div
               className={"tile-cursor" + (cursor.clicking ? " tile-cursor-click" : "")}
-              style={{ transform: `translate(${cursor.x}px, ${cursor.y}px)` }}
+              style={{ transform: `translate(${cursor.x}px, ${cursor.y}px)`, transition: "none" }}
               aria-hidden="true"
             >
               <CursorIcon />
@@ -159,13 +184,13 @@ export function PullToRefreshTile() {
         <aside className="tile-panel">
           <div className="tile-panel-header">
             <div>
-              <h3>Pull to refresh</h3>
-              <p>REFRESH</p>
+              <h3>Balance</h3>
+              <p>SCRUB</p>
             </div>
             <button
               className="tile-panel-close"
               aria-label="Close settings"
-              onClick={() => setPanelOpen(false)}
+              onClick={() => { setPanelOpen(false); click(); }}
             >
               <XIcon />
             </button>
@@ -174,13 +199,13 @@ export function PullToRefreshTile() {
           <div className="tile-fill" role="group" aria-label="Surface">
             <button
               className={"tile-fill-btn" + (fill === "light" ? " on" : "")}
-              onClick={() => setFill("light")}
+              onClick={() => { setFill("light"); click(); }}
             >
               <SunIcon /> Light
             </button>
             <button
               className={"tile-fill-btn" + (fill === "dark" ? " on" : "")}
-              onClick={() => setFill("dark")}
+              onClick={() => { setFill("dark"); click(); }}
             >
               <MoonIcon /> Dark
             </button>
@@ -188,8 +213,13 @@ export function PullToRefreshTile() {
 
           <label className="tile-row">
             <span>Corner</span>
-            <input type="range" min={0} max={40} value={corner}
-              onChange={(e) => { const v = Number(e.target.value); setCorner(v); bubble(v, 0, 40); }} />
+            <input
+              type="range"
+              min={0}
+              max={40}
+              value={corner}
+              onChange={(e) => { const v = Number(e.target.value); setCorner(v); bubble(v); }}
+            />
             <span className="tile-row-val">{corner}</span>
           </label>
 
@@ -206,8 +236,7 @@ function SlidersHorizontalIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M10 5H3"/><path d="M12 19H3"/><path d="M14 3v4"/><path d="M16 17v4"/>
-      <path d="M21 12h-9"/><path d="M21 19h-5"/><path d="M21 5h-7"/>
-      <path d="M8 10v4"/><path d="M8 12H3"/>
+      <path d="M21 12h-9"/><path d="M21 19h-5"/><path d="M21 5h-7"/><path d="M8 10v4"/><path d="M8 12H3"/>
     </svg>
   );
 }
@@ -236,8 +265,7 @@ function VolumeOn() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/>
-      <path d="M16 9a5 5 0 0 1 0 6"/>
-      <path d="M19.364 18.364a9 9 0 0 0 0-12.728"/>
+      <path d="M16 9a5 5 0 0 1 0 6"/><path d="M19.364 18.364a9 9 0 0 0 0-12.728"/>
     </svg>
   );
 }

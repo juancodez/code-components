@@ -64,6 +64,7 @@ export function AspectRatioTile() {
   };
 
   const copy = async () => {
+    click();
     await navigator.clipboard.writeText(aspectSource);
     setCopied(true);
     setTimeout(() => setCopied(false), 1400);
@@ -139,7 +140,7 @@ export function AspectRatioTile() {
             className="tile-tool"
             aria-label={panelOpen ? "Close settings" : "Open settings"}
             aria-expanded={panelOpen}
-            onClick={() => setPanelOpen((v) => !v)}
+            onClick={() => { setPanelOpen((v) => !v); click(); }}
           >
             <SlidersHorizontalIcon />
           </button>
@@ -187,7 +188,7 @@ export function AspectRatioTile() {
             <button
               className="tile-panel-close"
               aria-label="Close settings"
-              onClick={() => setPanelOpen(false)}
+              onClick={() => { setPanelOpen(false); click(); }}
             >
               <XIcon />
             </button>

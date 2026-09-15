@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { AspectRatioTile } from "./tiles/AspectRatioTile";
-import { PullToRefreshTile } from "./tiles/PullToRefreshTile";
+import { BalanceTile } from "./tiles/BalanceTile";
 import "./App.css";
 
 const TILES = [
   { slug: "aspect-ratio", Tile: AspectRatioTile },
-  { slug: "pull-to-refresh", Tile: PullToRefreshTile },
+  { slug: "balance", Tile: BalanceTile },
 ];
 const TOTAL = 5;
 
@@ -39,7 +39,7 @@ function Hero() {
     <section className="hero">
       <div className="hero-header">
         <div className="hero-identity">
-          <div className="avatar">JG</div>
+          <img src="/avatar.jpg" alt="Juan Gomez-Vara" className="avatar" />
           <div className="hero-name-block">
             <span className="hero-name">Juan</span>
             <span className={`hero-role${fading ? " fading" : ""}`}>{ROLES[roleIdx]}</span>
