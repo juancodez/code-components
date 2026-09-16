@@ -1,12 +1,14 @@
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { AspectRatioTile } from "./tiles/AspectRatioTile";
 import { BalanceTile } from "./tiles/BalanceTile";
+import { ChecklistTile } from "./tiles/ChecklistTile";
 import avatarUrl from "./assets/avatar.jpg";
 import "./App.css";
 
 const TILES = [
   { slug: "aspect-ratio", Tile: AspectRatioTile },
   { slug: "balance", Tile: BalanceTile },
+  { slug: "checklist", Tile: ChecklistTile },
 ];
 const TOTAL = 5;
 
