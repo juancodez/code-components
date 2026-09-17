@@ -1,0 +1,67 @@
+/* Off-canvas SVG defs — the filter needs a real <svg> root
+   to be reachable by url(#…), but nothing about it should
+   take up space. */
+.liq-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.liq {
+  position: relative;
+  width: 82px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--liq-track-off, #eeece9);
+  cursor: pointer;
+  transition: background 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.liq:focus-visible {
+  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.28);
+}
+.liq-on {
+  background: var(--liq-track-on, #141416);
+}
+
+.liq-goo {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.liq-thumb,
+.liq-drop {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  border-radius: 50%;
+  background: var(--liq-blob-off, #b3b3ad);
+  will-change: transform;
+  transition: background 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.liq-on .liq-thumb,
+.liq-on .liq-drop {
+  background: var(--liq-blob-on, #ffffff);
+}
+
+.liq-thumb {
+  width: 30px;
+  height: 30px;
+  margin-top: -15px;
+}
+/* The drop is smaller than the thumb; the 4px left offset
+   centers it on the thumb's x-axis (thumb=30, drop=22 →
+   (30-22)/2 = 4). Without it the goo shape would be
+   biased to one side. */
+.liq-drop {
+  width: 22px;
+  height: 22px;
+  margin-top: -11px;
+  left: 4px;
+}

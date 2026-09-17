@@ -1,0 +1,15 @@
+/* Card-scoped palette for the toggle. The component itself
+   reads these variables — the card decides what "on light"
+   and "on dark" look like. */
+.tile-card[data-fill="light"] .liq {
+  --liq-track-off: #e6e5e1;
+  --liq-track-on: #141416;
+  --liq-blob-off: #a5a5a0;
+  --liq-blob-on: #ffffff;
+}
+.tile-card[data-fill="dark"] .liq {
+  --liq-track-off: #2a2a2c;
+  --liq-track-on: #f2f2f0;
+  --liq-blob-off: #6a6a67;
+  --liq-blob-on: #141416;
+}
