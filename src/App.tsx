@@ -1,8 +1,11 @@
-import { useState, useEffect, useRef, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
+import { SiteHeaderMenu } from "./components/SiteHeaderMenu";
 import { AspectRatioTile } from "./tiles/AspectRatioTile";
 import { BalanceTile } from "./tiles/BalanceTile";
 import { ChecklistTile } from "./tiles/ChecklistTile";
 import { LiquidToggleTile } from "./tiles/LiquidToggleTile";
+import { SiteHeaderMenuTile } from "./tiles/SiteHeaderMenuTile";
+import { Nav } from "./components/Nav";
 import avatarUrl from "./assets/avatar.jpg";
 import "./App.css";
 
@@ -11,6 +14,7 @@ const TILES = [
   { slug: "balance", Tile: BalanceTile },
   { slug: "checklist", Tile: ChecklistTile },
   { slug: "liquid-toggle", Tile: LiquidToggleTile },
+  { slug: "site-header-menu", Tile: SiteHeaderMenuTile },
 ];
 const TOTAL = 5;
 
@@ -25,69 +29,17 @@ const PROJECTS = [
   { name: "Exlo", type: "Plugin", bg: "linear-gradient(135deg,#ffedd5,#fed7aa)" },
 ];
 
-const NAV_ITEMS = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Work", href: "/work", dot: true },
-  { label: "Contact", href: "/contact" },
+const MENU_ITEMS = [
+  { label: "CV", href: "mailto:juangomezvara@gmail.com" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/juangomezvara" },
+  { label: "Figma", href: "https://figma.com/@juangomezvara" },
+  { label: "Medium", href: "https://medium.com/@juangomezvara" },
 ];
-
-function Nav() {
-  const [activeIdx, setActiveIdx] = useState(0);
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
-  const targetIdx = hoveredIdx ?? activeIdx;
-  const navRef = useRef<HTMLDivElement>(null);
-  const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
-  const [pill, setPill] = useState({ left: 0, width: 0, ready: false });
-  const ctxRef = useRef<AudioContext | null>(null);
-  const click = () => {
-    if (!ctxRef.current) ctxRef.current = new AudioContext();
-    const ctx = ctxRef.current;
-    const o = ctx.createOscillator();
-    const g = ctx.createGain();
-    o.frequency.value = 640;
-    g.gain.value = 0.035;
-    g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.1);
-    o.connect(g); g.connect(ctx.destination);
-    o.start(); o.stop(ctx.currentTime + 0.11);
-  };
-
-  useLayoutEffect(() => {
-    const nav = navRef.current;
-    const item = itemRefs.current[targetIdx];
-    if (!nav || !item) return;
-    const nr = nav.getBoundingClientRect();
-    const ir = item.getBoundingClientRect();
-    setPill({ left: ir.left - nr.left, width: ir.width, ready: true });
-  }, [targetIdx]);
-
-  return (
-    <div className="nav-bar" ref={navRef}>
-      {pill.ready && (
-        <span className="nav-pill" style={{ left: pill.left, width: pill.width }} aria-hidden="true" />
-      )}
-      {NAV_ITEMS.map((item, i) => (
-        <a
-          key={item.label}
-          ref={el => { itemRefs.current[i] = el; }}
-          href={item.href}
-          className={"nav-item" + (i === activeIdx ? " nav-item-active" : "")}
-          onMouseEnter={() => setHoveredIdx(i)}
-          onMouseLeave={() => setHoveredIdx(null)}
-          onMouseDown={click}
-          onClick={() => setActiveIdx(i)}
-        >
-          {item.dot && <span className="nav-dot" aria-hidden="true" />}
-          {item.label}
-        </a>
-      ))}
-    </div>
-  );
-}
 
 function Hero() {
   const [roleIdx, setRoleIdx] = useState(0);
   const [fading, setFading] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const t = setInterval(() => {
@@ -110,10 +62,7 @@ function Hero() {
             <span className={`hero-role${fading ? " fading" : ""}`}>{ROLES[roleIdx]}</span>
           </div>
         </div>
-        <nav className="hero-cta">
-          <a href="mailto:juangomezvara@gmail.com" className="btn-primary">Get in contact</a>
-          <a href="https://linkedin.com/in/juangomezvara" className="btn-secondary">LinkedIn</a>
-        </nav>
+        <SiteHeaderMenu items={MENU_ITEMS} open={menuOpen} onToggle={setMenuOpen} />
       </div>
 
       <div className="hero-about">
@@ -160,7 +109,7 @@ export default function App() {
         <Nav />
       </div>
       <Hero />
-      <main className="gallery">
+      <main id="work" className="gallery">
         <header>
           <h1>Code Components</h1>
           <p>{TILES.length} of {TOTAL} shipped</p>

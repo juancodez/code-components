@@ -1,0 +1,49 @@
+/* Demo stage — simulated mini site header */
+.shm-demo-wrap {
+  position: relative;
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.shm-demo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.shm-demo-logo {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1d2939;
+  letter-spacing: -0.02em;
+}
+
+/* Simulated content lines */
+.shm-demo-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 4px;
+}
+.shm-demo-line {
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(17, 17, 17, 0.08);
+}
+.tile-card[data-fill="dark"] .shm-demo-line {
+  background: rgba(255, 255, 255, 0.1);
+}
+.tile-card[data-fill="dark"] .shm-demo-header {
+  background: #1e1e21;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.tile-card[data-fill="dark"] .shm-demo-logo {
+  color: #f2f2f0;
+}

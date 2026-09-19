@@ -1,0 +1,95 @@
+.xcard {
+  width: 100%;
+  max-width: 360px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* header */
+.xcard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.xcard-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.xcard-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.xcard-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.xcard-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1c1c1e;
+  letter-spacing: -0.2px;
+  font-family: -apple-system, system-ui, sans-serif;
+}
+
+.xcard-handle {
+  font-size: 12px;
+  color: #8e8e93;
+  font-family: -apple-system, system-ui, sans-serif;
+}
+
+.xcard-icon {
+  color: #1c1c1e;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.15s;
+}
+.xcard-icon:hover { opacity: 1; }
+
+/* tweet */
+.xcard-tweet {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #1c1c1e;
+  letter-spacing: -0.2px;
+  font-family: -apple-system, system-ui, sans-serif;
+}
+
+/* button */
+.xcard-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid #e5e5ea;
+  background: transparent;
+  color: #1c1c1e;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: -apple-system, system-ui, sans-serif;
+  letter-spacing: -0.1px;
+  transition: background 0.15s, border-color 0.15s;
+}
+.xcard-btn:hover {
+  background: #f2f2f7;
+  border-color: #d1d1d6;
+}

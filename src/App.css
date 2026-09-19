@@ -242,6 +242,66 @@
   color: #d0d5dd;
 }
 
+/* ===== ABOUT ===== */
+.about-section {
+  width: 100%;
+  max-width: 560px;
+  padding: 40px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+.about-widgets {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.about-tag {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid #f2f4f7;
+  font-size: 12px;
+  font-weight: 500;
+  color: #667085;
+}
+
+/* ===== CONTACT PAGE ===== */
+.contact-hero {
+  width: 100%;
+  max-width: 560px;
+  padding: 40px 24px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.contact-h1 {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  color: #1d2939;
+  margin: 0;
+}
+.contact-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 /* ===== COMPONENTS GALLERY ===== */
 .gallery {
   padding: 48px 24px 64px;
