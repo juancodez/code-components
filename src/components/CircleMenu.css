@@ -1,0 +1,93 @@
+.cm-root {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  display: grid;
+  place-items: center;
+}
+
+.cm-toggle {
+  position: relative;
+  z-index: 2;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: #2a2a2a;
+  color: #fff;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.cm-toggle:hover {
+  transform: scale(1.04);
+}
+.cm-toggle:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.cm-item {
+  /* Fixed 44x44 box so the item's center = the button's center.
+     The label is absolute below, out of layout, so it does not shift the origin. */
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  pointer-events: none;
+}
+
+.cm-btn {
+  pointer-events: auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  color: #111;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.cm-btn:hover {
+  transform: scale(1.08);
+}
+.cm-btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.cm-label {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1;
+  color: currentColor;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.cm-item:hover .cm-label {
+  opacity: 1;
+}
+
+/* Dark icons variant: buttons become dark surfaces with light glyphs. */
+.cm-root.cm-dark .cm-btn {
+  background: #1a1a1a;
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+.cm-root.cm-dark .cm-toggle {
+  background: #fff;
+  color: #111;
+}
+.cm-root.cm-dark .cm-label {
+  color: #fff;
+}

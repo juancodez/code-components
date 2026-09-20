@@ -54,7 +54,13 @@
   font-variant-numeric: tabular-nums;
 }
 .bal-cur { font-weight: 700; }
-.bal-dec { color: var(--ink-4); font-weight: 700; }
+.bal-dec {
+  color: var(--ink-4);
+  font-weight: 600;
+  font-size: 0.58em;
+  vertical-align: baseline;
+  margin-left: 1px;
+}
 
 .bal-move {
   margin: 4px 0 0;
@@ -121,7 +127,7 @@
 }
 .bal-curve {
   fill: none;
-  stroke: var(--mood);
+  stroke: url(#bal-grad);
   stroke-width: 2.4;
   stroke-linecap: round;
   stroke-linejoin: round;

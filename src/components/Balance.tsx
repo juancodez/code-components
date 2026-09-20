@@ -193,6 +193,13 @@ export const Balance = forwardRef<BalanceHandle, Props>(function Balance(
           onPointerDown={onMove}
         >
           <svg className="bal-line" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="bal-grad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stopColor="#a7f3d0" />
+                <stop offset="50%" stopColor="#fcd34d" />
+                <stop offset="100%" stopColor="#166534" />
+              </linearGradient>
+            </defs>
             <path className="bal-curve" d={d} />
           </svg>
           {scrub !== null && (

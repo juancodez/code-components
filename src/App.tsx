@@ -3,6 +3,7 @@ import { SiteHeaderMenu } from "./components/SiteHeaderMenu";
 import { AspectRatioTile } from "./tiles/AspectRatioTile";
 import { BalanceTile } from "./tiles/BalanceTile";
 import { ChecklistTile } from "./tiles/ChecklistTile";
+import { CircleMenuTile } from "./tiles/CircleMenuTile";
 import { LiquidToggleTile } from "./tiles/LiquidToggleTile";
 import { SiteHeaderMenuTile } from "./tiles/SiteHeaderMenuTile";
 import { Nav } from "./components/Nav";
@@ -13,10 +14,11 @@ const TILES = [
   { slug: "aspect-ratio", Tile: AspectRatioTile },
   { slug: "balance", Tile: BalanceTile },
   { slug: "checklist", Tile: ChecklistTile },
+  { slug: "circle-menu", Tile: CircleMenuTile },
   { slug: "liquid-toggle", Tile: LiquidToggleTile },
   { slug: "site-header-menu", Tile: SiteHeaderMenuTile },
 ];
-const TOTAL = 5;
+const TOTAL = 6;
 
 const ROLES = ["Product Designer", "Developer", "Entrepreneur", "Consultant", "Dog Lover"];
 
