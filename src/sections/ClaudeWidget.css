@@ -183,17 +183,20 @@
   padding-bottom: 2px;
 }
 
-.cw-star {
+.cw-spinner {
   color: #d97706;
-  font-size: 10px;
+  font-size: 13px;
   flex-shrink: 0;
   user-select: none;
+  width: 10px;
+  display: inline-block;
+  text-align: center;
 }
 
 .cw-babble-text {
   color: #666;
   font-size: 12px;
-  animation: cw-in 0.18s ease;
+  animation: cw-in 0.14s ease;
 }
 
 /* ─── input row ─── */

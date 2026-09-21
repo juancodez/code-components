@@ -45,12 +45,15 @@ const BABBLE = [
   "zigzagging…",
 ];
 
+const SPINNER = ['*', '+', '·', '-'];
+
 type Msg = { role: "user" | "claude"; text: string };
 
 export function ClaudeWidget() {
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
+  const [spinnerIdx, setSpinnerIdx] = useState(0);
   const [babbleLine, setBabbleLine] = useState("");
   const terminalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -61,10 +64,15 @@ export function ClaudeWidget() {
   }, [msgs, babbleLine]);
 
   useEffect(() => {
-    if (!typing) { setBabbleLine(""); return; }
+    if (!typing) { setBabbleLine(""); setSpinnerIdx(0); return; }
     const pick = () => BABBLE[Math.floor(Math.random() * BABBLE.length)];
     setBabbleLine(pick());
-    const id = setInterval(() => setBabbleLine(pick()), 420);
+    let tick = 0;
+    const id = setInterval(() => {
+      tick++;
+      setSpinnerIdx(i => (i + 1) % SPINNER.length);
+      if (tick % 3 === 0) setBabbleLine(pick());
+    }, 140);
     return () => clearInterval(id);
   }, [typing]);
 
@@ -134,7 +142,7 @@ export function ClaudeWidget() {
 
         {typing && babbleLine && (
           <div className="cw-row cw-row-babble">
-            <span className="cw-star">✦</span>
+            <span className="cw-spinner">{SPINNER[spinnerIdx]}</span>
             <span className="cw-babble-text" key={babbleLine}>{babbleLine}</span>
           </div>
         )}
