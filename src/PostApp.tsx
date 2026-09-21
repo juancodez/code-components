@@ -5,6 +5,8 @@ import { AspectRatioTile } from "./tiles/AspectRatioTile";
 import { BalanceTile } from "./tiles/BalanceTile";
 import { ChecklistTile } from "./tiles/ChecklistTile";
 import { CircleMenuTile } from "./tiles/CircleMenuTile";
+import { LiquidToggleTile } from "./tiles/LiquidToggleTile";
+import { SiteHeaderMenuTile } from "./tiles/SiteHeaderMenuTile";
 import "./App.css";
 
 const CARDS = [
@@ -31,6 +33,18 @@ const CARDS = [
     title: "Circle Menu",
     description: "A radial navigation pattern. Explores how actions expand from a single focal point rather than a linear list.",
     Tile: CircleMenuTile,
+  },
+  {
+    slug: "liquid-toggle",
+    title: "Liquid Toggle",
+    description: "A gooey toggle using spring-chased blending. Two states melt into each other rather than snapping.",
+    Tile: LiquidToggleTile,
+  },
+  {
+    slug: "site-header-menu",
+    title: "Site Header Menu",
+    description: "A site navigation with an animated pill indicator that follows the active item across pointer and keyboard navigation.",
+    Tile: SiteHeaderMenuTile,
   },
 ];
 
@@ -75,8 +89,8 @@ export default function PostApp() {
               <span className="footer-link-label">View work</span>
               <h4 className="footer-link-heading">View Case Studies</h4>
             </div>
-            <svg className="footer-link-arrow" viewBox="0 0 20 20" fill="none">
-              <path d="M2 18 L17 3 M7 3 H17 V13" stroke="#0c0c0c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <svg className="footer-link-arrow" viewBox="0 0 20.329 20.329" fill="none">
+              <path d="M 1.713 20.329 L 0 18.617 L 16.141 2.46 L 1.467 2.46 L 1.467 0 L 20.329 0 L 20.329 18.863 L 17.869 18.863 L 17.869 4.189 Z" fill="currentColor"/>
             </svg>
           </a>
           <a href="about.html" className="footer-link-card">
@@ -84,8 +98,8 @@ export default function PostApp() {
               <span className="footer-link-label">View about</span>
               <h4 className="footer-link-heading">Read My Story</h4>
             </div>
-            <svg className="footer-link-arrow" viewBox="0 0 20 20" fill="none">
-              <path d="M2 18 L17 3 M7 3 H17 V13" stroke="#0c0c0c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <svg className="footer-link-arrow" viewBox="0 0 20.329 20.329" fill="none">
+              <path d="M 1.713 20.329 L 0 18.617 L 16.141 2.46 L 1.467 2.46 L 1.467 0 L 20.329 0 L 20.329 18.863 L 17.869 18.863 L 17.869 4.189 Z" fill="currentColor"/>
             </svg>
           </a>
         </div>

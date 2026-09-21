@@ -4,10 +4,30 @@ import { Avatar } from "./components/Avatar";
 import "./App.css";
 
 const PROJECTS = [
-  { name: "Klaro", type: "Product", bg: "linear-gradient(135deg,#dbeafe,#bfdbfe)" },
-  { name: "Supply Pro", type: "Product", bg: "linear-gradient(135deg,#dcfce7,#bbf7d0)" },
-  { name: "TrustEscrow", type: "Web3", bg: "linear-gradient(135deg,#f3e8ff,#e9d5ff)" },
-  { name: "Exlo", type: "Plugin", bg: "linear-gradient(135deg,#ffedd5,#fed7aa)" },
+  {
+    slug: "hashbank",
+    video: "https://framerusercontent.com/assets/0lG7iLlrMlQuKB1qJ4CddTWzo.mp4",
+    title: "hashbank: one app for your whole financial life",
+    subtitle: "Built for people who need both",
+  },
+  {
+    slug: "data-table",
+    video: "https://framerusercontent.com/assets/Gubx4wZR4GtqUASpvUbTLQyhlY.mp4",
+    title: "Data table: After 10,000 rows",
+    subtitle: "Where work actually happens, but nobody designs for it",
+  },
+  {
+    slug: "design-system",
+    video: "https://framerusercontent.com/assets/Y43TDcqsno5M4iq5IHuxI0pTu2Y.mp4",
+    title: "Design system: how we redesigned a live bank without breaking it",
+    subtitle: "The invisible work that made hashbank possible",
+  },
+  {
+    slug: "spacecargo",
+    video: "https://framerusercontent.com/assets/ifjWCqyeg0DRj5FqoDrVwfc1QQI.mp4",
+    title: "SpaceCargo: warehouse management system",
+    subtitle: "67% fewer lost parcels. Zero magic involved",
+  },
 ];
 
 function Hero() {
@@ -35,19 +55,37 @@ function Hero() {
       </div>
 
       <div className="projects-wrap">
-        <h2 className="section-title">Recent Projects</h2>
-        <div className="projects-grid">
-          {PROJECTS.map(p => (
-            <div key={p.name} className="project-card">
-              <div className="project-img" style={{ background: p.bg }}>
-                <span className="project-img-label">{p.name}</span>
-              </div>
-              <div className="project-meta">
-                <span className="project-name">{p.name}</span>
-                <span className="project-type">{p.type}</span>
-              </div>
+        {PROJECTS.map(p => (
+          <a key={p.slug} className="project-card" href={`./projects/${p.slug}`}>
+            <div className="project-video-wrap">
+              <video src={p.video} loop autoPlay muted playsInline />
             </div>
-          ))}
+            <div className="project-text">
+              <h2 className="project-title">{p.title}</h2>
+              <p className="project-sub">{p.subtitle}</p>
+            </div>
+          </a>
+        ))}
+
+        <div className="footer-nav">
+          <a href="post.html" className="footer-link-card">
+            <div className="footer-link-texts">
+              <span className="footer-link-label">View Posts</span>
+              <h4 className="footer-link-heading">My Experiments</h4>
+            </div>
+            <svg className="footer-link-arrow" viewBox="0 0 20.329 20.329" fill="none">
+              <path d="M 1.713 20.329 L 0 18.617 L 16.141 2.46 L 1.467 2.46 L 1.467 0 L 20.329 0 L 20.329 18.863 L 17.869 18.863 L 17.869 4.189 Z" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="about.html" className="footer-link-card">
+            <div className="footer-link-texts">
+              <span className="footer-link-label">View About</span>
+              <h4 className="footer-link-heading">Read My Story</h4>
+            </div>
+            <svg className="footer-link-arrow" viewBox="0 0 20.329 20.329" fill="none">
+              <path d="M 1.713 20.329 L 0 18.617 L 16.141 2.46 L 1.467 2.46 L 1.467 0 L 20.329 0 L 20.329 18.863 L 17.869 18.863 L 17.869 4.189 Z" fill="currentColor"/>
+            </svg>
+          </a>
         </div>
       </div>
     </section>

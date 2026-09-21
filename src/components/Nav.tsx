@@ -44,7 +44,7 @@ export function Nav() {
   }, [targetIdx]);
 
   return (
-    <div className="nav-bar" ref={navRef}>
+    <nav className="nav-bar" ref={navRef} aria-label="Main navigation">
       {pill.ready && (
         <span className="nav-pill" style={{ left: pill.left, width: pill.width }} aria-hidden="true" />
       )}
@@ -54,6 +54,7 @@ export function Nav() {
           ref={el => { itemRefs.current[i] = el; }}
           href={item.href}
           className={"nav-item" + (i === activeIdx ? " nav-item-active" : "")}
+          aria-current={i === activeIdx ? "page" : undefined}
           onMouseEnter={() => setHoveredIdx(i)}
           onMouseLeave={() => setHoveredIdx(null)}
           onMouseDown={click}
@@ -62,6 +63,6 @@ export function Nav() {
           {item.label}
         </a>
       ))}
-    </div>
+    </nav>
   );
 }
