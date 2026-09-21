@@ -52,6 +52,28 @@ export default function AboutApp() {
       </section>
 
       <PhotoScatter />
+
+      <div className="post-footer-nav">
+        <a href="index.html" className="footer-link-card">
+          <div className="footer-link-texts">
+            <span className="footer-link-label">View work</span>
+            <h4 className="footer-link-heading">View Case Studies</h4>
+          </div>
+          <svg className="footer-link-arrow" viewBox="0 0 20.329 20.329" fill="none">
+            <path d="M 1.713 20.329 L 0 18.617 L 16.141 2.46 L 1.467 2.46 L 1.467 0 L 20.329 0 L 20.329 18.863 L 17.869 18.863 L 17.869 4.189 Z" fill="currentColor"/>
+          </svg>
+        </a>
+        <a href="post.html" className="footer-link-card">
+          <div className="footer-link-texts">
+            <span className="footer-link-label">View Posts</span>
+            <h4 className="footer-link-heading">My Code Components</h4>
+          </div>
+          <svg className="footer-link-arrow" viewBox="0 0 20.329 20.329" fill="none">
+            <path d="M 1.713 20.329 L 0 18.617 L 16.141 2.46 L 1.467 2.46 L 1.467 0 L 20.329 0 L 20.329 18.863 L 17.869 18.863 L 17.869 4.189 Z" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
+
       <Footer />
     </div>
   );
