@@ -1,28 +1,7 @@
-import { useState, useEffect } from "react";
-import { SiteHeaderMenu } from "./components/SiteHeaderMenu";
-import { AspectRatioTile } from "./tiles/AspectRatioTile";
-import { BalanceTile } from "./tiles/BalanceTile";
-import { ChecklistTile } from "./tiles/ChecklistTile";
-import { CircleMenuTile } from "./tiles/CircleMenuTile";
-import { LiquidToggleTile } from "./tiles/LiquidToggleTile";
-import { SiteHeaderMenuTile } from "./tiles/SiteHeaderMenuTile";
 import { Nav } from "./components/Nav";
-import avatarUrl from "./assets/avatar.jpg";
+import { Footer } from "./components/Footer";
+import { Avatar } from "./components/Avatar";
 import "./App.css";
-
-const TILES = [
-  { slug: "aspect-ratio", Tile: AspectRatioTile },
-  { slug: "balance", Tile: BalanceTile },
-  { slug: "checklist", Tile: ChecklistTile },
-  { slug: "circle-menu", Tile: CircleMenuTile },
-  { slug: "liquid-toggle", Tile: LiquidToggleTile },
-  { slug: "site-header-menu", Tile: SiteHeaderMenuTile },
-];
-const TOTAL = 6;
-
-const ROLES = ["Product Designer", "Developer", "Entrepreneur", "Consultant", "Dog Lover"];
-
-const LOGOS = ["Klaro", "Supply Pro", "ClickUp", "Protonic", "TrustEscrow", "Exlo"];
 
 const PROJECTS = [
   { name: "Klaro", type: "Product", bg: "linear-gradient(135deg,#dbeafe,#bfdbfe)" },
@@ -31,57 +10,28 @@ const PROJECTS = [
   { name: "Exlo", type: "Plugin", bg: "linear-gradient(135deg,#ffedd5,#fed7aa)" },
 ];
 
-const MENU_ITEMS = [
-  { label: "CV", href: "mailto:juangomezvara@gmail.com" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/juangomezvara" },
-  { label: "Figma", href: "https://figma.com/@juangomezvara" },
-  { label: "Medium", href: "https://medium.com/@juangomezvara" },
-];
-
 function Hero() {
-  const [roleIdx, setRoleIdx] = useState(0);
-  const [fading, setFading] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const t = setInterval(() => {
-      setFading(true);
-      setTimeout(() => {
-        setRoleIdx(i => (i + 1) % ROLES.length);
-        setFading(false);
-      }, 300);
-    }, 2400);
-    return () => clearInterval(t);
-  }, []);
 
   return (
     <section className="hero">
       <div className="hero-header">
         <div className="hero-identity">
-          <img src={avatarUrl} alt="Juan Gomez-Vara" className="avatar" />
+          <Avatar />
           <div className="hero-name-block">
-            <span className="hero-name">Juan</span>
-            <span className={`hero-role${fading ? " fading" : ""}`}>{ROLES[roleIdx]}</span>
+            <span className="hero-name">Juan Gomez Vara</span>
+            <span className="hero-role">Product Designer who engineers.</span>
           </div>
         </div>
-        <SiteHeaderMenu items={MENU_ITEMS} open={menuOpen} onToggle={setMenuOpen} />
+        <Nav />
       </div>
 
       <div className="hero-about">
-        <h1 className="hero-h1">I design and build products that set new standards.</h1>
+        <h1 className="hero-h1">A Product designer who engineers.</h1>
         <p className="hero-body">
           I collaborate with founders and teams to craft design systems, interfaces, and scalable
           software — from Figma tokens to production code. Whether it's a bold new product or a
           system in need of structure, I bring both sides to the table.
         </p>
-      </div>
-
-      <div className="ticker-wrap">
-        <div className="ticker-track">
-          {[...LOGOS, ...LOGOS].map((l, i) => (
-            <span key={i} className="ticker-item">{l}</span>
-          ))}
-        </div>
       </div>
 
       <div className="projects-wrap">
@@ -107,29 +57,8 @@ function Hero() {
 export default function App() {
   return (
     <div className="page">
-      <div className="nav-wrap">
-        <Nav />
-      </div>
       <Hero />
-      <main id="work" className="gallery">
-        <header>
-          <h1>Code Components</h1>
-          <p>{TILES.length} of {TOTAL} shipped</p>
-        </header>
-        <ul className="stack">
-          {TILES.map(({ slug, Tile }) => (
-            <li key={slug}><Tile /></li>
-          ))}
-          {Array.from({ length: TOTAL - TILES.length }).map((_, i) => (
-            <li key={`ghost-${i}`}>
-              <div className="ghost">
-                <span>Coming soon</span>
-                <small>slot {TILES.length + i + 1} of {TOTAL}</small>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </main>
+      <Footer />
     </div>
   );
 }

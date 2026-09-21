@@ -78,7 +78,7 @@
 }
 
 .mp-time {
-  font-size: 10px;
+  font-size: 12px;
   color: #c7c7cc;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.02em;
@@ -189,13 +189,13 @@
 }
 
 .mp-list-artist {
-  font-size: 11px;
+  font-size: 12px;
   color: #8e8e93;
   font-family: -apple-system, system-ui, sans-serif;
 }
 
 .mp-list-num {
-  font-size: 11px;
+  font-size: 12px;
   color: #c7c7cc;
   font-variant-numeric: tabular-nums;
   flex-shrink: 0;

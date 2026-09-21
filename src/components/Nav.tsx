@@ -1,16 +1,15 @@
 import { useState, useRef, useLayoutEffect } from "react";
 
 const NAV_ITEMS = [
-  { label: "Home", href: "index.html" },
+  { label: "Work", href: "index.html" },
+  { label: "Posts", href: "post.html" },
   { label: "About", href: "about.html" },
-  { label: "Work", href: "index.html", dot: true },
-  { label: "Contact", href: "contact.html" },
 ];
 
 function getActiveIdx() {
   const path = window.location.pathname;
-  if (path.includes("about")) return 1;
-  if (path.includes("contact")) return 3;
+  if (path.includes("post")) return 1;
+  if (path.includes("about")) return 2;
   return 0;
 }
 
@@ -60,7 +59,6 @@ export function Nav() {
           onMouseDown={click}
           onClick={() => setActiveIdx(i)}
         >
-          {item.dot && <span className="nav-dot" aria-hidden="true" />}
           {item.label}
         </a>
       ))}

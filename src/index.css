@@ -1,3 +1,18 @@
+@font-face {
+  font-family: 'Author';
+  src: url('/fonts/Author-Variable.woff2') format('woff2');
+  font-weight: 200 700;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Author';
+  src: url('/fonts/Author-VariableItalic.woff2') format('woff2');
+  font-weight: 200 700;
+  font-display: swap;
+  font-style: italic;
+}
+
 *, *::before, *::after { box-sizing: border-box; }
 html, body, #root { margin: 0; padding: 0; min-height: 100%; }
 html { scrollbar-gutter: stable; }
