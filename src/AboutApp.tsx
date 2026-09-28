@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useRef } from "react";
 import type { ReactNode } from "react";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
@@ -40,6 +40,58 @@ const CONTACT_LINKS: Array<{
   { label: "@juangomezvara on Figma", href: "https://www.figma.com/@juangomezvara", Icon: FigmaIcon, external: true, preview: "/figma-screen.png", previewPosition: "bottom" },
   { label: "juangomezvara on Behance", href: "https://www.behance.net/juangomezvara3027", Icon: BehanceSquareIcon, external: true, preview: "/behance-screen.png", previewPosition: "top" },
 ];
+
+function usePencilSound() {
+  const lastRef = useRef(0);
+  return useCallback(() => {
+    const now = Date.now();
+    if (now - lastRef.current < 350) return;
+    lastRef.current = now;
+    const Ctx = (window as any).AudioContext || (window as any).webkitAudioContext;
+    if (!Ctx) return;
+    const ctx: AudioContext = new Ctx();
+    const sr = ctx.sampleRate;
+    [0, 0.06, 0.12].forEach((t0, i) => {
+      const dur = 0.045;
+      const buf = ctx.createBuffer(1, Math.floor(sr * dur), sr);
+      const d = buf.getChannelData(0);
+      for (let k = 0; k < d.length; k++) {
+        const t = k / sr;
+        d[k] = (Math.random() * 2 - 1) * Math.sin((t / dur) * Math.PI) * 0.22;
+      }
+      const src = ctx.createBufferSource();
+      src.buffer = buf;
+      const f = ctx.createBiquadFilter();
+      f.type = "bandpass";
+      f.frequency.value = 5000 + i * 400;
+      f.Q.value = 0.5;
+      src.connect(f);
+      f.connect(ctx.destination);
+      src.start(ctx.currentTime + t0);
+      if (i === 2) src.onended = () => ctx.close();
+    });
+  }, []);
+}
+
+function BentoGrid() {
+  const pencil = usePencilSound();
+  return (
+    <div className="abt-bento">
+      <div className="bento-card bento-music" onMouseEnter={pencil}>
+        <MusicPlayer />
+      </div>
+      <div className="bento-card bento-claude" onMouseEnter={pencil}>
+        <ClaudeWidget />
+      </div>
+      <div className="bento-card bento-video" onMouseEnter={pencil}>
+        <VideoPlayer />
+      </div>
+      <div className="bento-card bento-medium" onMouseEnter={pencil}>
+        <MediumCard />
+      </div>
+    </div>
+  );
+}
 
 function Sec({ label, children }: { label: string; children: ReactNode }) {
   return (
@@ -93,12 +145,7 @@ export default function AboutApp() {
           <p className="abt-text" style={{ marginBottom: 20 }}>
             Music runs in the background of most things. I dig deep on playlists, build things just to see if they work, and occasionally get too invested in type scales and motion curves.
           </p>
-          <div className="abt-widgets">
-            <MusicPlayer />
-            <VideoPlayer />
-            <MediumCard />
-            <ClaudeWidget />
-          </div>
+          <BentoGrid />
         </Sec>
 
 
