@@ -41,63 +41,30 @@ const CONTACT_LINKS: Array<{
   { label: "juangomezvara on Behance", href: "https://www.behance.net/juangomezvara3027", Icon: BehanceSquareIcon, external: true, preview: "/behance-screen.png", previewPosition: "top" },
 ];
 
-function usePencilSound() {
-  const lastRef = useRef(0);
-  return useCallback(() => {
-    const now = Date.now();
-    if (now - lastRef.current < 350) return;
-    lastRef.current = now;
-    const Ctx = (window as any).AudioContext || (window as any).webkitAudioContext;
-    if (!Ctx) return;
-    const ctx: AudioContext = new Ctx();
-    const sr = ctx.sampleRate;
-    [0, 0.06, 0.12].forEach((t0, i) => {
-      const dur = 0.045;
-      const buf = ctx.createBuffer(1, Math.floor(sr * dur), sr);
-      const d = buf.getChannelData(0);
-      for (let k = 0; k < d.length; k++) {
-        const t = k / sr;
-        d[k] = (Math.random() * 2 - 1) * Math.sin((t / dur) * Math.PI) * 0.22;
-      }
-      const src = ctx.createBufferSource();
-      src.buffer = buf;
-      const f = ctx.createBiquadFilter();
-      f.type = "bandpass";
-      f.frequency.value = 5000 + i * 400;
-      f.Q.value = 0.5;
-      src.connect(f);
-      f.connect(ctx.destination);
-      src.start(ctx.currentTime + t0);
-      if (i === 2) src.onended = () => ctx.close();
-    });
-  }, []);
-}
-
 function BentoGrid() {
-  const pencil = usePencilSound();
-  const writingAudio = useRef<HTMLAudioElement | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const mediumEnter = useCallback(() => {
-    if (!writingAudio.current) {
-      writingAudio.current = new Audio("/writing.mp3");
-      writingAudio.current.volume = 0.4;
+  const playWriting = useCallback(() => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio("/writing.mp3");
+      audioRef.current.volume = 0.4;
     }
-    writingAudio.current.currentTime = 0;
-    writingAudio.current.play().catch(() => {});
+    audioRef.current.currentTime = 0;
+    audioRef.current.play().catch(() => {});
   }, []);
 
   return (
     <div className="abt-bento">
-      <div className="bento-card bento-music" onMouseEnter={pencil}>
+      <div className="bento-card bento-music" onMouseEnter={playWriting}>
         <MusicPlayer />
       </div>
-      <div className="bento-card bento-claude" onMouseEnter={pencil}>
+      <div className="bento-card bento-claude" onMouseEnter={playWriting}>
         <ClaudeWidget />
       </div>
-      <div className="bento-card bento-video" onMouseEnter={pencil}>
+      <div className="bento-card bento-video" onMouseEnter={playWriting}>
         <VideoPlayer />
       </div>
-      <div className="bento-card bento-medium" onMouseEnter={mediumEnter}>
+      <div className="bento-card bento-medium" onMouseEnter={playWriting}>
         <MediumCard />
       </div>
     </div>
