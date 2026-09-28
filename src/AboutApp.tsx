@@ -75,6 +75,17 @@ function usePencilSound() {
 
 function BentoGrid() {
   const pencil = usePencilSound();
+  const writingAudio = useRef<HTMLAudioElement | null>(null);
+
+  const mediumEnter = useCallback(() => {
+    if (!writingAudio.current) {
+      writingAudio.current = new Audio("/writing.mp3");
+      writingAudio.current.volume = 0.4;
+    }
+    writingAudio.current.currentTime = 0;
+    writingAudio.current.play().catch(() => {});
+  }, []);
+
   return (
     <div className="abt-bento">
       <div className="bento-card bento-music" onMouseEnter={pencil}>
@@ -86,7 +97,7 @@ function BentoGrid() {
       <div className="bento-card bento-video" onMouseEnter={pencil}>
         <VideoPlayer />
       </div>
-      <div className="bento-card bento-medium" onMouseEnter={pencil}>
+      <div className="bento-card bento-medium" onMouseEnter={mediumEnter}>
         <MediumCard />
       </div>
     </div>
