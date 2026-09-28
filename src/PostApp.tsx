@@ -6,7 +6,6 @@ import { BalanceTile } from "./tiles/BalanceTile";
 import { ChecklistTile } from "./tiles/ChecklistTile";
 import { CircleMenuTile } from "./tiles/CircleMenuTile";
 import { LiquidToggleTile } from "./tiles/LiquidToggleTile";
-import { SiteHeaderMenuTile } from "./tiles/SiteHeaderMenuTile";
 import "./App.css";
 
 const CARDS = [
@@ -39,12 +38,6 @@ const CARDS = [
     title: "Liquid Toggle",
     description: "A gooey toggle using spring-chased blending. Two states melt into each other rather than snapping.",
     Tile: LiquidToggleTile,
-  },
-  {
-    slug: "site-header-menu",
-    title: "Site Header Menu",
-    description: "A site navigation with an animated pill indicator that follows the active item across pointer and keyboard navigation.",
-    Tile: SiteHeaderMenuTile,
   },
 ];
 
