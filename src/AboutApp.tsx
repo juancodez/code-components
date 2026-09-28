@@ -43,28 +43,40 @@ const CONTACT_LINKS: Array<{
 
 function BentoGrid() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const stopTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const playWriting = useCallback(() => {
+  const enter = useCallback(() => {
     if (!audioRef.current) {
       audioRef.current = new Audio("/writing.mp3");
       audioRef.current.volume = 0.4;
     }
+    if (stopTimer.current) clearTimeout(stopTimer.current);
     audioRef.current.currentTime = 0;
     audioRef.current.play().catch(() => {});
+    stopTimer.current = setTimeout(() => {
+      audioRef.current?.pause();
+    }, 1000);
+  }, []);
+
+  const leave = useCallback(() => {
+    if (stopTimer.current) clearTimeout(stopTimer.current);
+    if (!audioRef.current) return;
+    audioRef.current.pause();
+    audioRef.current.currentTime = 0;
   }, []);
 
   return (
     <div className="abt-bento">
-      <div className="bento-card bento-music" onMouseEnter={playWriting}>
+      <div className="bento-card bento-music" onMouseEnter={enter} onMouseLeave={leave}>
         <MusicPlayer />
       </div>
-      <div className="bento-card bento-claude" onMouseEnter={playWriting}>
+      <div className="bento-card bento-claude" onMouseEnter={enter} onMouseLeave={leave}>
         <ClaudeWidget />
       </div>
-      <div className="bento-card bento-video" onMouseEnter={playWriting}>
+      <div className="bento-card bento-video" onMouseEnter={enter} onMouseLeave={leave}>
         <VideoPlayer />
       </div>
-      <div className="bento-card bento-medium" onMouseEnter={playWriting}>
+      <div className="bento-card bento-medium" onMouseEnter={enter} onMouseLeave={leave}>
         <MediumCard />
       </div>
     </div>
