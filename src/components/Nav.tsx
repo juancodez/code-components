@@ -35,12 +35,17 @@ export function Nav() {
   };
 
   useLayoutEffect(() => {
-    const nav = navRef.current;
-    const item = itemRefs.current[targetIdx];
-    if (!nav || !item) return;
-    const nr = nav.getBoundingClientRect();
-    const ir = item.getBoundingClientRect();
-    setPill({ left: ir.left - nr.left, width: ir.width, ready: true });
+    const measure = () => {
+      const nav = navRef.current;
+      const item = itemRefs.current[targetIdx];
+      if (!nav || !item) return;
+      const nr = nav.getBoundingClientRect();
+      const ir = item.getBoundingClientRect();
+      setPill({ left: ir.left - nr.left, width: ir.width, ready: true });
+    };
+    measure();
+    // re-measure after fonts load — Author font changes item width
+    document.fonts.ready.then(measure);
   }, [targetIdx]);
 
   return (

@@ -2,11 +2,11 @@
 .cw {
   width: 100%;
   max-width: 380px;
-  background: #0d0d0d;
+  background: #ffffff;
   border-radius: 10px;
   box-shadow:
-    0 0 0 1px rgba(255,255,255,0.07),
-    0 28px 60px rgba(0,0,0,0.6);
+    0 0 0 1px rgba(0,0,0,0.08),
+    0 8px 32px rgba(0,0,0,0.10);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -20,8 +20,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 14px;
-  background: #161616;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  background: #f5f5f5;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
   flex-shrink: 0;
 }
 
@@ -42,7 +42,7 @@
 .cw-titlebar-label {
   font-size: 12px;
   font-weight: 600;
-  color: #c8c8c8;
+  color: #888;
   letter-spacing: 0.03em;
 }
 
@@ -54,7 +54,7 @@
   align-items: center;
   gap: 12px;
   padding: 14px 16px 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(0,0,0,0.07);
   flex-shrink: 0;
 }
 
@@ -83,24 +83,24 @@
 .cw-header-name {
   margin: 0;
   font-size: 13px;
-  color: #f0f0f0;
+  color: #1d1d1d;
   font-weight: 400;
 }
 
 .cw-header-name strong {
   font-weight: 700;
-  color: #ffffff;
+  color: #000;
 }
 
 .cw-header-ver {
-  color: #666;
+  color: #aaa;
   font-weight: 400;
 }
 
 .cw-header-meta {
   margin: 0;
   font-size: 12px;
-  color: #555;
+  color: #999;
 }
 
 /* ─── terminal body ─── */
@@ -114,13 +114,13 @@
 
 .cw-terminal::-webkit-scrollbar { width: 3px; }
 .cw-terminal::-webkit-scrollbar-track { background: transparent; }
-.cw-terminal::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 3px; }
+.cw-terminal::-webkit-scrollbar-thumb { background: #e0e0e0; border-radius: 3px; }
 
 /* empty hint */
 .cw-hint {
   margin: auto;
   font-size: 12px;
-  color: #3a3a3a;
+  color: #ccc;
   padding: 0 16px;
   text-align: center;
 }
@@ -143,21 +143,21 @@
 
 /* user row: highlighted background */
 .cw-row-user {
-  background: #1a1a2e;
+  background: #f0f4ff;
   padding-top: 6px;
   padding-bottom: 6px;
   margin-bottom: 2px;
 }
 
 .cw-chevron {
-  color: #e8e8e8;
+  color: #444;
   font-size: 13px;
   flex-shrink: 0;
   user-select: none;
 }
 
 .cw-row-user .cw-row-text {
-  color: #f0f0f0;
+  color: #1d1d1d;
 }
 
 /* claude row: L tree connector */
@@ -167,14 +167,14 @@
 }
 
 .cw-tree {
-  color: #3a3a3a;
+  color: #ddd;
   font-size: 13px;
   flex-shrink: 0;
   user-select: none;
 }
 
 .cw-row-claude .cw-row-text {
-  color: #c0c0c0;
+  color: #444;
 }
 
 /* babble / thinking row */
@@ -194,7 +194,7 @@
 }
 
 .cw-babble-text {
-  color: #666;
+  color: #bbb;
   font-size: 12px;
   animation: cw-in 0.14s ease;
 }
@@ -205,12 +205,12 @@
   align-items: center;
   gap: 8px;
   padding: 10px 16px 13px;
-  border-top: 1px solid rgba(255,255,255,0.05);
+  border-top: 1px solid rgba(0,0,0,0.07);
   flex-shrink: 0;
 }
 
 .cw-input-chevron {
-  color: #e8e8e8;
+  color: #444;
   font-size: 13px;
   font-family: inherit;
   flex-shrink: 0;
@@ -224,19 +224,19 @@
   outline: none;
   font-size: 13px;
   font-family: inherit;
-  color: #f0f0f0;
-  caret-color: #f0f0f0;
+  color: #1d1d1d;
+  caret-color: #1d1d1d;
 }
-.cw-input::placeholder { color: #333; }
+.cw-input::placeholder { color: #bbb; }
 .cw-input:disabled { opacity: 0.3; }
 
 .cw-send {
   width: 26px;
   height: 26px;
   border-radius: 5px;
-  border: 1px solid #2a2a2a;
-  background: #1e1e1e;
-  color: #888;
+  border: 1px solid #e0e0e0;
+  background: #f5f5f5;
+  color: #999;
   display: grid;
   place-items: center;
   cursor: pointer;
@@ -244,7 +244,7 @@
   transition: background 0.12s, color 0.12s;
 }
 .cw-send:hover:not(:disabled) {
-  background: #2a2a2a;
-  color: #f0f0f0;
+  background: #eaeaea;
+  color: #333;
 }
 .cw-send:disabled { opacity: 0.2; cursor: default; }
