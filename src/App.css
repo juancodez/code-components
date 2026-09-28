@@ -367,13 +367,26 @@
   flex-shrink: 0;
 }
 
-/* ===== ABOUT V2 — iraklis-style vertical sections ===== */
+/* ===== ABOUT LAYOUT — two-column ===== */
+.about-layout {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 48px;
+  width: 100%;
+  max-width: 1120px;
+  padding: 0 40px 48px;
+  align-items: start;
+}
+
 .about-v2 {
   width: 100%;
-  max-width: 620px;
-  padding: 0 24px 48px;
   display: flex;
   flex-direction: column;
+}
+
+.about-bento-col {
+  position: sticky;
+  top: 32px;
 }
 
 .abt-sec {

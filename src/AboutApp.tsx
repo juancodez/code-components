@@ -108,61 +108,65 @@ export default function AboutApp() {
         </div>
       </section>
 
-      <div className="about-v2">
+      <div className="about-layout">
+        <div className="about-v2">
 
-        <Sec label="General">
-          <p className="abt-text">
-            Born in Spain, based in Germany. I grew up between cities, came up through design and taught myself to code along the way. Both sides stuck.
-          </p>
-          <p className="abt-text">
-            I design systems, interfaces, and full-stack products — from Figma tokens to production code. Whether it's a bold new product or a system in need of structure, I bring both sides to the table.
-          </p>
-        </Sec>
+          <Sec label="General">
+            <p className="abt-text">
+              Born in Spain, based in Germany. I grew up between cities, came up through design and taught myself to code along the way. Both sides stuck.
+            </p>
+            <p className="abt-text">
+              I design systems, interfaces, and full-stack products — from Figma tokens to production code. Whether it's a bold new product or a system in need of structure, I bring both sides to the table.
+            </p>
+          </Sec>
 
-        <Sec label="Experience">
-          <div className="abt-exp">
-            {EXPERIENCE.map(e => (
-              <div key={e.role} className="abt-exp-item">
-                <span className="abt-exp-role">{e.role}</span>
-                <span className="abt-exp-meta">{e.meta}</span>
-                <p className="abt-exp-desc">{e.desc}</p>
-              </div>
-            ))}
-          </div>
-        </Sec>
-
-        <Sec label="Outside the screen">
-          <p className="abt-text" style={{ marginBottom: 20 }}>
-            Music runs in the background of most things. I dig deep on playlists, build things just to see if they work, and occasionally get too invested in type scales and motion curves.
-          </p>
-          <BentoGrid />
-        </Sec>
-
-
-        <Sec label="Contact">
-          <div className="abt-contact">
-            {CONTACT_LINKS.map(l => (
-              <a
-                key={l.href}
-                href={l.href}
-                target={l.external ? "_blank" : undefined}
-                rel={l.external ? "noreferrer" : undefined}
-                className="abt-clink"
-              >
-                <span className="abt-clink-icon">
-                  {l.iconSrc
-                    ? <img src={l.iconSrc} alt="" width="17" height="17" className="abt-clink-logo" />
-                    : l.Icon ? <l.Icon /> : null}
-                </span>
-                {l.label}
-                <div className="abt-clink-preview" aria-hidden="true">
-                  <img src={l.preview} alt="" loading="lazy" style={l.previewPosition ? { objectPosition: l.previewPosition } : undefined} />
+          <Sec label="Experience">
+            <div className="abt-exp">
+              {EXPERIENCE.map(e => (
+                <div key={e.role} className="abt-exp-item">
+                  <span className="abt-exp-role">{e.role}</span>
+                  <span className="abt-exp-meta">{e.meta}</span>
+                  <p className="abt-exp-desc">{e.desc}</p>
                 </div>
-              </a>
-            ))}
-          </div>
-        </Sec>
+              ))}
+            </div>
+          </Sec>
 
+          <Sec label="Outside the screen">
+            <p className="abt-text">
+              Music runs in the background of most things. I dig deep on playlists, build things just to see if they work, and occasionally get too invested in type scales and motion curves.
+            </p>
+          </Sec>
+
+          <Sec label="Contact">
+            <div className="abt-contact">
+              {CONTACT_LINKS.map(l => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  target={l.external ? "_blank" : undefined}
+                  rel={l.external ? "noreferrer" : undefined}
+                  className="abt-clink"
+                >
+                  <span className="abt-clink-icon">
+                    {l.iconSrc
+                      ? <img src={l.iconSrc} alt="" width="17" height="17" className="abt-clink-logo" />
+                      : l.Icon ? <l.Icon /> : null}
+                  </span>
+                  {l.label}
+                  <div className="abt-clink-preview" aria-hidden="true">
+                    <img src={l.preview} alt="" loading="lazy" style={l.previewPosition ? { objectPosition: l.previewPosition } : undefined} />
+                  </div>
+                </a>
+              ))}
+            </div>
+          </Sec>
+
+        </div>
+
+        <div className="about-bento-col">
+          <BentoGrid />
+        </div>
       </div>
 
       <div className="post-footer-nav" style={{ maxWidth: 620, padding: "0 24px 80px" }}>
