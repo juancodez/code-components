@@ -49,8 +49,13 @@ const SPINNER = ['*', '+', '·', '-'];
 
 type Msg = { role: "user" | "claude"; text: string };
 
+const SEED: Msg[] = [
+  { role: "user",   text: "can you build my portfolio?" },
+  { role: "claude", text: "Done. Wrote the components, styled the bento, pushed to Vercel. You're live." },
+];
+
 export function ClaudeWidget() {
-  const [msgs, setMsgs] = useState<Msg[]>([]);
+  const [msgs, setMsgs] = useState<Msg[]>(SEED);
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
   const [spinnerIdx, setSpinnerIdx] = useState(0);
@@ -146,6 +151,14 @@ export function ClaudeWidget() {
             <span className="cw-babble-text" key={babbleLine}>{babbleLine}</span>
           </div>
         )}
+
+        <div className="cw-limit">
+          <span className="cw-limit-icon">✕</span>
+          <span>
+            You've hit your limit. Reset tomorrow at 3 pm (Europe/Berlin).{" "}
+            Rock burning. 🪨🔥
+          </span>
+        </div>
       </div>
 
       {/* input */}
