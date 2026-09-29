@@ -76,7 +76,7 @@ export function MusicPlayer() {
           <span className="mp-card-title">{track.title}</span>
           {track.explicit && <span className="mp-explicit" aria-label="Explicit">E</span>}
         </div>
-        <div className="mp-card-sub">{track.artist} — {track.album}</div>
+        <div className="mp-card-sub">{track.artist} - {track.album}</div>
       </div>
 
       {/* Controls pill */}
