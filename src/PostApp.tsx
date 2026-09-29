@@ -6,6 +6,7 @@ import { BalanceTile } from "./tiles/BalanceTile";
 import { ChecklistTile } from "./tiles/ChecklistTile";
 import { CircleMenuTile } from "./tiles/CircleMenuTile";
 import { LiquidToggleTile } from "./tiles/LiquidToggleTile";
+import { ModelPickerTile } from "./tiles/ModelPickerTile";
 import "./App.css";
 
 const CARDS = [
@@ -38,6 +39,12 @@ const CARDS = [
     title: "Liquid Toggle",
     description: "A gooey toggle using spring-chased blending. Two states melt into each other rather than snapping.",
     Tile: LiquidToggleTile,
+  },
+  {
+    slug: "model-picker",
+    title: "Model Picker",
+    description: "A provider-first model chooser. Rail on the left, search and list on the right, thinking-effort track along the bottom.",
+    Tile: ModelPickerTile,
   },
 ];
 

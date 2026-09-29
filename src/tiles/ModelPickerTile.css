@@ -1,0 +1,20 @@
+/* Wider card + taller stage so the popover (which measures ~420x300)
+   sits comfortably below the trigger without clipping the bottom edge. */
+.tile-card-tall {
+  min-height: 560px;
+  padding: 56px 24px 60px;
+}
+.tile-stage-wide {
+  width: 420px;
+  height: 440px;
+  align-items: start;
+  padding-top: 8px;
+  place-items: start center;
+}
+
+.mp-tile-blurb {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #6b6b6b;
+}
