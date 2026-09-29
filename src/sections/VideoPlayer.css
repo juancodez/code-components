@@ -22,18 +22,48 @@
   object-fit: cover;
 }
 
-/* ── TV-off collapse ── */
+/* ── TV-off implosion (flat CRT, no 3D) ── */
 @keyframes vp-tvoff {
-  0%   { transform: scaleY(1);              filter: brightness(1);           }
-  22%  { transform: scaleY(0.02);           filter: brightness(4);           }
-  55%  { transform: scaleY(0.02) scaleX(0.18); filter: brightness(3);        }
-  80%  { transform: scale(0.04);            filter: brightness(6) blur(2px); }
-  100% { transform: scale(0);              filter: brightness(0); opacity: 0; }
+  /* image starts normal */
+  0%   {
+    clip-path: inset(0% 0% 0% 0%);
+    filter: brightness(1);
+    opacity: 1;
+  }
+  /* fast vertical crush → white-hot scan line */
+  18%  {
+    clip-path: inset(49% 0% 49% 0%);
+    filter: brightness(7) saturate(0);
+    opacity: 1;
+  }
+  /* scan line holds a beat, blazing bright */
+  34%  {
+    clip-path: inset(49.4% 0% 49.4% 0%);
+    filter: brightness(14) saturate(0);
+    opacity: 1;
+  }
+  /* horizontal collapse — line shrinks to a dot */
+  56%  {
+    clip-path: inset(49.4% 46% 49.4% 46%);
+    filter: brightness(18) saturate(0) blur(1px);
+    opacity: 1;
+  }
+  /* dot blooms — peak glow */
+  72%  {
+    clip-path: inset(49.4% 46% 49.4% 46%);
+    filter: brightness(24) saturate(0) blur(4px);
+    opacity: 0.85;
+  }
+  /* dot fades to black */
+  100% {
+    clip-path: inset(49.8% 49% 49.8% 49%);
+    filter: brightness(0) blur(10px);
+    opacity: 0;
+  }
 }
 
 .vp-tvoff {
-  animation: vp-tvoff 0.55s cubic-bezier(0.6, 0, 1, 1) forwards;
-  transform-origin: center center;
+  animation: vp-tvoff 0.62s cubic-bezier(0.25, 0, 0.5, 1) forwards;
 }
 
 /* ── bubble ── */

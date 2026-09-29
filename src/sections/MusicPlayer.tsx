@@ -82,21 +82,17 @@ export function MusicPlayer() {
   };
 
   return (
-    <div className="mp-card">
-      {/* Apple Music badge — top right */}
-      <div className="mp-card-top">
-        <a className="mp-am-badge" href={track.link} target="_blank" rel="noreferrer" aria-label="Open on Apple Music">
-          <img src="https://cdn.prod.website-files.com/62c89bdb7c26b515f632de67/62faba206b970a047b1a7e18_apple-music-icon.png" alt="" width="26" height="26" style={{ objectFit: "contain" }} />
-        </a>
-      </div>
-
-      {/* Album art */}
-      <img src={track.thumb} alt={track.album} className="mp-card-art" />
-
-      {/* Track info */}
-      <div className="mp-card-info">
-        <div className="mp-card-title">{track.title}</div>
-        <div className="mp-card-sub">{track.artist} — {track.album}</div>
+    <div className={`mp-card${playing ? " mp-card--playing" : ""}`}>
+      {/* Art + meta row */}
+      <div className="mp-card-main">
+        <img src={track.thumb} alt={track.album} className="mp-card-art" />
+        <div className="mp-card-meta">
+          <a className="mp-am-badge" href={track.link} target="_blank" rel="noreferrer" aria-label="Open on Apple Music">
+            <img src="https://cdn.prod.website-files.com/62c89bdb7c26b515f632de67/62faba206b970a047b1a7e18_apple-music-icon.png" alt="" width="20" height="20" style={{ objectFit: "contain" }} />
+          </a>
+          <div className="mp-card-title">{track.title}</div>
+          <div className="mp-card-sub">{track.artist} — {track.album}</div>
+        </div>
       </div>
 
       {/* Progress bar */}

@@ -8,7 +8,26 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
+  position: relative;
+  overflow: hidden;
 }
+
+/* ── circular sweep from top-right on hover ── */
+.xcard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #f0f0f5;
+  clip-path: circle(0% at 100% 0%);
+  transition: clip-path 0.52s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+.xcard:hover::before {
+  clip-path: circle(150% at 100% 0%);
+}
+
+/* lift children above the sweep layer */
+.xcard > * { position: relative; z-index: 1; }
 
 /* header */
 .xcard-header {
@@ -90,6 +109,6 @@
   transition: background 0.15s, border-color 0.15s;
 }
 .xcard-btn:hover {
-  background: #f2f2f7;
+  background: #e8e8ed;
   border-color: #d1d1d6;
 }
