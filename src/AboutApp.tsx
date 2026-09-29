@@ -9,6 +9,7 @@ import { MediumCard } from "./sections/MediumCard";
 import { ClaudeWidget } from "./sections/ClaudeWidget";
 import figmaLogo from "../assets/figma.svg";
 import klaroLogo from "../assets/Klaro-Logo-orange.svg";
+import michelinStar from "../assets/star-michelin.svg";
 import "./App.css";
 
 
@@ -108,7 +109,15 @@ export default function AboutApp() {
               Before pixels, components, and design systems, there were kitchens.
             </p>
             <p className="abt-text">
-              I worked in hospitality across Europe, from Michelin-starred restaurants to luxury hotels. It was a very different kind of product work, but the obsession with craft was the same.
+              I worked in hospitality across Europe, from{" "}
+              <span className="abt-iref">
+                Michelin-starred
+                <span className="abt-iref-icon" aria-hidden="true"><img src={michelinStar} alt="" width="14" height="14" /></span>
+                <div className="abt-iref-pop">
+                  <img src="/michelin.jpg" alt="Michelin Guide" className="abt-iref-img" />
+                </div>
+              </span>
+              {" "}restaurants to luxury hotels. It was a very different kind of product work, but the obsession with craft was the same.
             </p>
             <p className="abt-text">
               You learn pretty quickly that small details matter, things need to work under pressure, and there's always a better way to do something.

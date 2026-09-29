@@ -52,7 +52,7 @@ type Msg = { role: "user" | "claude"; text: string };
 type MsgType = Msg | { role: "limit" };
 
 const SEED: MsgType[] = [
-  { role: "user",   text: "can you build my portfolio?" },
+  { role: "user",   text: "What are the specs that we are done with? Is all deployed?" },
   { role: "claude", text: "Done. Wrote the components, styled the bento, pushed to Vercel. You're live." },
 ];
 
