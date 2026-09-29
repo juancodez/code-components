@@ -7,26 +7,10 @@ import { MusicPlayer } from "./sections/MusicPlayer";
 import { SingleVideo } from "./sections/VideoPlayer";
 import { MediumCard } from "./sections/MediumCard";
 import { ClaudeWidget } from "./sections/ClaudeWidget";
+import figmaLogo from "../assets/figma.svg";
+import klaroLogo from "../assets/Klaro-Logo-orange.svg";
 import "./App.css";
 
-
-const EXPERIENCE = [
-  {
-    role: "Senior Product Designer",
-    meta: "Freelance & Consulting · 2022 — Present",
-    desc: "Design systems, full-stack interfaces, and AI-powered products for early-stage teams.",
-  },
-  {
-    role: "Product Designer",
-    meta: "Banking Design System · 2020 — 2022",
-    desc: "Built and shipped a token-based component system across web and mobile banking surfaces.",
-  },
-  {
-    role: "UX Designer",
-    meta: "B2B SaaS · 2019 — 2020",
-    desc: "Product flows, UX research, and feature design. Embedded with engineering from brief to launch.",
-  },
-];
 
 
 const CONTACT_LINKS: Array<{
@@ -109,31 +93,92 @@ export default function AboutApp() {
       <div className="about-layout">
         <div className="about-v2">
 
-          <Sec label="General">
+          <Sec label="Who I am">
+            <p className="abt-text">I'm Juan.</p>
             <p className="abt-text">
-              Born in Spain, based in Germany. I grew up between cities, came up through design and taught myself to code along the way. Both sides stuck.
+              Originally from Argentina, born in France, and currently living in Germany. Somehow, that turned into speaking four languages: Spanish, French, English, and German.
             </p>
             <p className="abt-text">
-              I design systems, interfaces, and full-stack products — from Figma tokens to production code. Whether it's a bold new product or a system in need of structure, I bring both sides to the table.
+              I'm a Product Designer who is amazed about AI workflows, solve complex systems like Design systems and understanding Business.
             </p>
           </Sec>
 
-          <Sec label="Experience">
-            <div className="abt-exp">
-              {EXPERIENCE.map(e => (
-                <div key={e.role} className="abt-exp-item">
-                  <span className="abt-exp-role">{e.role}</span>
-                  <span className="abt-exp-meta">{e.meta}</span>
-                  <p className="abt-exp-desc">{e.desc}</p>
+          <Sec label="Before digital">
+            <p className="abt-text">
+              Before pixels, components, and design systems, there were kitchens.
+            </p>
+            <p className="abt-text">
+              I worked in hospitality across Europe, from Michelin-starred restaurants to luxury hotels. It was a very different kind of product work, but the obsession with craft was the same.
+            </p>
+            <p className="abt-text">
+              You learn pretty quickly that small details matter, things need to work under pressure, and there's always a better way to do something.
+            </p>
+          </Sec>
+
+          <Sec label="What I do now">
+            <p className="abt-text">Today, I design and build digital products.</p>
+            <p className="abt-text">
+              I don't just stop at the interface. I like getting close to the actual thing, writing code, experimenting with AI, breaking prototypes, and seeing how far an idea can go.
+            </p>
+            <p className="abt-text">I call myself a Product Designer who engineers.</p>
+            <p className="abt-text">
+              Sometimes that means designing a product. Sometimes it means building the Figma plugin that helps me design it. Sometimes it means making the whole thing myself.
+            </p>
+          </Sec>
+
+          <Sec label="Things I've built">
+            <p className="abt-text">
+              I've built{" "}
+              <span className="abt-iref">
+                <span className="abt-iref-icon" aria-hidden="true"><img src={figmaLogo} alt="" width="12" height="18" /></span>
+                Figma plugins
+                <div className="abt-iref-pop">
+                  <img src="/exlo-01.png" alt="Exlo Figma plugin" className="abt-iref-img" />
                 </div>
-              ))}
-            </div>
+              </span>
+              , AI experiments, and{" "}
+              <span className="abt-iref">
+                <span className="abt-iref-icon" aria-hidden="true"><img src={klaroLogo} alt="" width="18" height="18" /></span>
+                <a href="https://klaro-es.com/" target="_blank" rel="noreferrer" className="abt-extlink">
+                  KLARO
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                    <path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </a>
+                <div className="abt-iref-pop">
+                  <img src="/klaro.png" alt="Klaro" className="abt-iref-img" />
+                </div>
+              </span>
+              {" "}my own platform for freelancers who want to experience what it's like to build a product from the ground up.
+            </p>
+            <p className="abt-text">
+              The idea was simple: give people a framework, let them work through the fundamentals of product design, and see what they can build.
+            </p>
+            <p className="abt-text">I still believe the fundamentals matter.</p>
+            <p className="abt-text">
+              The tools keep changing. AI is changing almost everything about how we make things. But understanding the problem, talking to people, testing assumptions, and making something useful never really goes out of style.
+            </p>
           </Sec>
 
           <Sec label="Outside the screen">
             <p className="abt-text">
-              Music runs in the background of most things. I dig deep on playlists, build things just to see if they work, and occasionally get too invested in type scales and motion curves.
+              When I'm not designing, I'm usually listening to music, skating, dancing, or playing with my kids.
             </p>
+            <p className="abt-text">
+              I like making things, fixing things, and occasionally spending far too much time figuring out how something works when I could have just left it alone.
+            </p>
+            <p className="abt-text">I'm also usually working on some kind of side project.</p>
+          </Sec>
+
+          <Sec label="What's next">
+            <p className="abt-text">
+              Right now, I'm looking for a place where I can learn how great product teams actually work at scale.
+            </p>
+            <p className="abt-text">
+              I want to see how large design systems are built and maintained, how designers and engineers work together, and what happens when product, design, and technology are all in the same room trying to solve a hard problem.
+            </p>
+            <p className="abt-text">I'm interested in big teams, complex products, and meaningful work.</p>
+            <p className="abt-text">And, ideally, a few really good people to build it with.</p>
           </Sec>
 
           <Sec label="Contact">

@@ -54,7 +54,6 @@ type MsgType = Msg | { role: "limit" };
 const SEED: MsgType[] = [
   { role: "user",   text: "can you build my portfolio?" },
   { role: "claude", text: "Done. Wrote the components, styled the bento, pushed to Vercel. You're live." },
-  { role: "limit" },
 ];
 
 export function ClaudeWidget() {
@@ -93,7 +92,7 @@ export function ClaudeWidget() {
     const delay = 1400 + Math.random() * 1000;
     setTimeout(() => {
       const reply = REPLIES[Math.floor(Math.random() * REPLIES.length)];
-      setMsgs(prev => [...prev, { role: "claude" as const, text: reply }]);
+      setMsgs(prev => [...prev, { role: "claude" as const, text: reply }, { role: "limit" }]);
       setTyping(false);
     }, delay);
   };
@@ -137,10 +136,7 @@ export function ClaudeWidget() {
         {msgs.map((m, i) =>
           m.role === "limit" ? (
             <div key={i} className="cw-limit">
-              <span className="cw-limit-icon">✕</span>
-              <span>
-                You've hit your limit. Reset tomorrow at 3 pm (Europe/Berlin). Rock burning. 🪨🔥
-              </span>
+              You've hit your limit. Reset tomorrow at 3 pm (Europe/Berlin). Rock burning. 🪨🔥
             </div>
           ) : m.role === "user" ? (
             <div key={i} className="cw-row cw-row-user">

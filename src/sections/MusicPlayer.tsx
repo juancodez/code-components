@@ -5,10 +5,11 @@ const TRACKS = [
   {
     title: "Sense of Style",
     artist: "Marsolo",
-    album: "Sense of Style - Single",
+    album: "Sense of Style",
     thumb: "/marsolo-sense-of-style.png",
     src: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/d0/7e/71/d07e71e6-d976-35b9-f325-015f100fac87/mzaf_4502686936529535495.plus.aac.p.m4a",
     link: "https://music.apple.com/us/album/sense-of-style-single/1763088051",
+    explicit: false,
   },
   {
     title: "Only You",
@@ -17,33 +18,26 @@ const TRACKS = [
     thumb: "/steve-monite-only-you.png",
     src: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/26/2b/08/262b0829-e1c7-10e9-8c66-211808b81e64/mzaf_2504318641835597336.plus.aac.p.m4a",
     link: "https://music.apple.com/us/album/only-you/1614315255?i=1614315257",
+    explicit: false,
   },
   {
-    title: "Cybernetic Love (Instrumental)",
+    title: "Cybernetic Love",
     artist: "Casco",
-    album: "Cybernetic Love - Single",
+    album: "Cybernetic Love",
     thumb: "/casco.png",
     src: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview71/v4/d1/27/2c/d1272c69-6e01-e6be-04c5-547305aadee9/mzaf_593860010414855152.plus.aac.p.m4a",
     link: "https://music.apple.com/us/album/cybernetic-love-instrumental/1174998562?i=1174998764",
+    explicit: false,
   },
 ];
-
-function fmt(s: number) {
-  if (!isFinite(s) || s <= 0) return "0:00";
-  const m = Math.floor(s / 60);
-  return `${m}:${Math.floor(s % 60).toString().padStart(2, "0")}`;
-}
 
 export function MusicPlayer() {
   const [idx, setIdx] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
   const [showList, setShowList] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const track = TRACKS[idx];
-  const progress = duration ? (currentTime / duration) * 100 : 0;
 
   useEffect(() => {
     const a = audioRef.current;
@@ -52,8 +46,6 @@ export function MusicPlayer() {
     a.src = track.src;
     a.load();
     a.currentTime = 0;
-    setCurrentTime(0);
-    setDuration(0);
     if (wasPlaying) a.play().catch(() => setPlaying(false));
   }, [idx]);
 
@@ -67,54 +59,24 @@ export function MusicPlayer() {
   const prev = () => setIdx(i => (i - 1 + TRACKS.length) % TRACKS.length);
   const next = useCallback(() => setIdx(i => (i + 1) % TRACKS.length), []);
 
-  const seek = (e: React.MouseEvent<HTMLDivElement>) => {
-    const a = audioRef.current;
-    if (!a || !duration) return;
-    const r = e.currentTarget.getBoundingClientRect();
-    a.currentTime = ((e.clientX - r.left) / r.width) * duration;
-  };
-
-  const seekKey = (e: React.KeyboardEvent) => {
-    const a = audioRef.current;
-    if (!a || !duration) return;
-    if (e.key === "ArrowRight") { e.preventDefault(); a.currentTime = Math.min(a.currentTime + 5, duration); }
-    if (e.key === "ArrowLeft")  { e.preventDefault(); a.currentTime = Math.max(a.currentTime - 5, 0); }
-  };
-
   return (
     <div className={`mp-card${playing ? " mp-card--playing" : ""}`}>
-      {/* Art + meta row */}
-      <div className="mp-card-main">
+
+      {/* Top row: art + Apple Music badge */}
+      <div className="mp-card-top">
         <img src={track.thumb} alt={track.album} className="mp-card-art" />
-        <div className="mp-card-meta">
-          <a className="mp-am-badge" href={track.link} target="_blank" rel="noreferrer" aria-label="Open on Apple Music">
-            <img src="https://cdn.prod.website-files.com/62c89bdb7c26b515f632de67/62faba206b970a047b1a7e18_apple-music-icon.png" alt="" width="20" height="20" style={{ objectFit: "contain" }} />
-          </a>
-          <div className="mp-card-title">{track.title}</div>
-          <div className="mp-card-sub">{track.artist} — {track.album}</div>
-        </div>
+        <a className="mp-am-badge" href={track.link} target="_blank" rel="noreferrer" aria-label="Open on Apple Music">
+          <AppleMusicIcon />
+        </a>
       </div>
 
-      {/* Progress bar */}
-      <div className="mp-bar-row">
-        <span className="mp-time">{fmt(currentTime)}</span>
-        <div
-          className="mp-bar-track"
-          onClick={seek}
-          onKeyDown={seekKey}
-          role="slider"
-          tabIndex={0}
-          aria-label="Seek"
-          aria-valuenow={Math.round(progress)}
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuetext={`${fmt(currentTime)} of ${fmt(duration)}`}
-        >
-          <div className="mp-bar-fill" style={{ width: `${progress}%` }}>
-            <div className="mp-bar-thumb" />
-          </div>
+      {/* Track info */}
+      <div className="mp-card-info">
+        <div className="mp-card-title-row">
+          <span className="mp-card-title">{track.title}</span>
+          {track.explicit && <span className="mp-explicit" aria-label="Explicit">E</span>}
         </div>
-        <span className="mp-time">{fmt(duration)}</span>
+        <div className="mp-card-sub">{track.artist} — {track.album}</div>
       </div>
 
       {/* Controls pill */}
@@ -140,7 +102,7 @@ export function MusicPlayer() {
         </button>
       </div>
 
-      {/* Track list (toggled by list icon) */}
+      {/* Track list */}
       {showList && (
         <ul className="mp-list">
           {TRACKS.map((t, i) => (
@@ -165,13 +127,16 @@ export function MusicPlayer() {
         </ul>
       )}
 
-      <audio
-        ref={audioRef}
-        onTimeUpdate={() => setCurrentTime(audioRef.current?.currentTime ?? 0)}
-        onLoadedMetadata={() => setDuration(audioRef.current?.duration ?? 0)}
-        onEnded={next}
-      />
+      <audio ref={audioRef} onEnded={next} />
     </div>
+  );
+}
+
+function AppleMusicIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+      <path d="M12 3a9 9 0 1 0 0 18A9 9 0 0 0 12 3zm0 2a7 7 0 1 1 0 14A7 7 0 0 1 12 5zm1 3.5v5.67a2 2 0 1 1-2-1.92V9.5h2zm0 4.38V8.5H10v2.75a2 2 0 1 0 3 1.63z"/>
+    </svg>
   );
 }
 
@@ -185,15 +150,13 @@ function EqBars() {
   );
 }
 
-
 function ListIcon() {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M3 5h14v2H3V5zm0 4h14v2H3V9zm0 4h8v2H3v-2zm13 .59L13.42 16 12 14.59 13.41 13.17 12 11.76l1.42-1.41L15 11.93l1.58-1.58L18 11.76l-1.41 1.41L18 14.59 16.59 16 15 14.59z"/>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M3 5h14v2H3V5zm0 4h14v2H3V9zm0 4h8v2H3v-2z"/>
     </svg>
   );
 }
-
 function PlayIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -201,7 +164,6 @@ function PlayIcon() {
     </svg>
   );
 }
-
 function PauseIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -209,7 +171,6 @@ function PauseIcon() {
     </svg>
   );
 }
-
 function PrevIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -217,7 +178,6 @@ function PrevIcon() {
     </svg>
   );
 }
-
 function NextIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -225,7 +185,6 @@ function NextIcon() {
     </svg>
   );
 }
-
 function VolumeIcon() {
   return (
     <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -233,7 +192,6 @@ function VolumeIcon() {
     </svg>
   );
 }
-
 function MuteIcon() {
   return (
     <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

@@ -1,109 +1,87 @@
 /* ─── Card ─────────────────────────────────────────────────────────────────── */
 .mp-card {
   width: 100%;
-  max-width: 360px;
-  background: #fff;
-  border-radius: 20px;
-  padding: 14px;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0,0,0,0.04);
+  max-width: 300px;
+  background: #ececed;
+  border-radius: 22px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  transition: background 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 14px;
+  transition: background 0.45s cubic-bezier(0.4,0,0.2,1);
 }
 
-/* ─── Playing state: Apple Music red flood ──────────────────────────────────── */
-.mp-card--playing { background: #ff2d55; }
-
-.mp-card--playing .mp-card-title { color: #fff; }
-.mp-card--playing .mp-card-sub   { color: rgba(255, 255, 255, 0.75); }
-.mp-card--playing .mp-time       { color: rgba(255, 255, 255, 0.6); }
-
-.mp-card--playing .mp-am-badge {
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: none;
-}
-
-.mp-card--playing .mp-bar-track { background: rgba(255, 255, 255, 0.3); }
-.mp-card--playing .mp-bar-fill  { background: #fff; }
-.mp-card--playing .mp-bar-thumb { background: #fff; }
-
-.mp-card--playing .mp-card-controls { background: rgba(0, 0, 0, 0.18); }
-
-.mp-card--playing .mp-ctrl-btn { color: rgba(255, 255, 255, 0.8); }
-.mp-card--playing .mp-ctrl-play { color: #fff; }
-.mp-card--playing .mp-ctrl-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: #fff;
-}
-
-.mp-card--playing .mp-list { border-top-color: rgba(255, 255, 255, 0.2); }
-.mp-card--playing .mp-list-title  { color: #fff; }
-.mp-card--playing .mp-list-artist { color: rgba(255, 255, 255, 0.7); }
-.mp-card--playing .mp-list-num    { color: rgba(255, 255, 255, 0.4); }
-.mp-card--playing .mp-list-item:hover { background: rgba(255, 255, 255, 0.1); }
-.mp-card--playing .mp-list-current    { background: rgba(255, 255, 255, 0.15); }
-.mp-card--playing .mp-eq-bar          { background: #fff; }
-
-/* ─── Main row: art + meta ──────────────────────────────────────────────────── */
-.mp-card-main {
+/* ─── Top row: art + Apple Music badge ──────────────────────────────────────── */
+.mp-card-top {
   display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
   gap: 12px;
-  align-items: center;
 }
 
-/* ─── Album art ─────────────────────────────────────────────────────────────── */
 .mp-card-art {
-  width: 72px;
-  height: 72px;
-  min-width: 72px;
+  width: 128px;
+  height: 128px;
   border-radius: 10px;
   object-fit: cover;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
   display: block;
+  flex-shrink: 0;
 }
 
-/* ─── Meta (badge + title + sub) ────────────────────────────────────────────── */
-.mp-card-meta {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  min-width: 0;
-}
-
-/* ─── Apple Music badge ─────────────────────────────────────────────────────── */
 .mp-am-badge {
-  width: 30px;
-  height: 30px;
-  border-radius: 7px;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
   background: linear-gradient(145deg, #fc3158, #ff2d55);
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  box-shadow: 0 4px 12px rgba(255,45,85,0.35);
+  transition: opacity 0.15s, transform 0.15s;
   flex-shrink: 0;
-  align-self: flex-start;
-  box-shadow: 0 2px 6px rgba(255, 45, 85, 0.3);
-  transition: opacity 0.15s;
-  margin-bottom: 2px;
 }
-.mp-am-badge:hover { opacity: 0.88; }
+.mp-am-badge:hover { opacity: 0.88; transform: scale(1.05); }
 
 /* ─── Track info ────────────────────────────────────────────────────────────── */
+.mp-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mp-card-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .mp-card-title {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 17px;
+  font-weight: 700;
   color: #1c1c1e;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.4px;
   font-family: -apple-system, "SF Pro Display", system-ui, sans-serif;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+.mp-explicit {
+  font-size: 9px;
+  font-weight: 700;
+  color: #8e8e93;
+  background: #d5d5d8;
+  border-radius: 3px;
+  padding: 1px 4px;
+  letter-spacing: 0;
+  flex-shrink: 0;
+  font-family: -apple-system, system-ui, sans-serif;
+}
+
 .mp-card-sub {
-  font-size: 12px;
+  font-size: 14px;
   color: #8e8e93;
   letter-spacing: -0.1px;
   font-family: -apple-system, "SF Pro Text", system-ui, sans-serif;
@@ -112,65 +90,20 @@
   text-overflow: ellipsis;
 }
 
-/* ─── Progress bar ──────────────────────────────────────────────────────────── */
-.mp-bar-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.mp-time {
-  font-size: 11px;
-  color: #c7c7cc;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.02em;
-  flex-shrink: 0;
-  font-family: -apple-system, system-ui, sans-serif;
-}
-
-.mp-bar-track {
-  flex: 1;
-  height: 3px;
-  border-radius: 999px;
-  background: #e5e5ea;
-  cursor: pointer;
-  position: relative;
-}
-
-.mp-bar-fill {
-  height: 100%;
-  border-radius: 999px;
-  background: #ff2d55;
-  position: relative;
-}
-
-.mp-bar-thumb {
-  position: absolute;
-  right: -5px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #ff2d55;
-  opacity: 0;
-  transition: opacity 0.15s;
-}
-.mp-bar-track:hover .mp-bar-thumb { opacity: 1; }
-
 /* ─── Controls pill ─────────────────────────────────────────────────────────── */
 .mp-card-controls {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #f2f2f7;
+  background: #fff;
   border-radius: 999px;
-  padding: 4px 10px;
+  padding: 4px 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 
 .mp-ctrl-btn {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border: none;
   background: transparent;
   color: #8e8e93;
@@ -181,15 +114,33 @@
   transition: background 0.12s, color 0.12s;
   flex-shrink: 0;
 }
-.mp-ctrl-btn:hover { background: rgba(0, 0, 0, 0.06); color: #1c1c1e; }
+.mp-ctrl-btn:hover { background: rgba(0,0,0,0.06); color: #1c1c1e; }
 
 .mp-ctrl-play {
   color: #1c1c1e;
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
 }
 
-/* ─── Track list (toggleable) ───────────────────────────────────────────────── */
+/* ─── Playing state ─────────────────────────────────────────────────────────── */
+.mp-card--playing { background: #ff2d55; }
+.mp-card--playing .mp-card-title  { color: #fff; }
+.mp-card--playing .mp-card-sub    { color: rgba(255,255,255,0.75); }
+.mp-card--playing .mp-explicit    { background: rgba(255,255,255,0.25); color: #fff; }
+.mp-card--playing .mp-am-badge    { background: rgba(255,255,255,0.2); box-shadow: none; }
+.mp-card--playing .mp-card-controls { background: rgba(0,0,0,0.18); box-shadow: none; }
+.mp-card--playing .mp-ctrl-btn    { color: rgba(255,255,255,0.8); }
+.mp-card--playing .mp-ctrl-play   { color: #fff; }
+.mp-card--playing .mp-ctrl-btn:hover { background: rgba(255,255,255,0.15); color: #fff; }
+.mp-card--playing .mp-list        { border-top-color: rgba(255,255,255,0.2); }
+.mp-card--playing .mp-list-title  { color: #fff; }
+.mp-card--playing .mp-list-artist { color: rgba(255,255,255,0.7); }
+.mp-card--playing .mp-list-num    { color: rgba(255,255,255,0.4); }
+.mp-card--playing .mp-list-item:hover   { background: rgba(255,255,255,0.1); }
+.mp-card--playing .mp-list-current      { background: rgba(255,255,255,0.15); }
+.mp-card--playing .mp-eq-bar            { background: #fff; }
+
+/* ─── Track list ────────────────────────────────────────────────────────────── */
 .mp-list {
   list-style: none;
   margin: 0;
@@ -197,7 +148,7 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  border-top: 1px solid #f2f2f7;
+  border-top: 1px solid rgba(0,0,0,0.08);
 }
 
 .mp-list-item {
@@ -209,8 +160,8 @@
   cursor: pointer;
   transition: background 0.1s;
 }
-.mp-list-item:hover { background: #f8f8f8; }
-.mp-list-current { background: #f2f2f7; }
+.mp-list-item:hover  { background: rgba(0,0,0,0.04); }
+.mp-list-current     { background: rgba(0,0,0,0.06); }
 
 .mp-list-info {
   display: flex;
@@ -244,7 +195,7 @@
   font-family: -apple-system, system-ui, sans-serif;
 }
 
-/* ─── Equaliser animation ───────────────────────────────────────────────────── */
+/* ─── Equaliser ─────────────────────────────────────────────────────────────── */
 .mp-eq {
   display: flex;
   align-items: flex-end;

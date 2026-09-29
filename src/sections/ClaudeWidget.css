@@ -201,24 +201,12 @@
 
 /* ─── rate limit block ─── */
 .cw-limit {
-  display: flex;
-  align-items: flex-start;
-  gap: 7px;
-  margin: 6px 16px 8px;
-  padding: 8px 10px;
-  border-radius: 6px;
-  background: rgba(220, 38, 38, 0.07);
-  border: 1px solid rgba(220, 38, 38, 0.18);
+  margin: 2px 16px 6px;
+  padding: 0 0 2px;
   font-size: 12px;
   line-height: 1.5;
   color: #dc2626;
   font-family: inherit;
-}
-
-.cw-limit-icon {
-  flex-shrink: 0;
-  font-size: 11px;
-  margin-top: 1px;
 }
 
 /* ─── input row ─── */
