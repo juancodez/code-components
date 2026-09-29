@@ -365,6 +365,7 @@
   width: 20px;
   height: 20px;
   flex-shrink: 0;
+  color: #0ea5e9;
 }
 
 /* ===== ABOUT LAYOUT — two-column ===== */
@@ -444,7 +445,7 @@
 .abt-bento {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 16px;
   width: 100%;
   align-items: stretch;
 }
