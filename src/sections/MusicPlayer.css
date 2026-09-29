@@ -2,14 +2,33 @@
 .mp-card {
   width: 100%;
   max-width: 300px;
-  background: #ececed;
+  background: #fff;
   border-radius: 22px;
   padding: 18px;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  transition: background 0.45s cubic-bezier(0.4,0,0.2,1);
+  position: relative;
+  overflow: hidden;
 }
+
+/* ── circular sweep from the play button (bottom-center) ── */
+.mp-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #ff2d55;
+  clip-path: circle(0% at 50% 92%);
+  transition: clip-path 1s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+  pointer-events: none;
+}
+.mp-card--playing::before {
+  clip-path: circle(150% at 50% 92%);
+}
+
+/* lift children above the sweep layer */
+.mp-card > * { position: relative; z-index: 1; }
 
 /* ─── Top row: art + Apple Music badge ──────────────────────────────────────── */
 .mp-card-top {
@@ -123,7 +142,6 @@
 }
 
 /* ─── Playing state ─────────────────────────────────────────────────────────── */
-.mp-card--playing { background: #ff2d55; }
 .mp-card--playing .mp-card-title  { color: #fff; }
 .mp-card--playing .mp-card-sub    { color: rgba(255,255,255,0.75); }
 .mp-card--playing .mp-explicit    { background: rgba(255,255,255,0.25); color: #fff; }

@@ -4,12 +4,14 @@ import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { Avatar } from "./components/Avatar";
 import { MusicPlayer } from "./sections/MusicPlayer";
-import { SingleVideo } from "./sections/VideoPlayer";
+import { VideoDeck } from "./sections/VideoDeck";
 import { MediumCard } from "./sections/MediumCard";
 import { ClaudeWidget } from "./sections/ClaudeWidget";
 import figmaLogo from "../assets/figma.svg";
 import klaroLogo from "../assets/Klaro-Logo-orange.svg";
 import michelinStar from "../assets/star-michelin.svg";
+import claudeCodeLogo from "../assets/claude-code-logo.svg";
+import "flag-icons/css/flag-icons.min.css";
 import "./App.css";
 
 
@@ -53,11 +55,8 @@ function BentoGrid() {
       <div className="bento-card bento-music">
         <MusicPlayer />
       </div>
-      <div className="bento-card bento-video1">
-        <SingleVideo src="/treflip.mp4" />
-      </div>
-      <div className="bento-card bento-video2">
-        <SingleVideo src="/juan-signal.mp4" />
+      <div className="bento-card bento-video">
+        <VideoDeck />
       </div>
       <div className="bento-card bento-medium" onMouseEnter={enter} onMouseLeave={leave}>
         <MediumCard />
@@ -97,7 +96,22 @@ export default function AboutApp() {
           <Sec label="Who I am">
             <p className="abt-text">I'm Juan.</p>
             <p className="abt-text">
-              Originally from Argentina, born in France, and currently living in Germany. Somehow, that turned into speaking four languages: Spanish, French, English, and German.
+              Originally from Argentina{" "}
+              <span className="abt-iref">
+                <span className="abt-iref-icon" aria-hidden="true"><span className="fi fi-ar abt-flag" /></span>
+                <div className="abt-iref-pop"><img src="/buenos-aires.jpg" alt="Buenos Aires" className="abt-iref-img" /></div>
+              </span>
+              , born in France{" "}
+              <span className="abt-iref">
+                <span className="abt-iref-icon" aria-hidden="true"><span className="fi fi-fr abt-flag" /></span>
+                <div className="abt-iref-pop"><img src="/paris.jpg" alt="Paris" className="abt-iref-img" /></div>
+              </span>
+              , and currently living in Germany{" "}
+              <span className="abt-iref">
+                <span className="abt-iref-icon" aria-hidden="true"><span className="fi fi-de abt-flag" /></span>
+                <div className="abt-iref-pop"><img src="/berlin.jpg" alt="Berlin" className="abt-iref-img" /></div>
+              </span>
+              . Somehow, that turned into speaking four languages: Spanish, French, English, and German.
             </p>
             <p className="abt-text">
               I'm a Product Designer who is amazed about AI workflows, solve complex systems like Design systems and understanding Business.
@@ -127,9 +141,26 @@ export default function AboutApp() {
           <Sec label="What I do now">
             <p className="abt-text">Today, I design and build digital products.</p>
             <p className="abt-text">
-              I don't just stop at the interface. I like getting close to the actual thing, writing code, experimenting with AI, breaking prototypes, and seeing how far an idea can go.
+              I don't just stop at the interface. I like getting close to the actual thing, writing code, experimenting with{" "}
+              <span className="abt-iref">
+                AI
+                <span className="abt-iref-icon" aria-hidden="true"><img src={claudeCodeLogo} alt="" width="18" height="18" /></span>
+                <div className="abt-iref-pop">
+                  <img src="/claude-cli.jpeg" alt="Claude Code CLI" className="abt-iref-img" />
+                </div>
+              </span>
+              , breaking prototypes, and seeing how far an idea can go.
             </p>
-            <p className="abt-text">I call myself a Product Designer who engineers.</p>
+            <p className="abt-text">
+              I call myself a Product Designer who engineers{" "}
+              <span className="abt-iref">
+                <span className="abt-iref-icon" aria-hidden="true"><GitHubIcon /></span>
+                <div className="abt-iref-pop">
+                  <img src="/github-contrib.png" alt="GitHub contribution graph" className="abt-iref-img" />
+                </div>
+              </span>
+              .
+            </p>
             <p className="abt-text">
               Sometimes that means designing a product. Sometimes it means building the Figma plugin that helps me design it. Sometimes it means making the whole thing myself.
             </p>
@@ -183,11 +214,7 @@ export default function AboutApp() {
             <p className="abt-text">
               Right now, I'm looking for a place where I can learn how great product teams actually work at scale.
             </p>
-            <p className="abt-text">
-              I want to see how large design systems are built and maintained, how designers and engineers work together, and what happens when product, design, and technology are all in the same room trying to solve a hard problem.
-            </p>
-            <p className="abt-text">I'm interested in big teams, complex products, and meaningful work.</p>
-            <p className="abt-text">And, ideally, a few really good people to build it with.</p>
+            <p className="abt-text">I'm interested in motivated, joyfull teams, complex products, and meaningful work.</p>
           </Sec>
 
           <Sec label="Contact">
