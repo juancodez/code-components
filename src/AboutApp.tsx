@@ -189,10 +189,7 @@ export default function AboutApp() {
                   <img src="/klaro.png" alt="Klaro" className="abt-iref-img" />
                 </div>
               </span>
-              {" "}my own platform for freelancers who want to experience what it's like to build a product from the ground up.
-            </p>
-            <p className="abt-text">
-              The idea was simple: give people a framework, let them work through the fundamentals of product design, and see what they can build.
+              {" "}my own platform that helps Spanish-speaking freelancers complete their tax declaration in Germany.
             </p>
             <p className="abt-text">I still believe the fundamentals matter.</p>
             <p className="abt-text">
