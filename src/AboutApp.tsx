@@ -4,7 +4,7 @@ import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { Avatar } from "./components/Avatar";
 import { MusicPlayer } from "./sections/MusicPlayer";
-import { VideoPlayer } from "./sections/VideoPlayer";
+import { SingleVideo } from "./sections/VideoPlayer";
 import { MediumCard } from "./sections/MediumCard";
 import { ClaudeWidget } from "./sections/ClaudeWidget";
 import "./App.css";
@@ -43,23 +43,18 @@ const CONTACT_LINKS: Array<{
 
 function BentoGrid() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const stopTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const enter = useCallback(() => {
     if (!audioRef.current) {
       audioRef.current = new Audio("/writing.mp3");
       audioRef.current.volume = 0.4;
+      audioRef.current.loop = true;
     }
-    if (stopTimer.current) clearTimeout(stopTimer.current);
     audioRef.current.currentTime = 0;
     audioRef.current.play().catch(() => {});
-    stopTimer.current = setTimeout(() => {
-      audioRef.current?.pause();
-    }, 1000);
   }, []);
 
   const leave = useCallback(() => {
-    if (stopTimer.current) clearTimeout(stopTimer.current);
     if (!audioRef.current) return;
     audioRef.current.pause();
     audioRef.current.currentTime = 0;
@@ -67,14 +62,17 @@ function BentoGrid() {
 
   return (
     <div className="abt-bento">
-      <div className="bento-card bento-music" onMouseEnter={enter} onMouseLeave={leave}>
-        <MusicPlayer />
-      </div>
-      <div className="bento-card bento-claude" onMouseEnter={enter} onMouseLeave={leave}>
+      <div className="bento-card bento-claude">
         <ClaudeWidget />
       </div>
-      <div className="bento-card bento-video" onMouseEnter={enter} onMouseLeave={leave}>
-        <VideoPlayer />
+      <div className="bento-card bento-music">
+        <MusicPlayer />
+      </div>
+      <div className="bento-card bento-video1">
+        <SingleVideo src="/treflip.mp4" />
+      </div>
+      <div className="bento-card bento-video2">
+        <SingleVideo src="/juan-signal.mp4" />
       </div>
       <div className="bento-card bento-medium" onMouseEnter={enter} onMouseLeave={leave}>
         <MediumCard />
