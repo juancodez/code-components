@@ -1,12 +1,10 @@
 .vp-card {
   width: 100%;
   max-width: 360px;
-  background: #fff;
+  background: #000;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0,0,0,0.04);
-  display: flex;
-  flex-direction: column;
 }
 
 .vp-frame {
@@ -24,34 +22,63 @@
   object-fit: cover;
 }
 
-.vp-tabs {
+/* ── TV-off collapse ── */
+@keyframes vp-tvoff {
+  0%   { transform: scaleY(1);              filter: brightness(1);           }
+  22%  { transform: scaleY(0.02);           filter: brightness(4);           }
+  55%  { transform: scaleY(0.02) scaleX(0.18); filter: brightness(3);        }
+  80%  { transform: scale(0.04);            filter: brightness(6) blur(2px); }
+  100% { transform: scale(0);              filter: brightness(0); opacity: 0; }
+}
+
+.vp-tvoff {
+  animation: vp-tvoff 0.55s cubic-bezier(0.6, 0, 1, 1) forwards;
+  transform-origin: center center;
+}
+
+/* ── bubble ── */
+@keyframes vp-float {
+  0%,100% { transform: translateY(0)    scale(1);    }
+  35%      { transform: translateY(-8px) scale(1.04); }
+  70%      { transform: translateY(4px)  scale(0.97); }
+}
+
+.vp-bubble-wrap {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 12px 16px;
-  border-top: 1px solid #f2f2f7;
+  justify-content: center;
+  background: #000;
 }
 
-.vp-tab {
-  padding: 6px 14px;
-  border-radius: 999px;
-  border: 1px solid #e5e5ea;
-  background: transparent;
-  color: #8e8e93;
-  font-size: 13px;
-  font-weight: 500;
-  font-family: -apple-system, system-ui, sans-serif;
+.vp-bubble {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
   cursor: pointer;
-  transition: background 0.12s, color 0.12s, border-color 0.12s;
+  animation: vp-float 2.6s ease-in-out infinite;
+  background:
+    radial-gradient(circle at 36% 30%,
+      rgba(255,255,255,0.88) 0%,
+      rgba(180,215,255,0.55) 38%,
+      rgba(110,170,240,0.28) 65%,
+      transparent 100%);
+  box-shadow:
+    inset 0 2px 7px rgba(255,255,255,0.7),
+    inset 0 -2px 5px rgba(100,150,220,0.2),
+    0 6px 22px rgba(0,0,0,0.35),
+    0 1px 4px rgba(0,0,0,0.2);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
-.vp-tab:hover {
-  background: #f2f2f7;
-  color: #1c1c1e;
-}
-
-.vp-tab-active {
-  background: #1c1c1e;
-  color: #fff;
-  border-color: #1c1c1e;
+.vp-bubble:hover {
+  box-shadow:
+    inset 0 2px 7px rgba(255,255,255,0.7),
+    inset 0 -2px 5px rgba(100,150,220,0.2),
+    0 10px 30px rgba(0,0,0,0.4),
+    0 2px 6px rgba(0,0,0,0.25);
+  animation-play-state: paused;
+  transform: scale(1.1);
 }
