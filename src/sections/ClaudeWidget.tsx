@@ -49,13 +49,16 @@ const SPINNER = ['*', '+', '·', '-'];
 
 type Msg = { role: "user" | "claude"; text: string };
 
-const SEED: Msg[] = [
+type MsgType = Msg | { role: "limit" };
+
+const SEED: MsgType[] = [
   { role: "user",   text: "can you build my portfolio?" },
   { role: "claude", text: "Done. Wrote the components, styled the bento, pushed to Vercel. You're live." },
+  { role: "limit" },
 ];
 
 export function ClaudeWidget() {
-  const [msgs, setMsgs] = useState<Msg[]>(SEED);
+  const [msgs, setMsgs] = useState<MsgType[]>(SEED);
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
   const [spinnerIdx, setSpinnerIdx] = useState(0);
@@ -85,12 +88,12 @@ export function ClaudeWidget() {
     const text = input.trim();
     if (!text || typing) return;
     setInput("");
-    setMsgs(prev => [...prev, { role: "user", text }]);
+    setMsgs(prev => [...prev, { role: "user" as const, text }]);
     setTyping(true);
     const delay = 1400 + Math.random() * 1000;
     setTimeout(() => {
       const reply = REPLIES[Math.floor(Math.random() * REPLIES.length)];
-      setMsgs(prev => [...prev, { role: "claude", text: reply }]);
+      setMsgs(prev => [...prev, { role: "claude" as const, text: reply }]);
       setTyping(false);
     }, delay);
   };
@@ -132,7 +135,14 @@ export function ClaudeWidget() {
         )}
 
         {msgs.map((m, i) =>
-          m.role === "user" ? (
+          m.role === "limit" ? (
+            <div key={i} className="cw-limit">
+              <span className="cw-limit-icon">✕</span>
+              <span>
+                You've hit your limit. Reset tomorrow at 3 pm (Europe/Berlin). Rock burning. 🪨🔥
+              </span>
+            </div>
+          ) : m.role === "user" ? (
             <div key={i} className="cw-row cw-row-user">
               <span className="cw-chevron">&gt;</span>
               <span className="cw-row-text">{m.text}</span>
@@ -151,14 +161,6 @@ export function ClaudeWidget() {
             <span className="cw-babble-text" key={babbleLine}>{babbleLine}</span>
           </div>
         )}
-
-        <div className="cw-limit">
-          <span className="cw-limit-icon">✕</span>
-          <span>
-            You've hit your limit. Reset tomorrow at 3 pm (Europe/Berlin).{" "}
-            Rock burning. 🪨🔥
-          </span>
-        </div>
       </div>
 
       {/* input */}
