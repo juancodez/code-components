@@ -61,18 +61,31 @@ export function ModelPickerTile() {
     setTimeout(() => setCopied(false), 1400);
   };
 
-  /* Demo: fake cursor walks the provider rail, landing on each icon in turn.
-     Positions are read live from the rail buttons so the sequence tracks
-     any layout changes. Ends on OpenAI (index 0) to match the resting shot. */
+  /* Demo: walk all four provider logos (OpenAI → Anthropic → xAI → Google),
+     then walk the thinking track (Low → Medium → High). */
   const play = useCallback(() => {
     const stage = stageRef.current;
     if (!stage || playing) return;
+    if (!stage.querySelector(".mp-panel")) {
+      stage.querySelector<HTMLButtonElement>(".mp-trigger")?.click();
+    }
     const rails = Array.from(stage.querySelectorAll<HTMLButtonElement>(".mp-rail-btn"));
-    if (rails.length < 2) return;
+    if (rails.length < 4) return;
 
     setPlaying(true);
     const stageRect = stage.getBoundingClientRect();
-    const sequence = [1, 2, 3, 0]; /* anthropic → xai → google → openai */
+    const track = (i: number) => () =>
+      stage.querySelectorAll<HTMLElement>(".mp-track-btn")[i] ?? null;
+
+    const steps: { get: () => HTMLElement | null; wait: number }[] = [
+      { get: () => rails[0], wait: 480 }, /* OpenAI */
+      { get: () => rails[1], wait: 480 }, /* Anthropic */
+      { get: () => rails[2], wait: 480 }, /* xAI */
+      { get: () => rails[3], wait: 520 }, /* Google */
+      { get: track(0), wait: 480 }, /* Low */
+      { get: track(1), wait: 480 }, /* Medium */
+      { get: track(2), wait: 600 }, /* High */
+    ];
 
     setCursor({
       x: stageRect.width - 30,
@@ -81,29 +94,30 @@ export function ModelPickerTile() {
       clicking: false,
     });
 
-    let step = 0;
+    let i = 0;
     const runStep = () => {
-      if (step >= sequence.length) {
+      if (i >= steps.length) {
         setTimeout(() => {
           setCursor((c) => ({ ...c, visible: false }));
           setPlaying(false);
         }, 700);
         return;
       }
-      const idx = sequence[step];
-      const rect = rails[idx].getBoundingClientRect();
+      const el = steps[i].get();
+      if (!el) { i++; runStep(); return; }
+      const rect = el.getBoundingClientRect();
       const x = rect.left - stageRect.left + rect.width / 2 - 5;
       const y = rect.top - stageRect.top + rect.height / 2 - 3;
       setCursor({ x, y, visible: true, clicking: false });
 
       setTimeout(() => {
         setCursor((c) => ({ ...c, clicking: true }));
-        rails[idx].click();
+        el.click();
         click();
         setTimeout(() => {
           setCursor((c) => ({ ...c, clicking: false }));
-          step++;
-          setTimeout(runStep, 620);
+          i++;
+          setTimeout(runStep, steps[i - 1].wait);
         }, 220);
       }, 620);
     };
@@ -162,6 +176,7 @@ export function ModelPickerTile() {
         <button
           className="tile-play"
           aria-label="Play demo"
+          onMouseDown={(e) => e.stopPropagation()}
           onClick={play}
           disabled={playing}
         >
