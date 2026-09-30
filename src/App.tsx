@@ -6,21 +6,25 @@ import "./App.css";
 const PROJECTS = [
   {
     slug: "hashbank",
+    bg: "linear-gradient(145deg, #0f172a 0%, #1e3a5f 60%, #2563eb 100%)",
     title: "hashbank: one app for your whole financial life",
     subtitle: "Built for people who need both",
   },
   {
     slug: "data-table",
+    bg: "linear-gradient(145deg, #0f2027 0%, #203a43 55%, #2c5364 100%)",
     title: "Data table: After 10,000 rows",
     subtitle: "Where work actually happens, but nobody designs for it",
   },
   {
     slug: "design-system",
+    bg: "linear-gradient(145deg, #1a0533 0%, #3b1054 55%, #7c3aed 100%)",
     title: "Design system: how we redesigned a live bank without breaking it",
     subtitle: "The invisible work that made hashbank possible",
   },
   {
     slug: "spacecargo",
+    bg: "linear-gradient(145deg, #1c1008 0%, #3d2309 55%, #c2610c 100%)",
     title: "SpaceCargo: warehouse management system",
     subtitle: "67% fewer lost parcels. Zero magic involved",
   },
@@ -49,7 +53,7 @@ function Hero() {
       <div className="projects-wrap">
         {PROJECTS.map(p => (
           <a key={p.slug} className="project-card" href={`./projects/${p.slug}`}>
-            <div className="project-video-wrap" />
+            <div className="project-video-wrap" style={{ background: p.bg }} />
             <div className="project-text">
               <h2 className="project-title">{p.title}</h2>
               <p className="project-sub">{p.subtitle}</p>
