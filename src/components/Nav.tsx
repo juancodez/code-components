@@ -1,15 +1,17 @@
 import { useState, useRef, useLayoutEffect } from "react";
 
 const NAV_ITEMS = [
-  { label: "Work", href: "index.html" },
-  { label: "Posts", href: "post.html" },
-  { label: "About", href: "about.html" },
+  { label: "Work",    href: "index.html"   },
+  { label: "Posts",   href: "post.html"    },
+  { label: "About",   href: "about.html"   },
+  { label: "Contact", href: "contact.html" },
 ];
 
 function getActiveIdx() {
   const path = window.location.pathname;
-  if (path.includes("post")) return 1;
-  if (path.includes("about")) return 2;
+  if (path.includes("post"))    return 1;
+  if (path.includes("about"))   return 2;
+  if (path.includes("contact")) return 3;
   return 0;
 }
 
