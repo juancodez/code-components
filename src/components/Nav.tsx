@@ -2,7 +2,7 @@ import { useState, useRef, useLayoutEffect } from "react";
 
 const NAV_ITEMS = [
   { label: "Work",    href: "index.html"   },
-  { label: "Posts",   href: "post.html"    },
+  { label: "Labs",    href: "post.html"    },
   { label: "About",   href: "about.html"   },
   { label: "Contact", href: "contact.html" },
 ];
