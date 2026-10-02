@@ -229,6 +229,154 @@
   width: 100%;
   aspect-ratio: 4/3;
 }
+
+/* Exlo plugin prototype */
+.exlo-proto {
+  width: 100%;
+  aspect-ratio: 4/3;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Figma-style dot canvas */
+.exlo-canvas {
+  position: absolute;
+  inset: 0;
+  background-color: #f0eeea;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.18) 1px, transparent 1px);
+  background-size: 20px 20px;
+  cursor: default;
+}
+
+/* Draggable frame wrapper */
+.exlo-figma-frame {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  cursor: grab;
+}
+.exlo-figma-frame:active { cursor: grabbing; }
+
+/* Frame name label (above thumb, Figma style) */
+.exlo-figma-label {
+  font-size: 9px;
+  font-family: sans-serif;
+  color: #6b7280;
+  white-space: nowrap;
+  line-height: 1;
+}
+.exlo-figma-label-sel { color: #0d99ff; }
+
+/* Frame thumbnail */
+.exlo-figma-thumb {
+  border-radius: 2px;
+  overflow: hidden;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition: outline-color .1s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+}
+.exlo-figma-thumb.exlo-sel { outline-color: #0d99ff; }
+
+/* Plugin panel — overlaps the canvas, centered horizontally */
+.exlo-panel {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 12px 14px;
+  gap: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(0,0,0,.16), 0 1px 4px rgba(0,0,0,.08);
+}
+.exlo-panel-head { display: flex; align-items: center; gap: 6px; }
+.exlo-panel-title {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: sans-serif;
+  letter-spacing: .06em;
+  color: #111;
+}
+.exlo-panel-desc {
+  font-size: 10px;
+  color: #667085;
+  font-family: sans-serif;
+  margin: 0;
+  line-height: 1.4;
+}
+.exlo-formats { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+.exlo-fmt {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 6px 7px;
+  border-radius: 6px;
+  border: 1px solid #e4e7ec;
+  background: #fff;
+  transition: border-color .12s, background .12s;
+}
+.exlo-fmt:hover { border-color: #98a1b2; }
+.exlo-fmt-on { border-color: #1a1a1a; background: #f5f5f5; }
+.exlo-fmt-box {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1.5px solid #d0d5dd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background .1s, border-color .1s;
+}
+.exlo-fmt-on .exlo-fmt-box { background: #1a56db; border-color: #1a56db; }
+.exlo-fmt-key { font-size: 10px; font-weight: 600; font-family: sans-serif; color: #111; }
+.exlo-fmt-tag {
+  font-size: 8.5px;
+  font-weight: 600;
+  font-family: sans-serif;
+  color: #667085;
+  background: #f2f4f7;
+  padding: 1px 4px;
+  border-radius: 3px;
+  margin-left: auto;
+}
+.exlo-export-btn {
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 10.5px;
+  font-weight: 600;
+  font-family: sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background .15s, opacity .15s;
+}
+.exlo-export-btn:hover:not(:disabled) { background: #1d2939; }
+.exlo-export-btn:disabled { opacity: .4; cursor: default; }
+.exlo-export-btn.exlo-export-done { background: #027a48; }
+.exlo-spinner {
+  width: 10px; height: 10px;
+  border: 1.5px solid rgba(255,255,255,.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: exlo-spin .6s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes exlo-spin { to { transform: rotate(360deg); } }
+
 .project-text {
   padding: 20px 24px 24px;
   display: flex;

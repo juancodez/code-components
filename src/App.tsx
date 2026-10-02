@@ -1,6 +1,7 @@
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { Avatar } from "./components/Avatar";
+import { ExloPrototype } from "./components/ExloPrototype";
 import "./App.css";
 
 const PROJECTS = [
@@ -23,10 +24,10 @@ const PROJECTS = [
     subtitle: "The invisible work that made hashbank possible",
   },
   {
-    slug: "spacecargo",
-    bg: "linear-gradient(145deg, #1c1008 0%, #3d2309 55%, #c2610c 100%)",
-    title: "SpaceCargo: warehouse management system",
-    subtitle: "67% fewer lost parcels. Zero magic involved",
+    slug: "exlo",
+    bg: "linear-gradient(145deg, #0a0f1e 0%, #1a2744 55%, #2e4a8f 100%)",
+    title: "Exlo: Plugin for Figma",
+    subtitle: "Helping Designers increase their workflow with a tool that allows multi export multifile at once",
   },
 ];
 
@@ -51,15 +52,21 @@ function Hero() {
       </div>
 
       <div className="projects-wrap">
-        {PROJECTS.map(p => (
-          <a key={p.slug} className="project-card" href={`./projects/${p.slug}`}>
-            <div className="project-video-wrap" style={{ background: p.bg }} />
+        {PROJECTS.map(p => {
+          const inner = <>
+            {p.slug === "exlo"
+              ? <ExloPrototype />
+              : <div className="project-video-wrap" style={{ background: p.bg }} />
+            }
             <div className="project-text">
               <h2 className="project-title">{p.title}</h2>
               <p className="project-sub">{p.subtitle}</p>
             </div>
-          </a>
-        ))}
+          </>;
+          return p.slug === "exlo"
+            ? <div key={p.slug} className="project-card">{inner}</div>
+            : <a key={p.slug} className="project-card" href={`./projects/${p.slug}`}>{inner}</a>;
+        })}
 
         <div className="footer-nav">
           <a href="post.html" className="footer-link-card">

@@ -33,10 +33,9 @@ export default function ContactApp() {
       </section>
 
       <section className="contact-hero">
-        <h1 className="contact-h1">Let's work<br />together.</h1>
+        <h1 className="contact-h1">Let's join forces!</h1>
         <p className="hero-body">
-          I'm available for freelance product design and development. Drop me a line — let's
-          figure out what we can build.
+          Say hello and let's collaborate together to shape and ship impactful products.
         </p>
         <div className="abt-contact">
           {CONTACT_LINKS.map(l => (
@@ -60,6 +59,27 @@ export default function ContactApp() {
           ))}
         </div>
       </section>
+
+      <div className="post-footer-nav" style={{ maxWidth: 560, padding: "0 24px 80px" }}>
+        <a href="index.html" className="footer-link-card">
+          <div className="footer-link-texts">
+            <span className="footer-link-label">View work</span>
+            <h4 className="footer-link-heading">View Case Studies</h4>
+          </div>
+          <svg className="footer-link-arrow" viewBox="0 0 20.329 20.329" fill="none">
+            <path d="M 1.713 20.329 L 0 18.617 L 16.141 2.46 L 1.467 2.46 L 1.467 0 L 20.329 0 L 20.329 18.863 L 17.869 18.863 L 17.869 4.189 Z" fill="currentColor"/>
+          </svg>
+        </a>
+        <a href="about.html" className="footer-link-card">
+          <div className="footer-link-texts">
+            <span className="footer-link-label">Read about me</span>
+            <h4 className="footer-link-heading">Read My Story</h4>
+          </div>
+          <svg className="footer-link-arrow" viewBox="0 0 20.329 20.329" fill="none">
+            <path d="M 1.713 20.329 L 0 18.617 L 16.141 2.46 L 1.467 2.46 L 1.467 0 L 20.329 0 L 20.329 18.863 L 17.869 18.863 L 17.869 4.189 Z" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
 
       <Footer />
     </div>
