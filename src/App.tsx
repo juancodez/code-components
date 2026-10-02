@@ -43,7 +43,6 @@ function Hero() {
             <span className="hero-role">Product Designer who engineers.</span>
           </div>
         </div>
-        <Nav />
       </div>
 
       <div className="hero-about">
@@ -96,6 +95,9 @@ function Hero() {
 export default function App() {
   return (
     <div className="page">
+      <header className="site-header">
+        <Nav />
+      </header>
       <Hero />
       <Footer />
     </div>

@@ -53,11 +53,19 @@
 .nav-item:hover { color: #0c0c0c; }
 .nav-item-active { color: #0c0c0c; }
 
+/* ===== SITE HEADER ===== */
+.site-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 24px 24px 0;
+}
+
 /* ===== HERO ===== */
 .hero {
   width: 100%;
   max-width: 620px;
-  padding: 48px 24px 48px;
+  padding: 40px 24px 48px;
   display: flex;
   flex-direction: column;
   gap: 32px;
