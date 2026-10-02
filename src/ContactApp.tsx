@@ -19,6 +19,9 @@ const CONTACT_LINKS: Array<{
 export default function ContactApp() {
   return (
     <div className="page">
+      <header className="site-header">
+        <Nav />
+      </header>
       <section className="hero">
         <div className="hero-header">
           <div className="hero-identity">
@@ -28,7 +31,6 @@ export default function ContactApp() {
               <span className="hero-role">Product Designer who engineers.</span>
             </div>
           </div>
-          <Nav />
         </div>
       </section>
 

@@ -59,7 +59,6 @@ function PostHero() {
             <span className="hero-role">Product Designer who engineers.</span>
           </div>
         </div>
-        <Nav />
       </div>
     </section>
   );
@@ -68,6 +67,9 @@ function PostHero() {
 export default function PostApp() {
   return (
     <div className="page page-white">
+      <header className="site-header">
+        <Nav />
+      </header>
       <PostHero />
       <main className="post-main">
         <div className="post-list">
