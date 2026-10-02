@@ -72,7 +72,7 @@ export function ExloPrototype() {
   const drag = useRef<{
     id: FrameId;
     startX: number; startY: number;
-    origX: number; origY: number;
+    origPositions: Record<FrameId, { x: number; y: number }>;
     moved: boolean;
   } | null>(null);
 
@@ -80,28 +80,21 @@ export function ExloPrototype() {
   const onFrameDown = useCallback((id: FrameId, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    drag.current = {
-      id,
-      startX: e.clientX,
-      startY: e.clientY,
-      origX: positions[id].x,
-      origY: positions[id].y,
-      moved: false,
-    };
-  }, [positions]);
+    // If dragged frame is selected, move all selected frames together; otherwise just this one
+    const ids = selected.has(id) ? [...selected] as FrameId[] : [id];
+    const origPositions = Object.fromEntries(ids.map(fid => [fid, { ...positions[fid] }])) as Record<FrameId, { x: number; y: number }>;
+    drag.current = { id, startX: e.clientX, startY: e.clientY, origPositions, moved: false };
+  }, [positions, selected]);
 
   const onCanvasMove = useCallback((e: React.MouseEvent) => {
     if (!drag.current) return;
     const dx = e.clientX - drag.current.startX;
     const dy = e.clientY - drag.current.startY;
     if (Math.abs(dx) > 2 || Math.abs(dy) > 2) drag.current.moved = true;
-    setPositions(prev => ({
-      ...prev,
-      [drag.current!.id]: {
-        x: drag.current!.origX + dx,
-        y: drag.current!.origY + dy,
-      },
-    }));
+    const updates = Object.fromEntries(
+      Object.entries(drag.current.origPositions).map(([fid, orig]) => [fid, { x: orig.x + dx, y: orig.y + dy }])
+    ) as Record<FrameId, { x: number; y: number }>;
+    setPositions(prev => ({ ...prev, ...updates }));
   }, []);
 
   // Frame mouseup — Figma selection rules:
