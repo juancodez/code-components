@@ -2,6 +2,7 @@ import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { SplitTestimonial } from "./components/SplitTestimonial";
 import { CaseStudyNav } from "./components/CaseStudyNav";
+import { MetricsSection } from "./components/MetricsSection";
 import "./App.css";
 import "./MicrocasingApp.css";
 
@@ -150,7 +151,7 @@ export default function MicrocasingApp() {
         <section className="mc-section" id="metrics">
           <div className="mc-section-inner">
             <span className="mc-section-label">Metrics</span>
-            <h2 className="mc-section-title">Placeholder</h2>
+            <MetricsSection />
           </div>
         </section>
 

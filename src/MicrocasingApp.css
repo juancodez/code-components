@@ -307,7 +307,7 @@
 }
 
 .t2-mark {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Author', system-ui, sans-serif;
   font-size: 2em;
   line-height: 0;
   color: #d0d5dd;
@@ -327,7 +327,7 @@
 
 .t2-text {
   display: inline;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Author', system-ui, sans-serif;
   font-size: clamp(18px, 1.8vw, 22px);
   font-weight: 400;
   line-height: 1.6;
@@ -394,6 +394,174 @@
   line-height: 1.3;
 }
 
+/* metrics section */
+.mc-metrics-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+
+.mc-metrics-heading {
+  font-family: 'Author', system-ui, sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: #1d2939;
+  margin: 0 0 12px;
+  max-width: 680px;
+}
+
+.mc-metrics-desc {
+  font-family: 'Author', system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #667085;
+  line-height: 1.65;
+  margin: 0;
+  max-width: 620px;
+}
+
+/* password form */
+.mc-metrics-form {
+  margin-top: 32px;
+}
+
+.mc-metrics-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 0 4px 0 12px;
+  height: 38px;
+  border: 1px solid transparent;
+  box-shadow:
+    rgba(255, 54, 94, 0.45) 0px 0px 20px,
+    rgba(255, 54, 94, 0.18) 0px 0px 40px,
+    rgba(49, 49, 49, 0.1) 0px 2px 4px;
+  transition: box-shadow 200ms ease;
+}
+.mc-metrics-field:focus-within {
+  box-shadow:
+    rgba(255, 54, 94, 0.6) 0px 0px 24px,
+    rgba(255, 54, 94, 0.25) 0px 0px 50px,
+    rgba(49, 49, 49, 0.12) 0px 2px 4px;
+}
+
+.mc-metrics-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: 'Author', system-ui, sans-serif;
+  font-size: 13px;
+  color: #1d2939;
+  width: 200px;
+}
+.mc-metrics-input::placeholder { color: #8B8B8B; }
+
+.mc-metrics-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: #1d2939;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: opacity 200ms ease;
+}
+.mc-metrics-submit:hover { opacity: 0.8; }
+
+@keyframes mc-shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
+.mc-metrics-field--shake {
+  animation: mc-shake 0.45s ease;
+  box-shadow:
+    rgba(255, 54, 94, 0.8) 0px 0px 24px,
+    rgba(255, 54, 94, 0.3) 0px 0px 50px,
+    rgba(49, 49, 49, 0.12) 0px 2px 4px;
+}
+
+/* metrics list */
+.mc-metrics-list {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  margin-top: 40px;
+}
+
+.mc-metric-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.mc-metric-value {
+  font-family: 'Author', system-ui, sans-serif;
+  font-size: clamp(44px, 6.5vw, 80px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #1d2939;
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.mc-metric-value--locked {
+  filter: blur(10px);
+  user-select: none;
+  pointer-events: none;
+  display: inline-block;
+  transition: filter 600ms ease;
+}
+
+.mc-metric-label {
+  font-family: 'Author', system-ui, sans-serif;
+  font-size: clamp(17px, 1.8vw, 22px);
+  font-weight: 400;
+  color: #667085;
+  margin: 4px 0 16px;
+  line-height: 1.3;
+  max-width: 520px;
+}
+
+.mc-metric-platform {
+  font-family: 'Author', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #98a1b2;
+  margin: 0 0 8px;
+}
+
+.mc-metric-growth {
+  font-family: 'Author', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1d2939;
+  margin: 0 0 4px;
+}
+
+.mc-metric-signal {
+  font-family: 'Author', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #98a1b2;
+  margin: 0;
+  font-style: italic;
+}
+
 @media (max-width: 900px) {
   .mc-header { width: 90%; padding: 48px 0 56px; }
   .mc-header-inner { grid-template-columns: 1fr; gap: 32px; }
@@ -402,4 +570,5 @@
   .t2-line { display: none; }
   .t2-author { margin-left: 0; }
   .t2-author-text { text-align: left; }
+  .mc-metrics-input { width: 160px; }
 }
