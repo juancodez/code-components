@@ -1,6 +1,5 @@
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
-import { Avatar } from "./components/Avatar";
 import { AspectRatioTile } from "./tiles/AspectRatioTile";
 import { BalanceTile } from "./tiles/BalanceTile";
 import { ChecklistTile } from "./tiles/ChecklistTile";
@@ -50,16 +49,9 @@ const CARDS = [
 
 function PostHero() {
   return (
-    <section className="hero">
-      <div className="hero-header">
-        <div className="hero-identity">
-          <Avatar />
-          <div className="hero-name-block">
-            <span className="hero-name">Juan Gomez Vara</span>
-            <span className="hero-role">Product Designer who engineers.</span>
-          </div>
-        </div>
-      </div>
+    <section className="labs-hero">
+      <h1 className="labs-hero-title">Labs</h1>
+      <p className="labs-hero-desc">Interactive UI components — built to explore motion, state, and interaction.</p>
     </section>
   );
 }

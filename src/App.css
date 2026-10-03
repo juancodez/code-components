@@ -223,7 +223,14 @@
 }
 
 /* projects */
-.projects-wrap { display: flex; flex-direction: column; gap: 48px; }
+.projects-wrap {
+  width: 100%;
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 0 24px 48px;
+}
 
 .project-card {
   display: flex;
@@ -408,14 +415,37 @@
   line-height: 1.5;
 }
 
-.footer-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
 
 /* ===== POST PAGE ===== */
 .page-white { background: #fff; }
+
+.labs-hero {
+  width: 100%;
+  max-width: 620px;
+  padding: 72px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.labs-hero-title {
+  font-family: 'Author', system-ui, sans-serif;
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: #1d2939;
+  margin: 0;
+  line-height: 1;
+}
+
+.labs-hero-desc {
+  font-family: 'Author', system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #667085;
+  margin: 0;
+  line-height: 1.6;
+}
 
 .post-main {
   width: 100%;
@@ -905,7 +935,7 @@
 
 .cf-cta-heading {
   font-size: clamp(40px, 6vw, 80px);
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.1;
   color: #1d2939;
@@ -980,7 +1010,7 @@
 
 .cf-email {
   font-size: clamp(17px, 2.2vw, 26px);
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1.15;
   color: #1d2939;
