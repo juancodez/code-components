@@ -197,10 +197,6 @@ export default function AboutApp() {
             <p className="abt-text">
               When I'm not designing, I'm usually listening to music, skating, dancing, or playing with my kids.
             </p>
-            <p className="abt-text">
-              I like making things, fixing things, and occasionally spending far too much time figuring out how something works when I could have just left it alone.
-            </p>
-            <p className="abt-text">I'm also usually working on some kind of side project.</p>
           </Sec>
 
           <Sec label="What's next">

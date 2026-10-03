@@ -810,19 +810,20 @@
 /* ===== CONTACT PAGE ===== */
 .contact-hero {
   width: 100%;
-  max-width: 560px;
-  padding: 40px 24px 64px;
+  flex: 1;
   display: flex;
-  flex-direction: column;
-  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px 64px;
 }
 .contact-h1 {
   font-size: 52px;
   font-weight: 700;
   line-height: 1.15;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.01em;
   color: #1d2939;
   margin: 0;
+  text-align: center;
 }
 .contact-links {
   display: flex;
@@ -885,6 +886,197 @@
 }
 .ghost span { font-size: 14px; font-weight: 500; }
 .ghost small { font-size: 12px; letter-spacing: 0.08em; }
+
+/* ===== CONTACT FOOTER (3-col) ===== */
+.cf {
+  width: 100%;
+  background: #fff;
+  padding: 0 40px 56px;
+  margin-top: 16px;
+  font-family: 'Author', system-ui, sans-serif;
+}
+
+.cf-cta {
+  width: 100%;
+  padding: 80px 0 64px;
+  display: flex;
+  justify-content: center;
+}
+
+.cf-cta-heading {
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: #1d2939;
+  margin: 0;
+  text-align: center;
+}
+
+.cf-grid {
+  max-width: 860px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.4fr;
+  gap: 40px;
+  border-top: 1px solid #f2f4f7;
+  padding-top: 48px;
+}
+
+.cf-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #98a1b2;
+  margin: 0 0 20px;
+}
+
+.cf-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cf-link {
+  font-size: 17px;
+  color: #667085;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transform-origin: left center;
+  transition: transform 280ms ease, color 280ms ease;
+}
+.cf-link:hover {
+  transform: scale(1.08);
+  color: #1d2939;
+}
+
+.cf-imprint-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.cf-arrow {
+  display: inline-block;
+  transition: transform 280ms ease;
+}
+.cf-link-ext:hover .cf-arrow {
+  transform: rotate(45deg);
+}
+
+.cf-email-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cf-email {
+  font-size: clamp(17px, 2.2vw, 26px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: #1d2939;
+  text-decoration: none;
+  transition: color 280ms ease;
+}
+.cf-email:hover { color: #0ea5e9; }
+
+.cf-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #1d2939;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: inherit;
+  white-space: nowrap;
+  transition: color 180ms ease, opacity 180ms ease;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+.cf-copy-btn:hover { opacity: 1; }
+.cf-copy-btn svg { flex-shrink: 0; }
+.cf-copy-label { font-size: 11px; letter-spacing: 0.02em; }
+
+/* preview card on footer connect links */
+.cf-link {
+  position: relative;
+}
+.cf-link-preview {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 0;
+  transform: translateY(10px) scale(0.94);
+  width: 240px;
+  background: #1c1c1e;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.36), 0 0 0 1px rgba(255,255,255,0.08);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms cubic-bezier(0.34,1.56,0.64,1),
+              transform 200ms cubic-bezier(0.34,1.56,0.64,1);
+  z-index: 200;
+}
+.cf-link-ext:hover .cf-link-preview {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.cf-link-preview img {
+  width: 100%;
+  aspect-ratio: 565 / 420;
+  object-fit: cover;
+  display: block;
+}
+
+.cf-bar {
+  max-width: 860px;
+  margin: 40px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid #f2f4f7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cf-copy {
+  font-size: 13px;
+  color: #98a1b2;
+  margin: 0;
+}
+
+.cf-backtop {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #98a1b2;
+  text-decoration: none;
+  transform-origin: right center;
+  transition: transform 280ms ease, color 280ms ease;
+}
+.cf-backtop:hover {
+  transform: scale(1.08);
+  color: #1d2939;
+}
+
+@media (max-width: 640px) {
+  .cf { padding: 0 20px 40px; }
+  .cf-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .cf-grid > div:last-child { grid-column: 1 / -1; }
+  .cf-bar { flex-direction: column; align-items: flex-start; gap: 6px; }
+}
 
 /* ===== FOOTER ===== */
 .site-footer {

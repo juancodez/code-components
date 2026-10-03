@@ -4,7 +4,7 @@ const NAV_ITEMS = [
   { label: "Work",    href: "index.html"   },
   { label: "Labs",    href: "post.html"    },
   { label: "About",   href: "about.html"   },
-  { label: "Contact", href: "contact.html" },
+  { label: "Contact", href: "#contact" },
 ];
 
 function getActiveIdx() {
