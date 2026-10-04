@@ -48,6 +48,16 @@ const MC_SECTIONS = [
 
 export default function MicrocasingApp() {
   const [activeChallenge, setActiveChallenge] = useState(0);
+  const [lens, setLens] = useState<{ x: number; y: number; bgSize: number } | null>(null);
+
+  const handleImgMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setLens({
+      x: ((e.clientX - rect.left) / rect.width) * 100,
+      y: ((e.clientY - rect.top) / rect.height) * 100,
+      bgSize: rect.width * 2.5, // 2.5× the actual rendered image width
+    });
+  };
 
   return (
     <div className="page mc-page">
@@ -146,7 +156,7 @@ export default function MicrocasingApp() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+                    transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
                   >
                     {CHALLENGE_ITEMS[activeChallenge].text}
                   </motion.p>
@@ -154,7 +164,11 @@ export default function MicrocasingApp() {
               </div>
 
               <div className="mc-challenge-right">
-                <div className="mc-challenge-img-wrap">
+                <div
+                  className="mc-challenge-img-wrap"
+                  onMouseMove={handleImgMouseMove}
+                  onMouseLeave={() => setLens(null)}
+                >
                   <AnimatePresence mode="wait">
                     <motion.img
                       key={activeChallenge}
@@ -164,9 +178,21 @@ export default function MicrocasingApp() {
                       initial={{ opacity: 0, scale: 0.97 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 1.02 }}
-                      transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+                      transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
                     />
                   </AnimatePresence>
+                  {lens && (
+                    <div
+                      className="mc-magnifier"
+                      style={{
+                        left: `${lens.x}%`,
+                        top: `${lens.y}%`,
+                        backgroundImage: `url(${CHALLENGE_ITEMS[activeChallenge].img})`,
+                        backgroundPosition: `${lens.x}% ${lens.y}%`,
+                        backgroundSize: `${lens.bgSize}px auto`,
+                      }}
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -190,7 +216,7 @@ export default function MicrocasingApp() {
                 className="mc-discovery-btn"
               >
                 Discovery Questionnaire
-                <svg width="14" height="14" viewBox="0 0 20.329 20.329" fill="none" aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 20.329 20.329" fill="none" aria-hidden="true" style={{ opacity: 0.4, flexShrink: 0 }}>
                   <path d="M 1.713 20.329 L 0 18.617 L 16.141 2.46 L 1.467 2.46 L 1.467 0 L 20.329 0 L 20.329 18.863 L 17.869 18.863 L 17.869 4.189 Z" fill="currentColor"/>
                 </svg>
               </a>

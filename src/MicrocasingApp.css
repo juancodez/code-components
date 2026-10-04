@@ -565,7 +565,7 @@
 /* challenge tabs */
 .mc-challenge-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 3fr;
   gap: 48px;
   align-items: start;
   margin-top: 40px;
@@ -631,16 +631,25 @@
 .mc-challenge-img-wrap {
   position: relative;
   width: 100%;
-  display: flex;
-  justify-content: center;
+  cursor: none;
+}
+
+.mc-magnifier {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  background-repeat: no-repeat;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.18);
 }
 
 .mc-challenge-img {
   width: 100%;
-  max-width: 320px;
   height: auto;
   display: block;
-  animation: mc-fade-in 220ms ease;
 }
 
 
