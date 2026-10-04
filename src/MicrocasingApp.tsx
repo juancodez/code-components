@@ -246,7 +246,7 @@ export default function MicrocasingApp() {
                   ["/mc-brand-7.webp",  "/mc-brand-8.webp"],
                   ["/mc-brand-9.webp",  "/mc-brand-10.webp"],
                 ] as [string, string][]).map(([front, back], i) => (
-                  <div key={i} className="mc-flip-card" onClick={e => (e.currentTarget as HTMLDivElement).classList.toggle("mc-flip-card--flipped")}>
+                  <div key={i} className="mc-flip-card mc-flip-card--contain" onClick={e => (e.currentTarget as HTMLDivElement).classList.toggle("mc-flip-card--flipped")}>
                     <div className="mc-flip-card-inner">
                       <div className="mc-flip-card-front">
                         <img src={front} alt="" className="mc-flip-img" />

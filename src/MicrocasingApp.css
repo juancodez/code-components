@@ -837,6 +837,12 @@
   max-width: 360px;
 }
 
+.mc-flip-card--contain .mc-flip-img {
+  object-fit: contain;
+  object-position: center;
+  background: #f8f9fb;
+}
+
 /* Pong game overlay animations */
 @keyframes pong-win-blink {
   0%, 24%, 50%, 74%, 100% { opacity: 1; }
