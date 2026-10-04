@@ -38,8 +38,9 @@ const MC_SECTIONS = [
   { id: "challenge",    label: "Challenge"     },
   { id: "discovery",   label: "Discovery"     },
   { id: "branding",    label: "Branding"      },
-  { id: "design-system", label: "Design System" },
-  { id: "before-after", label: "Before & After" },
+  { id: "design-system",  label: "Design System"  },
+  { id: "difficulties",   label: "Difficulties"   },
+  { id: "before-after",  label: "Before & After" },
   { id: "prototype",   label: "Prototype"     },
   { id: "lessons",     label: "Lessons"       },
   { id: "metrics",     label: "Metrics"       },
@@ -288,6 +289,24 @@ export default function MicrocasingApp() {
           <div className="mc-section-inner">
             <span className="mc-section-label">Design System</span>
             <h2 className="mc-section-title">Placeholder</h2>
+          </div>
+        </section>
+
+        {/* Difficulties */}
+        <section className="mc-section" id="difficulties">
+          <div className="mc-section-inner">
+            <span className="mc-section-label">Difficulties</span>
+            <h2 className="mc-section-title">The two-week sprint — no system, no shortcuts</h2>
+            <div className="mc-branding-body">
+              <p className="mc-body-text">
+                Two weeks is not enough time to build a proper design system — but handing engineers a Figma file
+                with no components would have created permanent debt.
+              </p>
+              <p className="mc-body-text">
+                We also faced a trade-off with the voice feature: the scope was too big, it would have pushed
+                development costs up, and it didn't align with the core goals of Micro-Casing.
+              </p>
+            </div>
           </div>
         </section>
 
