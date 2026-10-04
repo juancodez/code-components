@@ -236,8 +236,8 @@ export default function MicrocasingApp() {
             <h2 className="mc-section-title">Finding the balance between corporate and playful design</h2>
             <div className="mc-branding-body">
               <p className="mc-body-text">
-                Thanks to the Competitive &amp; Comparative Analysis, researching platforms such as Elevate and Duolingo
-                helped identify successful engagement patterns used in gamified learning experiences.
+                Thanks to the Competitive &amp; Comparative Analysis, researching platforms such as Duolingo, Revolut and Elevate
+                helped identify successful engagement patterns.
               </p>
 
               <div className="mc-flip-row">
