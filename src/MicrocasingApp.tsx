@@ -266,7 +266,7 @@ export default function MicrocasingApp() {
               </p>
 
               <p className="mc-body-text">
-                Duolingo gave us the inspiration to create a mascot for the consultancy Casey, creating engagement
+                Duolingo gave us the inspiration to create four mascots for the Micro-casing app, creating engagement
                 in a friendly tone while remaining professional.
               </p>
 
