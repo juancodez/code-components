@@ -233,7 +233,31 @@ export default function MicrocasingApp() {
         <section className="mc-section" id="branding">
           <div className="mc-section-inner">
             <span className="mc-section-label">Branding</span>
-            <h2 className="mc-section-title">Placeholder</h2>
+            <h2 className="mc-section-title">Finding the balance between corporate and playful design</h2>
+            <div className="mc-branding-body">
+              <p className="mc-body-text">
+                Thanks to the Competitive &amp; Comparative Analysis, researching platforms such as Elevate and Duolingo
+                helped identify successful engagement patterns used in gamified learning experiences.
+              </p>
+              <p className="mc-body-text">
+                Key decisions emerged from this research — Blue was intentionally selected as the primary brand colour
+                to link the product with existing fintech apps and gamification platforms.
+              </p>
+              <p className="mc-body-text">
+                Duolingo gave us the inspiration to create a mascot for the consultancy Casey, creating engagement
+                in a friendly tone while remaining professional.
+              </p>
+            </div>
+            <div className="mc-flip-card" onClick={e => (e.currentTarget as HTMLDivElement).classList.toggle("mc-flip-card--flipped")}>
+              <div className="mc-flip-card-inner">
+                <div className="mc-flip-card-front">
+                  <span className="mc-flip-hint">Click to flip</span>
+                </div>
+                <div className="mc-flip-card-back">
+                  <span className="mc-flip-hint">Click to flip back</span>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
