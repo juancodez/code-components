@@ -793,18 +793,13 @@
 
 /* Flip card */
 .mc-flip-card {
-  margin-top: 40px;
-  width: 100%;
-  max-width: 560px;
-  aspect-ratio: 4 / 3;
   perspective: 1200px;
   cursor: pointer;
+  border-radius: 16px;
 }
 
 .mc-flip-card-inner {
   position: relative;
-  width: 100%;
-  height: 100%;
   transform-style: preserve-3d;
   transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -815,16 +810,31 @@
 
 .mc-flip-card-front,
 .mc-flip-card-back {
-  position: absolute;
-  inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   border-radius: 16px;
-  background: center/cover no-repeat #f0f5ff;
+  overflow: hidden;
+}
+
+.mc-flip-card-front {
+  display: block;
 }
 
 .mc-flip-card-back {
+  position: absolute;
+  inset: 0;
   transform: rotateY(180deg);
+}
+
+.mc-flip-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mc-flip-card--casey {
+  max-width: 360px;
 }
 
 /* Pong game overlay animations */
