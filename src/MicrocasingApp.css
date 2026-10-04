@@ -667,6 +667,7 @@
 
 .mc-discovery-btn {
   display: inline-flex;
+  align-self: flex-start;
   align-items: center;
   gap: 8px;
   font-family: 'Author', system-ui, sans-serif;

@@ -39,6 +39,7 @@ interface UiState {
 export function DiscoveryPong() {
   const cvs = useRef<HTMLCanvasElement>(null);
   const raf = useRef(0);
+  const audioCtx = useRef<AudioContext | null>(null);
   const g = useRef({
     bx: W / 2, by: GAME_H / 2,
     bvx: BASE_SPEED, bvy: BASE_SPEED * 0.3,
@@ -61,6 +62,21 @@ export function DiscoveryPong() {
     const canvas = cvs.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d")!;
+
+    function playHit(freq: number) {
+      if (!audioCtx.current) audioCtx.current = new AudioContext();
+      const ac = audioCtx.current;
+      const osc = ac.createOscillator();
+      const gain = ac.createGain();
+      osc.connect(gain);
+      gain.connect(ac.destination);
+      osc.type = "sine";
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0.1, ac.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + 0.07);
+      osc.start(ac.currentTime);
+      osc.stop(ac.currentTime + 0.07);
+    }
 
     function drawDotGrid() {
       ctx.fillStyle = C.dot;
@@ -154,6 +170,7 @@ export function DiscoveryPong() {
         if (s.bvx < 0 && s.bx - BALL_R <= lx + PAD.w && s.by >= s.ly && s.by <= s.ly + PAD.h) {
           s.bx = lx + PAD.w + BALL_R;
           s.bvx = Math.abs(s.bvx) * 1.04;
+          playHit(300);
           s.bvy = ((s.by - s.ly - PAD.h / 2) / (PAD.h / 2)) * BASE_SPEED * 0.75;
           if (s.phase === "asking" && s.qIdx < QUESTIONS.length) {
             const answered = s.qIdx;
@@ -174,6 +191,7 @@ export function DiscoveryPong() {
         if (s.bvx > 0 && s.bx + BALL_R >= rx && s.by >= s.ry && s.by <= s.ry + PAD.h) {
           s.bx = rx - BALL_R;
           s.bvx = -(Math.abs(s.bvx) * 1.04);
+          playHit(440);
           s.bvy = ((s.by - s.ry - PAD.h / 2) / (PAD.h / 2)) * BASE_SPEED * 0.75;
           if (s.qIdx < QUESTIONS.length) {
             s.phase = "asking";
