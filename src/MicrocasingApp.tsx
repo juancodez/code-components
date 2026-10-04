@@ -6,6 +6,7 @@ import { SplitTestimonial } from "./components/SplitTestimonial";
 import { CaseStudyNav } from "./components/CaseStudyNav";
 import { MetricsSection } from "./components/MetricsSection";
 import { DiscoveryPong } from "./components/DiscoveryPong";
+import CardFanCarousel from "./components/CardFanCarousel";
 import imgMcaLogo from "../assets/MCA-Logo-and-slogan.svg";
 import imgVisualSystem from "../assets/Case-Prompt-01.webp";
 import imgNavigation from "../assets/Case-Prompt-02.webp";
@@ -234,19 +235,27 @@ export default function MicrocasingApp() {
           <div className="mc-section-inner">
             <span className="mc-section-label">Branding</span>
             <h2 className="mc-section-title">Finding the balance between corporate and playful design</h2>
-            <div className="mc-branding-body">
-              <p className="mc-body-text">
-                Thanks to the Competitive &amp; Comparative Analysis, researching platforms such as Elevate and Duolingo
-                helped identify successful engagement patterns used in gamified learning experiences.
-              </p>
-              <p className="mc-body-text">
-                Key decisions emerged from this research — Blue was intentionally selected as the primary brand colour
-                to link the product with existing fintech apps and gamification platforms.
-              </p>
-              <p className="mc-body-text">
-                Duolingo gave us the inspiration to create a mascot for the consultancy Casey, creating engagement
-                in a friendly tone while remaining professional.
-              </p>
+            <div className="mc-branding-layout">
+              <div className="mc-branding-body">
+                <p className="mc-body-text">
+                  Thanks to the Competitive &amp; Comparative Analysis, researching platforms such as Elevate and Duolingo
+                  helped identify successful engagement patterns used in gamified learning experiences.
+                </p>
+                <p className="mc-body-text">
+                  Key decisions emerged from this research — Blue was intentionally selected as the primary brand colour
+                  to link the product with existing fintech apps and gamification platforms.
+                </p>
+                <p className="mc-body-text">
+                  Duolingo gave us the inspiration to create a mascot for the consultancy Casey, creating engagement
+                  in a friendly tone while remaining professional.
+                </p>
+              </div>
+              <CardFanCarousel cards={[
+                { imgUrl: "/mc-screen-01.webp", alt: "Case prompt screen" },
+                { imgUrl: "/mc-screen-02.webp", alt: "Game screen" },
+                { imgUrl: "/mc-screen-03.webp", alt: "Results screen" },
+                { imgUrl: "/mc-screen-04.webp", alt: "Coach select screen" },
+              ]} />
             </div>
             <div className="mc-flip-card" onClick={e => (e.currentTarget as HTMLDivElement).classList.toggle("mc-flip-card--flipped")}>
               <div className="mc-flip-card-inner">

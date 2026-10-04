@@ -714,12 +714,81 @@
 }
 
 /* Branding section */
+.mc-branding-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 32px;
+  align-items: center;
+}
+
 .mc-branding-body {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-top: 32px;
-  max-width: 640px;
+}
+
+/* Fan carousel */
+.fan-carousel-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.fan-carousel-stage {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 38rem;
+}
+
+.fan-card {
+  position: absolute;
+  width: 11rem;
+  aspect-ratio: 9 / 19.5;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  will-change: transform;
+  cursor: default;
+}
+
+.fan-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+  z-index: 30;
+}
+
+.fan-arrow-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(29,41,57,0.12);
+  background: rgba(29,41,57,0.05);
+  color: rgba(29,41,57,0.45);
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: border-color 200ms, color 200ms;
+}
+.fan-arrow-btn:hover {
+  border-color: rgba(29,41,57,0.28);
+  color: rgba(29,41,57,0.75);
+}
+
+@media (max-width: 900px) {
+  .mc-branding-layout { grid-template-columns: 1fr; }
+  .fan-carousel-stage { height: 28rem; }
 }
 
 /* Flip card */
