@@ -833,8 +833,16 @@
   object-fit: cover;
 }
 
-.mc-flip-card--casey {
-  max-width: 360px;
+.mc-flip-row--casey {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* placeholder cards match the casey card height */
+.mc-flip-card--placeholder .mc-flip-card-front {
+  aspect-ratio: 1 / 1;
+  background: #f2f4f7;
+  border: 1.5px dashed #d0d5dd;
+  border-radius: 16px;
 }
 
 .mc-flip-card--contain .mc-flip-img {
