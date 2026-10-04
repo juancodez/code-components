@@ -6,6 +6,7 @@ import { SplitTestimonial } from "./components/SplitTestimonial";
 import { CaseStudyNav } from "./components/CaseStudyNav";
 import { MetricsSection } from "./components/MetricsSection";
 import { DiscoveryPong } from "./components/DiscoveryPong";
+import imgMcaLogo from "../assets/MCA-Logo-and-slogan.svg";
 import imgVisualSystem from "../assets/Case-Prompt-01.webp";
 import imgNavigation from "../assets/Case-Prompt-02.webp";
 import imgUxWriting from "../assets/Case-Prompt-03.webp";
@@ -121,12 +122,15 @@ export default function MicrocasingApp() {
           </div>
 
           <div className="mc-body">
-            <p className="mc-body-text">
-              Micro-casing is a mobile app that replaces $200/hour coaching with 400-second gamified case studies, making consulting interview prep fast, affordable, and sustainable for anyone competing for a spot at McKinsey, BCG, or Bain.
-            </p>
-            <p className="mc-body-text">
-              Traditional prep is slow, expensive, and hard to stick to. Micro-casing flips the model: bite-sized cases on your commute, built on the same decision-making framework top coaches use.
-            </p>
+            <div className="mc-body-text-col">
+              <p className="mc-body-text">
+                Micro-casing is a mobile app that replaces $200/hour coaching with 400-second gamified case studies, making consulting interview prep fast, affordable, and sustainable for anyone competing for a spot at McKinsey, BCG, or Bain.
+              </p>
+              <p className="mc-body-text">
+                Traditional prep is slow, expensive, and hard to stick to. Micro-casing flips the model: bite-sized cases on your commute, built on the same decision-making framework top coaches use.
+              </p>
+            </div>
+            <img src={imgMcaLogo} alt="Micro-casing logo" className="mc-logo-img" />
           </div>
         </section>
 
@@ -134,21 +138,22 @@ export default function MicrocasingApp() {
         <section className="mc-section" id="challenge">
           <div className="mc-section-inner">
             <span className="mc-section-label">Challenge</span>
-            <h2 className="mc-section-title">The UX audit mapped four specific failures</h2>
+            <h2 className="mc-section-title">The UX audit mapped three specific failures</h2>
+
+            <div className="mc-challenge-tabs">
+              {CHALLENGE_ITEMS.map((item, i) => (
+                <button
+                  key={item.id}
+                  className={`mc-challenge-btn${activeChallenge === i ? " mc-challenge-btn--active" : ""}`}
+                  onClick={() => setActiveChallenge(i)}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
 
             <div className="mc-challenge-grid">
               <div className="mc-challenge-left">
-                <div className="mc-challenge-tabs">
-                  {CHALLENGE_ITEMS.map((item, i) => (
-                    <button
-                      key={item.id}
-                      className={`mc-challenge-btn${activeChallenge === i ? " mc-challenge-btn--active" : ""}`}
-                      onClick={() => setActiveChallenge(i)}
-                    >
-                      {item.label}
-                    </button>
-                  ))}
-                </div>
                 <AnimatePresence mode="wait">
                   <motion.p
                     key={activeChallenge}
@@ -207,21 +212,19 @@ export default function MicrocasingApp() {
             <p className="mc-body-text" style={{ marginTop: 0, maxWidth: "62ch" }}>
               Before opening Figma, Shankar and I took the time to answer a Notion file for a discovery questionnaire where we align and define the vision, target audience, tone, and competitive positioning from the Micro-casing app.
             </p>
-            <div style={{ width: "100%", maxWidth: 800, margin: "0 auto", display: "flex", flexDirection: "column" }}>
+            <a
+              href="https://app.notion.com/p/Discovery-Questionnaire-Micro-Casing-App-Case-2ec0f72674e48086bb8bf6199c76c27e"
+              target="_blank"
+              rel="noreferrer"
+              className="mc-discovery-btn"
+            >
+              Discovery Questionnaire
+              <svg width="10" height="10" viewBox="0 0 20.329 20.329" fill="none" aria-hidden="true" style={{ opacity: 0.4, flexShrink: 0 }}>
+                <path d="M 1.713 20.329 L 0 18.617 L 16.141 2.46 L 1.467 2.46 L 1.467 0 L 20.329 0 L 20.329 18.863 L 17.869 18.863 L 17.869 4.189 Z" fill="currentColor"/>
+              </svg>
+            </a>
+            <div style={{ width: "100%", maxWidth: 800, margin: "0 auto" }}>
               <DiscoveryPong />
-              <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 24 }}>
-                <a
-                  href="https://app.notion.com/p/Discovery-Questionnaire-Micro-Casing-App-Case-2ec0f72674e48086bb8bf6199c76c27e"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mc-discovery-btn"
-                >
-                  Discovery Questionnaire
-                  <svg width="10" height="10" viewBox="0 0 20.329 20.329" fill="none" aria-hidden="true" style={{ opacity: 0.4, flexShrink: 0 }}>
-                    <path d="M 1.713 20.329 L 0 18.617 L 16.141 2.46 L 1.467 2.46 L 1.467 0 L 20.329 0 L 20.329 18.863 L 17.869 18.863 L 17.869 4.189 Z" fill="currentColor"/>
-                  </svg>
-                </a>
-              </div>
             </div>
           </div>
         </section>
@@ -286,7 +289,31 @@ export default function MicrocasingApp() {
         <section className="mc-section" id="links">
           <div className="mc-section-inner">
             <span className="mc-section-label">Links</span>
-            <h2 className="mc-section-title">Placeholder</h2>
+            <h2 className="mc-section-title">This product is live</h2>
+            <div className="mc-links-row">
+              <a
+                href="https://apps.apple.com/gb/app/micro-casing/id6754453873"
+                target="_blank"
+                rel="noreferrer"
+                className="mc-store-btn"
+              >
+                App Store
+                <svg width="10" height="10" viewBox="0 0 20.329 20.329" fill="none" aria-hidden="true" style={{ opacity: 0.4, flexShrink: 0 }}>
+                  <path d="M 1.713 20.329 L 0 18.617 L 16.141 2.46 L 1.467 2.46 L 1.467 0 L 20.329 0 L 20.329 18.863 L 17.869 18.863 L 17.869 4.189 Z" fill="currentColor"/>
+                </svg>
+              </a>
+              <a
+                href="https://play.google.com/store/apps/details?id=com.microcasing.dev"
+                target="_blank"
+                rel="noreferrer"
+                className="mc-store-btn"
+              >
+                Google Play Store
+                <svg width="10" height="10" viewBox="0 0 20.329 20.329" fill="none" aria-hidden="true" style={{ opacity: 0.4, flexShrink: 0 }}>
+                  <path d="M 1.713 20.329 L 0 18.617 L 16.141 2.46 L 1.467 2.46 L 1.467 0 L 20.329 0 L 20.329 18.863 L 17.869 18.863 L 17.869 4.189 Z" fill="currentColor"/>
+                </svg>
+              </a>
+            </div>
           </div>
         </section>
 
