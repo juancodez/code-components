@@ -257,12 +257,6 @@ export default function MicrocasingApp() {
                 { imgUrl: "/mc-screen-04.webp", alt: "Coach select screen" },
               ]} />
             </div>
-            <div className="mc-flip-card" onClick={e => (e.currentTarget as HTMLDivElement).classList.toggle("mc-flip-card--flipped")}>
-              <div className="mc-flip-card-inner">
-                <div className="mc-flip-card-front" />
-                <div className="mc-flip-card-back" />
-              </div>
-            </div>
           </div>
         </section>
 
