@@ -751,25 +751,16 @@
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f2f4f7;
-  border: 1px dashed #d0d5dd;
+  background: center/contain no-repeat #f0f5ff;
+}
+
+.mc-flip-card-front {
+  background-image: url('/casey.png');
 }
 
 .mc-flip-card-back {
   transform: rotateY(180deg);
-  background: #eef4ff;
-  border-color: #b2ccff;
-}
-
-.mc-flip-hint {
-  font-family: 'Author', system-ui, sans-serif;
-  font-size: 13px;
-  color: #98a1b2;
-  pointer-events: none;
-  user-select: none;
+  background-image: url('/casey-stressed.png');
 }
 
 /* Pong game overlay animations */

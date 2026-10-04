@@ -250,12 +250,8 @@ export default function MicrocasingApp() {
             </div>
             <div className="mc-flip-card" onClick={e => (e.currentTarget as HTMLDivElement).classList.toggle("mc-flip-card--flipped")}>
               <div className="mc-flip-card-inner">
-                <div className="mc-flip-card-front">
-                  <span className="mc-flip-hint">Click to flip</span>
-                </div>
-                <div className="mc-flip-card-back">
-                  <span className="mc-flip-hint">Click to flip back</span>
-                </div>
+                <div className="mc-flip-card-front" />
+                <div className="mc-flip-card-back" />
               </div>
             </div>
           </div>
