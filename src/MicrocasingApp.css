@@ -714,18 +714,19 @@
 }
 
 /* Branding section */
-.mc-branding-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  margin-top: 32px;
-  align-items: center;
-}
-
 .mc-branding-body {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-top: 32px;
+  max-width: 640px;
+}
+
+.mc-flip-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
 }
 
 /* Fan carousel */
@@ -787,8 +788,7 @@
 }
 
 @media (max-width: 900px) {
-  .mc-branding-layout { grid-template-columns: 1fr; }
-  .fan-carousel-stage { height: 28rem; }
+  .mc-flip-row { grid-template-columns: 1fr; }
 }
 
 /* Flip card */
@@ -820,16 +820,11 @@
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   border-radius: 16px;
-  background: center/contain no-repeat #f0f5ff;
-}
-
-.mc-flip-card-front {
-  background-image: url('/casey.png');
+  background: center/cover no-repeat #f0f5ff;
 }
 
 .mc-flip-card-back {
   transform: rotateY(180deg);
-  background-image: url('/casey-stressed.png');
 }
 
 /* Pong game overlay animations */
