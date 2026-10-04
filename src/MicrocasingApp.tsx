@@ -1,10 +1,37 @@
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { SplitTestimonial } from "./components/SplitTestimonial";
 import { CaseStudyNav } from "./components/CaseStudyNav";
 import { MetricsSection } from "./components/MetricsSection";
+import { DiscoveryPong } from "./components/DiscoveryPong";
+import imgVisualSystem from "../assets/Case-Prompt-01.webp";
+import imgNavigation from "../assets/Case-Prompt-02.webp";
+import imgUxWriting from "../assets/Case-Prompt-03.webp";
 import "./App.css";
 import "./MicrocasingApp.css";
+
+const CHALLENGE_ITEMS = [
+  {
+    id: "visual-system",
+    label: "Visual System",
+    text: "The generated design was lacking a Design System — no component consistency and no shared tokens across the product.",
+    img: imgVisualSystem,
+  },
+  {
+    id: "navigation",
+    label: "Navigation",
+    text: "No bottom nav, no way to backtrack, no access to profile or filtering. The product grew its case library weekly but gave users no way to orient inside it.",
+    img: imgNavigation,
+  },
+  {
+    id: "ux-writing",
+    label: "UX Writing",
+    text: "Gaming language, humour and consulting authority were competing in the same interface. The result was a product that felt neither credible enough for serious prep nor approachable enough to open daily.",
+    img: imgUxWriting,
+  },
+];
 
 const MC_SECTIONS = [
   { id: "challenge",    label: "Challenge"     },
@@ -20,6 +47,8 @@ const MC_SECTIONS = [
 ]
 
 export default function MicrocasingApp() {
+  const [activeChallenge, setActiveChallenge] = useState(0);
+
   return (
     <div className="page mc-page">
       <header className="site-header">
@@ -96,6 +125,51 @@ export default function MicrocasingApp() {
           <div className="mc-section-inner">
             <span className="mc-section-label">Challenge</span>
             <h2 className="mc-section-title">The UX audit mapped four specific failures</h2>
+
+            <div className="mc-challenge-grid">
+              <div className="mc-challenge-left">
+                <div className="mc-challenge-tabs">
+                  {CHALLENGE_ITEMS.map((item, i) => (
+                    <button
+                      key={item.id}
+                      className={`mc-challenge-btn${activeChallenge === i ? " mc-challenge-btn--active" : ""}`}
+                      onClick={() => setActiveChallenge(i)}
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={activeChallenge}
+                    className="mc-challenge-body"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+                  >
+                    {CHALLENGE_ITEMS[activeChallenge].text}
+                  </motion.p>
+                </AnimatePresence>
+              </div>
+
+              <div className="mc-challenge-right">
+                <div className="mc-challenge-img-wrap">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={activeChallenge}
+                      src={CHALLENGE_ITEMS[activeChallenge].img}
+                      alt={CHALLENGE_ITEMS[activeChallenge].label}
+                      className="mc-challenge-img"
+                      initial={{ opacity: 0, scale: 0.97 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.02 }}
+                      transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+                    />
+                  </AnimatePresence>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -103,7 +177,24 @@ export default function MicrocasingApp() {
         <section className="mc-section" id="discovery">
           <div className="mc-section-inner">
             <span className="mc-section-label">Discovery</span>
-            <h2 className="mc-section-title">Placeholder</h2>
+            <h2 className="mc-section-title">Aligning on what to build</h2>
+            <p className="mc-body-text" style={{ marginTop: 0, maxWidth: "62ch" }}>
+              Before opening Figma, Shankar and I took the time to answer a Notion file for a discovery questionnaire where we align and define the vision, target audience, tone, and competitive positioning from the Micro-casing app.
+            </p>
+            <DiscoveryPong />
+            <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 24 }}>
+              <a
+                href="https://app.notion.com/p/Discovery-Questionnaire-Micro-Casing-App-Case-2ec0f72674e48086bb8bf6199c76c27e"
+                target="_blank"
+                rel="noreferrer"
+                className="mc-discovery-btn"
+              >
+                Discovery Questionnaire
+                <svg width="14" height="14" viewBox="0 0 20.329 20.329" fill="none" aria-hidden="true">
+                  <path d="M 1.713 20.329 L 0 18.617 L 16.141 2.46 L 1.467 2.46 L 1.467 0 L 20.329 0 L 20.329 18.863 L 17.869 18.863 L 17.869 4.189 Z" fill="currentColor"/>
+                </svg>
+              </a>
+            </div>
           </div>
         </section>
 

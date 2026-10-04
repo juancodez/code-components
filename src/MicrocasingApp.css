@@ -1,5 +1,5 @@
 .mc-page {
-  background: #fff;
+  background: #f2f2f0;
 }
 
 /* case study scroll-spy nav */
@@ -562,6 +562,131 @@
   font-style: italic;
 }
 
+/* challenge tabs */
+.mc-challenge-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+  margin-top: 40px;
+}
+
+.mc-challenge-left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.mc-challenge-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mc-challenge-btn {
+  font-family: 'Author', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid #e4e7ec;
+  background: #fff;
+  color: #667085;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+  white-space: nowrap;
+}
+
+.mc-challenge-btn:hover {
+  background: #f8f9fa;
+  border-color: #d0d5dd;
+  color: #1d2939;
+}
+
+.mc-challenge-btn--active {
+  background: #1d2939;
+  border-color: #1d2939;
+  color: #fff;
+}
+
+.mc-challenge-body {
+  font-family: 'Author', system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #667085;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 52ch;
+}
+
+@keyframes mc-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.mc-challenge-right {
+  width: 100%;
+}
+
+.mc-challenge-img-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.mc-challenge-img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  display: block;
+  animation: mc-fade-in 220ms ease;
+}
+
+
+.mc-discovery-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Author', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1d2939;
+  text-decoration: none;
+  padding: 10px 16px;
+  border: 1px solid #e4e7ec;
+  border-radius: 999px;
+  background: #fff;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+.mc-discovery-btn:hover {
+  background: #f8f9fa;
+  border-color: #d0d5dd;
+}
+
+/* Pong game overlay animations */
+@keyframes pong-win-blink {
+  0%, 24%, 50%, 74%, 100% { opacity: 1; }
+  25%, 49%, 75%, 92%       { opacity: 0.18; }
+}
+
+@keyframes pong-restart-blink {
+  0%, 64%, 100% { opacity: 1; }
+  65%, 84%      { opacity: 0.28; }
+}
+
+.pong-win-msg {
+  animation: pong-win-blink 0.9s steps(1, end) 2;
+}
+
+.pong-restart-badge {
+  animation: pong-restart-blink 1.1s steps(1, end) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pong-win-msg, .pong-restart-badge { animation: none; }
+}
+
 @media (max-width: 900px) {
   .mc-header { width: 90%; padding: 48px 0 56px; }
   .mc-header-inner { grid-template-columns: 1fr; gap: 32px; }
@@ -571,4 +696,5 @@
   .t2-author { margin-left: 0; }
   .t2-author-text { text-align: left; }
   .mc-metrics-input { width: 160px; }
+  .mc-challenge-grid { grid-template-columns: 1fr; }
 }
