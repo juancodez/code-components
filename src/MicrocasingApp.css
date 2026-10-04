@@ -834,12 +834,12 @@
 }
 
 .mc-flip-row--casey {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(280px, 1fr));
 }
 
 /* placeholder cards match casey's natural image aspect ratio */
 .mc-flip-card--placeholder .mc-flip-card-front {
-  aspect-ratio: 1024 / 1024;
+  aspect-ratio: 1 / 1;
   background: #f2f4f7;
   border: 1.5px dashed #d0d5dd;
   border-radius: 16px;
