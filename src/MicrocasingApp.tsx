@@ -10,10 +10,10 @@ import imgMcaLogo from "../assets/MCA-Logo-and-slogan.svg";
 import imgVisualSystem from "../assets/Case-Prompt-01.webp";
 import imgNavigation from "../assets/Case-Prompt-02.webp";
 import imgUxWriting from "../assets/Case-Prompt-03.webp";
-import imgGraph from "../assets/graph.webp";
-import imgNivins from "../assets/nivins.webp";
-import imgRaw from "../assets/raw.webp";
-import imgTally from "../assets/tally.webp";
+import imgGraph from "../assets/graph.png";
+import imgNivins from "../assets/nivins.png";
+import imgRaw from "../assets/raw.png";
+import imgTally from "../assets/tally.png";
 import "./App.css";
 import "./MicrocasingApp.css";
 
@@ -244,25 +244,6 @@ export default function MicrocasingApp() {
                 Thanks to the Competitive &amp; Comparative Analysis, researching platforms such as Duolingo, Revolut and Elevate
                 helped identify successful engagement patterns.
               </p>
-
-              <div className="mc-flip-row">
-                {([
-                  ["/mc-brand-5.webp",  "/mc-brand-6.webp"],
-                  ["/mc-brand-7.webp",  "/mc-brand-8.webp"],
-                  ["/mc-brand-9.webp",  "/mc-brand-10.webp"],
-                ] as [string, string][]).map(([front, back], i) => (
-                  <div key={i} className="mc-flip-card mc-flip-card--contain" onClick={e => (e.currentTarget as HTMLDivElement).classList.toggle("mc-flip-card--flipped")}>
-                    <div className="mc-flip-card-inner">
-                      <div className="mc-flip-card-front">
-                        <img src={front} alt="" className="mc-flip-img" />
-                      </div>
-                      <div className="mc-flip-card-back">
-                        <img src={back} alt="" className="mc-flip-img" />
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
 
               <p className="mc-body-text">
                 Key decisions emerged from this research — Blue was intentionally selected as the primary brand colour

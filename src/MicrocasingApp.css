@@ -837,6 +837,12 @@
   grid-template-columns: repeat(3, minmax(280px, 1fr));
 }
 
+.mc-flip-row--casey .mc-flip-card-front,
+.mc-flip-row--casey .mc-flip-card-back {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+}
+
 /* placeholder cards match casey's natural image aspect ratio */
 .mc-flip-card--placeholder .mc-flip-card-front {
   aspect-ratio: 1 / 1;
