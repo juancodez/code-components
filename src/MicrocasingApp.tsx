@@ -10,6 +10,10 @@ import imgMcaLogo from "../assets/MCA-Logo-and-slogan.svg";
 import imgVisualSystem from "../assets/Case-Prompt-01.webp";
 import imgNavigation from "../assets/Case-Prompt-02.webp";
 import imgUxWriting from "../assets/Case-Prompt-03.webp";
+import imgGraph from "../assets/graph.webp";
+import imgNivins from "../assets/nivins.webp";
+import imgRaw from "../assets/raw.webp";
+import imgTally from "../assets/tally.webp";
 import "./App.css";
 import "./MicrocasingApp.css";
 
@@ -281,16 +285,24 @@ export default function MicrocasingApp() {
                     </div>
                   </div>
                 </div>
-                <div className="mc-flip-card mc-flip-card--placeholder" onClick={e => (e.currentTarget as HTMLDivElement).classList.toggle("mc-flip-card--flipped")}>
+                <div className="mc-flip-card" onClick={e => (e.currentTarget as HTMLDivElement).classList.toggle("mc-flip-card--flipped")}>
                   <div className="mc-flip-card-inner">
-                    <div className="mc-flip-card-front" />
-                    <div className="mc-flip-card-back" />
+                    <div className="mc-flip-card-front">
+                      <img src={imgGraph} alt="Graph mascot" className="mc-flip-img" />
+                    </div>
+                    <div className="mc-flip-card-back">
+                      <img src={imgNivins} alt="Nivins mascot" className="mc-flip-img" />
+                    </div>
                   </div>
                 </div>
-                <div className="mc-flip-card mc-flip-card--placeholder" onClick={e => (e.currentTarget as HTMLDivElement).classList.toggle("mc-flip-card--flipped")}>
+                <div className="mc-flip-card" onClick={e => (e.currentTarget as HTMLDivElement).classList.toggle("mc-flip-card--flipped")}>
                   <div className="mc-flip-card-inner">
-                    <div className="mc-flip-card-front" />
-                    <div className="mc-flip-card-back" />
+                    <div className="mc-flip-card-front">
+                      <img src={imgRaw} alt="Raw mascot" className="mc-flip-img" />
+                    </div>
+                    <div className="mc-flip-card-back">
+                      <img src={imgTally} alt="Tally mascot" className="mc-flip-img" />
+                    </div>
                   </div>
                 </div>
               </div>
