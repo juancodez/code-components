@@ -213,7 +213,7 @@ export function BrandingLineage() {
                   {isPhoto && (
                     <rect x={pos.x} y={pos.y} width={n.w} height={n.h} rx={6} fill="#f4f1ec" />
                   )}
-                  <image href={n.src} x={pos.x} y={pos.y} width={n.w} height={n.h} preserveAspectRatio={n.device || isPhoto ? "xMidYMid slice" : "xMidYMid meet"} />
+                  <image href={n.src} x={pos.x} y={pos.y} width={n.w} height={n.h} preserveAspectRatio={n.device || isPhoto ? "xMidYMid slice" : "xMidYMid meet"} style={{ pointerEvents: "none" }} />
                   {n.caption && (
                     <g transform={`translate(${cx} ${pos.y - 14})`}>
                       <rect x={-captionW / 2} y={-13} width={captionW} height={26} rx={13} fill="#fff" stroke="#d0d5dd" strokeWidth={1} />
