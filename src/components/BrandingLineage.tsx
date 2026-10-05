@@ -17,7 +17,7 @@ import logoSignet from "../../assets/LOGO-SIGNET-02 2.svg";
 import logoMca from "../../assets/MCA-Logo-and-slogan.svg";
 
 type NodeDef =
-  | { id: string; kind: "image"; x: number; y: number; w: number; h: number; r?: number; src: string; caption?: string; panel?: "dark"; device?: boolean }
+  | { id: string; kind: "image"; x: number; y: number; w: number; h: number; r?: number; src: string; caption?: string; panel?: "dark"; device?: boolean; fit?: "cover" | "contain" }
   | { id: string; kind: "label"; x: number; y: number; w: number; r?: number; lines: string[]; big?: boolean };
 
 const VIEW_W = 1500;
@@ -44,11 +44,11 @@ const NODES: NodeDef[] = [
   { id: "elevate",  kind: "image", x: 540, y: 280, w: 230, h: 460, r: -2,   src: imgElevate,  caption: "Elevate",  device: true },
 
   // LOGOS OF THE NICHE
-  { id: "mckinsey", kind: "image", x: 820,  y: 300, w: 280, h: 80,  r: -0.5, src: logoMcKinsey },
-  { id: "bain",     kind: "image", x: 1160, y: 300, w: 280, h: 80,  r:  0.5, src: logoBain },
-  { id: "numa",     kind: "image", x: 820,  y: 480, w: 300, h: 100, r:  0.5, src: logoNuma, panel: "dark" },
-  { id: "signet",   kind: "image", x: 1180, y: 440, w: 240, h: 240, r: -1,   src: logoSignet },
-  { id: "mca",      kind: "image", x: 870,  y: 640, w: 320, h: 90,  r:  0.8, src: logoMca },
+  { id: "mckinsey", kind: "image", x: 820,  y: 300, w: 280, h: 80,  r: -0.5, src: logoMcKinsey, fit: "contain" },
+  { id: "bain",     kind: "image", x: 1160, y: 300, w: 280, h: 80,  r:  0.5, src: logoBain,     fit: "contain" },
+  { id: "numa",     kind: "image", x: 820,  y: 480, w: 300, h: 100, r:  0.5, src: logoNuma, panel: "dark", fit: "contain" },
+  { id: "signet",   kind: "image", x: 1180, y: 440, w: 240, h: 240, r: -1,   src: logoSignet,   fit: "contain" },
+  { id: "mca",      kind: "image", x: 870,  y: 640, w: 320, h: 90,  r:  0.8, src: logoMca,      fit: "contain" },
 
   // IMAGERY (photos & references)
   { id: "img01",    kind: "image", x: 30,  y: 940,  w: 340, h: 250, r: -1.2, src: imgImagery01, caption: "Reference" },
@@ -225,7 +225,7 @@ export function BrandingLineage() {
                         width: "100%",
                         height: "100%",
                         backgroundImage: `url(${n.src})`,
-                        backgroundSize: n.device || isPhoto ? "cover" : "contain",
+                        backgroundSize: n.fit ?? (n.device || isPhoto ? "cover" : "contain"),
                         backgroundPosition: "center",
                         backgroundRepeat: "no-repeat",
                         borderRadius: isPhoto ? 6 : 0,
