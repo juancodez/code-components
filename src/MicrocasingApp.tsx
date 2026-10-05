@@ -6,6 +6,7 @@ import { SplitTestimonial } from "./components/SplitTestimonial";
 import { CaseStudyNav } from "./components/CaseStudyNav";
 import { MetricsSection } from "./components/MetricsSection";
 import { DiscoveryPong } from "./components/DiscoveryPong";
+import { BrandingLineage } from "./components/BrandingLineage";
 import imgMcaLogo from "../assets/MCA-Logo-and-slogan.svg";
 import imgVisualSystem from "../assets/Case-Prompt-01.webp";
 import imgNavigation from "../assets/Case-Prompt-02.webp";
@@ -245,6 +246,12 @@ export default function MicrocasingApp() {
                 helped identify successful engagement patterns.
               </p>
 
+            </div>
+            <div style={{ width: "100vw", position: "relative", left: "50%", right: "50%", marginLeft: "-50vw", marginRight: "-50vw", padding: "32px 24px" }}>
+              <BrandingLineage />
+            </div>
+            <div className="mc-branding-body">
+
               <p className="mc-body-text">
                 Key decisions emerged from this research — Blue was intentionally selected as the primary brand colour
                 to link the product with existing fintech apps and gamification platforms.
@@ -295,7 +302,20 @@ export default function MicrocasingApp() {
         <section className="mc-section" id="design-system">
           <div className="mc-section-inner">
             <span className="mc-section-label">Design System</span>
-            <h2 className="mc-section-title">Placeholder</h2>
+            <h2 className="mc-section-title">The definition of the tonality of Micro-casing helps shape the decisions of the UI Kit</h2>
+            <div className="mc-branding-body">
+              <p className="mc-body-text">
+                The AI wireframes didn't ship with a Design System or UI Kit — the visual lacked coherence, and the developers had no visual reference to implement in code.
+              </p>
+              <p className="mc-body-text">
+                To ease the handoff, I built a mini UI Kit that translates the voice of the Micro-casing app into reusable components and tokens.
+              </p>
+            </div>
+            <div style={{ width: "100vw", position: "relative", left: "50%", right: "50%", marginLeft: "-50vw", marginRight: "-50vw", padding: "32px 24px" }}>
+              <div style={{ aspectRatio: "1500 / 900", maxHeight: "70vh", background: "#fff", border: "1px solid #e4e7ec", borderRadius: 16, boxShadow: "0 2px 8px rgba(0,0,0,0.04), 0 20px 48px rgba(0,0,0,0.12)", display: "flex", alignItems: "center", justifyContent: "center", color: "#98a1b2", fontFamily: "'Author', system-ui, sans-serif", fontSize: 14, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                Design system — coming soon
+              </div>
+            </div>
           </div>
         </section>
 
@@ -337,7 +357,13 @@ export default function MicrocasingApp() {
         <section className="mc-section" id="lessons">
           <div className="mc-section-inner">
             <span className="mc-section-label">Lessons</span>
-            <h2 className="mc-section-title">Placeholder</h2>
+            <h2 className="mc-section-title">Planning the roadmap and active communication help the progress of the project</h2>
+            <p className="mc-body-text" style={{ maxWidth: "62ch" }}>
+              The most valuable lesson here is that design is communication. The way we as designers communicate our decisions is what makes design craft, not guessing.
+            </p>
+            <p className="mc-body-text" style={{ maxWidth: "62ch" }}>
+              The branding definition of a company is equally crucial to set the contracts for the design system and drive design decisions that bring consistency to the product.
+            </p>
           </div>
         </section>
 
