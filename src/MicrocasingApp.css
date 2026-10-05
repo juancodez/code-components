@@ -843,6 +843,13 @@
   width: 100%;
 }
 
+.mc-flip-card--casey .mc-flip-img {
+  object-fit: cover;
+  object-position: center 20%;
+  transform: scale(1.4);
+  transform-origin: center 30%;
+}
+
 /* placeholder cards match casey's natural image aspect ratio */
 .mc-flip-card--placeholder .mc-flip-card-front {
   aspect-ratio: 1 / 1;

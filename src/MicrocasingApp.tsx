@@ -256,7 +256,7 @@ export default function MicrocasingApp() {
               </p>
 
               <div className="mc-flip-row mc-flip-row--casey">
-                <div className="mc-flip-card" onClick={e => (e.currentTarget as HTMLDivElement).classList.toggle("mc-flip-card--flipped")}>
+                <div className="mc-flip-card mc-flip-card--casey" onClick={e => (e.currentTarget as HTMLDivElement).classList.toggle("mc-flip-card--flipped")}>
                   <div className="mc-flip-card-inner">
                     <div className="mc-flip-card-front">
                       <img src="/casey.png" alt="Casey happy" className="mc-flip-img" />
