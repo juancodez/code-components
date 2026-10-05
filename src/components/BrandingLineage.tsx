@@ -204,6 +204,8 @@ export function BrandingLineage() {
               onPointerEnter: () => setHover(n.id),
               onPointerLeave: () => setHover(null),
               onPointerDown: (e: React.PointerEvent) => startNodeDrag(e, n),
+              onClick: (e: React.MouseEvent) => e.preventDefault(),
+              onContextMenu: (e: React.MouseEvent) => e.preventDefault(),
             };
             if (n.kind === "image") {
               const cx = pos.x + n.w / 2, cy = pos.y + n.h / 2;
@@ -217,10 +219,23 @@ export function BrandingLineage() {
                   {n.device && (
                     <rect x={pos.x - 10} y={pos.y - 10} width={n.w + 20} height={n.h + 20} rx={28} fill="#1d2939" />
                   )}
-                  {isPhoto && (
-                    <rect x={pos.x} y={pos.y} width={n.w} height={n.h} rx={6} fill="#f4f1ec" />
-                  )}
-                  <image href={n.src} x={pos.x} y={pos.y} width={n.w} height={n.h} preserveAspectRatio={n.device || isPhoto ? "xMidYMid slice" : "xMidYMid meet"} style={{ pointerEvents: "none" }} />
+                  <foreignObject x={pos.x} y={pos.y} width={n.w} height={n.h} style={{ pointerEvents: "none", overflow: "hidden" }}>
+                    <div style={{ width: "100%", height: "100%", overflow: "hidden", borderRadius: isPhoto ? 6 : 0 }}>
+                      <img
+                        src={n.src}
+                        draggable={false}
+                        alt=""
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: n.device || isPhoto ? "cover" : "contain",
+                          display: "block",
+                          userSelect: "none",
+                          pointerEvents: "none",
+                        }}
+                      />
+                    </div>
+                  </foreignObject>
                   {n.caption && (
                     <g transform={`translate(${cx} ${pos.y - 14})`}>
                       <rect x={-captionW / 2} y={-13} width={captionW} height={26} rx={13} fill="#fff" stroke="#d0d5dd" strokeWidth={1} />
