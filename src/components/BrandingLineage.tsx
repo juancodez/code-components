@@ -86,6 +86,7 @@ export function BrandingLineage() {
   };
 
   const onPointerDown = (e: React.PointerEvent) => {
+    e.preventDefault();
     (e.target as Element).setPointerCapture?.(e.pointerId);
     panState.current = { x: e.clientX, y: e.clientY, tx, ty };
   };
@@ -108,6 +109,7 @@ export function BrandingLineage() {
 
   const startNodeDrag = (e: React.PointerEvent, n: NodeDef) => {
     e.stopPropagation();
+    e.preventDefault();
     (e.currentTarget as Element).setPointerCapture?.(e.pointerId);
     const pos = positions[n.id] ?? { x: n.x, y: n.y };
     nodeDrag.current = { id: n.id, sx: e.clientX, sy: e.clientY, ox: pos.x, oy: pos.y };
