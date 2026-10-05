@@ -27,13 +27,11 @@ const FONT = "'Author', system-ui, sans-serif";
 
 const PLAYFUL = new Set(["duolingo", "elevate", "nivins", "raw", "tally", "rabbit"]);
 const CORPORATE = new Set(["revolut", "mckinsey", "bain", "numa", "signet", "img01", "img02", "img03", "unsplash"]);
-const vibeOf = (id: string): "playful" | "corporate" | null =>
-  PLAYFUL.has(id) ? "playful" : CORPORATE.has(id) ? "corporate" : null;
+const HYBRID = new Set(["mca"]);
+const vibeOf = (id: string): "playful" | "corporate" | "hybrid" | null =>
+  PLAYFUL.has(id) ? "playful" : CORPORATE.has(id) ? "corporate" : HYBRID.has(id) ? "hybrid" : null;
 
 const NODES: NodeDef[] = [
-  // BRAND HEADER
-  { id: "mca", kind: "image", x: 525, y: 20, w: 450, h: 110, r: 0, src: logoMca },
-
   // GROUP TITLES
   { id: "gCompetitors", kind: "label", x: 40, y: 180, w: 320, r: -0.5, big: true, lines: ["Competitors"] },
   { id: "gLogos",       kind: "label", x: 820, y: 180, w: 420, r: 0.5, big: true, lines: ["Logos of the niche"] },
@@ -50,6 +48,7 @@ const NODES: NodeDef[] = [
   { id: "bain",     kind: "image", x: 1160, y: 300, w: 280, h: 80,  r:  0.5, src: logoBain },
   { id: "numa",     kind: "image", x: 820,  y: 480, w: 300, h: 100, r:  0.5, src: logoNuma, panel: "dark" },
   { id: "signet",   kind: "image", x: 1180, y: 440, w: 240, h: 240, r: -1,   src: logoSignet },
+  { id: "mca",      kind: "image", x: 870,  y: 640, w: 320, h: 90,  r:  0.8, src: logoMca },
 
   // IMAGERY (photos & references)
   { id: "img01",    kind: "image", x: 30,  y: 940,  w: 340, h: 250, r: -1.2, src: imgImagery01, caption: "Reference" },
@@ -166,6 +165,13 @@ export function BrandingLineage() {
         fontFamily: "inherit",
       }}
     >
+      {/* board title — fixed overlay, not part of panning canvas */}
+      <div style={{ position: "absolute", top: 14, left: 0, right: 0, textAlign: "center", pointerEvents: "none", zIndex: 1 }}>
+        <span style={{ fontFamily: FONT, fontSize: 15, fontWeight: 600, color: "#1d2939", letterSpacing: "-0.01em" }}>
+          Branding Strategy Board
+        </span>
+      </div>
+
       <svg
         ref={svgRef}
         width="100%"
@@ -177,6 +183,7 @@ export function BrandingLineage() {
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
+        onDragStart={e => e.preventDefault()}
       >
         <defs>
           <pattern id="bl-dot-grid" width="25" height="25" patternUnits="userSpaceOnUse">
@@ -254,15 +261,19 @@ export function BrandingLineage() {
             const vibe = vibeOf(n.id);
             if (!vibe) return null;
             const pos = positions[n.id] ?? { x: n.x, y: n.y };
-            const bg = vibe === "playful" ? "#FFE87A" : "#A6C8FF";
-            const text = vibe === "playful" ? "playful" : "corporate";
-            const rot = vibe === "playful" ? -5 : 4;
+            const isHybrid = vibe === "hybrid";
+            const bg = vibe === "playful" ? "#FFE87A" : vibe === "corporate" ? "#A6C8FF" : "#86EFAC";
+            const lines = isHybrid ? ["playful", "corporate"] : [vibe === "playful" ? "playful" : "corporate"];
+            const rot = vibe === "playful" ? -5 : vibe === "corporate" ? 4 : -3;
+            const ph = isHybrid ? 130 : 110;
             const px = pos.x + n.w + 20;
-            const py = pos.y + Math.max(0, (n.h - 110) / 2);
+            const py = pos.y + Math.max(0, (n.h - ph) / 2);
             return (
-              <g transform={`rotate(${rot} ${px + 90} ${py + 55})`} style={{ pointerEvents: "none" }}>
-                <rect x={px} y={py} width={180} height={110} fill={bg} filter="url(#bl-postit-shadow)" />
-                <text x={px + 90} y={py + 65} textAnchor="middle" style={{ fontFamily: FONT, fontSize: 26, fontWeight: 600, fill: "#1d2939" }}>{text}</text>
+              <g transform={`rotate(${rot} ${px + 90} ${py + ph / 2})`} style={{ pointerEvents: "none" }}>
+                <rect x={px} y={py} width={180} height={ph} fill={bg} filter="url(#bl-postit-shadow)" />
+                {lines.map((ln, i) => (
+                  <text key={i} x={px + 90} y={py + (isHybrid ? 55 + i * 36 : 65)} textAnchor="middle" style={{ fontFamily: FONT, fontSize: 24, fontWeight: 600, fill: "#1d2939" }}>{ln}</text>
+                ))}
               </g>
             );
           })()}
