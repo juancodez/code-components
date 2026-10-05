@@ -220,21 +220,18 @@ export function BrandingLineage() {
                     <rect x={pos.x - 10} y={pos.y - 10} width={n.w + 20} height={n.h + 20} rx={28} fill="#1d2939" />
                   )}
                   <foreignObject x={pos.x} y={pos.y} width={n.w} height={n.h} style={{ pointerEvents: "none", overflow: "hidden" }}>
-                    <div style={{ width: "100%", height: "100%", overflow: "hidden", borderRadius: isPhoto ? 6 : 0 }}>
-                      <img
-                        src={n.src}
-                        draggable={false}
-                        alt=""
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: n.device || isPhoto ? "cover" : "contain",
-                          display: "block",
-                          userSelect: "none",
-                          pointerEvents: "none",
-                        }}
-                      />
-                    </div>
+                    <div
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        backgroundImage: `url(${n.src})`,
+                        backgroundSize: n.device || isPhoto ? "cover" : "contain",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                        borderRadius: isPhoto ? 6 : 0,
+                        overflow: "hidden",
+                      }}
+                    />
                   </foreignObject>
                   {n.caption && (
                     <g transform={`translate(${cx} ${pos.y - 14})`}>
