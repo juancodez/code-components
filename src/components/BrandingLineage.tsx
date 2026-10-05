@@ -25,8 +25,8 @@ const VIEW_H = 1480;
 
 const FONT = "'Author', system-ui, sans-serif";
 
-const PLAYFUL = new Set(["duolingo", "nivins", "raw", "tally", "rabbit"]);
-const CORPORATE = new Set(["revolut", "elevate", "mckinsey", "bain", "numa", "signet", "img01", "img02", "img03", "unsplash"]);
+const PLAYFUL = new Set(["duolingo", "elevate", "nivins", "raw", "tally", "rabbit"]);
+const CORPORATE = new Set(["revolut", "mckinsey", "bain", "numa", "signet", "img01", "img02", "img03", "unsplash"]);
 const vibeOf = (id: string): "playful" | "corporate" | null =>
   PLAYFUL.has(id) ? "playful" : CORPORATE.has(id) ? "corporate" : null;
 
