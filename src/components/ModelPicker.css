@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+
 /* ModelPicker — vanilla CSS port of the shadcn/radix reference.
    Palette matches the tile-card warm grays so it drops into the
    portfolio without a theme layer. */
@@ -13,9 +15,9 @@
   --mp-fg-soft: #6b6b6b;
   --mp-border: rgba(17,17,17,0.10);
   --mp-border-soft: rgba(17,17,17,0.06);
-  --mp-accent-reasoning: #7c3aed;
-  --mp-accent-image: #14b8a6;
-  font-family: inherit;
+  --mp-accent-reasoning: rgba(17,17,17,0.38);
+  --mp-accent-image: rgba(17,17,17,0.38);
+  font-family: "Montserrat", ui-sans-serif, sans-serif;
   color: var(--mp-fg);
 }
 
@@ -164,7 +166,7 @@
 .mp-list-title {
   margin: 0;
   padding: 4px 10px 6px;
-  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-family: "Montserrat", ui-sans-serif, sans-serif;
   font-size: 11px;
   color: var(--mp-fg-soft);
 }
@@ -261,7 +263,7 @@
   flex-shrink: 0;
 }
 .mp-foot-word {
-  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-family: "Montserrat", ui-sans-serif, sans-serif;
   font-size: 11px; color: var(--mp-fg-soft);
 }
 .mp-foot-note { font-size: 11px; color: var(--mp-fg-soft); padding: 0 4px; }
@@ -298,6 +300,25 @@
 }
 .mp-track-btn:hover { color: var(--mp-fg); }
 .mp-track-btn-on { color: var(--mp-fg); }
+
+.mp-root.mp-dark {
+  --mp-bg: #1b1b1d;
+  --mp-muted: #242426;
+  --mp-muted-2: #2c2c2e;
+  --mp-fg: #f0f0ee;
+  --mp-fg-soft: #888884;
+  --mp-border: rgba(255,255,255,0.10);
+  --mp-border-soft: rgba(255,255,255,0.07);
+  --mp-accent-reasoning: rgba(255,255,255,0.35);
+  --mp-accent-image: rgba(255,255,255,0.35);
+}
+.mp-root.mp-dark .mp-rail-btn:hover { background: rgba(255,255,255,0.07); }
+.mp-root.mp-dark .mp-list { scrollbar-color: rgba(255,255,255,0.12) transparent; }
+.mp-root.mp-dark .mp-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); }
+.mp-root.mp-dark .mp-track { background: rgba(255,255,255,0.06); }
+.mp-root.mp-dark .mp-panel { box-shadow: 0 4px 28px rgba(0,0,0,0.5), 0 0 0 1px var(--mp-border); }
+.mp-root.mp-dark .mp-trigger:hover { background: #222224; }
+.mp-root.mp-dark .mp-trigger-open { background: #252527; }
 
 @media (prefers-reduced-motion: reduce) {
   .mp-panel, .mp-chevron, .mp-trigger, .mp-track-thumb, .mp-track-btn,

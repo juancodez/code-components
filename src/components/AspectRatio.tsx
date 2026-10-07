@@ -1,6 +1,18 @@
 import { useRef, useState } from "react";
 import pic from "./pic.png";
 
+export type BeamType = "none" | "silver" | "gold";
+
+const BEAM_COLOR: Record<Exclude<BeamType, "none">, string> = {
+  silver: "rgba(185, 200, 235, 1)",
+  gold:   "rgba(255, 198, 38, 1)",
+};
+
+const rectPerim = (w: number, h: number, rx: number) => {
+  const r = Math.min(rx, w / 2, h / 2);
+  return 2 * (w + h) - 8 * r + 2 * Math.PI * r;
+};
+
 /* SHEEP was Bencho's own pictures, which are not licensed
    to travel. Pointed at the project's own image. */
 const SHEEP: string = pic;
@@ -91,16 +103,37 @@ const rate = (speed: number) => 1.6 - (speed / 100) * 1.2;
 
 export function Aspect({
   corner = 18,
-  /* how quickly the frame changes shape, 0..100 — 50 is the
-     tuned 520ms */
   morph = 50,
+  beam = "none" as BeamType,
+  tilt = false,
   onChange,
-}: { corner?: number; morph?: number; onChange?: (i: number) => void } = {}) {
+}: { corner?: number; morph?: number; beam?: BeamType; tilt?: boolean; onChange?: (i: number) => void } = {}) {
   const [at, setAt] = useState(1);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
+  const [tiltCss, setTiltCss] = useState<React.CSSProperties>({});
 
   const ms = Math.round(BASE * rate(clamp(morph, 0, 100)));
   const shape = SHAPES[at];
+  const r = clamp(corner, 0, 40);
+  const beamPerim = Math.ceil(rectPerim(shape.w + 2, shape.h + 2, r + 2));
+
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!tilt) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width * 2 - 1;
+    const y = (e.clientY - rect.top) / rect.height * 2 - 1;
+    setTiltCss({
+      transform: `perspective(500px) rotateX(${(-y * 10).toFixed(2)}deg) rotateY(${(x * 10).toFixed(2)}deg) scale(1.03)`,
+      transition: "transform 0.08s ease-out",
+    });
+  };
+  const onLeave = () => {
+    if (!tilt) return;
+    setTiltCss({
+      transform: "perspective(500px) rotateX(0deg) rotateY(0deg) scale(1)",
+      transition: "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
+    });
+  };
 
   const pick = (i: number, focus = false) => {
     if (i === at) return;
@@ -124,37 +157,64 @@ export function Aspect({
     pick((at + d + SHAPES.length) % SHAPES.length, true);
   };
 
+  const picEl = (
+    <div
+      className="asp-pic"
+      style={{
+        width: shape.w,
+        height: shape.h,
+        borderRadius: r,
+        backgroundImage: `url(${SHEEP})`,
+        position: "relative",
+        zIndex: 1,
+      }}
+    />
+  );
+
   return (
     <div
       className="asp"
       style={{ width: W, height: W + GAP + BAR, ["--asp-ms" as string]: `${ms}ms` }}
     >
-      {/* The stage is the full square and never changes, so
-          the picture is centred in a box that is not moving.
-          Sizing the stage to the picture instead would make
-          the tabs below it climb and drop as the shape
-          changed — the one thing on this block that has no
-          business moving. */}
-      <div className="asp-stage" style={{ height: W }}>
-        {/* ── width and height, NEVER a scale ─────────────
-            The same rule the detail overlay's block follows,
-            for the same reason: a scaled box drags its corner
-            radius with it, and the corner has to read as the
-            same rounded frame throughout rather than as a
-            rectangle being stretched. `cover` is what keeps
-            the picture itself undistorted while the frame
-            moves — so this reads as a crop changing, which is
-            what it is, rather than as an image being
-            squashed. */}
-        <div
-          className="asp-pic"
-          style={{
-            width: shape.w,
-            height: shape.h,
-            borderRadius: clamp(corner, 0, 40),
-            backgroundImage: `url(${SHEEP})`,
-          }}
-        />
+      <div
+        className="asp-stage"
+        style={{ height: W }}
+        onMouseMove={onMove}
+        onMouseLeave={onLeave}
+      >
+        <div style={tiltCss}>
+          {beam !== "none" ? (
+            <div style={{ position: "relative", display: "inline-flex" }}>
+              <svg
+                style={{ position: "absolute", inset: -2, width: shape.w + 4, height: shape.h + 4, overflow: "visible", pointerEvents: "none", ["--asp-beam-perim" as string]: beamPerim }}
+                aria-hidden="true"
+              >
+                <defs>
+                  <filter id="asp-beam-glow">
+                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+                <rect
+                  x={1} y={1}
+                  width={shape.w + 2} height={shape.h + 2}
+                  rx={r + 2}
+                  fill="none"
+                  stroke={BEAM_COLOR[beam]}
+                  strokeWidth={3}
+                  strokeLinecap="round"
+                  className="asp-beam-ring"
+                  strokeDasharray={`14 ${beamPerim - 14}`}
+                  filter="url(#asp-beam-glow)"
+                />
+              </svg>
+              {picEl}
+            </div>
+          ) : picEl}
+        </div>
       </div>
 
       <div className="asp-tabs" role="radiogroup" aria-label="Aspect ratio" onKeyDown={key}>

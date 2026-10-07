@@ -1,16 +1,12 @@
 import { useCallback, useRef, useState } from "react";
-import { defaultModelProviders, ModelPicker } from "../components/ModelPicker";
-import pickerSource from "../components/ModelPicker.tsx?raw";
+import { Aspect } from "../components/AspectRatio";
+import "../components/AspectRatio.css";
+import aspectSource from "../components/AspectRatio.tsx?raw";
 import "./AspectRatioTile.css";
-import "./ModelPickerTile.css";
 
-/* Tile wrapper for ModelPicker: reuses the shared .tile chrome (title,
-   sound button, panel drawer, play-demo cursor). The picker sits centered
-   in the stage with its popover locked open, so the resting state
-   already shows the interesting surface. */
-export function ModelPickerTile() {
-  const [modelId, setModelId] = useState<string>("gpt-5.6-sol");
-  const [fill, setFill] = useState<"light" | "dark">("dark");
+export function CardStudioTile() {
+  const [corner, setCorner] = useState(18);
+  const [tilt, setTilt] = useState(false);
   const [soundOn, setSoundOn] = useState(true);
   const [panelOpen, setPanelOpen] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -21,8 +17,6 @@ export function ModelPickerTile() {
   });
   const [playing, setPlaying] = useState(false);
 
-  /* WebAudio blips, same shape as the other tiles — a soft click for
-     selection and a small bloop that sweeps pitch for the effort track. */
   const ctxRef = useRef<AudioContext | null>(null);
   const beep = (freq: number, gain: number, dur: number) => {
     if (!soundOn) return;
@@ -37,16 +31,21 @@ export function ModelPickerTile() {
     o.start(); o.stop(ctx.currentTime + dur + 0.01);
   };
   const click = () => beep(720, 0.04, 0.08);
-  const chirp = (v: number) => {
+
+  const lastBubbleRef = useRef(0);
+  const bubble = (v: number) => {
     if (!soundOn) return;
+    const now = performance.now();
+    if (now - lastBubbleRef.current < 55) return;
+    lastBubbleRef.current = now;
     if (!ctxRef.current) ctxRef.current = new AudioContext();
     const ctx = ctxRef.current;
     const t = ctx.currentTime;
-    const target = 520 + v * 90;
+    const target = 500 + v * 22;
     const o = ctx.createOscillator();
     const g = ctx.createGain();
     o.type = "sine";
-    o.frequency.setValueAtTime(target * 0.6, t);
+    o.frequency.setValueAtTime(target * 0.55, t);
     o.frequency.exponentialRampToValueAtTime(target, t + 0.07);
     g.gain.setValueAtTime(0.0001, t);
     g.gain.exponentialRampToValueAtTime(0.05, t + 0.015);
@@ -57,79 +56,61 @@ export function ModelPickerTile() {
 
   const copy = async () => {
     click();
-    await navigator.clipboard.writeText(pickerSource);
+    const props = [
+      `corner={${corner}}`,
+      tilt ? `tilt` : null,
+    ].filter(Boolean).join(" ");
+    const text = `// Usage\n<Aspect ${props} />\n\n// Source\n${aspectSource}`;
+    await navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 1400);
   };
 
-  /* Demo: walk all four provider logos (OpenAI → Anthropic → xAI → Google),
-     then walk the thinking track (Low → Medium → High). */
   const play = useCallback(() => {
     const stage = stageRef.current;
     if (!stage || playing) return;
-    if (!stage.querySelector(".mp-panel")) {
-      stage.querySelector<HTMLButtonElement>(".mp-trigger")?.click();
-    }
-    const rails = Array.from(stage.querySelectorAll<HTMLButtonElement>(".mp-rail-btn"));
-    if (rails.length < 4) return;
+    const tabs = Array.from(stage.querySelectorAll<HTMLButtonElement>(".asp-tab"));
+    if (tabs.length !== 3) return;
 
     setPlaying(true);
-    const stageRect = stage.getBoundingClientRect();
-    const track = (i: number) => () =>
-      stage.querySelectorAll<HTMLElement>(".mp-track-btn")[i] ?? null;
+    const cardRect = stage.getBoundingClientRect();
+    const sequence = [0, 2, 1];
 
-    const steps: { get: () => HTMLElement | null; wait: number }[] = [
-      { get: () => rails[0], wait: 480 }, /* OpenAI */
-      { get: () => rails[1], wait: 480 }, /* Anthropic */
-      { get: () => rails[2], wait: 480 }, /* xAI */
-      { get: () => rails[3], wait: 520 }, /* Google */
-      { get: track(0), wait: 480 }, /* Low */
-      { get: track(1), wait: 480 }, /* Medium */
-      { get: track(2), wait: 600 }, /* High */
-    ];
+    setCursor({ x: cardRect.width - 20, y: cardRect.height - 20, visible: true, clicking: false });
 
-    setCursor({
-      x: stageRect.width - 30,
-      y: stageRect.height - 30,
-      visible: true,
-      clicking: false,
-    });
-
-    let i = 0;
+    let step = 0;
     const runStep = () => {
-      if (i >= steps.length) {
+      if (step >= sequence.length) {
         setTimeout(() => {
           setCursor((c) => ({ ...c, visible: false }));
           setPlaying(false);
         }, 700);
         return;
       }
-      const el = steps[i].get();
-      if (!el) { i++; runStep(); return; }
-      const rect = el.getBoundingClientRect();
-      const x = rect.left - stageRect.left + rect.width / 2 - 5;
-      const y = rect.top - stageRect.top + rect.height / 2 - 3;
-      setCursor({ x, y, visible: true, clicking: false });
+      const idx = sequence[step];
+      const rect = tabs[idx].getBoundingClientRect();
+      const x = rect.left - cardRect.left + rect.width / 2 - 5;
+      const y = rect.top - cardRect.top + rect.height / 2 - 3;
 
+      setCursor({ x, y, visible: true, clicking: false });
       setTimeout(() => {
         setCursor((c) => ({ ...c, clicking: true }));
-        el.click();
-        click();
+        tabs[idx].click();
         setTimeout(() => {
           setCursor((c) => ({ ...c, clicking: false }));
-          i++;
-          setTimeout(runStep, steps[i - 1].wait);
+          step++;
+          setTimeout(runStep, 700);
         }, 220);
-      }, 620);
+      }, 650);
     };
     setTimeout(runStep, 300);
   }, [playing]);
 
   return (
     <article className="tile">
-      <div className="tile-card tile-card-tall">
+      <div className="tile-card">
         <header className="tile-chrome">
-          <h2>Model picker</h2>
+          <h2>Card Studio</h2>
         </header>
 
         <div className="tile-tools">
@@ -145,25 +126,14 @@ export function ModelPickerTile() {
             className="tile-tool"
             aria-pressed={soundOn}
             aria-label={soundOn ? "Turn sound off" : "Turn sound on"}
-            title={soundOn ? "Sound on" : "Sound off"}
             onClick={() => setSoundOn((v) => !v)}
           >
             {soundOn ? <VolumeOn /> : <VolumeOff />}
           </button>
         </div>
 
-        <div className="tile-stage tile-stage-wide" ref={stageRef}>
-          <ModelPicker
-            providers={defaultModelProviders}
-            value={modelId}
-            dark={fill === "dark"}
-            onValueChange={(id, _prov, effort) => {
-              setModelId(id);
-              click();
-              if (effort && effort !== "none") chirp(["low", "medium", "high", "max"].indexOf(effort));
-            }}
-            defaultOpen
-          />
+        <div className="tile-stage" ref={stageRef}>
+          <Aspect corner={corner} tilt={tilt} onChange={click} />
           {cursor.visible && (
             <div
               className={"tile-cursor" + (cursor.clicking ? " tile-cursor-click" : "")}
@@ -175,13 +145,7 @@ export function ModelPickerTile() {
           )}
         </div>
 
-        <button
-          className="tile-play"
-          aria-label="Play demo"
-          onMouseDown={(e) => e.stopPropagation()}
-          onClick={play}
-          disabled={playing}
-        >
+        <button className="tile-play" aria-label="Play demo" onClick={play} disabled={playing}>
           <PlayIcon />
         </button>
       </div>
@@ -190,7 +154,8 @@ export function ModelPickerTile() {
         <aside className="tile-panel">
           <div className="tile-panel-header">
             <div>
-              <h3>Model picker</h3>
+              <h3>Card Studio</h3>
+              <p>CONFIGURE</p>
             </div>
             <button
               className="tile-panel-close"
@@ -201,19 +166,40 @@ export function ModelPickerTile() {
             </button>
           </div>
 
-          <div className="tile-fill" role="group" aria-label="Surface">
-            <button
-              className={"tile-fill-btn" + (fill === "light" ? " on" : "")}
-              onClick={() => { setFill("light"); click(); }}
+          {/* Corner radius */}
+          <label className="tile-row">
+            <span>Corner</span>
+            <input
+              type="range" min={0} max={40} value={corner}
+              onChange={(e) => { const v = Number(e.target.value); setCorner(v); bubble(v); }}
+            />
+            <span className="tile-row-val">{corner}</span>
+          </label>
+
+          {/* 3D tilt */}
+          <div className="tile-row" style={{ cursor: "default" }}>
+            <span>3D tilt</span>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                padding: 3,
+                borderRadius: 999,
+                background: "rgba(17,17,17,0.06)",
+                gridColumn: "span 2",
+              }}
             >
-              <SunIcon /> Light
-            </button>
-            <button
-              className={"tile-fill-btn" + (fill === "dark" ? " on" : "")}
-              onClick={() => { setFill("dark"); click(); }}
-            >
-              <MoonIcon /> Dark
-            </button>
+              {([false, true] as const).map((v) => (
+                <button
+                  key={String(v)}
+                  className={"tile-fill-btn" + (tilt === v ? " on" : "")}
+                  onClick={() => { setTilt(v); click(); }}
+                  style={{ fontSize: 12 }}
+                >
+                  {v ? "On" : "Off"}
+                </button>
+              ))}
+            </div>
           </div>
 
           <button className="tile-copy" onClick={copy}>
@@ -228,7 +214,8 @@ export function ModelPickerTile() {
 function SlidersHorizontalIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M10 5H3"/><path d="M12 19H3"/><path d="M14 3v4"/><path d="M16 17v4"/><path d="M21 12h-9"/><path d="M21 19h-5"/><path d="M21 5h-7"/><path d="M8 10v4"/><path d="M8 12H3"/>
+      <path d="M10 5H3"/><path d="M12 19H3"/><path d="M14 3v4"/><path d="M16 17v4"/>
+      <path d="M21 12h-9"/><path d="M21 19h-5"/><path d="M21 5h-7"/><path d="M8 10v4"/><path d="M8 12H3"/>
     </svg>
   );
 }
@@ -266,20 +253,6 @@ function VolumeOff() {
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/>
       <line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/>
-    </svg>
-  );
-}
-function SunIcon() {
-  return (
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-    </svg>
-  );
-}
-function MoonIcon() {
-  return (
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
     </svg>
   );
 }

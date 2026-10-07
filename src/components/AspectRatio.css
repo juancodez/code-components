@@ -105,6 +105,16 @@
   outline: none;
   box-shadow: 0 0 0 2px var(--card), 0 0 0 4px rgba(var(--ink-rgb), 0.35);}
 
+@keyframes asp-beam-travel {
+  to { stroke-dashoffset: calc(var(--asp-beam-perim, 940) * -1px); }
+}
+
+.asp-beam-ring {
+  stroke-dashoffset: 0;
+  animation: asp-beam-travel 3s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .asp-pic, .asp-thumb, .asp-tab { transition-duration: 1ms; }
+  .asp-beam-ring { animation: none; }
 }

@@ -148,6 +148,7 @@ export type ModelPickerProps = {
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
   placeholder?: string;
+  dark?: boolean;
 };
 
 const CAPABILITY_LABEL: Record<ModelCapability, string> = { reasoning: "Reasoning", image: "Image" };
@@ -252,6 +253,7 @@ export function ModelPicker({
   defaultOpen = false,
   onOpenChange,
   placeholder = "Select a model",
+  dark = false,
 }: ModelPickerProps) {
   const listId = useId();
   const rails = useMemo(() => visibleProviders(providers), [providers]);
@@ -348,7 +350,7 @@ export function ModelPicker({
     : -1;
 
   return (
-    <div className="mp-root" ref={rootRef}>
+    <div className={"mp-root" + (dark ? " mp-dark" : "")} ref={rootRef}>
       <button
         type="button"
         className={"mp-trigger" + (isOpen ? " mp-trigger-open" : "")}
