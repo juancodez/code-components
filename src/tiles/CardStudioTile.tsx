@@ -6,7 +6,7 @@ import "./AspectRatioTile.css";
 
 export function CardStudioTile() {
   const [corner, setCorner] = useState(18);
-  const [tilt, setTilt] = useState(false);
+  const [tilt, setTilt] = useState(true);
   const [soundOn, setSoundOn] = useState(true);
   const [panelOpen, setPanelOpen] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -74,36 +74,56 @@ export function CardStudioTile() {
 
     setPlaying(true);
     const cardRect = stage.getBoundingClientRect();
+    const aspStage = stage.querySelector<HTMLDivElement>(".asp-stage");
+    const aspRect = aspStage?.getBoundingClientRect();
+
+    /* fire a synthetic mousemove on the asp-stage so the tilt responds,
+       and move the visual cursor to the matching position */
+    const moveTo = (nx: number, ny: number) => {
+      if (!aspStage || !aspRect) return;
+      aspStage.dispatchEvent(new MouseEvent("mousemove", {
+        bubbles: true,
+        clientX: aspRect.left + aspRect.width * nx,
+        clientY: aspRect.top + aspRect.height * ny,
+      }));
+      setCursor({
+        x: aspRect.left - cardRect.left + aspRect.width * nx,
+        y: aspRect.top - cardRect.top + aspRect.height * ny,
+        visible: true,
+        clicking: false,
+      });
+    };
+
+    /* phase 1 — tilt showcase: drag across three corners then settle */
+    const tiltSeq: [number, number][] = [[0.2, 0.22], [0.78, 0.75], [0.72, 0.18], [0.5, 0.5]];
+    let ti = 0;
+    const runTilt = () => {
+      if (ti >= tiltSeq.length) { setTimeout(runTabs, 280); return; }
+      moveTo(...tiltSeq[ti++]);
+      setTimeout(runTilt, 460);
+    };
+
+    /* phase 2 — cycle through shapes */
     const sequence = [0, 2, 1];
-
-    setCursor({ x: cardRect.width - 20, y: cardRect.height - 20, visible: true, clicking: false });
-
-    let step = 0;
-    const runStep = () => {
-      if (step >= sequence.length) {
-        setTimeout(() => {
-          setCursor((c) => ({ ...c, visible: false }));
-          setPlaying(false);
-        }, 700);
+    let si = 0;
+    const runTabs = () => {
+      if (si >= sequence.length) {
+        aspStage?.dispatchEvent(new MouseEvent("mouseleave", { bubbles: false }));
+        setTimeout(() => { setCursor((c) => ({ ...c, visible: false })); setPlaying(false); }, 700);
         return;
       }
-      const idx = sequence[step];
+      const idx = sequence[si];
       const rect = tabs[idx].getBoundingClientRect();
-      const x = rect.left - cardRect.left + rect.width / 2 - 5;
-      const y = rect.top - cardRect.top + rect.height / 2 - 3;
-
-      setCursor({ x, y, visible: true, clicking: false });
+      setCursor({ x: rect.left - cardRect.left + rect.width / 2 - 5, y: rect.top - cardRect.top + rect.height / 2 - 3, visible: true, clicking: false });
       setTimeout(() => {
         setCursor((c) => ({ ...c, clicking: true }));
         tabs[idx].click();
-        setTimeout(() => {
-          setCursor((c) => ({ ...c, clicking: false }));
-          step++;
-          setTimeout(runStep, 700);
-        }, 220);
-      }, 650);
+        setTimeout(() => { setCursor((c) => ({ ...c, clicking: false })); si++; setTimeout(runTabs, 680); }, 220);
+      }, 620);
     };
-    setTimeout(runStep, 300);
+
+    moveTo(0.5, 0.5);
+    setTimeout(runTilt, 300);
   }, [playing]);
 
   return (
@@ -166,6 +186,22 @@ export function CardStudioTile() {
             </button>
           </div>
 
+          {/* 3D tilt */}
+          <div className="tile-fill" role="group" aria-label="3D tilt">
+            <button
+              className={"tile-fill-btn" + (!tilt ? " on" : "")}
+              onClick={() => { setTilt(false); click(); }}
+            >
+              3D Off
+            </button>
+            <button
+              className={"tile-fill-btn" + (tilt ? " on" : "")}
+              onClick={() => { setTilt(true); click(); }}
+            >
+              3D On
+            </button>
+          </div>
+
           {/* Corner radius */}
           <label className="tile-row">
             <span>Corner</span>
@@ -175,32 +211,6 @@ export function CardStudioTile() {
             />
             <span className="tile-row-val">{corner}</span>
           </label>
-
-          {/* 3D tilt */}
-          <div className="tile-row" style={{ cursor: "default" }}>
-            <span>3D tilt</span>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                padding: 3,
-                borderRadius: 999,
-                background: "rgba(17,17,17,0.06)",
-                gridColumn: "span 2",
-              }}
-            >
-              {([false, true] as const).map((v) => (
-                <button
-                  key={String(v)}
-                  className={"tile-fill-btn" + (tilt === v ? " on" : "")}
-                  onClick={() => { setTilt(v); click(); }}
-                  style={{ fontSize: 12 }}
-                >
-                  {v ? "On" : "Off"}
-                </button>
-              ))}
-            </div>
-          </div>
 
           <button className="tile-copy" onClick={copy}>
             {copied ? "Copied" : "Copy source code"}
