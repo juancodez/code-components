@@ -59,22 +59,17 @@ function Phone({ src, label, vibe }: { src: string; label: string; vibe: Vibe })
           position: "relative",
           width: "100%",
           aspectRatio: "9/16",
-          background: "#1d2939",
-          borderRadius: 20,
-          padding: 8,
-          boxShadow: "0 8px 24px rgba(0,0,0,0.18)",
+          borderRadius: 16,
+          backgroundImage: `url(${src})`,
+          backgroundSize: "contain",
+          backgroundPosition: "center",
+          backgroundColor: "#f8f9fa",
+          boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
+          overflow: "hidden",
         }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        <div style={{
-          width: "100%",
-          height: "100%",
-          borderRadius: 14,
-          backgroundImage: `url(${src})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }} />
         {hovered && <PostIt vibe={vibe} />}
       </div>
       <span style={{ fontFamily: FONT, fontSize: 14, color: "#667085" }}>{label}</span>
@@ -128,7 +123,6 @@ export function BrandingLineage() {
       background: "#fff",
       border: "1px solid #e4e7ec",
       borderRadius: 16,
-      boxShadow: "0 2px 8px rgba(0,0,0,0.04), 0 20px 48px rgba(0,0,0,0.12)",
       overflow: "hidden",
       fontFamily: FONT,
     }}>
@@ -144,7 +138,7 @@ export function BrandingLineage() {
         <div style={{ padding: "28px 24px 28px 28px", display: "flex", flexDirection: "column", gap: 36 }}>
           <div>
             <SectionHead>Competitors</SectionHead>
-            <div style={{ display: "flex", gap: 24, padding: "0 12%" }}>
+            <div style={{ display: "flex", gap: 24 }}>
               <Phone src={imgDuolingo} label="Duolingo" vibe="playful" />
               <Phone src={imgRevolut} label="Revolut"  vibe="corporate" />
               <Phone src={imgElevate} label="Elevate"  vibe="playful" />

@@ -11,6 +11,7 @@ import imgMcaLogo from "../assets/MCA-Logo-and-slogan.svg";
 import imgVisualSystem from "../assets/Case-Prompt-01.webp";
 import imgNavigation from "../assets/Case-Prompt-02.webp";
 import imgUxWriting from "../assets/Case-Prompt-03.webp";
+import imgDesignSystem from "../assets/design-system-mca.png";
 import imgGraph from "../assets/graph.png";
 import imgNivins from "../assets/nivins.png";
 import imgRaw from "../assets/raw.png";
@@ -247,7 +248,7 @@ export default function MicrocasingApp() {
               </p>
 
             </div>
-            <div style={{ width: "100vw", position: "relative", left: "50%", right: "50%", marginLeft: "-50vw", marginRight: "-50vw", padding: "32px 24px" }}>
+            <div style={{ width: "100%" }}>
               <BrandingLineage />
             </div>
             <div className="mc-branding-body">
@@ -311,11 +312,11 @@ export default function MicrocasingApp() {
                 To ease the handoff, I built a mini UI Kit that translates the voice of the Micro-casing app into reusable components and tokens.
               </p>
             </div>
-            <div style={{ width: "100vw", position: "relative", left: "50%", right: "50%", marginLeft: "-50vw", marginRight: "-50vw", padding: "32px 24px" }}>
-              <div style={{ aspectRatio: "1500 / 900", maxHeight: "70vh", background: "#fff", border: "1px solid #e4e7ec", borderRadius: 16, boxShadow: "0 2px 8px rgba(0,0,0,0.04), 0 20px 48px rgba(0,0,0,0.12)", display: "flex", alignItems: "center", justifyContent: "center", color: "#98a1b2", fontFamily: "'Author', system-ui, sans-serif", fontSize: 14, letterSpacing: "0.08em", textTransform: "uppercase" }}>
-                Design system — coming soon
-              </div>
-            </div>
+            <img
+              src={imgDesignSystem}
+              alt="Micro-casing Design System"
+              style={{ width: "100%", height: "auto", display: "block", borderRadius: 16, border: "1px solid #e4e7ec" }}
+            />
           </div>
         </section>
 

@@ -22,7 +22,7 @@ const C = {
   pad:     "#1d2939",
   ball:    "#93c5fd",
   bracket: "#93c5fd",
-  textDim: "rgba(0,0,0,0.28)",
+  textDim: "rgba(0,0,0,0.55)",
   dim:     "rgba(242,242,240,0.86)",
 };
 
@@ -90,7 +90,7 @@ export function DiscoveryPong() {
       ctx.save();
       ctx.translate(cx, paddleY + PAD.h / 2);
       ctx.rotate(-Math.PI / 2);
-      ctx.font = "600 13px 'Space Grotesk', sans-serif";
+      ctx.font = "600 13px 'Author', system-ui, sans-serif";
       ctx.fillStyle = "rgba(0,0,0,0.42)";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
@@ -112,13 +112,6 @@ export function DiscoveryPong() {
       ctx.beginPath(); ctx.moveTo(W / 2, 0); ctx.lineTo(W / 2, GAME_H); ctx.stroke();
       ctx.restore();
 
-      drawLabel("Shankar", 18, ly);
-      drawLabel("Me", W - 18, ry);
-
-      ctx.fillStyle = C.pad;
-      ctx.beginPath(); (ctx as any).roundRect(SIDE - PAD.w, ly, PAD.w, PAD.h, PAD.r); ctx.fill();
-      ctx.beginPath(); (ctx as any).roundRect(W - SIDE, ry, PAD.w, PAD.h, PAD.r); ctx.fill();
-
       if (state === "playing") {
         ctx.beginPath(); ctx.arc(bx, by, BALL_R, 0, Math.PI * 2);
         ctx.fillStyle = C.ball; ctx.fill();
@@ -128,13 +121,20 @@ export function DiscoveryPong() {
         ctx.fillStyle = C.dim;
         ctx.fillRect(0, 0, W, GAME_H);
         if (state === "idle") {
-          ctx.font = "500 13px 'Space Grotesk', sans-serif";
+          ctx.font = "500 13px 'Author', system-ui, sans-serif";
           ctx.fillStyle = C.textDim;
           ctx.textAlign = "center";
           ctx.textBaseline = "alphabetic";
-          ctx.fillText("CLICK OR PRESS ANY KEY TO START", W / 2, GAME_H / 2 + 5);
+          ctx.fillText("CLICK ANYWHERE TO START", W / 2, GAME_H / 2 + 5);
         }
       }
+
+      drawLabel("Shankar", 18, ly);
+      drawLabel("Me", W - 18, ry);
+
+      ctx.fillStyle = C.pad;
+      ctx.beginPath(); (ctx as any).roundRect(SIDE - PAD.w, ly, PAD.w, PAD.h, PAD.r); ctx.fill();
+      ctx.beginPath(); (ctx as any).roundRect(W - SIDE, ry, PAD.w, PAD.h, PAD.r); ctx.fill();
     }
 
     function launch() {
@@ -268,7 +268,7 @@ export function DiscoveryPong() {
           bottom: "calc(14px + 4px + 14px)",
           textAlign: "center",
           pointerEvents: "none",
-          fontFamily: "'Space Grotesk', sans-serif",
+          fontFamily: "'Author', system-ui, sans-serif",
         }}>
           <div style={{ fontSize: 10, fontWeight: 500, color: "rgba(0,0,0,0.38)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 6 }}>
             {displayInfo.label}
@@ -305,7 +305,7 @@ export function DiscoveryPong() {
                 fontSize: "clamp(16px, 3vw, 26px)",
                 fontWeight: 700,
                 lineHeight: 1.12,
-                fontFamily: "'Space Grotesk', sans-serif",
+                fontFamily: "'Author', system-ui, sans-serif",
               }}
             >
               {ui.gameState === "win"
@@ -319,7 +319,7 @@ export function DiscoveryPong() {
                 padding: "8px 12px",
                 background: "#1d2939",
                 color: "#f2f2f0",
-                fontFamily: "'Roboto Mono', monospace",
+                fontFamily: "'Author', system-ui, sans-serif",
                 fontSize: "clamp(10px, 1.8vw, 13px)",
                 fontWeight: 700,
                 lineHeight: 1,
