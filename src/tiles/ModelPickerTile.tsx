@@ -10,7 +10,7 @@ import "./ModelPickerTile.css";
    already shows the interesting surface. */
 export function ModelPickerTile() {
   const [modelId, setModelId] = useState<string>("gpt-5.6-sol");
-  const [fill, setFill] = useState<"light" | "dark">("dark");
+  const [fill, setFill] = useState<"light" | "dark">("light");
   const [soundOn, setSoundOn] = useState(true);
   const [panelOpen, setPanelOpen] = useState(false);
   const [copied, setCopied] = useState(false);
