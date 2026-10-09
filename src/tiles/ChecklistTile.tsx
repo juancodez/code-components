@@ -7,6 +7,7 @@ import "./AspectRatioTile.css";
 export function ChecklistTile() {
   const [corner, setCorner] = useState(16);
   const [box, setBox] = useState(20);
+  const [boxR, setBoxR] = useState(Math.round(20 * 0.32));
   const [fill, setFill] = useState<"light" | "dark">("light");
   const [soundOn, setSoundOn] = useState(true);
   const [panelOpen, setPanelOpen] = useState(false);
@@ -150,7 +151,7 @@ export function ChecklistTile() {
         </div>
 
         <div className="tile-stage" ref={stageRef}>
-          <Checklist corner={corner} box={box} fill={fill} onCheck={tick} />
+          <Checklist corner={corner} box={box} boxRadius={boxR} fill={fill} onCheck={tick} />
           {cursor.visible && (
             <div
               className={"tile-cursor" + (cursor.clicking ? " tile-cursor-click" : "")}
@@ -233,6 +234,22 @@ export function ChecklistTile() {
               }}
             />
             <span className="tile-row-val">{box}</span>
+          </label>
+
+          <label className="tile-row">
+            <span>Box radius</span>
+            <input
+              type="range"
+              min={0}
+              max={Math.round(box / 2)}
+              value={Math.min(boxR, Math.round(box / 2))}
+              onChange={(e) => {
+                const v = Number(e.target.value);
+                setBoxR(v);
+                bubble(v);
+              }}
+            />
+            <span className="tile-row-val">{Math.min(boxR, Math.round(box / 2))}</span>
           </label>
 
           <button className="tile-copy" onClick={copy}>

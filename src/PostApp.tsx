@@ -1,25 +1,18 @@
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
-import { AspectRatioTile } from "./tiles/AspectRatioTile";
+import { CardStudioTile } from "./tiles/CardStudioTile";
 import { BalanceTile } from "./tiles/BalanceTile";
 import { ChecklistTile } from "./tiles/ChecklistTile";
-import { CircleMenuTile } from "./tiles/CircleMenuTile";
 import { LiquidToggleTile } from "./tiles/LiquidToggleTile";
 import { ModelPickerTile } from "./tiles/ModelPickerTile";
 import "./App.css";
 
 const CARDS = [
   {
-    slug: "aspect-ratio",
-    title: "Aspect Ratio",
-    description: "A study on constrained image display. Demonstrates how a single component enforces visual rhythm across media of any proportions.",
-    Tile: AspectRatioTile,
-  },
-  {
-    slug: "balance",
-    title: "Balance Chart",
-    description: "An exploration of financial data scrubbing. The cursor tracks the curve live, turning passive charting into a tactile experience.",
-    Tile: BalanceTile,
+    slug: "card-studio",
+    title: "Card Studio",
+    description: "A configurable image card. Dial in corner radius, add a silver or gold border beam, and toggle 3D tilt — then copy the exact code for your settings.",
+    Tile: CardStudioTile,
   },
   {
     slug: "checklist",
@@ -28,10 +21,10 @@ const CARDS = [
     Tile: ChecklistTile,
   },
   {
-    slug: "circle-menu",
-    title: "Circle Menu",
-    description: "A radial navigation pattern. Explores how actions expand from a single focal point rather than a linear list.",
-    Tile: CircleMenuTile,
+    slug: "balance",
+    title: "Balance Chart",
+    description: "An exploration of financial data scrubbing. The cursor tracks the curve live, turning passive charting into a tactile experience.",
+    Tile: BalanceTile,
   },
   {
     slug: "liquid-toggle",

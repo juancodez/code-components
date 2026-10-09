@@ -358,23 +358,18 @@ const stillness = () =>
 
 export function Checklist({
   corner = CORNER,
-  /* how far the box swells past full before it settles,
-     0..100 — 0 is a spring that arrives dead, which is a
-     perfectly good checkbox and is what most of them do */
   bounce = BOUNCE,
-  /* the box, px */
   box = BOX,
-  /* the surface the card sits on — flips the local tokens.
-     Light is the default; dark is the same card inverted. */
+  /* border-radius of the checkbox, px — defaults to side * 0.32.
+     At side/2 the box becomes a circle. */
+  boxRadius,
   fill = "light",
-  /* fires when a user toggles a row — the tile uses this to
-     play the tick sound so the sound lives with the demo
-     rather than being baked into the component */
   onCheck,
 }: {
   corner?: number;
   bounce?: number;
   box?: number;
+  boxRadius?: number;
   fill?: "light" | "dark";
   onCheck?: (on: boolean) => void;
 } = {}) {
@@ -410,6 +405,9 @@ export function Checklist({
 
   const r = clamp(corner, 0, 40);
   const side = clamp(Math.round(box), 14, 28);
+  const boxR = boxRadius !== undefined
+    ? clamp(boxRadius, 0, side / 2)
+    : side * 0.32;
 
   /* ── the whole finish, as one derived boolean ────────────
      Not a state. Every task ticked IS the finish, so there is
@@ -549,6 +547,7 @@ export function Checklist({
           label={task.text}
           on={task.done}
           side={side}
+          boxR={boxR}
           bounce={bounce}
           still={still}
           fell={fell}
@@ -594,7 +593,7 @@ export function Checklist({
           <span
             className="chk-ghost"
             aria-hidden="true"
-            style={{ width: side, height: side, borderRadius: side * 0.32 }}
+            style={{ width: side, height: side, borderRadius: boxR }}
           />
           {adding ? (
             <input
@@ -637,6 +636,7 @@ function Row({
   label,
   on,
   side,
+  boxR,
   bounce,
   still,
   fell,
@@ -653,6 +653,7 @@ function Row({
   label: string;
   on: boolean;
   side: number;
+  boxR: number;
   bounce: number;
   still: boolean;
   /* the list is finished and the floor has gone */
@@ -755,13 +756,13 @@ function Row({
         style={{
           width: side,
           height: side,
-          borderRadius: side * 0.32,
+          borderRadius: boxR,
         }}
       >
         <span
           className="chk-fill"
           style={{
-            borderRadius: side * 0.32,
+            borderRadius: boxR,
             /* RAW, so it goes past full and settles — this is
                the one place the overshoot belongs */
             transform: `scale(${t.toFixed(4)})`,
