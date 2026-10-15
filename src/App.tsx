@@ -8,6 +8,7 @@ const PROJECTS = [
   {
     slug: "hashbank",
     bg: "linear-gradient(145deg, #0f172a 0%, #1e3a5f 60%, #2563eb 100%)",
+    video: "/mca-thumbnail.mp4",
     title: "Micro-casing Edtech app helping aspiring consultants land a spot at Mckinsey or Bain.",
     subtitle: "The Redesign drove 508% growth",
   },
@@ -64,7 +65,9 @@ export default function App() {
             <>
               {p.slug === "exlo"
                 ? <ExloPrototype />
-                : <div className="project-video-wrap" style={{ background: p.bg }} />
+                : p.video
+                  ? <video className="project-video-wrap" src={p.video} autoPlay loop muted playsInline />
+                  : <div className="project-video-wrap" style={{ background: p.bg }} />
               }
               <div className="project-text">
                 <h2 className="project-title">{p.title}</h2>
