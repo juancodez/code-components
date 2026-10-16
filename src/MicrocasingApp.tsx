@@ -49,8 +49,8 @@ const MC_SECTIONS = [
   { id: "difficulties",   label: "Difficulties"   },
   { id: "before-after",  label: "Before & After" },
   { id: "prototype",   label: "Prototype"     },
-  { id: "lessons",     label: "Lessons"       },
   { id: "metrics",     label: "Metrics"       },
+  { id: "lessons",     label: "Lessons"       },
   { id: "testimonial", label: "Testimonial"   },
   { id: "links",       label: "Links"         },
 ]
@@ -375,6 +375,14 @@ export default function MicrocasingApp() {
         </section>
 
         {/* Lessons */}
+        {/* Metrics */}
+        <section className="mc-section" id="metrics">
+          <div className="mc-section-inner">
+            <span className="mc-section-label">Metrics</span>
+            <MetricsSection />
+          </div>
+        </section>
+
         <section className="mc-section" id="lessons">
           <div className="mc-section-inner">
             <span className="mc-section-label">Lessons</span>
@@ -385,14 +393,6 @@ export default function MicrocasingApp() {
             <p className="mc-body-text" style={{ maxWidth: "62ch" }}>
               The branding definition of a company is equally crucial to set the contracts for the design system and drive design decisions that bring consistency to the product.
             </p>
-          </div>
-        </section>
-
-        {/* Metrics */}
-        <section className="mc-section" id="metrics">
-          <div className="mc-section-inner">
-            <span className="mc-section-label">Metrics</span>
-            <MetricsSection />
           </div>
         </section>
 
