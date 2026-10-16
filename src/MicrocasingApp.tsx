@@ -7,6 +7,7 @@ import { CaseStudyNav } from "./components/CaseStudyNav";
 import { MetricsSection } from "./components/MetricsSection";
 import { DiscoveryPong } from "./components/DiscoveryPong";
 import { BrandingLineage } from "./components/BrandingLineage";
+import { BeforeAfter } from "./components/BeforeAfter";
 import imgMcaLogo from "../assets/MCA-Logo-and-slogan.svg";
 import imgVisualSystem from "../assets/Case-Prompt-01.webp";
 import imgNavigation from "../assets/Case-Prompt-02.webp";
@@ -76,35 +77,36 @@ export default function MicrocasingApp() {
 
       <main className="mc-main" id="mc-top">
         <section className="mc-header">
-          <div className="mc-header-inner">
-            <div className="mc-left">
-              <h1 className="mc-title">
-                From AI wireframes deliverables to a consistent visual Identity of Micro-casing
-              </h1>
-              <div className="mc-subtitle-block">
-                <p className="mc-subtitle">
-                  Micro-casing had been built from AI-generated wireframes with no design system behind it.
-                </p>
-                <p className="mc-subtitle">
-                  The CEO of Micro-casing App,{" "}
-                  <a
-                    href="https://www.linkedin.com/in/shankarananth8/?isSelfProfile=false"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mc-inline-link"
-                  >
-                    Shankar Ananth
-                  </a>
-                  , contacted me to redesign the branding and rework the flow of his product.
-                </p>
-              </div>
-            </div>
+          <h1 className="mc-title">
+            From AI wireframes deliverables to a consistent
+            <br />visual Identity of Micro-casing app
+          </h1>
 
-            <div className="mc-right">
-              <div className="mc-placeholder">
-                <span className="mc-placeholder-label">Project preview</span>
-              </div>
-            </div>
+          <video
+            className="mc-hero-video"
+            src="/mca-showcase-video.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+
+          <div className="mc-subtitle-block">
+            <p className="mc-subtitle">
+              Micro-casing had been built from AI-generated wireframes with no design system behind it.
+            </p>
+            <p className="mc-subtitle">
+              The CEO of Micro-casing App,{" "}
+              <a
+                href="https://www.linkedin.com/in/shankarananth8/?isSelfProfile=false"
+                target="_blank"
+                rel="noreferrer"
+                className="mc-inline-link"
+              >
+                Shankar Ananth
+              </a>
+              , contacted me to redesign the branding and rework the flow of his product.
+            </p>
           </div>
 
           <div className="mc-meta">
@@ -324,11 +326,10 @@ export default function MicrocasingApp() {
         <section className="mc-section" id="difficulties">
           <div className="mc-section-inner">
             <span className="mc-section-label">Difficulties</span>
-            <h2 className="mc-section-title">The two-week sprint — no system, no shortcuts</h2>
+            <h2 className="mc-section-title">The two-week sprint involves prioritising tasks and distinguishing between what is and isn't a priority</h2>
             <div className="mc-branding-body">
               <p className="mc-body-text">
-                Two weeks is not enough time to build a proper design system — but handing engineers a Figma file
-                with no components would have created permanent debt.
+                Two weeks is not enough time to develop a design system. However, providing engineers with a Figma file containing no components would have resulted in long-term issues.
               </p>
               <p className="mc-body-text">
                 We also faced a trade-off with the voice feature: the scope was too big, it would have pushed
@@ -341,8 +342,13 @@ export default function MicrocasingApp() {
         {/* Before & After */}
         <section className="mc-section" id="before-after">
           <div className="mc-section-inner">
-            <span className="mc-section-label">Before & After</span>
-            <h2 className="mc-section-title">Placeholder</h2>
+            <span className="mc-section-label">Before &amp; After</span>
+            <h2 className="mc-section-title">See the difference</h2>
+            <div className="ba-grid">
+              <BeforeAfter />
+              <BeforeAfter />
+              <BeforeAfter />
+            </div>
           </div>
         </section>
 
@@ -350,7 +356,21 @@ export default function MicrocasingApp() {
         <section className="mc-section" id="prototype">
           <div className="mc-section-inner">
             <span className="mc-section-label">Prototype</span>
-            <h2 className="mc-section-title">Placeholder</h2>
+            <h2 className="mc-section-title">Error Path Flow</h2>
+            <p className="mc-body-text" style={{ maxWidth: "62ch" }}>
+              Here is an example of the user flow with an error path in the case of the Wi-Fi Flow.
+              The objective was to devise a unique experience for the user by leveraging the coach
+              mascot of Micro-casing, Casey, to enhance engagement and minimise the churn rate.
+            </p>
+            <video
+              className="mc-hero-video"
+              src="/mca-error-path.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              style={{ marginTop: "32px", width: "75%" }}
+            />
           </div>
         </section>
 

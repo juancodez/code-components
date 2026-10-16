@@ -1,10 +1,11 @@
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { Avatar } from "./components/Avatar";
-import { ExloPrototype } from "./components/ExloPrototype";
 import "./App.css";
 
-const PROJECTS = [
+type Project = { slug: string; bg: string; video?: string; gif?: string; title: string; subtitle: string };
+
+const PROJECTS: Project[] = [
   {
     slug: "hashbank",
     bg: "linear-gradient(145deg, #0f172a 0%, #1e3a5f 60%, #2563eb 100%)",
@@ -27,6 +28,7 @@ const PROJECTS = [
   {
     slug: "exlo",
     bg: "linear-gradient(145deg, #0a0f1e 0%, #1a2744 55%, #2e4a8f 100%)",
+    gif: "/exlo-gif.gif",
     title: "Exlo: Plugin for Figma",
     subtitle: "Helping Designers increase their workflow with a tool that allows multi export multifile at once",
   },
@@ -63,11 +65,11 @@ export default function App() {
         {PROJECTS.map(p => {
           const inner = (
             <>
-              {p.slug === "exlo"
-                ? <ExloPrototype />
+              {p.gif
+                ? <img className="project-video-wrap" src={p.gif} alt={p.title} />
                 : p.video
-                  ? <video className="project-video-wrap" src={p.video} autoPlay loop muted playsInline />
-                  : <div className="project-video-wrap" style={{ background: p.bg }} />
+                ? <video className="project-video-wrap" src={p.video} autoPlay loop muted playsInline />
+                : <div className="project-video-wrap" style={{ background: p.bg }} />
               }
               <div className="project-text">
                 <h2 className="project-title">{p.title}</h2>
@@ -75,10 +77,10 @@ export default function App() {
               </div>
             </>
           );
-          const href = p.slug === "hashbank" ? "microcasing.html" : `./projects/${p.slug}`;
-          return p.slug === "exlo"
-            ? <div key={p.slug} className="project-card">{inner}</div>
-            : <a key={p.slug} className="project-card" href={href}>{inner}</a>;
+          const href = p.slug === "hashbank" ? "microcasing.html"
+            : p.slug === "exlo" ? "exlo.html"
+            : `./projects/${p.slug}`;
+          return <a key={p.slug} className="project-card" href={href}>{inner}</a>;
         })}
       </div>
       <Footer />

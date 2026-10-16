@@ -2,6 +2,92 @@
   background: #ffffff;
 }
 
+/* ── Before / After slider ── */
+.ba-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: col-resize;
+  user-select: none;
+  background: #e8e8e8;
+  margin-top: 32px;
+}
+
+.ba-layer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.ba-before { background-color: #e4e9f0; }
+.ba-after  { background-color: #dce8ff; width: 100%; }
+
+.ba-after-clip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.ba-after-clip .ba-layer { left: 0; }
+
+.ba-tag {
+  position: absolute;
+  top: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'Author', system-ui, sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(4px);
+  padding: 3px 8px;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.ba-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.ba-handle-line {
+  flex: 1;
+  width: 2px;
+  background: #fff;
+  box-shadow: 0 0 6px rgba(0,0,0,0.3);
+}
+
+.ba-handle-knob {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1d2939;
+}
+
+.ba-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 32px;
+}
+
 /* case study scroll-spy nav */
 .csn {
   position: fixed;
@@ -96,20 +182,9 @@
 .mc-header {
   width: 75%;
   padding: 72px 0 80px;
-}
-
-.mc-header-inner {
-  display: grid;
-  grid-template-columns: 35fr 65fr;
-  gap: 48px;
-  align-items: center;
-}
-
-/* Left — text */
-.mc-left {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 32px;
 }
 
 .mc-tag {
@@ -187,6 +262,13 @@
   font-size: 13px;
   color: #98a1b2;
   letter-spacing: 0.04em;
+}
+
+.mc-hero-video {
+  width: 100%;
+  border-radius: 16px;
+  object-fit: contain;
+  display: block;
 }
 
 /* metadata rows */
