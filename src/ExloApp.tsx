@@ -2,6 +2,9 @@ import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { CaseStudyNav } from "./components/CaseStudyNav";
 import { ExloPrototype } from "./components/ExloPrototype";
+import eximLogo from "../assets/Exim-Logotype.svg";
+import typeScalaLogo from "../assets/typescalalogo-128pxx128px.svg";
+import exleLogo from "../assets/Exle-Signet-128px.png";
 import "./App.css";
 import "./MicrocasingApp.css";
 
@@ -82,7 +85,7 @@ export default function ExloApp() {
           <div className="mc-section-inner">
             <h2 className="mc-section-title">Figma doesn't let you export in multiple formats at once</h2>
             <p className="mc-body-text" style={{ maxWidth: "62ch" }}>
-              Figma doesn't allow you to export assets in multiple formats and color setups simultaneously. You have to do it manually, one by one — select the frame, open the export panel, choose the format, repeat.
+              Figma doesn't allow you to export assets in multiple formats and colour setups simultaneously. This has to be done manually, one by one: select the frame, open the export panel, choose the format, and repeat.
             </p>
             <p className="mc-body-text" style={{ maxWidth: "62ch" }}>
               For logo delivery especially, this means running through the same ritual twenty times just to hand off a brand kit. There was no native solution and no community plugin that solved it cleanly.
@@ -208,14 +211,15 @@ export default function ExloApp() {
         {/* ── Ecosystem ── */}
         <section className="mc-section" id="ecosystem">
           <div className="mc-section-inner">
-            <h2 className="mc-section-title">The story doesn't end here —<br />three more plugins shipped</h2>
+            <h2 className="mc-section-title">The story doesn't end here.<br />Three more plugins have been shipped.</h2>
             <p className="mc-body-text" style={{ maxWidth: "62ch" }}>
-              Fixing workflows with Exlo opened my eyes to other critical gaps in digital production. Three more plugins were approved by Figma in the same week — all built with Claude Code, all solving real friction points designers face daily.
+              Using Exlo to fix workflows opened my eyes to other critical gaps in digital production. In the same week, Figma approved three more plugins. They were all built with Claude Code and they all solve real issues that designers face every day.
             </p>
 
             <div className="exlo-plugin-grid">
 
               <div className="exlo-plugin-card">
+                <img src={eximLogo} alt="EXIM" className="exlo-plugin-logo" />
                 <div className="exlo-plugin-card-top">
                   <span className="exlo-plugin-name">EXIM</span>
                   <a href="https://lnkd.in/dCvr7qZS" target="_blank" rel="noopener noreferrer" className="exlo-plugin-link">
@@ -226,11 +230,12 @@ export default function ExloApp() {
                   </a>
                 </div>
                 <p className="exlo-plugin-desc">
-                  Exlo's sibling for web performance. Export images, frames, and assets directly as WebP — incredible compression without losing quality. No third-party converters, no round-tripping. Built for site speed and lightweight web assets.
+                  Exlo's sibling for web performance. Export images, frames and assets directly as WebP for incredible compression without losing quality. No third-party converters or round-tripping required. Built for site speed and lightweight web assets.
                 </p>
               </div>
 
               <div className="exlo-plugin-card">
+                <img src={typeScalaLogo} alt="Type Scala" className="exlo-plugin-logo" />
                 <div className="exlo-plugin-card-top">
                   <span className="exlo-plugin-name">Type Scala</span>
                   <a href="https://lnkd.in/duEYSuqY" target="_blank" rel="noopener noreferrer" className="exlo-plugin-link">
@@ -241,11 +246,12 @@ export default function ExloApp() {
                   </a>
                 </div>
                 <p className="exlo-plugin-desc">
-                  Built live during the Mokapp workshop and approved by Figma the very next morning. Calculates proportional typographic scales and generates Text Styles automatically — turning a live exercise into a shipped product overnight.
+                  Built live during the Mokapp workshop and approved by Figma the very next morning. It calculates proportional typographic scales and generates text styles automatically, turning a live exercise into a shipped product overnight.
                 </p>
               </div>
 
               <div className="exlo-plugin-card">
+                <img src={exleLogo} alt="EXLE" className="exlo-plugin-logo" />
                 <div className="exlo-plugin-card-top">
                   <span className="exlo-plugin-name">EXLE</span>
                   <a href="https://lnkd.in/d2DRRBSH" target="_blank" rel="noopener noreferrer" className="exlo-plugin-link">
@@ -256,7 +262,7 @@ export default function ExloApp() {
                   </a>
                 </div>
                 <p className="exlo-plugin-desc">
-                  A full photo editor inside Figma. 17 pixel adjustments — curves, levels, LUTs, colour grading, blend modes — applied live on canvas. Batch editing across multiple selected images simultaneously. No exporting to Photoshop, no losing your layer graph.
+                  A full photo editor inside Figma. 17 pixel adjustments applied live on canvas — curves, levels, LUTs, colour grading and blend modes. Batch edit multiple selected images simultaneously. No need to export to Photoshop or lose your layer graph.
                 </p>
               </div>
 

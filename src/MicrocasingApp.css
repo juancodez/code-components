@@ -1040,6 +1040,12 @@
   margin-top: 8px;
 }
 
+.exlo-plugin-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
 .exlo-plugin-card {
   display: flex;
   flex-direction: column;
