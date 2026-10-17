@@ -10,82 +10,110 @@
   border-radius: 16px;
   cursor: col-resize;
   user-select: none;
+  touch-action: pan-y;
   background: #e8e8e8;
   margin-top: 32px;
 }
 
-.ba-layer {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
+.ba-after-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+.ba-after-placeholder {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background-color: #dce8ff;
 }
 
-.ba-before { background-color: #e4e9f0; }
-.ba-after  { background-color: #dce8ff; width: 100%; }
-
-.ba-after-clip {
+.ba-before-full {
   position: absolute;
   inset: 0;
-  overflow: hidden;
+  z-index: 3;
 }
-.ba-after-clip .ba-layer { left: 0; }
+.ba-before-full img {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+.ba-before-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #e4e9f0;
+}
 
-.ba-tag {
+.ba-dim-left {
   position: absolute;
-  top: 12px;
-  font-size: 11px;
-  font-weight: 600;
-  font-family: 'Author', system-ui, sans-serif;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #fff;
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(4px);
-  padding: 3px 8px;
-  border-radius: 999px;
+  top: 0; left: 0;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+}
+.ba-dim-right {
+  position: absolute;
+  top: 0; right: 0;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.ba-line {
+  position: absolute;
+  top: 0; bottom: 0;
+  transform: translateX(-50%);
+  width: 2px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  z-index: 5;
   pointer-events: none;
 }
 
 .ba-handle {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  pointer-events: none;
-  z-index: 10;
-}
-
-.ba-handle-line {
-  flex: 1;
-  width: 2px;
-  background: #fff;
-  box-shadow: 0 0 6px rgba(0,0,0,0.3);
-}
-
-.ba-handle-knob {
-  position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-  width: 36px;
-  height: 36px;
+  transform: translate(-50%, -50%);
+  z-index: 6;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  background: #1d2939;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #1d2939;
+  pointer-events: none;
 }
 
+.ba-tag {
+  position: absolute;
+  top: 14px;
+  font-size: 0.625rem;
+  font-weight: 700;
+  font-family: 'Author', system-ui, sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 7;
+  transition: opacity 0.2s ease;
+}
+.ba-tag--left  { left: 14px;  color: #1d2939; background: #fff; }
+.ba-tag--right { right: 14px; color: #fff;    background: #1d2939; }
+
 .ba-grid {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 600px));
   gap: 24px;
   margin-top: 32px;
+}
+
+@media (max-width: 780px) {
+  .ba-grid { grid-template-columns: 1fr; }
 }
 
 /* case study scroll-spy nav */
@@ -214,7 +242,7 @@
 
 .mc-subtitle {
   font-family: 'Author', system-ui, sans-serif;
-  font-size: clamp(14px, 1.1vw, 16px);
+  font-size: clamp(1rem, 0.875rem + 0.5vw, 1.125rem);
   font-weight: 400;
   color: #667085;
   margin: 0;
@@ -337,6 +365,10 @@
   flex-direction: column;
   gap: 20px;
 }
+.mc-section-inner .mc-section-title + p,
+.mc-section-inner .mc-section-title + .mc-body-text {
+  margin-top: -10px;
+}
 
 .mc-section-label {
   font-family: 'Author', system-ui, sans-serif;
@@ -375,7 +407,7 @@
 
 .mc-body-text {
   font-family: 'Author', system-ui, sans-serif;
-  font-size: 16px;
+  font-size: clamp(1rem, 0.875rem + 0.5vw, 1.125rem);
   font-weight: 400;
   color: #667085;
   line-height: 1.7;
@@ -705,7 +737,7 @@
 
 .mc-challenge-body {
   font-family: 'Author', system-ui, sans-serif;
-  font-size: 16px;
+  font-size: clamp(1rem, 0.875rem + 0.5vw, 1.125rem);
   font-weight: 400;
   color: #667085;
   line-height: 1.7;

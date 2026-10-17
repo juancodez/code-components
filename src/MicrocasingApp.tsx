@@ -17,6 +17,14 @@ import imgGraph from "../assets/graph.png";
 import imgNivins from "../assets/nivins.png";
 import imgRaw from "../assets/raw.png";
 import imgTally from "../assets/tally.png";
+import imgMca001 from "../assets/mca-001-01.webp";
+import imgMca002 from "../assets/mca-002.webp";
+import imgMca002Before from "../assets/mca-002-01.webp";
+import imgMca002After from "../assets/mca-002-02.webp";
+import imgMca003Before from "../assets/mca-003-00.webp";
+import imgMca003After from "../assets/mca-003-01.webp";
+import imgMca004Before from "../assets/mca-004-00.webp";
+import imgMca004After from "../assets/mca-004-01.webp";
 import "./App.css";
 import "./MicrocasingApp.css";
 
@@ -146,7 +154,6 @@ export default function MicrocasingApp() {
         {/* Challenge */}
         <section className="mc-section" id="challenge">
           <div className="mc-section-inner">
-            <span className="mc-section-label">Challenge</span>
             <h2 className="mc-section-title">The UX audit mapped three specific failures</h2>
 
             <div className="mc-challenge-tabs">
@@ -216,7 +223,6 @@ export default function MicrocasingApp() {
         {/* Discovery */}
         <section className="mc-section" id="discovery">
           <div className="mc-section-inner">
-            <span className="mc-section-label">Discovery</span>
             <h2 className="mc-section-title">Aligning on what to build</h2>
             <p className="mc-body-text" style={{ marginTop: 0, maxWidth: "62ch" }}>
               Before opening Figma, Shankar and I took the time to answer a Notion file for a discovery questionnaire where we align and define the vision, target audience, tone, and competitive positioning from the Micro-casing app.
@@ -241,7 +247,6 @@ export default function MicrocasingApp() {
         {/* Branding */}
         <section className="mc-section" id="branding">
           <div className="mc-section-inner">
-            <span className="mc-section-label">Branding</span>
             <h2 className="mc-section-title">Finding the balance between corporate and playful design</h2>
             <div className="mc-branding-body">
               <p className="mc-body-text">
@@ -304,8 +309,7 @@ export default function MicrocasingApp() {
         {/* Design System */}
         <section className="mc-section" id="design-system">
           <div className="mc-section-inner">
-            <span className="mc-section-label">Design System</span>
-            <h2 className="mc-section-title">The definition of the tonality of Micro-casing helps shape the decisions of the UI Kit</h2>
+            <h2 className="mc-section-title">The definition of the tonality of Micro-casing<br />helps shape the decisions of the UI Kit</h2>
             <div className="mc-branding-body">
               <p className="mc-body-text">
                 The AI wireframes didn't ship with a Design System or UI Kit — the visual lacked coherence, and the developers had no visual reference to implement in code.
@@ -325,8 +329,7 @@ export default function MicrocasingApp() {
         {/* Difficulties */}
         <section className="mc-section" id="difficulties">
           <div className="mc-section-inner">
-            <span className="mc-section-label">Difficulties</span>
-            <h2 className="mc-section-title">The two-week sprint involves prioritising tasks and distinguishing between what is and isn't a priority</h2>
+            <h2 className="mc-section-title">The two-week sprint involves prioritising tasks<br />and distinguishing between what is and isn't a priority</h2>
             <div className="mc-branding-body">
               <p className="mc-body-text">
                 Two weeks is not enough time to develop a design system. However, providing engineers with a Figma file containing no components would have resulted in long-term issues.
@@ -342,12 +345,16 @@ export default function MicrocasingApp() {
         {/* Before & After */}
         <section className="mc-section" id="before-after">
           <div className="mc-section-inner">
-            <span className="mc-section-label">Before &amp; After</span>
             <h2 className="mc-section-title">See the difference</h2>
+            <p className="mc-body-text" style={{ maxWidth: "62ch", marginTop: "-10px" }}>
+              The four key screens have been redesigned to inspire greater trust in the product and reduce friction.
+              Drag the handle left and right to compare the original AI-generated wireframes with the final UI that was shipped.
+            </p>
             <div className="ba-grid">
-              <BeforeAfter />
-              <BeforeAfter />
-              <BeforeAfter />
+              <BeforeAfter before={imgMca001} after={imgMca002} />
+              <BeforeAfter before={imgMca002Before} after={imgMca002After} />
+              <BeforeAfter before={imgMca003Before} after={imgMca003After} />
+              <BeforeAfter before={imgMca004Before} after={imgMca004After} />
             </div>
           </div>
         </section>
@@ -355,7 +362,6 @@ export default function MicrocasingApp() {
         {/* Prototype */}
         <section className="mc-section" id="prototype">
           <div className="mc-section-inner">
-            <span className="mc-section-label">Prototype</span>
             <h2 className="mc-section-title">Error Path Flow</h2>
             <p className="mc-body-text" style={{ maxWidth: "62ch" }}>
               Here is an example of the user flow with an error path in the case of the Wi-Fi Flow.
@@ -378,14 +384,12 @@ export default function MicrocasingApp() {
         {/* Metrics */}
         <section className="mc-section" id="metrics">
           <div className="mc-section-inner">
-            <span className="mc-section-label">Metrics</span>
             <MetricsSection />
           </div>
         </section>
 
         <section className="mc-section" id="lessons">
           <div className="mc-section-inner">
-            <span className="mc-section-label">Lessons</span>
             <h2 className="mc-section-title">Planning the roadmap and active communication help the progress of the project</h2>
             <p className="mc-body-text" style={{ maxWidth: "62ch" }}>
               The most valuable lesson here is that design is communication. The way we as designers communicate our decisions is what makes design craft, not guessing.
@@ -399,7 +403,6 @@ export default function MicrocasingApp() {
         {/* Testimonial */}
         <section className="mc-section" id="testimonial">
           <div className="mc-section-inner">
-            <span className="mc-section-label">Testimonial</span>
             <SplitTestimonial />
           </div>
         </section>
@@ -407,7 +410,6 @@ export default function MicrocasingApp() {
         {/* Links */}
         <section className="mc-section" id="links">
           <div className="mc-section-inner">
-            <span className="mc-section-label">Links</span>
             <h2 className="mc-section-title">This product is live</h2>
             <div className="mc-links-row">
               <a

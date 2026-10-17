@@ -6,7 +6,7 @@ interface BeforeAfterProps {
   aspect?: string;
 }
 
-export function BeforeAfter({ before, after, aspect = "4/3" }: BeforeAfterProps) {
+export function BeforeAfter({ before, after, aspect = "16/9" }: BeforeAfterProps) {
   const [pos, setPos] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
@@ -14,57 +14,56 @@ export function BeforeAfter({ before, after, aspect = "4/3" }: BeforeAfterProps)
   const updatePos = useCallback((clientX: number) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    const pct = Math.min(100, Math.max(0, ((clientX - rect.left) / rect.width) * 100));
-    setPos(pct);
+    setPos(Math.max(2, Math.min(98, ((clientX - rect.left) / rect.width) * 100)));
   }, []);
 
-  const onMouseDown = (e: React.MouseEvent) => { dragging.current = true; updatePos(e.clientX); };
-  const onMouseMove = (e: React.MouseEvent) => { if (dragging.current) updatePos(e.clientX); };
-  const onMouseUp   = () => { dragging.current = false; };
-  const onTouchStart = (e: React.TouchEvent) => { dragging.current = true; updatePos(e.touches[0].clientX); };
-  const onTouchMove  = (e: React.TouchEvent) => { if (dragging.current) updatePos(e.touches[0].clientX); };
-  const onTouchEnd   = () => { dragging.current = false; };
+  const onPointerDown = (e: React.PointerEvent) => {
+    dragging.current = true;
+    (e.currentTarget as HTMLDivElement).setPointerCapture(e.pointerId);
+    updatePos(e.clientX);
+  };
+  const onPointerMove = (e: React.PointerEvent) => { if (dragging.current) updatePos(e.clientX); };
+  const onPointerUp   = () => { dragging.current = false; };
+
+  const dimLeft  = Math.max(0, (50 - pos) / 50) * 0.65;
+  const dimRight = Math.max(0, (pos - 50) / 50) * 0.65;
+  const fade     = 16;
+  const opL = pos < fade ? pos / fade : 1;
+  const opR = pos > 100 - fade ? (100 - pos) / fade : 1;
 
   return (
     <div
       ref={containerRef}
       className="ba-wrap"
-      style={{ aspectRatio: aspect }}
-      onMouseDown={onMouseDown}
-      onMouseMove={onMouseMove}
-      onMouseUp={onMouseUp}
-      onMouseLeave={onMouseUp}
-      onTouchStart={onTouchStart}
-      onTouchMove={onTouchMove}
-      onTouchEnd={onTouchEnd}
+      style={{}}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
     >
-      {/* Before — base layer */}
-      <div
-        className="ba-layer ba-before"
-        style={before ? { backgroundImage: `url(${before})` } : undefined}
-      />
+      {after
+        ? <img className="ba-after-img" src={after} alt="After" draggable={false} />
+        : <div className="ba-after-placeholder" />
+      }
 
-      {/* After — clipped from the left, shrinks as handle moves right */}
-      <div className="ba-after-clip" style={{ width: `${pos}%` }}>
-        <div
-          className="ba-layer ba-after"
-          style={after ? { backgroundImage: `url(${after})` } : undefined}
-        />
+      <div className="ba-dim-right" style={{ width: `${100 - pos}%`, background: `rgba(15,12,46,${dimRight.toFixed(3)})` }} />
+
+      <div className="ba-before-full" style={{ clipPath: `inset(0 ${(100 - pos).toFixed(2)}% 0 0)` }}>
+        {before
+          ? <img src={before} alt="Before" draggable={false} />
+          : <div className="ba-before-placeholder" />
+        }
       </div>
 
-      {/* Labels */}
-      <span className="ba-tag" style={{ left: 12 }}>After</span>
-      <span className="ba-tag" style={{ right: 12 }}>Before</span>
+      <div className="ba-dim-left" style={{ width: `${pos}%`, background: `rgba(15,12,46,${dimLeft.toFixed(3)})` }} />
 
-      {/* Handle */}
+      <span className="ba-tag ba-tag--left"  style={{ opacity: opL }}>Before</span>
+      <span className="ba-tag ba-tag--right" style={{ opacity: opR }}>After</span>
+
+      <div className="ba-line"   style={{ left: `${pos}%` }} />
       <div className="ba-handle" style={{ left: `${pos}%` }}>
-        <div className="ba-handle-line" />
-        <div className="ba-handle-knob">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <path d="M6 9H2M2 9L4.5 6.5M2 9L4.5 11.5" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M12 9H16M16 9L13.5 6.5M16 9L13.5 11.5" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </div>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M4 2L1 7l3 5M10 2l3 5-3 5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
       </div>
     </div>
   );
