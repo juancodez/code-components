@@ -200,10 +200,6 @@ export default function AboutApp() {
           </Sec>
 
           <Sec label="What's next">
-            <p className="abt-text">
-              Right now, I'm looking for a place where I can learn how great product teams actually work at scale.
-            </p>
-            <p className="abt-text">I'm interested in motivated, joyfull teams, complex products, and meaningful work.</p>
           </Sec>
 
 
