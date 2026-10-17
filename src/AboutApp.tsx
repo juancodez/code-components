@@ -132,6 +132,9 @@ export default function AboutApp() {
             <p className="abt-text">
               You learn pretty quickly that small details matter, things need to work under pressure, and there's always a better way to do something.
             </p>
+            <p className="abt-text">
+              After that, I became interested in branding, specifically how a company positions itself, its brand, and its visual identity. So I studied graphic design in Germany.
+            </p>
           </Sec>
 
           <Sec label="What I do now">
@@ -199,8 +202,6 @@ export default function AboutApp() {
             </p>
           </Sec>
 
-          <Sec label="What's next">
-          </Sec>
 
 
         </div>

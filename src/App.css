@@ -1298,14 +1298,15 @@
 .abt-iref {
   position: relative;
   display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  align-items: baseline;
+  gap: 6px;
   cursor: default;
 }
 
 .abt-iref-icon {
   display: inline-flex;
   align-items: center;
+  vertical-align: middle;
   transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
