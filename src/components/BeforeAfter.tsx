@@ -40,16 +40,16 @@ export function BeforeAfter({ before, after, aspect = "16/9" }: BeforeAfterProps
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
     >
-      {after
-        ? <img className="ba-after-img" src={after} alt="After" draggable={false} />
+      {before
+        ? <img className="ba-after-img" src={before} alt="Before" draggable={false} />
         : <div className="ba-after-placeholder" />
       }
 
       <div className="ba-dim-right" style={{ width: `${100 - pos}%`, background: `rgba(15,12,46,${dimRight.toFixed(3)})` }} />
 
       <div className="ba-before-full" style={{ clipPath: `inset(0 ${(100 - pos).toFixed(2)}% 0 0)` }}>
-        {before
-          ? <img src={before} alt="Before" draggable={false} />
+        {after
+          ? <img src={after} alt="After" draggable={false} />
           : <div className="ba-before-placeholder" />
         }
       </div>

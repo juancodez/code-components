@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
-import { SplitTestimonial } from "./components/SplitTestimonial";
+import { Testimonial2 } from "./components/Testimonial2";
 import { CaseStudyNav } from "./components/CaseStudyNav";
 import { MetricsSection } from "./components/MetricsSection";
 import { DiscoveryPong } from "./components/DiscoveryPong";
@@ -32,7 +32,7 @@ const CHALLENGE_ITEMS = [
   {
     id: "visual-system",
     label: "Visual System",
-    text: "The generated design was lacking a Design System — no component consistency and no shared tokens across the product.",
+    text: "The generated design lacked a design system, resulting in a lack of component consistency and shared tokens across the product.",
     img: imgVisualSystem,
   },
   {
@@ -224,7 +224,7 @@ export default function MicrocasingApp() {
         <section className="mc-section" id="discovery">
           <div className="mc-section-inner">
             <h2 className="mc-section-title">Aligning on what to build</h2>
-            <p className="mc-body-text" style={{ marginTop: 0, maxWidth: "62ch" }}>
+            <p className="mc-body-text" style={{ maxWidth: "62ch" }}>
               Before opening Figma, Shankar and I took the time to answer a Notion file for a discovery questionnaire where we align and define the vision, target audience, tone, and competitive positioning from the Micro-casing app.
             </p>
             <a
@@ -261,8 +261,7 @@ export default function MicrocasingApp() {
             <div className="mc-branding-body">
 
               <p className="mc-body-text">
-                Key decisions emerged from this research — Blue was intentionally selected as the primary brand colour
-                to link the product with existing fintech apps and gamification platforms.
+                This research yielded several key findings. For example, blue was intentionally selected as the primary brand colour to link the product with existing fintech apps and gamification platforms.
               </p>
 
               <p className="mc-body-text">
@@ -312,10 +311,10 @@ export default function MicrocasingApp() {
             <h2 className="mc-section-title">The definition of the tonality of Micro-casing<br />helps shape the decisions of the UI Kit</h2>
             <div className="mc-branding-body">
               <p className="mc-body-text">
-                The AI wireframes didn't ship with a Design System or UI Kit — the visual lacked coherence, and the developers had no visual reference to implement in code.
+                The AI wireframes were not shipped with a design system or UI kit, so the visuals lacked coherence and the developers had no visual reference to implement in code.
               </p>
               <p className="mc-body-text">
-                To ease the handoff, I built a mini UI Kit that translates the voice of the Micro-casing app into reusable components and tokens.
+                To make the transition easier, I created a mini UI Kit that translates the Micro-casing app's design into reusable components and tokens.
               </p>
             </div>
             <img
@@ -347,14 +346,23 @@ export default function MicrocasingApp() {
           <div className="mc-section-inner">
             <h2 className="mc-section-title">See the difference</h2>
             <p className="mc-body-text" style={{ maxWidth: "62ch", marginTop: "-10px" }}>
-              The four key screens have been redesigned to inspire greater trust in the product and reduce friction.
-              Drag the handle left and right to compare the original AI-generated wireframes with the final UI that was shipped.
+              Four key example screens have been redesigned to inspire greater trust in the product and reduce friction.
+              Drag the handle left and right to compare the original AI-generated wireframes with the final UI shipped.
             </p>
-            <div className="ba-grid">
-              <BeforeAfter before={imgMca001} after={imgMca002} />
-              <BeforeAfter before={imgMca002Before} after={imgMca002After} />
-              <BeforeAfter before={imgMca003Before} after={imgMca003After} />
-              <BeforeAfter before={imgMca004Before} after={imgMca004After} />
+            <div className="ba-list">
+              {([
+                { label: "Case category screen",  before: imgMca001,       after: imgMca002      },
+                { label: "Case prompt screen",    before: imgMca002Before, after: imgMca002After  },
+                { label: "Choose a coach screen", before: imgMca003Before, after: imgMca003After  },
+                { label: "Question game screen",  before: imgMca004Before, after: imgMca004After  },
+              ] as const).map(({ label, before, after }) => (
+                <div className="ba-row" key={label}>
+                  <span className="ba-row-label">{label}</span>
+                  <div className="ba-row-img">
+                    <BeforeAfter before={before} after={after} />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -390,7 +398,7 @@ export default function MicrocasingApp() {
 
         <section className="mc-section" id="lessons">
           <div className="mc-section-inner">
-            <h2 className="mc-section-title">Planning the roadmap and active communication help the progress of the project</h2>
+            <h2 className="mc-section-title">Planning the roadmap and active communication<br />help the progress of the project</h2>
             <p className="mc-body-text" style={{ maxWidth: "62ch" }}>
               The most valuable lesson here is that design is communication. The way we as designers communicate our decisions is what makes design craft, not guessing.
             </p>
@@ -403,7 +411,7 @@ export default function MicrocasingApp() {
         {/* Testimonial */}
         <section className="mc-section" id="testimonial">
           <div className="mc-section-inner">
-            <SplitTestimonial />
+            <Testimonial2 />
           </div>
         </section>
 
