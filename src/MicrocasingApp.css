@@ -1055,6 +1055,12 @@
   border-radius: 12px;
   padding: 20px 24px;
   background: #fff;
+  transition: border-color 400ms ease, box-shadow 400ms ease, background 400ms ease;
+}
+.exlo-plugin-card:hover {
+  border-color: #e2e4e8;
+  background: linear-gradient(135deg, #fafafa 0%, #f4f5f7 100%);
+  box-shadow: 0 2px 16px rgba(180, 185, 200, 0.18), 0 1px 4px rgba(180, 185, 200, 0.12);
 }
 
 .exlo-plugin-card-top {

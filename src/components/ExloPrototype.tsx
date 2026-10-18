@@ -75,12 +75,13 @@ export function ExloPrototype() {
     origPositions: Record<FrameId, { x: number; y: number }>;
     moved: boolean;
   } | null>(null);
+  const wasDragged = useRef(false);
 
   // ── Drag handlers ──────────────────────────────────────────────────────────
   const onFrameDown = useCallback((id: FrameId, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    // If dragged frame is selected, move all selected frames together; otherwise just this one
+    wasDragged.current = false;
     const ids = selected.has(id) ? [...selected] as FrameId[] : [id];
     const origPositions = Object.fromEntries(ids.map(fid => [fid, { ...positions[fid] }])) as Record<FrameId, { x: number; y: number }>;
     drag.current = { id, startX: e.clientX, startY: e.clientY, origPositions, moved: false };
@@ -90,39 +91,40 @@ export function ExloPrototype() {
     if (!drag.current) return;
     const dx = e.clientX - drag.current.startX;
     const dy = e.clientY - drag.current.startY;
-    if (Math.abs(dx) > 2 || Math.abs(dy) > 2) drag.current.moved = true;
+    if (Math.abs(dx) > 2 || Math.abs(dy) > 2) { drag.current.moved = true; wasDragged.current = true; }
     const updates = Object.fromEntries(
       Object.entries(drag.current.origPositions).map(([fid, orig]) => [fid, { x: orig.x + dx, y: orig.y + dy }])
     ) as Record<FrameId, { x: number; y: number }>;
     setPositions(prev => ({ ...prev, ...updates }));
   }, []);
 
-  // Frame mouseup — Figma selection rules:
-  //   plain click  → select only this frame
-  //   shift+click  → add/remove from current selection
-  const onFrameUp = useCallback((id: FrameId, e: React.MouseEvent) => {
-    e.stopPropagation(); // don't let canvas also handle this
-    if (drag.current && !drag.current.moved) {
-      if (e.shiftKey) {
-        setSelected(prev => {
-          const next = new Set(prev);
-          next.has(id) ? next.delete(id) : next.add(id);
-          return next;
-        });
-      } else {
-        setSelected(new Set([id]));
-      }
-      setExportState("idle");
-    }
+  // Frame mouseup — just ends drag
+  const onFrameUp = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
     drag.current = null;
   }, []);
 
-  // Canvas background mouseup — click on empty space deselects all
-  const onCanvasBgUp = useCallback(() => {
-    if (drag.current && !drag.current.moved) {
-      setSelected(new Set());
+  // Frame click — select (plain) or toggle (shift); skipped if it was a drag
+  const onFrameClick = useCallback((id: FrameId, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (wasDragged.current) { wasDragged.current = false; return; }
+    if (e.shiftKey) {
+      setSelected(prev => {
+        const next = new Set(prev);
+        next.has(id) ? next.delete(id) : next.add(id);
+        return next;
+      });
+    } else {
+      setSelected(new Set([id]));
     }
+    setExportState("idle");
+  }, []);
+
+  // Canvas background click — deselect all
+  const onCanvasBgUp = useCallback(() => {
+    if (!wasDragged.current) setSelected(new Set());
     drag.current = null;
+    wasDragged.current = false;
   }, []);
 
   // ── Format toggle ──────────────────────────────────────────────────────────
@@ -163,7 +165,8 @@ export function ExloPrototype() {
           className="exlo-figma-frame"
           style={{ left: positions.signet.x, top: positions.signet.y }}
           onMouseDown={e => onFrameDown("signet", e)}
-          onMouseUp={e => onFrameUp("signet", e)}
+          onMouseUp={onFrameUp}
+          onClick={e => onFrameClick("signet", e)}
         >
           <span className={`exlo-figma-label ${selected.has("signet") ? "exlo-figma-label-sel" : ""}`}>Signet</span>
           <div className={`exlo-figma-thumb ${selected.has("signet") ? "exlo-sel" : ""}`}>
@@ -176,7 +179,8 @@ export function ExloPrototype() {
           className="exlo-figma-frame"
           style={{ left: positions.logotype.x, top: positions.logotype.y }}
           onMouseDown={e => onFrameDown("logotype", e)}
-          onMouseUp={e => onFrameUp("logotype", e)}
+          onMouseUp={onFrameUp}
+          onClick={e => onFrameClick("logotype", e)}
         >
           <span className={`exlo-figma-label ${selected.has("logotype") ? "exlo-figma-label-sel" : ""}`}>Logotype</span>
           <div className={`exlo-figma-thumb ${selected.has("logotype") ? "exlo-sel" : ""}`}>

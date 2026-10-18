@@ -155,7 +155,7 @@ export default function ExloApp() {
           <div className="mc-section-inner">
             <h2 className="mc-section-title">Give it a try: drag the frames, select the format and export.</h2>
             <p className="mc-body-text" style={{ maxWidth: "62ch" }}>
-              This is the actual plugin interaction. Select frames on the canvas (shift-click for multi-select), toggle the formats you need, then hit Export to see the ZIP flow in action.
+              This is the actual plugin interaction.<br />Select frames on the canvas (shift-click for multi-select), toggle the formats you need, then hit Export to see the ZIP flow in action.
             </p>
             <div style={{ marginTop: "32px" }}>
               <ExloPrototype />
@@ -213,7 +213,7 @@ export default function ExloApp() {
           <div className="mc-section-inner">
             <h2 className="mc-section-title">The story doesn't end here.<br />Three more plugins have been shipped.</h2>
             <p className="mc-body-text" style={{ maxWidth: "62ch" }}>
-              Using Exlo to fix workflows opened my eyes to other critical gaps in digital production. In the same week, Figma approved three more plugins. They were all built with Claude Code and they all solve real issues that designers face every day.
+              Using Exlo to fix workflows opened my eyes to other critical gaps in digital production.<br />In the same week, Figma approved three more plugins.<br />They were all built with Claude Code and they all solve real issues that designers face every day.
             </p>
 
             <div className="exlo-plugin-grid">
@@ -222,7 +222,7 @@ export default function ExloApp() {
                 <img src={eximLogo} alt="EXIM" className="exlo-plugin-logo" />
                 <div className="exlo-plugin-card-top">
                   <span className="exlo-plugin-name">EXIM</span>
-                  <a href="https://lnkd.in/dCvr7qZS" target="_blank" rel="noopener noreferrer" className="exlo-plugin-link">
+                  <a href="https://www.figma.com/community/plugin/1675995155866903840/exim" target="_blank" rel="noopener noreferrer" className="exlo-plugin-link">
                     Try it
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
                       <path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -238,7 +238,7 @@ export default function ExloApp() {
                 <img src={typeScalaLogo} alt="Type Scala" className="exlo-plugin-logo" />
                 <div className="exlo-plugin-card-top">
                   <span className="exlo-plugin-name">Type Scala</span>
-                  <a href="https://lnkd.in/duEYSuqY" target="_blank" rel="noopener noreferrer" className="exlo-plugin-link">
+                  <a href="https://www.figma.com/community/plugin/1684309594972462121/type-scala" target="_blank" rel="noopener noreferrer" className="exlo-plugin-link">
                     Try it
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
                       <path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -254,7 +254,7 @@ export default function ExloApp() {
                 <img src={exleLogo} alt="EXLE" className="exlo-plugin-logo" />
                 <div className="exlo-plugin-card-top">
                   <span className="exlo-plugin-name">EXLE</span>
-                  <a href="https://lnkd.in/d2DRRBSH" target="_blank" rel="noopener noreferrer" className="exlo-plugin-link">
+                  <a href="https://www.figma.com/community/plugin/1676955397862753526/exle" target="_blank" rel="noopener noreferrer" className="exlo-plugin-link">
                     Try it
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
                       <path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
