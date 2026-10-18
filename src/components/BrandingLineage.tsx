@@ -1,19 +1,19 @@
 import { useState } from "react";
-import imgDuolingo from "../../assets/image-6.webp";
-import imgRevolut from "../../assets/image-8.webp";
-import imgElevate from "../../assets/image-10.webp";
-import imgNivins from "../../assets/nivins.png";
-import imgRabbit from "../../assets/rabbit-hole-1.png";
-import imgRaw from "../../assets/raw.png";
-import imgImagery01 from "../../assets/imagery-01.png";
-import imgImagery02 from "../../assets/imagery-02.png";
-import imgImagery03 from "../../assets/imagery-03.png";
-import imgTally from "../../assets/tally.png";
-import imgUnsplash from "../../assets/unsplash_2t0RSGjBJC0.png";
-import logoMcKinsey from "../../assets/McKinsey-logo.svg";
-import logoBain from "../../assets/Logo-Bain-and-Company.svg";
-import logoNuma from "../../assets/2024-numa-logo secundary white_vector 1.svg";
-import logoMca from "../../assets/MCA-Logo-and-slogan.svg";
+const imgDuolingo = "/image-6.webp";
+const imgRevolut = "/image-8.webp";
+const imgElevate = "/image-10.webp";
+const imgNivins = "/nivins.png";
+const imgRabbit = "/rabbit-hole-1.png";
+const imgRaw = "/raw.png";
+const imgImagery01 = "/imagery-01.png";
+const imgImagery02 = "/imagery-02.png";
+const imgImagery03 = "/imagery-03.png";
+const imgTally = "/tally.png";
+const imgUnsplash = "/unsplash_2t0RSGjBJC0.png";
+const logoMcKinsey = "/McKinsey-logo.svg";
+const logoBain = "/Logo-Bain-and-Company.svg";
+const logoNuma = "/numa-logo.svg";
+const logoMca = "/MCA-Logo-and-slogan.svg";
 
 const FONT = "'Author', system-ui, sans-serif";
 

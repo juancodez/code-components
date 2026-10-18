@@ -1,0 +1,355 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>pixel to app</title>
+<style>
+  * { margin: 0; padding: 0; }
+  body { background: #0a0a12; height: 100vh; overflow: hidden;
+         display: flex; align-items: center; justify-content: center; }
+  canvas { display: block; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+'use strict';
+
+const W = 1280, H = 720, DUR = 13;
+const BTN_W = 240, BTN_H = 64, BTN_R = 32;
+const BTN_X = (W - BTN_W) / 2, BTN_Y = (H - BTN_H) / 2;
+
+const c = document.getElementById('c');
+const ctx = c.getContext('2d');
+c.width = W; c.height = H;
+
+const fit = () => {
+  const k = Math.min(innerWidth / W, innerHeight / H);
+  c.style.width = W * k + 'px'; c.style.height = H * k + 'px';
+};
+fit(); addEventListener('resize', fit);
+
+const lerp  = (a, b, t) => a + (b - a) * t;
+const clamp = (x, lo = 0, hi = 1) => Math.max(lo, Math.min(hi, x));
+const smth  = (t, t0, t1) => { const x = clamp((t - t0) / (t1 - t0)); return x * x * (3 - 2 * x); };
+const eio   = (x) => x < .5 ? 4*x*x*x : 1 - Math.pow(-2*x+2,3)/2;
+
+// ── sparse code lines ─────────────────────────────────────────────
+const LINES = [
+  ['<p>Hello world</p>',            '#e06c75'],
+  ['<div className="app">',         '#e06c75'],
+  ['<button onClick={fn}>',         '#e06c75'],
+  ['<span>{label}</span>',          '#e06c75'],
+  ['</div>',                        '#e06c75'],
+  ['const [x, setX] = useState(0)','#79b8ff'],
+  ['export default function App()', '#79b8ff'],
+  ['import React from "react"',     '#79b8ff'],
+  ['return (',                      '#79b8ff'],
+  ['useEffect(() => {',             '#e5c07b'],
+  ['}, [deps])',                    '#e5c07b'],
+  ['interface Props {',             '#c586c0'],
+  ['type Status = "active"',        '#c586c0'],
+  ['display: "flex",',              '#98c379'],
+  ['color: "#00e5ff",',             '#98c379'],
+  ['// code-components',            '#637083'],
+  ['onClick={() => action()}',      '#c8d0e0'],
+  ['{children}',                    '#c8d0e0'],
+  ['...props',                      '#c8d0e0'],
+  ['"confirm"',                     '#e5c07b'],
+];
+
+// ── particles ─────────────────────────────────────────────────────
+const N = 1100;
+const TX = new Float32Array(N), TY = new Float32Array(N);
+const SX = new Float32Array(N), SY = new Float32Array(N);
+const CX = new Float32Array(N), CY = new Float32Array(N);
+const BX = new Float32Array(N), BY = new Float32Array(N);
+const FALL  = new Float32Array(N);
+const SIZE  = new Float32Array(N);
+const LIDX  = new Uint8Array(N);
+const THUE  = new Float32Array(N);
+const DEPTH = new Float32Array(N); // 1=bright, 0.55=mid, 0=skip-in-code
+
+function scatterPos() {
+  return [120 + Math.random() * (W - 240), 80 + Math.random() * (H - 160)];
+}
+
+function buildShapes() {
+  const pts = [];
+  [[300, 330, 130], [660, 200, 85], [980, 390, 110]].forEach(([cx2, cy, r]) => {
+    const n = Math.floor(r * .55);
+    for (let i = 0; i < n; i++) {
+      const a = (i / n) * Math.PI * 2;
+      pts.push([cx2 + Math.cos(a) * r, cy + Math.sin(a) * r]);
+    }
+  });
+  [[480, 310, 270, 150], [830, 240, 210, 110], [160, 470, 390, 90]].forEach(([rx, ry, rw, rh]) => {
+    const perim = 2 * (rw + rh), n = Math.floor(perim / 6);
+    for (let i = 0; i < n; i++) {
+      const d = (i / n) * perim;
+      let x, y;
+      if (d < rw)              { x = rx + d;              y = ry; }
+      else if (d < rw + rh)    { x = rx + rw;              y = ry + d - rw; }
+      else if (d < 2*rw + rh)  { x = rx + rw-(d-rw-rh);    y = ry + rh; }
+      else                     { x = rx;                   y = ry + rh-(d-2*rw-rh); }
+      pts.push([x, y]);
+    }
+  });
+  while (pts.length < N) pts.push(scatterPos());
+  return pts.slice(0, N);
+}
+
+function buildButton() {
+  const pts = [];
+  // perimeter walk
+  const perim = 2 * (BTN_W + BTN_H);
+  const nOut  = Math.floor(N * 0.58);
+  for (let i = 0; i < nOut; i++) {
+    const d = (i / nOut) * perim;
+    let x, y;
+    if (d < BTN_W)               { x = BTN_X + d;                   y = BTN_Y; }
+    else if (d < BTN_W + BTN_H)  { x = BTN_X + BTN_W;                y = BTN_Y + d - BTN_W; }
+    else if (d < 2*BTN_W + BTN_H){ x = BTN_X + BTN_W-(d-BTN_W-BTN_H); y = BTN_Y + BTN_H; }
+    else                         { x = BTN_X;                        y = BTN_Y + BTN_H-(d-2*BTN_W-BTN_H); }
+    pts.push([x, y]);
+  }
+  // inner glint line
+  for (let i = 0; i < 70; i++)
+    pts.push([BTN_X + BTN_W * .15 + (i / 70) * BTN_W * .7, BTN_Y + 3]);
+  // fill rest within button bounds
+  while (pts.length < N)
+    pts.push([BTN_X + 6 + Math.random() * (BTN_W - 12),
+              BTN_Y + 6 + Math.random() * (BTN_H - 12)]);
+  return pts.slice(0, N);
+}
+
+function init() {
+  const shapes = buildShapes();
+  const button = buildButton();
+  button.sort(() => Math.random() - .5);
+  const cols = 24;
+
+  for (let i = 0; i < N; i++) {
+    const [tx, ty] = scatterPos();
+    TX[i] = tx; TY[i] = ty;
+    SX[i] = shapes[i][0]; SY[i] = shapes[i][1];
+    CX[i] = (i % cols) / cols * W + W / cols * .5;
+    CY[i] = Math.random() * H;
+    BX[i] = button[i][0]; BY[i] = button[i][1];
+    FALL[i] = 40 + Math.random() * 90;
+    SIZE[i] = 1.1 + Math.random() * 1.5;
+    LIDX[i] = Math.floor(Math.random() * LINES.length);
+    THUE[i] = [168, 260, 200, 40][Math.floor(Math.random() * 4)];
+    const r = Math.random();
+    DEPTH[i] = r < .12 ? 1.0 : r < .24 ? 0.55 : 0.0; // 12% bright, 12% mid, 76% invisible
+  }
+}
+init();
+
+// ── shape outlines ─────────────────────────────────────────────────
+function drawShapeOutlines(blend, alpha) {
+  ctx.save();
+  ctx.globalAlpha = alpha * clamp((blend - .08) / .92) * .55;
+  ctx.lineWidth = 1.5;
+  [[300,330,130,'#00e5ff'],[660,200,85,'#b57bee'],[980,390,110,'#00e5ff']].forEach(([cx2,cy,r,col]) => {
+    ctx.shadowBlur = 18; ctx.shadowColor = col; ctx.strokeStyle = col;
+    ctx.beginPath(); ctx.arc(cx2, cy, r, 0, Math.PI*2); ctx.stroke();
+  });
+  [[480,310,270,150,'#e5c07b'],[830,240,210,110,'#b57bee'],[160,470,390,90,'#e06c75']].forEach(([rx,ry,rw,rh,col]) => {
+    ctx.shadowBlur = 14; ctx.shadowColor = col; ctx.strokeStyle = col;
+    ctx.beginPath(); ctx.roundRect(rx, ry, rw, rh, 10); ctx.stroke();
+  });
+  ctx.restore();
+}
+
+// ── glass button ───────────────────────────────────────────────────
+let confirmed = false;
+let confirmP  = 0;
+
+function drawButton(blend, cp) {
+  if (blend < .05) return;
+  ctx.save();
+  const a = clamp((blend - .05) / .95);
+
+  // width morphs from wide pill → circle as cp → 1
+  const bw = lerp(BTN_W, BTN_H, cp);
+  const ox = (W - bw) / 2, oy = BTN_Y;
+
+  // glass fill
+  const grd = ctx.createLinearGradient(ox, oy, ox, oy + BTN_H);
+  grd.addColorStop(0, `rgba(0,229,255,${lerp(.10, .22, cp)})`);
+  grd.addColorStop(1, `rgba(0,80,180,${lerp(.05, .12, cp)})`);
+  ctx.globalAlpha = a;
+  ctx.fillStyle = grd;
+  ctx.beginPath(); ctx.roundRect(ox, oy, bw, BTN_H, BTN_R); ctx.fill();
+
+  // border + glow
+  ctx.shadowBlur   = lerp(18, 40, cp);
+  ctx.shadowColor  = '#00e5ff';
+  ctx.strokeStyle  = `rgba(0,229,255,${lerp(.38, .88, cp)})`;
+  ctx.lineWidth    = 1.5;
+  ctx.beginPath(); ctx.roundRect(ox, oy, bw, BTN_H, BTN_R); ctx.stroke();
+  ctx.shadowBlur   = 0;
+
+  // top glint (glass highlight)
+  if (cp < .75) {
+    const ga = (1 - cp / .75) * .22;
+    const g2 = ctx.createLinearGradient(ox + bw*.1, 0, ox + bw*.9, 0);
+    g2.addColorStop(0,  'rgba(255,255,255,0)');
+    g2.addColorStop(.5, `rgba(255,255,255,${ga})`);
+    g2.addColorStop(1,  'rgba(255,255,255,0)');
+    ctx.fillStyle = g2;
+    ctx.fillRect(ox + bw*.05, oy + 2, bw*.9, 2);
+  }
+
+  // "Confirm" label
+  if (cp < .5) {
+    ctx.globalAlpha = a * (1 - cp * 2);
+    ctx.shadowBlur = 8; ctx.shadowColor = '#00e5ff';
+    ctx.fillStyle  = '#e0f8ff';
+    ctx.font = '600 15px "Cascadia Code","Fira Code",monospace';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('Confirm', W / 2, H / 2);
+    ctx.shadowBlur = 0;
+  }
+
+  // ✓ check
+  if (cp > .5) {
+    const ca = (cp - .5) * 2;
+    ctx.globalAlpha = a * ca;
+    ctx.shadowBlur = 16; ctx.shadowColor = '#00e5ff';
+    ctx.fillStyle  = '#00e5ff';
+    ctx.font = `bold ${Math.round(lerp(14, 28, ca))}px sans-serif`;
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('✓', W / 2, H / 2);
+    ctx.shadowBlur = 0;
+  }
+
+  ctx.restore();
+}
+
+// ── scanlines ─────────────────────────────────────────────────────
+function scanline(t) {
+  ctx.save();
+  ctx.globalAlpha = .012; ctx.fillStyle = '#000';
+  for (let y = 0; y < H; y += 4) ctx.fillRect(0, y, W, 1.5);
+  const sy = ((t * .28) % 1.2 - .1) * H;
+  if (sy > 0 && sy < H) {
+    ctx.globalAlpha = 1;
+    const g = ctx.createLinearGradient(0, sy-50, 0, sy+50);
+    g.addColorStop(0,  'rgba(0,229,255,0)');
+    g.addColorStop(.5, 'rgba(0,229,255,.02)');
+    g.addColorStop(1,  'rgba(0,229,255,0)');
+    ctx.fillStyle = g; ctx.fillRect(0, sy-50, W, 100);
+  }
+  ctx.restore();
+}
+
+// ── main frame ────────────────────────────────────────────────────
+function frame(t) {
+  const bShape  = smth(t, 2.0, 4.8);
+  const bCode   = smth(t, 4.8, 6.8);
+  const bBtn    = smth(t, 7.8, 11.5);
+  const codeVis = smth(t, 4.6, 6.0) * (1 - smth(t, 8.2, 10.0));
+
+  ctx.fillStyle = `rgba(10,10,18,${lerp(1, 0.07, codeVis)})`;
+  ctx.fillRect(0, 0, W, H);
+
+  if (bShape > .08 && bCode < .9) drawShapeOutlines(bShape, 1 - bCode);
+
+  ctx.save();
+  for (let i = 0; i < N; i++) {
+    const fallY = (CY[i] + FALL[i] * Math.max(0, t - 4.8)) % (H + 50) - 10;
+    let x, y;
+    if (bBtn > 0) {
+      x = lerp(CX[i], BX[i], bBtn);
+      y = lerp(fallY,  BY[i], bBtn);
+    } else if (bCode > 0) {
+      x = lerp(lerp(TX[i], SX[i], bShape), CX[i], bCode);
+      y = lerp(lerp(TY[i], SY[i], bShape), fallY,  bCode);
+    } else if (bShape > 0) {
+      x = lerp(TX[i], SX[i], bShape);
+      y = lerp(TY[i], SY[i], bShape);
+    } else {
+      x = TX[i]; y = TY[i];
+    }
+
+    const base = clamp(t * 2);
+    const isCode = codeVis > .25 && DEPTH[i] > 0.05;
+
+    if (isCode) {
+      const [line, col] = LINES[LIDX[i]];
+      ctx.globalAlpha = base * lerp(.12, .82, DEPTH[i]);
+      const fs = 9 + SIZE[i] * .65;
+      ctx.font = `${fs}px "Cascadia Code","Fira Code","Courier New",monospace`;
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      if (DEPTH[i] > .7) { ctx.shadowBlur = 5; ctx.shadowColor = col; }
+      else               { ctx.shadowBlur = 0; }
+      ctx.fillStyle = col;
+      ctx.fillText(line, x, y);
+    } else if (codeVis > .25 && DEPTH[i] <= 0.05) {
+      // invisible tracers during code phase — skip
+    } else {
+      // dot (pixel, shape, button phases)
+      const hue = THUE[i];
+      const col = bBtn > 0 ? '#00e5ff' : `hsl(${hue},88%,62%)`;
+      const dotA = base * (bBtn > 0 ? lerp(1, .18, eio(bBtn)) : 1);
+      ctx.globalAlpha = dotA;
+      ctx.shadowBlur  = bBtn > 0 ? 4 : 8 + bShape * 3;
+      ctx.shadowColor = col;
+      ctx.fillStyle   = col;
+      ctx.beginPath();
+      ctx.arc(x, y, SIZE[i] * (bShape > .4 ? 1.3 : 1), 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+  ctx.shadowBlur = 0; ctx.restore();
+
+  if (bBtn > .05) drawButton(bBtn, confirmP);
+  scanline(t);
+}
+
+// ── run ───────────────────────────────────────────────────────────
+let frozen = false;
+
+function draw(ts) {
+  const t = ts / 1000;
+  frame(Math.min(t, DUR));
+  if (t < DUR + .2) {
+    requestAnimationFrame(draw);
+  } else if (!frozen) {
+    frozen = true;
+    setupInteraction();
+  }
+}
+requestAnimationFrame(draw);
+
+function setupInteraction() {
+  c.addEventListener('mousemove', (e) => {
+    if (confirmed) return;
+    const r = c.getBoundingClientRect(), k = r.width / W;
+    const mx = (e.clientX - r.left) / k, my = (e.clientY - r.top) / k;
+    c.style.cursor = (mx >= BTN_X && mx <= BTN_X + BTN_W &&
+                      my >= BTN_Y && my <= BTN_Y + BTN_H) ? 'pointer' : 'default';
+  });
+
+  c.addEventListener('click', (e) => {
+    if (confirmed) return;
+    const r = c.getBoundingClientRect(), k = r.width / W;
+    const mx = (e.clientX - r.left) / k, my = (e.clientY - r.top) / k;
+    if (mx < BTN_X || mx > BTN_X + BTN_W || my < BTN_Y || my > BTN_Y + BTN_H) return;
+    confirmed = true;
+    c.style.cursor = 'default';
+    let t0 = null;
+    const animConfirm = (ts) => {
+      if (!t0) t0 = ts;
+      confirmP = Math.min(eio((ts - t0) / 600), 1);
+      frame(DUR);
+      if (confirmP < 1) requestAnimationFrame(animConfirm);
+    };
+    requestAnimationFrame(animConfirm);
+  });
+}
+</script>
+</body>
+</html>

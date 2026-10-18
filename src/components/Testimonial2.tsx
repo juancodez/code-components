@@ -1,7 +1,7 @@
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 import * as SeparatorPrimitive from "@radix-ui/react-separator";
 import { RiDoubleQuotesR } from "@remixicon/react";
-import shankarImg from "../assets/shankar.webp";
+const shankarImg = "/shankar.webp";
 
 const testimonial = {
   quote:
