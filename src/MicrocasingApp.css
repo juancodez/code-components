@@ -115,23 +115,24 @@
 
 .ba-row {
   display: grid;
-  grid-template-columns: minmax(140px, 180px) 1fr;
+  grid-template-columns: max-content 1fr;
   gap: 32px;
   align-items: center;
 }
 
 .ba-row-label {
   font-family: 'Author', system-ui, sans-serif;
-  font-size: clamp(1rem, 0.75rem + 1vw, 1.5rem);
+  font-size: 20px;
   font-weight: 500;
   color: #1d2939;
-  line-height: 1.4;
+  white-space: nowrap;
+  text-align: center;
 }
 
 .ba-row-img {
   max-width: 900px;
   margin-left: auto;
-  width: 100%;
+  width: 70%;
 }
 
 @media (max-width: 780px) {

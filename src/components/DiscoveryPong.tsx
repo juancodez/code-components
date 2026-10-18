@@ -5,7 +5,7 @@ const SIDE = 46;
 const PAD = { w: 10, h: 72, r: 5 };
 const BALL_R = 7;
 const GAME_H = H - 96;
-const BASE_SPEED = 5;
+const BASE_SPEED = 6;
 const GRID = 28;
 
 const QUESTIONS = [

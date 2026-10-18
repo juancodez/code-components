@@ -3,11 +3,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { Testimonial2 } from "./components/Testimonial2";
-import { CaseStudyNav } from "./components/CaseStudyNav";
 import { MetricsSection } from "./components/MetricsSection";
 import { DiscoveryPong } from "./components/DiscoveryPong";
 import { BrandingLineage } from "./components/BrandingLineage";
 import { BeforeAfter } from "./components/BeforeAfter";
+import { CaseStudyNav } from "./components/CaseStudyNav";
 const imgMcaLogo = "/MCA-Logo-and-slogan.svg";
 const imgVisualSystem = "/Case-Prompt-01.webp";
 const imgNavigation = "/Case-Prompt-02.webp";
@@ -27,6 +27,19 @@ const imgMca004Before = "/mca-004-00.webp";
 const imgMca004After = "/mca-004-01.webp";
 import "./App.css";
 import "./MicrocasingApp.css";
+
+const MC_SECTIONS = [
+  { id: "challenge",      label: "Challenge"      },
+  { id: "discovery",      label: "Discovery"      },
+  { id: "branding",       label: "Branding"       },
+  { id: "design-system",  label: "Design System"  },
+  { id: "difficulties",   label: "Difficulties"   },
+  { id: "before-after",   label: "Before & After" },
+  { id: "prototype",      label: "Prototype"      },
+  { id: "metrics",        label: "Metrics"        },
+  { id: "lessons",        label: "Lessons"        },
+  { id: "testimonial",    label: "Testimonial"    },
+];
 
 const CHALLENGE_ITEMS = [
   {
@@ -49,19 +62,6 @@ const CHALLENGE_ITEMS = [
   },
 ];
 
-const MC_SECTIONS = [
-  { id: "challenge",    label: "Challenge"     },
-  { id: "discovery",   label: "Discovery"     },
-  { id: "branding",    label: "Branding"      },
-  { id: "design-system",  label: "Design System"  },
-  { id: "difficulties",   label: "Difficulties"   },
-  { id: "before-after",  label: "Before & After" },
-  { id: "prototype",   label: "Prototype"     },
-  { id: "metrics",     label: "Metrics"       },
-  { id: "lessons",     label: "Lessons"       },
-  { id: "testimonial", label: "Testimonial"   },
-  { id: "links",       label: "Links"         },
-]
 
 export default function MicrocasingApp() {
   const [activeChallenge, setActiveChallenge] = useState(0);
@@ -82,7 +82,6 @@ export default function MicrocasingApp() {
         <Nav />
       </header>
       <CaseStudyNav sections={MC_SECTIONS} />
-
       <main className="mc-main" id="mc-top">
         <section className="mc-header">
           <h1 className="mc-title">
@@ -127,15 +126,13 @@ export default function MicrocasingApp() {
               <span className="mc-meta-value">Product Designer</span>
             </div>
             <div className="mc-meta-row">
+              <span className="mc-meta-label">Scope</span>
+              <span className="mc-meta-value">UX Strategy / Branding / UI Design / Design System</span>
+            </div>
+            <div className="mc-meta-row">
               <span className="mc-meta-label">Year</span>
               <span className="mc-meta-value">2026</span>
             </div>
-          </div>
-
-          <div className="mc-scope">
-            {["UX Strategy", "Branding", "UI Design", "Design System"].map(tag => (
-              <span key={tag} className="mc-scope-tag">{tag}</span>
-            ))}
           </div>
 
           <div className="mc-body">
@@ -148,6 +145,31 @@ export default function MicrocasingApp() {
               </p>
             </div>
             <img src={imgMcaLogo} alt="Micro-casing logo" className="mc-logo-img" />
+          </div>
+
+          <div className="mc-links-row">
+            <a
+              href="https://apps.apple.com/gb/app/micro-casing/id6754453873"
+              target="_blank"
+              rel="noreferrer"
+              className="mc-store-btn"
+            >
+              App Store
+              <svg width="10" height="10" viewBox="0 0 20.329 20.329" fill="none" aria-hidden="true" style={{ opacity: 0.4, flexShrink: 0 }}>
+                <path d="M 1.713 20.329 L 0 18.617 L 16.141 2.46 L 1.467 2.46 L 1.467 0 L 20.329 0 L 20.329 18.863 L 17.869 18.863 L 17.869 4.189 Z" fill="currentColor"/>
+              </svg>
+            </a>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.microcasing.dev"
+              target="_blank"
+              rel="noreferrer"
+              className="mc-store-btn"
+            >
+              Google Play Store
+              <svg width="10" height="10" viewBox="0 0 20.329 20.329" fill="none" aria-hidden="true" style={{ opacity: 0.4, flexShrink: 0 }}>
+                <path d="M 1.713 20.329 L 0 18.617 L 16.141 2.46 L 1.467 2.46 L 1.467 0 L 20.329 0 L 20.329 18.863 L 17.869 18.863 L 17.869 4.189 Z" fill="currentColor"/>
+              </svg>
+            </a>
           </div>
         </section>
 
@@ -415,36 +437,6 @@ export default function MicrocasingApp() {
           </div>
         </section>
 
-        {/* Links */}
-        <section className="mc-section" id="links">
-          <div className="mc-section-inner">
-            <h2 className="mc-section-title">This product is live</h2>
-            <div className="mc-links-row">
-              <a
-                href="https://apps.apple.com/gb/app/micro-casing/id6754453873"
-                target="_blank"
-                rel="noreferrer"
-                className="mc-store-btn"
-              >
-                App Store
-                <svg width="10" height="10" viewBox="0 0 20.329 20.329" fill="none" aria-hidden="true" style={{ opacity: 0.4, flexShrink: 0 }}>
-                  <path d="M 1.713 20.329 L 0 18.617 L 16.141 2.46 L 1.467 2.46 L 1.467 0 L 20.329 0 L 20.329 18.863 L 17.869 18.863 L 17.869 4.189 Z" fill="currentColor"/>
-                </svg>
-              </a>
-              <a
-                href="https://play.google.com/store/apps/details?id=com.microcasing.dev"
-                target="_blank"
-                rel="noreferrer"
-                className="mc-store-btn"
-              >
-                Google Play Store
-                <svg width="10" height="10" viewBox="0 0 20.329 20.329" fill="none" aria-hidden="true" style={{ opacity: 0.4, flexShrink: 0 }}>
-                  <path d="M 1.713 20.329 L 0 18.617 L 16.141 2.46 L 1.467 2.46 L 1.467 0 L 20.329 0 L 20.329 18.863 L 17.869 18.863 L 17.869 4.189 Z" fill="currentColor"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </section>
 
       </main>
 
