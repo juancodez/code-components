@@ -36,7 +36,7 @@ export default function ExloApp() {
 
           <video
             className="mc-hero-video"
-            src="/exlo-demo.mp4"
+            src="https://hfwprc33skjcbclm.public.blob.vercel-storage.com/exlo-demo.mp4"
             controls
             playsInline
           />
