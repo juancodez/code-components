@@ -2,7 +2,7 @@ import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { CaseStudyNav } from "./components/CaseStudyNav";
 import { ExloPrototype } from "./components/ExloPrototype";
-import eximLogo from "../assets/Exim-Logotype.svg";
+import eximLogo from "../assets/Exim-Signet-128px.png";
 import typeScalaLogo from "../assets/typescalalogo-128pxx128px.svg";
 import exleLogo from "../assets/Exle-Signet-128px.png";
 import "./App.css";
