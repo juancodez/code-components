@@ -34,16 +34,16 @@ export default function ExloApp() {
             From a Figma pain point to a published plugin: meet Exlo
           </h1>
 
-          <div className="mc-placeholder" style={{ aspectRatio: "16/9", borderRadius: "16px" }}>
-            <span className="mc-placeholder-label">Video coming soon</span>
-          </div>
+          <video
+            className="mc-hero-video"
+            src="/exlo-demo.mp4"
+            controls
+            playsInline
+          />
 
           <div className="mc-subtitle-block">
             <p className="mc-subtitle">
               Exlo is a Figma plugin that allows designers to export multiple frames at once in any format and size directly to a ZIP file.
-            </p>
-            <p className="mc-subtitle">
-              One click replaces a twenty-step process.
             </p>
           </div>
 
@@ -151,9 +151,9 @@ export default function ExloApp() {
         {/* ── Prototype ── */}
         <section className="mc-section" id="prototype">
           <div className="mc-section-inner">
-            <h2 className="mc-section-title">Give it a try: drag the frames, select the format and export.</h2>
+            <h2 className="mc-section-title">Give it a try: drag the frames, select the format and export</h2>
             <p className="mc-body-text" style={{ maxWidth: "62ch" }}>
-              This is the actual plugin interaction.<br />Select frames on the canvas (shift-click for multi-select), toggle the formats you need, then hit Export to see the ZIP flow in action.
+              This is the actual plugin interaction.<br />Select frames on the canvas (shift-click for multi-select),<br />toggle the formats you need, then hit Export to see the ZIP flow in action.
             </p>
             <div style={{ marginTop: "32px" }}>
               <ExloPrototype />
@@ -164,7 +164,7 @@ export default function ExloApp() {
         {/* ── Workshop ── */}
         <section className="mc-section" id="workshop">
           <div className="mc-section-inner">
-            <h2 className="mc-section-title">After shipping Exlo, I was invited to teach it</h2>
+            <h2 className="mc-section-title">After shipping Exlo, I was invited to teach how to build it</h2>
             <div className="yt-two-col">
               <div className="yt-two-col-text">
                 <p className="mc-body-text">
@@ -201,7 +201,7 @@ export default function ExloApp() {
               src="/exlo-01.png"
               alt="Exlo live in the Figma Community — Your resource is live"
               className="mc-challenge-img"
-              style={{ borderRadius: "12px", marginTop: "8px" }}
+              style={{ borderRadius: "12px", marginTop: "8px", border: "1px solid #e4e7ec" }}
             />
           </div>
         </section>

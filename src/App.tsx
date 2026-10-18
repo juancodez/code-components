@@ -48,7 +48,7 @@ function Hero() {
       </div>
       <div className="hero-about">
         <h1 className="hero-h1">From hypothesis to shipped product.</h1>
-        <p className="hero-body">My path goes from research to code.</p>
+        <p className="hero-body">Designing systems, exploring AI, and building from research to code.</p>
       </div>
     </section>
   );
