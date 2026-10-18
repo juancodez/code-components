@@ -57,15 +57,13 @@ export default function ExloApp() {
               <span className="mc-meta-value">Design Engineer</span>
             </div>
             <div className="mc-meta-row">
+              <span className="mc-meta-label">Scope</span>
+              <span className="mc-meta-value">Plugin Design / Figma API / TypeScript / Figma Community</span>
+            </div>
+            <div className="mc-meta-row">
               <span className="mc-meta-label">Year</span>
               <span className="mc-meta-value">2026</span>
             </div>
-          </div>
-
-          <div className="mc-scope">
-            {["Plugin Design", "Figma API", "TypeScript", "Figma Community"].map(tag => (
-              <span key={tag} className="mc-scope-tag">{tag}</span>
-            ))}
           </div>
 
           <div className="mc-body">
