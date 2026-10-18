@@ -39,6 +39,7 @@ export default function ExloApp() {
             src="https://hfwprc33skjcbclm.public.blob.vercel-storage.com/exlo-demo.mp4"
             controls
             playsInline
+            preload="none"
           />
 
           <div className="mc-subtitle-block">

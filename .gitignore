@@ -25,6 +25,6 @@ dist-ssr
 
 .vercel
 
-# Large video files (host externally)
-*.mp4
+# Large video files (host externally via Vercel Blob)
+public/exlo-demo.mp4
 assets/
