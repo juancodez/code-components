@@ -82,7 +82,7 @@ export default function AboutApp() {
             <Avatar />
           </div>
         </div>
-        <div className="hero-about">
+        <div className="hero-about" style={{ textAlign: "center", alignItems: "center" }}>
           <TextReveal
             as="p"
             className="hero-name"
