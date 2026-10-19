@@ -28,3 +28,4 @@ dist-ssr
 # Large video files (host externally via Vercel Blob)
 public/exlo-demo.mp4
 assets/
+.env*
