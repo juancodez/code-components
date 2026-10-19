@@ -67,7 +67,7 @@ function PostHero() {
           animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
           transition={{ duration: 0.4, delay: 0.35 }}
         >
-          These are interactive UI components built to explore motion, state and interaction.<br />Click around to discover the different interactions. Copy the code.
+          Click around to discover the different interactions.<br />These are interactive UI components built to explore motion, state and interaction. Copy the code.
         </motion.p>
       </div>
     </section>
