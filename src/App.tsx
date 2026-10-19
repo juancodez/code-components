@@ -3,7 +3,6 @@ import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { Avatar } from "./components/Avatar";
 import { TextReveal } from "./components/ui/text-reveal";
-import codeImg from "../assets/code.jpg";
 import "./App.css";
 
 type Project = { slug: string; bg: string; video?: string; gif?: string; title: string; subtitle: string };
@@ -94,7 +93,7 @@ function Hero() {
           <span className="abt-iref">
             implementing on code
             <div className="abt-iref-pop">
-              <img src={codeImg} alt="Code" className="abt-iref-img" />
+              <img src="/code.jpg" alt="Code" className="abt-iref-img" />
             </div>
           </span>
           .
