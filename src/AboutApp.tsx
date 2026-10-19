@@ -82,24 +82,24 @@ export default function AboutApp() {
             <Avatar />
           </div>
         </div>
-        <div className="hero-about" style={{ textAlign: "center", alignItems: "center" }}>
+        <div className="hero-about">
           <TextReveal
-            as="p"
-            className="hero-name"
+            as="h1"
+            className="hero-h1"
             per="word"
             preset="fade-in-blur"
             speedReveal={1.2}
           >
             Juan Gomez Vara
           </TextReveal>
-          <motion.p
-            className="hero-role"
+          <motion.h1
+            className="hero-h1"
             initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
             animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-            transition={{ duration: 0.4, delay: 0.3 }}
+            transition={{ duration: 0.4, delay: 0.35 }}
           >
             Product Designer who engineers.
-          </motion.p>
+          </motion.h1>
         </div>
       </section>
 

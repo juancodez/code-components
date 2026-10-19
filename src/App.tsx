@@ -60,14 +60,12 @@ function Hero() {
           animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
           transition={{ duration: 0.4, delay: 0.35 }}
         >
-          I'm a{" "}
           <span className="abt-iref">
-            product designer who engineers
+            Product Designer who engineers.
             <div className="abt-iref-pop">
               <img src="/github-contrib.png" alt="GitHub contribution graph" className="abt-iref-img" />
             </div>
           </span>
-          .
         </motion.h1>
         <motion.p
           className="hero-body"
