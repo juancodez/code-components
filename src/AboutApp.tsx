@@ -77,8 +77,8 @@ export default function AboutApp() {
         <Nav />
       </header>
       <section className="hero">
-        <div className="hero-header" style={{ alignItems: "flex-start", textAlign: "left" }}>
-          <div className="hero-identity" style={{ alignItems: "flex-start" }}>
+        <div className="hero-header">
+          <div className="hero-identity">
             <Avatar />
           </div>
         </div>
