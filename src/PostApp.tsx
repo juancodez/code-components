@@ -45,7 +45,7 @@ const CARDS = [
 
 function PostHero() {
   return (
-    <section className="hero">
+    <section className="hero post-hero">
       <div className="hero-header">
         <div className="hero-identity">
           <Avatar />
@@ -59,7 +59,7 @@ function PostHero() {
           preset="fade-in-blur"
           speedReveal={1.2}
         >
-          Labs
+          Design Engineering Labs
         </TextReveal>
         <motion.p
           className="hero-body"
@@ -67,7 +67,7 @@ function PostHero() {
           animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
           transition={{ duration: 0.4, delay: 0.35 }}
         >
-          These are interactive UI components built to explore motion, state and interaction. Click around to discover the different interactions. Copy the code.
+          These are interactive UI components built to explore motion, state and interaction.<br />Click around to discover the different interactions. Copy the code.
         </motion.p>
       </div>
     </section>

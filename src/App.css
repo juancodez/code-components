@@ -184,6 +184,9 @@
   font-family: inherit;
 }
 
+/* labs hero — match 480px tile card width */
+.post-hero { max-width: 528px; }
+
 /* hero inline-ref popups — smaller than the about page ones */
 .hero .abt-iref-pop { width: 200px; }
 
