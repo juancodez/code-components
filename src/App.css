@@ -184,12 +184,21 @@
   font-family: inherit;
 }
 
+/* hero inline-ref popups — smaller than the about page ones */
+.hero .abt-iref-pop { width: 200px; }
+
+/* text-reveal utilities */
+.tr-inline-block { display: inline-block; }
+.tr-block { display: block; }
+.tr-whitespace-pre { white-space: pre; }
+.tr-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
 /* about */
-.hero-about { display: flex; flex-direction: column; gap: 16px; }
+.hero-about { display: flex; flex-direction: column; gap: 16px; text-align: left; }
 .hero-h1 {
   font-size: 30px;
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 0.8;
   letter-spacing: -0.03em;
   color: #1d2939;
   margin: 0;

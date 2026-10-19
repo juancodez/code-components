@@ -1,5 +1,8 @@
+import { motion } from "framer-motion";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
+import { Avatar } from "./components/Avatar";
+import { TextReveal } from "./components/ui/text-reveal";
 import { CardStudioTile } from "./tiles/CardStudioTile";
 import { BalanceTile } from "./tiles/BalanceTile";
 import { ChecklistTile } from "./tiles/ChecklistTile";
@@ -9,16 +12,22 @@ import "./App.css";
 
 const CARDS = [
   {
-    slug: "card-studio",
-    title: "Card Studio",
-    description: "A configurable image card. Dial in corner radius, add a silver or gold border beam, and toggle 3D tilt — then copy the exact code for your settings.",
-    Tile: CardStudioTile,
+    slug: "model-picker",
+    title: "Model Picker",
+    description: "A provider-first model chooser. Rail on the left, search and list on the right, thinking-effort track along the bottom.",
+    Tile: ModelPickerTile,
   },
   {
     slug: "checklist",
     title: "Checklist",
     description: "A task completion component with physics-based fall animations. Items drop away on completion, giving each action satisfying weight.",
     Tile: ChecklistTile,
+  },
+  {
+    slug: "card-studio",
+    title: "Card Studio",
+    description: "A configurable image card. Dial in corner radius, add a silver or gold border beam, and toggle 3D tilt — then copy the exact code for your settings.",
+    Tile: CardStudioTile,
   },
   {
     slug: "balance",
@@ -32,19 +41,35 @@ const CARDS = [
     description: "A gooey toggle using spring-chased blending. Two states melt into each other rather than snapping.",
     Tile: LiquidToggleTile,
   },
-  {
-    slug: "model-picker",
-    title: "Model Picker",
-    description: "A provider-first model chooser. Rail on the left, search and list on the right, thinking-effort track along the bottom.",
-    Tile: ModelPickerTile,
-  },
 ];
 
 function PostHero() {
   return (
-    <section className="labs-hero">
-      <h1 className="labs-hero-title">Labs</h1>
-      <p className="labs-hero-desc">Interactive UI components — built to explore motion, state, and interaction.</p>
+    <section className="hero">
+      <div className="hero-header">
+        <div className="hero-identity">
+          <Avatar />
+        </div>
+      </div>
+      <div className="hero-about">
+        <TextReveal
+          as="h1"
+          className="hero-h1"
+          per="word"
+          preset="fade-in-blur"
+          speedReveal={1.2}
+        >
+          Labs
+        </TextReveal>
+        <motion.p
+          className="hero-body"
+          initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
+          animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+          transition={{ duration: 0.4, delay: 0.35 }}
+        >
+          These are interactive UI components built to explore motion, state and interaction. Click around to discover the different interactions. Copy the code.
+        </motion.p>
+      </div>
     </section>
   );
 }

@@ -4,6 +4,9 @@ import { viteSingleFile } from 'vite-plugin-singlefile'
 
 export default defineConfig({
   plugins: [react(), viteSingleFile()],
+  resolve: {
+    alias: { '@': `${import.meta.dirname}/src` },
+  },
   build: {
     assetsInlineLimit: 4 * 1024 * 1024,
   },

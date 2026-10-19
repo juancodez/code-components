@@ -1,6 +1,9 @@
+import { motion } from "framer-motion";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { Avatar } from "./components/Avatar";
+import { TextReveal } from "./components/ui/text-reveal";
+import codeImg from "../assets/code.jpg";
 import "./App.css";
 
 type Project = { slug: string; bg: string; video?: string; gif?: string; title: string; subtitle: string };
@@ -40,15 +43,62 @@ function Hero() {
       <div className="hero-header">
         <div className="hero-identity">
           <Avatar />
-          <div className="hero-name-block">
-            <span className="hero-name">Juan Gomez Vara</span>
-            <span className="hero-role">Product Designer who engineers.</span>
-          </div>
         </div>
       </div>
       <div className="hero-about">
-        <h1 className="hero-h1">From hypothesis to shipped product.</h1>
-        <p className="hero-body">Designing systems, exploring AI, and building from research to code.</p>
+        <TextReveal
+          as="h1"
+          className="hero-h1"
+          per="word"
+          preset="fade-in-blur"
+          speedReveal={1.2}
+        >
+          My name is Juan.
+        </TextReveal>
+        <motion.h1
+          className="hero-h1"
+          initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
+          animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+          transition={{ duration: 0.4, delay: 0.35 }}
+        >
+          I'm a{" "}
+          <span className="abt-iref">
+            product designer who engineers
+            <div className="abt-iref-pop">
+              <img src="/github-contrib.png" alt="GitHub contribution graph" className="abt-iref-img" />
+            </div>
+          </span>
+          .
+        </motion.h1>
+        <motion.p
+          className="hero-body"
+          initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
+          animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+          transition={{ duration: 0.4, delay: 0.55 }}
+        >
+          My path goes from the hypothesis to code.{" "}
+          <span className="abt-iref">
+            Designing systems
+            <div className="abt-iref-pop">
+              <img src="/design-system-mca.png" alt="MCA design system" className="abt-iref-img" />
+            </div>
+          </span>
+          , creating{" "}
+          <span className="abt-iref">
+            AI augmented workflows
+            <div className="abt-iref-pop">
+              <img src="/claude-cli.jpeg" alt="Claude Code CLI" className="abt-iref-img" />
+            </div>
+          </span>
+          {" "}and{" "}
+          <span className="abt-iref">
+            implementing on code
+            <div className="abt-iref-pop">
+              <img src={codeImg} alt="Code" className="abt-iref-img" />
+            </div>
+          </span>
+          .
+        </motion.p>
       </div>
     </section>
   );
