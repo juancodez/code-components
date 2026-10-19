@@ -1,8 +1,10 @@
 import { useCallback, useRef } from "react";
 import type { ReactNode } from "react";
+import { motion } from "framer-motion";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { Avatar } from "./components/Avatar";
+import { TextReveal } from "./components/ui/text-reveal";
 import { MusicPlayer } from "./sections/MusicPlayer";
 import { VideoDeck } from "./sections/VideoDeck";
 import { MediumCard } from "./sections/MediumCard";
@@ -75,14 +77,29 @@ export default function AboutApp() {
         <Nav />
       </header>
       <section className="hero">
-        <div className="hero-header">
-          <div className="hero-identity">
+        <div className="hero-header" style={{ alignItems: "flex-start", textAlign: "left" }}>
+          <div className="hero-identity" style={{ alignItems: "flex-start" }}>
             <Avatar />
-            <div className="hero-name-block">
-              <span className="hero-name">Juan Gomez Vara</span>
-              <span className="hero-role">Product Designer who engineers.</span>
-            </div>
           </div>
+        </div>
+        <div className="hero-about">
+          <TextReveal
+            as="p"
+            className="hero-name"
+            per="word"
+            preset="fade-in-blur"
+            speedReveal={1.2}
+          >
+            Juan Gomez Vara
+          </TextReveal>
+          <motion.p
+            className="hero-role"
+            initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
+            animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+          >
+            Product Designer who engineers.
+          </motion.p>
         </div>
       </section>
 
