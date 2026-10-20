@@ -272,7 +272,6 @@ export default function ExloApp() {
               className="mc-hero-video"
               src="https://hfwprc33skjcbclm.public.blob.vercel-storage.com/Exim-TypeScala-Exle.mp4"
               poster="/aprobado.png"
-              loop
               playsInline
               controls
               style={{ marginTop: "8px", border: "1px solid #f2f4f7" }}
