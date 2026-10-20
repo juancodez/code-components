@@ -5,7 +5,6 @@ import { ExloPrototype } from "./components/ExloPrototype";
 import eximLogo from "../assets/Exim-Signet-128px.png";
 import typeScalaLogo from "../assets/typescalalogo-128pxx128px.svg";
 import exleLogo from "../assets/Exle-Signet-128px.png";
-import eximTypeScalaExleVideo from "../assets/Exim-TypeScala-Exle.mp4";
 import "./App.css";
 import "./MicrocasingApp.css";
 
@@ -271,7 +270,7 @@ export default function ExloApp() {
 
             <video
               className="mc-hero-video"
-              src={eximTypeScalaExleVideo}
+              src="https://hfwprc33skjcbclm.public.blob.vercel-storage.com/Exim-TypeScala-Exle.mp4"
               loop
               playsInline
               controls
