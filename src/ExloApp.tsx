@@ -5,6 +5,7 @@ import { ExloPrototype } from "./components/ExloPrototype";
 import eximLogo from "../assets/Exim-Signet-128px.png";
 import typeScalaLogo from "../assets/typescalalogo-128pxx128px.svg";
 import exleLogo from "../assets/Exle-Signet-128px.png";
+import eximTypeScalaExleVideo from "../assets/Exim-TypeScala-Exle.mp4";
 import "./App.css";
 import "./MicrocasingApp.css";
 
@@ -268,9 +269,14 @@ export default function ExloApp() {
 
             </div>
 
-            <div className="mc-placeholder" style={{ aspectRatio: "16/9", borderRadius: "16px" }}>
-              <span className="mc-placeholder-label">Animation / video — coming soon</span>
-            </div>
+            <video
+              className="mc-hero-video"
+              src={eximTypeScalaExleVideo}
+              loop
+              playsInline
+              controls
+              style={{ marginTop: "8px", border: "1px solid #f2f4f7" }}
+            />
 
             <p className="mc-body-text" style={{ maxWidth: "62ch" }}>
               3 Figma plugin approvals in 7 days. As product designers, we have the power to build our own software solutions without technical barriers holding us back.
