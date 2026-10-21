@@ -30,6 +30,16 @@
   min-width: 0;
 }
 
+.tslider-card-row .tblock-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 380px;
+}
+
+.tslider-card-row .tblock-quote {
+  flex: 1;
+}
+
 .tslider-btn {
   display: flex;
   align-items: center;
