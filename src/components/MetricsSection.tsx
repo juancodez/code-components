@@ -5,19 +5,16 @@ const METRICS = [
     value: "+508%",
     label: "increase in new user acquisitions",
     platform: "App Store · between February 2026 and May 2026",
-    growth: "237 First-Time Downloads",
   },
   {
     value: "38",
     label: "Monthly Active Users",
     platform: "Google Play · last 28 days",
-    growth: "+65% MAU growth · 57 active devices, +25%",
   },
   {
     value: "2.84%",
     label: "Download-to-Paid Rate",
     platform: "Day 35 post-download conversion",
-    growth: "8 active subscription plans · +700% since launch",
   },
 ]
 
@@ -73,11 +70,10 @@ function useScramble(target: string, active: boolean, delay = 0) {
   return display
 }
 
-function MetricItem({ value, label, platform, growth, signal, animate, index }: {
+function MetricItem({ value, label, platform, animate, index }: {
   value: string
   label: string
   platform: string
-  growth: string
   animate: boolean
   index: number
 }) {
@@ -88,7 +84,6 @@ function MetricItem({ value, label, platform, growth, signal, animate, index }: 
       <p className="mc-metric-value">{display}</p>
       <p className="mc-metric-label">{label}</p>
       <p className="mc-metric-platform">{platform}</p>
-      <p className="mc-metric-growth">{growth}</p>
     </div>
   )
 }
