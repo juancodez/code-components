@@ -3,9 +3,10 @@ import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { Avatar } from "./components/Avatar";
 import { TextReveal } from "./components/ui/text-reveal";
+import { TestimonialSlider } from "./components/TestimonialSlider";
 import "./App.css";
 
-type Project = { slug: string; bg: string; video?: string; gif?: string; title: string; subtitle: string };
+type Project = { slug: string; bg: string; video?: string; gif?: string; videoFit?: "cover" | "contain"; title: string; subtitle: string; href?: string; hoverLabel?: string };
 
 const PROJECTS: Project[] = [
   {
@@ -18,8 +19,12 @@ const PROJECTS: Project[] = [
   {
     slug: "data-table",
     bg: "linear-gradient(145deg, #0f2027 0%, #203a43 55%, #2c5364 100%)",
-    title: "Data table: After 10,000 rows",
-    subtitle: "Where work actually happens, but nobody designs for it",
+    video: "/klaro.mp4",
+    videoFit: "contain",
+    href: "https://www.klaro-es.com",
+    hoverLabel: "Case study coming soon · Click to see the live product",
+    title: "Klaro AI Native live product I engineer to help Spanish-speaking freelancers in Germany file their tax declaration.",
+    subtitle: "Designed to save between €300 and €1,000 a year per user.",
   },
   {
     slug: "design-system",
@@ -115,21 +120,28 @@ export default function App() {
               {p.gif
                 ? <img className="project-video-wrap" src={p.gif} alt={p.title} />
                 : p.video
-                ? <video className="project-video-wrap" src={p.video} autoPlay loop muted playsInline />
+                ? <video className="project-video-wrap" src={p.video} autoPlay loop muted playsInline style={p.videoFit ? { objectFit: p.videoFit } : undefined} />
                 : <div className="project-video-wrap" style={{ background: p.bg }} />
               }
+              {p.hoverLabel && (
+                <div className="project-hover-overlay">
+                  <span className="project-hover-label">{p.hoverLabel}</span>
+                </div>
+              )}
               <div className="project-text">
                 <h2 className="project-title">{p.title}</h2>
                 <p className="project-sub">{p.subtitle}</p>
               </div>
             </>
           );
-          const href = p.slug === "hashbank" ? "microcasing.html"
+          const href = p.href
+            ?? (p.slug === "hashbank" ? "microcasing.html"
             : p.slug === "exlo" ? "exlo.html"
-            : `./projects/${p.slug}`;
-          return <a key={p.slug} className="project-card" href={href}>{inner}</a>;
+            : `./projects/${p.slug}`);
+          return <a key={p.slug} className="project-card" href={href} target={p.href ? "_blank" : undefined} rel={p.href ? "noopener noreferrer" : undefined}>{inner}</a>;
         })}
       </div>
+      <TestimonialSlider />
       <Footer />
     </div>
   );

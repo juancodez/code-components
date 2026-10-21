@@ -274,7 +274,7 @@ export default function ExloApp() {
               poster="/aprobado.png"
               playsInline
               controls
-              style={{ marginTop: "8px", border: "1px solid #f2f4f7" }}
+              style={{ marginTop: "8px", border: "1px solid #d0d5dd" }}
             />
 
             <p className="mc-body-text" style={{ maxWidth: "62ch" }}>

@@ -850,9 +850,21 @@
 /* Branding section */
 .mc-branding-body {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  max-width: 640px;
+  flex-direction: row;
+  gap: 32px;
+  width: 100%;
+}
+
+.mc-branding-body .mc-body-text {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 640px) {
+  .mc-branding-body {
+    flex-direction: column;
+    gap: 16px;
+  }
 }
 
 .mc-flip-row {
@@ -1244,7 +1256,6 @@
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  filter: grayscale(100%);
 }
 
 .tblock-avatar-fallback {

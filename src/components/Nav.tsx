@@ -1,4 +1,5 @@
 import { useState, useRef, useLayoutEffect } from "react";
+import { ThemeToggle } from "./ThemeToggle";
 
 const NAV_ITEMS = [
   { label: "Work",    href: "index.html"   },
@@ -51,25 +52,28 @@ export function Nav() {
   }, [targetIdx]);
 
   return (
-    <nav className="nav-bar" ref={navRef} aria-label="Main navigation">
-      {pill.ready && (
-        <span className="nav-pill" style={{ left: pill.left, width: pill.width }} aria-hidden="true" />
-      )}
-      {NAV_ITEMS.map((item, i) => (
-        <a
-          key={item.label}
-          ref={el => { itemRefs.current[i] = el; }}
-          href={item.href}
-          className={"nav-item" + (i === activeIdx ? " nav-item-active" : "")}
-          aria-current={i === activeIdx ? "page" : undefined}
-          onMouseEnter={() => setHoveredIdx(i)}
-          onMouseLeave={() => setHoveredIdx(null)}
-          onMouseDown={click}
-          onClick={() => setActiveIdx(i)}
-        >
-          {item.label}
-        </a>
-      ))}
-    </nav>
+    <>
+      <nav className="nav-bar" ref={navRef} aria-label="Main navigation">
+        {pill.ready && (
+          <span className="nav-pill" style={{ left: pill.left, width: pill.width }} aria-hidden="true" />
+        )}
+        {NAV_ITEMS.map((item, i) => (
+          <a
+            key={item.label}
+            ref={el => { itemRefs.current[i] = el; }}
+            href={item.href}
+            className={"nav-item" + (i === activeIdx ? " nav-item-active" : "")}
+            aria-current={i === activeIdx ? "page" : undefined}
+            onMouseEnter={() => setHoveredIdx(i)}
+            onMouseLeave={() => setHoveredIdx(null)}
+            onMouseDown={click}
+            onClick={() => setActiveIdx(i)}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+      <ThemeToggle />
+    </>
   );
 }
