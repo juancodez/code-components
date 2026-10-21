@@ -46,9 +46,9 @@ function PostIt({ vibe, inView }: { vibe: Vibe; inView: boolean }) {
         pointerEvents: "none",
         textAlign: "center",
       }}
-      initial={{ x: -340, rotate: VIBE_ROTATE[vibe] * 2, opacity: 0, scale: 0.9 }}
-      animate={inView ? { x: 0, rotate: VIBE_ROTATE[vibe], opacity: 1, scale: 1 } : {}}
-      transition={{ type: "spring", stiffness: 200, damping: 22, delay: 0 }}
+      initial={{ x: -340, rotate: -8, opacity: 0, scale: 0.9 }}
+      animate={inView ? { x: 0, rotate: 0, opacity: 1, scale: 1 } : {}}
+      transition={{ type: "spring", stiffness: 55, damping: 16, delay: 0 }}
     >
       {vibe === "hybrid" ? (
         <>
