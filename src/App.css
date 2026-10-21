@@ -1632,6 +1632,12 @@
 [data-theme="dark"] .mc-inline-link   { color: #60a5fa; }
 [data-theme="dark"] .mc-placeholder   { background: #1a2d44; }
 [data-theme="dark"] .mc-subtitle-block { border-color: rgba(148,175,210,0.08); }
+[data-theme="dark"] .mc-metrics-heading { color: #e2e8f4; }
+[data-theme="dark"] .mc-metrics-desc    { color: #8fa3be; }
+[data-theme="dark"] .mc-metric-value    { color: #e2e8f4; }
+[data-theme="dark"] .mc-metric-label    { color: #8fa3be; }
+[data-theme="dark"] .mc-metric-platform { color: #3a5470; }
+[data-theme="dark"] .ba-row-label       { color: #e2e8f4; }
 
 /* Case study nav */
 [data-theme="dark"] .cs-nav-wrap      { background: rgba(12,23,41,0.94); backdrop-filter: blur(12px); border-bottom-color: rgba(148,175,210,0.08); }
