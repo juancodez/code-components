@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+
 const imgDuolingo = "/image-6.webp";
 const imgRevolut = "/image-8.webp";
 const imgElevate = "/image-10.webp";
@@ -25,19 +27,29 @@ const VIBE_COLOR: Record<Vibe, string> = {
   hybrid: "#86EFAC",
 };
 
-function PostIt({ vibe }: { vibe: Vibe }) {
+const VIBE_ROTATE: Record<Vibe, number> = {
+  playful: -4,
+  corporate: 3,
+  hybrid: -2,
+};
+
+function PostIt({ vibe, inView }: { vibe: Vibe; inView: boolean }) {
   return (
-    <div style={{
-      position: "absolute",
-      top: 10,
-      right: 10,
-      zIndex: 10,
-      background: VIBE_COLOR[vibe],
-      padding: vibe === "hybrid" ? "8px 18px" : "7px 18px",
-      boxShadow: "3px 5px 12px rgba(0,0,0,0.24)",
-      pointerEvents: "none",
-      textAlign: "center",
-    }}>
+    <motion.div
+      style={{
+        position: "absolute",
+        top: 10,
+        right: 10,
+        zIndex: 10,
+        background: VIBE_COLOR[vibe],
+        padding: vibe === "hybrid" ? "8px 18px" : "7px 18px",
+        pointerEvents: "none",
+        textAlign: "center",
+      }}
+      initial={{ x: -340, rotate: VIBE_ROTATE[vibe] * 2, opacity: 0, scale: 0.9 }}
+      animate={inView ? { x: 0, rotate: VIBE_ROTATE[vibe], opacity: 1, scale: 1 } : {}}
+      transition={{ type: "spring", stiffness: 200, damping: 22, delay: 0 }}
+    >
       {vibe === "hybrid" ? (
         <>
           <div style={{ fontFamily: FONT, fontSize: 15, fontWeight: 700, color: "#1d2939", lineHeight: 1.4 }}>playful</div>
@@ -46,56 +58,44 @@ function PostIt({ vibe }: { vibe: Vibe }) {
       ) : (
         <span style={{ fontFamily: FONT, fontSize: 15, fontWeight: 700, color: "#1d2939" }}>{vibe}</span>
       )}
-    </div>
+    </motion.div>
   );
 }
 
-function Phone({ src, label, vibe }: { src: string; label: string; vibe: Vibe }) {
-  const [hovered, setHovered] = useState(false);
+function Phone({ src, label, vibe, inView }: { src: string; label: string; vibe: Vibe; inView: boolean }) {
   return (
     <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}>
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          aspectRatio: "9/16",
-          borderRadius: 16,
-          backgroundImage: `url(${src})`,
-          backgroundSize: "contain",
-          backgroundPosition: "center",
-          backgroundColor: "#f8f9fa",
-          boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
-          overflow: "hidden",
-        }}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-      >
-        {hovered && <PostIt vibe={vibe} />}
+      <div style={{
+        position: "relative",
+        width: "100%",
+        aspectRatio: "9/16",
+        borderRadius: 16,
+        backgroundImage: `url(${src})`,
+        backgroundSize: "contain",
+        backgroundPosition: "center",
+        backgroundColor: "#f8f9fa",
+        overflow: "hidden",
+      }}>
+        <PostIt vibe={vibe} inView={inView} />
       </div>
       <span style={{ fontFamily: FONT, fontSize: 14, color: "#667085" }}>{label}</span>
     </div>
   );
 }
 
-function Photo({ src, label, vibe }: { src: string; label?: string; vibe: Vibe }) {
-  const [hovered, setHovered] = useState(false);
+function Photo({ src, label, vibe, inView }: { src: string; label?: string; vibe: Vibe; inView: boolean }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          aspectRatio: "5/4",
-          borderRadius: 8,
-          backgroundImage: `url(${src})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          boxShadow: "0 4px 16px rgba(0,0,0,0.12)",
-        }}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-      >
-        {hovered && <PostIt vibe={vibe} />}
+      <div style={{
+        position: "relative",
+        width: "100%",
+        aspectRatio: "5/4",
+        borderRadius: 8,
+        backgroundImage: `url(${src})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}>
+        <PostIt vibe={vibe} inView={inView} />
       </div>
       {label && <span style={{ fontFamily: FONT, fontSize: 14, color: "#667085" }}>{label}</span>}
     </div>
@@ -117,8 +117,11 @@ function SectionHead({ children }: { children: string }) {
 }
 
 export function BrandingLineage() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
   return (
-    <div style={{
+    <div ref={ref} style={{
       width: "100%",
       background: "#fff",
       border: "1px solid #e4e7ec",
@@ -139,19 +142,19 @@ export function BrandingLineage() {
           <div>
             <SectionHead>Competitors</SectionHead>
             <div style={{ display: "flex", gap: 24 }}>
-              <Phone src={imgDuolingo} label="Duolingo" vibe="playful" />
-              <Phone src={imgRevolut} label="Revolut"  vibe="corporate" />
-              <Phone src={imgElevate} label="Elevate"  vibe="playful" />
+              <Phone src={imgDuolingo} label="Duolingo" vibe="playful"   inView={inView} />
+              <Phone src={imgRevolut}  label="Revolut"  vibe="corporate" inView={inView} />
+              <Phone src={imgElevate}  label="Elevate"  vibe="playful"   inView={inView} />
             </div>
           </div>
 
           <div>
             <SectionHead>Imagery</SectionHead>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, padding: "0 12%" }}>
-              <Photo src={imgImagery01} vibe="corporate" />
-              <Photo src={imgImagery02} vibe="corporate" />
-              <Photo src={imgImagery03} vibe="corporate" />
-              <Photo src={imgUnsplash}  vibe="corporate" />
+              <Photo src={imgImagery01} vibe="corporate" inView={inView} />
+              <Photo src={imgImagery02} vibe="corporate" inView={inView} />
+              <Photo src={imgImagery03} vibe="corporate" inView={inView} />
+              <Photo src={imgUnsplash}  vibe="corporate" inView={inView} />
             </div>
           </div>
         </div>
@@ -174,7 +177,6 @@ export function BrandingLineage() {
                 <img src={logoBain} alt="Bain" style={{ maxWidth: "100%", height: 52, objectFit: "contain" }} />
               </div>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                {/* ponytail: invert Numa since the SVG is a white-only version */}
                 <img src={logoNuma} alt="Numa" style={{ maxWidth: "100%", height: 52, objectFit: "contain", filter: "invert(1)" }} />
               </div>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -186,10 +188,10 @@ export function BrandingLineage() {
           <div>
             <SectionHead>Illustrations</SectionHead>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, padding: "0 12%" }}>
-              <Photo src={imgRabbit} label="Rabbit hole" vibe="playful" />
-              <Photo src={imgNivins} label="Nivins"      vibe="playful" />
-              <Photo src={imgRaw}    label="Raw"         vibe="playful" />
-              <Photo src={imgTally}  label="Tally"       vibe="playful" />
+              <Photo src={imgRabbit} label="Rabbit hole" vibe="playful" inView={inView} />
+              <Photo src={imgNivins} label="Nivins"      vibe="playful" inView={inView} />
+              <Photo src={imgRaw}    label="Raw"         vibe="playful" inView={inView} />
+              <Photo src={imgTally}  label="Tally"       vibe="playful" inView={inView} />
             </div>
           </div>
         </div>

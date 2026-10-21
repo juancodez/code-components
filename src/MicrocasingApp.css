@@ -778,6 +778,8 @@
   position: relative;
   width: 100%;
   cursor: none;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .mc-magnifier {
@@ -796,6 +798,12 @@
   width: 100%;
   height: auto;
   display: block;
+  border-radius: 12px;
+  border: 1px solid #e4e7ec;
+}
+
+[data-theme="dark"] .mc-challenge-img {
+  border-color: rgba(148,175,210,0.14);
 }
 
 
@@ -850,21 +858,9 @@
 /* Branding section */
 .mc-branding-body {
   display: flex;
-  flex-direction: row;
-  gap: 32px;
-  width: 100%;
-}
-
-.mc-branding-body .mc-body-text {
-  flex: 1;
-  min-width: 0;
-}
-
-@media (max-width: 640px) {
-  .mc-branding-body {
-    flex-direction: column;
-    gap: 16px;
-  }
+  flex-direction: column;
+  gap: 16px;
+  max-width: 760px;
 }
 
 .mc-flip-row {
