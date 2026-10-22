@@ -183,9 +183,14 @@ export default function ExloApp() {
                 style={{ borderRadius: "12px" }}
               />
             </div>
-            <div className="mc-placeholder" style={{ aspectRatio: "16/9", borderRadius: "16px", marginTop: "24px" }}>
-              <span className="mc-placeholder-label">Workshop recording — coming soon</span>
-            </div>
+            <video
+              className="mc-hero-video"
+              src="https://hfwprc33skjcbclm.public.blob.vercel-storage.com/juan-taller.mp4"
+              controls
+              playsInline
+              preload="none"
+              style={{ marginTop: "24px", borderRadius: "16px", border: "1px solid #d0d5dd" }}
+            />
           </div>
         </section>
 

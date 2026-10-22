@@ -6,7 +6,7 @@ import { TextReveal } from "./components/ui/text-reveal";
 import { TestimonialSlider } from "./components/TestimonialSlider";
 import "./App.css";
 
-type Project = { slug: string; bg: string; video?: string; gif?: string; videoFit?: "cover" | "contain"; title: string; subtitle: string; href?: string; hoverLabel?: string };
+type Project = { slug: string; bg: string; video?: string; gif?: string; videoFit?: "cover" | "contain"; poster?: string; title: string; subtitle: string; href?: string; hoverLabel?: string };
 
 const PROJECTS: Project[] = [
   {
@@ -29,6 +29,8 @@ const PROJECTS: Project[] = [
   {
     slug: "design-system",
     bg: "linear-gradient(145deg, #1a0533 0%, #3b1054 55%, #7c3aed 100%)",
+    video: "https://hfwprc33skjcbclm.public.blob.vercel-storage.com/juan-taller.mp4",
+    poster: "/publish-04-04.png",
     title: "Design system: how we redesigned a live bank without breaking it",
     subtitle: "The invisible work that made hashbank possible",
   },
@@ -120,7 +122,7 @@ export default function App() {
               {p.gif
                 ? <img className="project-video-wrap" src={p.gif} alt={p.title} />
                 : p.video
-                ? <video className="project-video-wrap" src={p.video} autoPlay loop muted playsInline style={p.videoFit ? { objectFit: p.videoFit } : undefined} />
+                ? <video className="project-video-wrap" src={p.video} poster={p.poster} autoPlay loop muted playsInline style={p.videoFit ? { objectFit: p.videoFit } : undefined} />
                 : <div className="project-video-wrap" style={{ background: p.bg }} />
               }
               {p.hoverLabel && (
