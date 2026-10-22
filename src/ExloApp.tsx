@@ -184,13 +184,13 @@ export default function ExloApp() {
               />
             </div>
             <video
-              className="mc-hero-video"
+              className="mc-hero-video mc-workshop-video"
               src="https://hfwprc33skjcbclm.public.blob.vercel-storage.com/juan-taller.mp4"
               poster="/publish-04-04.png"
               controls
               playsInline
               preload="none"
-              style={{ marginTop: "24px", borderRadius: "16px", border: "1px solid #d0d5dd" }}
+              style={{ marginTop: "24px" }}
             />
           </div>
         </section>

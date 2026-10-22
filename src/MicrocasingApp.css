@@ -806,6 +806,15 @@
   border-color: rgba(148,175,210,0.14);
 }
 
+.mc-workshop-video {
+  border-radius: 16px;
+  border: 1px solid #d0d5dd;
+}
+
+[data-theme="dark"] .mc-workshop-video {
+  border: none;
+}
+
 
 .mc-discovery-btn {
   display: inline-flex;
