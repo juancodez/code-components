@@ -186,6 +186,7 @@ export default function ExloApp() {
             <video
               className="mc-hero-video"
               src="https://hfwprc33skjcbclm.public.blob.vercel-storage.com/juan-taller.mp4"
+              poster="/publish-04-04.png"
               controls
               playsInline
               preload="none"
