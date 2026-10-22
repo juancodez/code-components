@@ -200,7 +200,7 @@ export default function ExloApp() {
           <div className="mc-section-inner">
             <h2 className="mc-section-title">Shipping to the Figma Community taught me to read the rules first</h2>
             <p className="mc-body-text" style={{ maxWidth: "62ch" }}>
-              The Figma Community review process has strict validation. The first rejection came from an undeclared <code style={{ fontFamily: "monospace", fontSize: "0.9em", background: "#f4f4f4", padding: "1px 5px", borderRadius: "4px" }}>networkAccess</code> field in the manifest — a two-line fix that took 48 hours of review turnaround to discover.
+              The Figma Community review process has strict validation. The first rejection came from an undeclared <code style={{ fontFamily: "monospace", fontSize: "0.9em", padding: "1px 5px", borderRadius: "4px" }}>networkAccess</code> field in the manifest — a two-line fix that took 48 hours of review turnaround to discover.
             </p>
             <p className="mc-body-text" style={{ maxWidth: "62ch" }}>
               The submission rules are non-obvious and underdocumented. I now keep a pre-submission checklist that covers every manifest field before each new plugin submission. Read the checklist before writing a single line of code.
