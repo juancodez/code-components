@@ -304,6 +304,18 @@ export default function ExloApp() {
             <p className="mc-body-text" style={{ maxWidth: "62ch" }}>
               3 Figma plugin approvals in 7 days. As product designers, we have the power to build our own software solutions without technical barriers holding us back.
             </p>
+            <a
+              href="https://www.figma.com/@juangomezvara"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mc-inline-link"
+              style={{ display: "inline-flex", alignItems: "center", gap: "6px", marginTop: "8px" }}
+            >
+              Visit all plugins
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                <path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
           </div>
         </section>
 

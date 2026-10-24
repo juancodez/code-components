@@ -3,11 +3,14 @@
   border-top: 1px solid #f2f4f7;
   display: flex;
   justify-content: center;
+  padding: 0 40px;
+  box-sizing: border-box;
 }
 
 .tslider-inner {
-  width: 75%;
-  padding: 60px 0;
+  width: 100%;
+  max-width: 860px;
+  padding: 60px 40px;
   display: flex;
   flex-direction: column;
   gap: 20px;

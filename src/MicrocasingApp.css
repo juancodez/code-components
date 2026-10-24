@@ -1080,9 +1080,9 @@
   transition: border-color 400ms ease, box-shadow 400ms ease, background 400ms ease;
 }
 .exlo-plugin-card:hover {
-  border-color: #e2e4e8;
-  background: #fafafa;
-  box-shadow: 0 2px 10px rgba(180, 185, 200, 0.1);
+  border-color: #d0d5dd;
+  background: #f8f9fa;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
 .exlo-plugin-card-top {
@@ -1134,8 +1134,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-  align-items: center;
-  margin-top: 8px;
+  align-items: start;
 }
 
 .yt-two-col-text {

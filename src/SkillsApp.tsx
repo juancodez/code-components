@@ -194,7 +194,7 @@ const techProps = {
   strokeWidth: 1.5,
   bounce: 0.4,
   selection: true,
-  labels: false,
+  labels: true,
   color: "currentColor",
   align: "center" as const,
   draggable: true,
