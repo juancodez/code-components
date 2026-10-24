@@ -13,12 +13,6 @@ const testimonial = {
   linkedIn: "https://www.linkedin.com/in/shankarananth8/",
 };
 
-const metrics = [
-  { value: "+508%", label: "user acquisitions" },
-  { value: "2.84%", label: "conversion rate" },
-  { value: "4 wks", label: "sprint delivery" },
-];
-
 export function Testimonial2() {
   return (
     <div className="tblock-wrap">
@@ -60,14 +54,6 @@ export function Testimonial2() {
             </div>
           </div>
 
-          <div className="tblock-metrics">
-            {metrics.map((m) => (
-              <div key={m.label} className="tblock-metric">
-                <span className="tblock-metric-value">{m.value}</span>
-                <span className="tblock-metric-label">{m.label}</span>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </div>
