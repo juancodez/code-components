@@ -3,6 +3,7 @@ import { Footer } from "./components/Footer";
 import { CaseStudyNav } from "./components/CaseStudyNav";
 import { ExloPrototype } from "./components/ExloPrototype";
 import eximLogo from "../assets/Exim-Signet-128px.png";
+import juanTaller02 from "../assets/juan-taller-02.mp4";
 import typeScalaLogo from "../assets/typescalalogo-128pxx128px.svg";
 import exleLogo from "../assets/Exle-Signet-128px.png";
 import "./App.css";
@@ -186,7 +187,7 @@ export default function ExloApp() {
             </div>
             <video
               className="mc-hero-video mc-workshop-video"
-              src="https://hfwprc33skjcbclm.public.blob.vercel-storage.com/juan-taller.mp4"
+              src={juanTaller02}
               poster="/publish-04-04.png"
               controls
               playsInline
