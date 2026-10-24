@@ -6,7 +6,8 @@ import { Avatar } from "./components/Avatar";
 import TechText from "./components/TechText/TechText";
 import agentsClaudeImg from "../assets/agents-claude.jpg";
 import vibePlanImg from "../assets/vibe-plan-01.webp";
-import claudeSeniorImg from "../assets/figma-claude-code.jpg";
+import claudeSeniorImg from "../assets/claude-senior-01.jpg";
+import figmaClaudeImg from "../assets/figma-claude-01.png";
 import "./App.css";
 import "./SkillsApp.css";
 
@@ -17,6 +18,7 @@ type Skill = {
   description: string;
   gradient: string;
   image?: string;
+  imageFit?: "cover" | "contain";
   installCmd: string;
   githubUrl?: string;
 };
@@ -29,7 +31,7 @@ const SKILLS: Skill[] = [
     description: "A collection of tools and workflows designed to improve and automate market analysis and benchmarking for UX research.",
     gradient: "linear-gradient(145deg, #1a1a1a 0%, #2a2a2a 100%)",
     image: agentsClaudeImg,
-    installCmd: "npx @juangv/skills install ux-research-orchestra",
+    installCmd: "npx skills add https://github.com/juancodez/SKILLS --skill ux-research-orchestra",
     githubUrl: "https://github.com/juancodez/UX-Research-Orchestra-Markt-Phase-1",
   },
   {
@@ -39,25 +41,27 @@ const SKILLS: Skill[] = [
     description: "Plan everything before touching code. Exec plan → tech plan → ordered .md specs → CLAUDE.md guardrails → phased builds. The more you plan, the less you fix.",
     gradient: "linear-gradient(145deg, #0f2027 0%, #203a43 55%, #2c5364 100%)",
     image: vibePlanImg,
-    installCmd: "npx @juangv/skills install vibe-plan",
+    installCmd: "npx skills add https://github.com/juancodez/SKILLS --skill vibe-plan",
   },
   {
     slug: "figma-plugin-publisher",
     title: "Figma Plugin Publisher",
     category: "Design Ops",
-    description: "A Claude Code skill for debugging, fixing, and resubmitting Figma Community plugins. Built from real rejections — updated each time a new pattern is discovered.",
+    description: "A Claude Code skill for debugging, fixing, and resubmitting Figma Community plugins. Built from real rejections, updated each time a new pattern is discovered.",
     gradient: "linear-gradient(145deg, #0a1628 0%, #1a3a5c 55%, #2563eb 100%)",
-    installCmd: "npx @juangv/skills install figma-plugin-publisher",
+    image: figmaClaudeImg,
+    imageFit: "contain",
+    installCmd: "npx skills add https://github.com/juancodez/SKILLS --skill figma-plugin-publisher",
     githubUrl: "https://github.com/juancodez/SKILLS/tree/main/figma-plugin-publisher",
   },
   {
     slug: "senior-eye",
     title: "Senior Eye",
     category: "UI Design Review",
-    description: "Hiring-bar design critique. Runs the Visual Layer (Refactoring UI) + Judgment Layer (KTP) checklist on your screens — highest-impact fix first, no flattery.",
+    description: "Hiring-bar design critique. Runs the Visual Layer (Refactoring UI) + Judgment Layer (KTP) checklist on your screens. Highest-impact fix first, no flattery.",
     gradient: "linear-gradient(145deg, #1a0f0a 0%, #3d1a0c 55%, #c05621 100%)",
     image: claudeSeniorImg,
-    installCmd: "npx @juangv/skills install senior-eye",
+    installCmd: "npx skills add https://github.com/juancodez/SKILLS --skill senior-eye",
     githubUrl: "https://github.com/juancodez/SKILLS/tree/main/senior-eye",
   },
 ];
@@ -92,7 +96,7 @@ function SkillCard({ skill }: { skill: Skill }) {
       <div className="skill-card-front">
         <div className="skill-cover">
           {skill.image
-            ? <img className="skill-cover-img" src={skill.image} alt={skill.title} />
+            ? <img className="skill-cover-img" src={skill.image} alt={skill.title} style={{ objectFit: skill.imageFit ?? "cover" }} />
             : <div className="skill-cover-gradient" style={{ background: skill.gradient }} />
           }
         </div>
@@ -160,9 +164,9 @@ function GettingStarted() {
     <div className="gs-section">
       <h2 className="gs-title">Getting Started with Claude Code</h2>
       <p className="gs-body">Install Claude Code skills directly to your project using npx:</p>
-      <CopyBlock cmd="npx @juangv/skills" />
+      <CopyBlock cmd="npx skills add https://github.com/juancodez/SKILLS" />
       <p className="gs-body gs-body--sm">Or install a specific skill:</p>
-      <CopyBlock cmd="npx @juangv/skills install senior-eye" />
+      <CopyBlock cmd="npx skills add https://github.com/juancodez/SKILLS --skill senior-eye" />
     </div>
   );
 }
