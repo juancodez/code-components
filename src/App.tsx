@@ -11,13 +11,6 @@ type Project = { slug: string; bg: string; video?: string; gif?: string; videoFi
 
 const PROJECTS: Project[] = [
   {
-    slug: "hashbank",
-    bg: "linear-gradient(145deg, #0f172a 0%, #1e3a5f 60%, #2563eb 100%)",
-    video: "/mca-thumbnail.mp4",
-    title: "Micro-casing Edtech app helping aspiring consultants land a spot at Mckinsey or Bain.",
-    subtitle: "The Redesign drove 508% growth",
-  },
-  {
     slug: "data-table",
     bg: "linear-gradient(145deg, #0f2027 0%, #203a43 55%, #2c5364 100%)",
     video: "/klaro.mp4",
@@ -30,8 +23,15 @@ const PROJECTS: Project[] = [
   {
     slug: "design-system",
     bg: "linear-gradient(145deg, #1a0533 0%, #3b1054 55%, #7c3aed 100%)",
-    title: "Design system: how we redesigned a live bank without breaking it",
+    title: "How I built a Design System Multibrand",
     subtitle: "The invisible work that made hashbank possible",
+  },
+  {
+    slug: "hashbank",
+    bg: "linear-gradient(145deg, #0f172a 0%, #1e3a5f 60%, #2563eb 100%)",
+    video: "/mca-thumbnail.mp4",
+    title: "Micro-casing Edtech app helping aspiring consultants land a spot at Mckinsey or Bain.",
+    subtitle: "The Redesign drove 508% growth",
   },
   {
     slug: "exlo",
