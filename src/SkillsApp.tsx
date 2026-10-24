@@ -4,8 +4,6 @@ import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { Avatar } from "./components/Avatar";
 import TechText from "./components/TechText/TechText";
-import figmaClaudeImg from "../assets/figma-claude.png";
-import agentsClaudeImg from "../assets/agents-claude.jpg";
 import "./App.css";
 import "./SkillsApp.css";
 
@@ -26,7 +24,6 @@ const SKILLS: Skill[] = [
     category: "Research",
     description: "7-agent market research pipeline: Scout → Profiler → Quant → Benchmarker → Comparative → Hypothesis → Report.",
     gradient: "linear-gradient(145deg, #1a1a1a 0%, #2a2a2a 100%)",
-    image: agentsClaudeImg,
     installCmd: "npx @juangv/skills install ux-research-orchestra",
   },
   {
@@ -67,7 +64,6 @@ const SKILLS: Skill[] = [
     category: "Figma",
     description: "Debug and fix Figma Community plugin rejections. Covers missing files, encoding issues, undefined globals, and pre-submission checklist.",
     gradient: "linear-gradient(145deg, #1a1a1a 0%, #2a2a2a 100%)",
-    image: figmaClaudeImg,
     installCmd: "npx @juangv/skills install figma-plugin-publisher",
   },
 ];
