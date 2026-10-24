@@ -4,6 +4,7 @@ import { Footer } from "./components/Footer";
 import { Avatar } from "./components/Avatar";
 import { TextReveal } from "./components/ui/text-reveal";
 import { TestimonialSlider } from "./components/TestimonialSlider";
+import TechText from "./components/TechText/TechText";
 import "./App.css";
 
 type Project = { slug: string; bg: string; video?: string; gif?: string; videoFit?: "cover" | "contain"; poster?: string; title: string; subtitle: string; href?: string; hoverLabel?: string };
@@ -43,7 +44,53 @@ const PROJECTS: Project[] = [
   },
 ];
 
+function FigmaCursor() {
+  return (
+    <span className="figma-push-wrap" aria-hidden="true">
+      <svg className="figma-push-cursor" width="15" height="18" viewBox="0 0 11 13">
+        <path d="M0 0L11 6.5L6 8L3.5 13L0 0Z" />
+      </svg>
+      <span className="figma-push-sq" />
+    </span>
+  );
+}
+
+function GreenPixel() {
+  return (
+    <span className="green-px-wrap" aria-hidden="true">
+      <span className="green-px" />
+    </span>
+  );
+}
+
 function Hero() {
+  const techProps = {
+    fontWeight: 600 as const,
+    fontSize: 140,
+    reveal: "letter" as const,
+    dashLength: 4,
+    dashGap: 2,
+    specks: 10,
+    clickKick: true,
+    guides: false,
+    letterSpacing: 0.04,
+    accentColor: "currentColor",
+    reach: 180,
+    softness: 0.7,
+    lineStyle: "dashed" as const,
+    strokeWidth: 1.5,
+    bounce: 0.4,
+    selection: true,
+    labels: false,
+    color: "currentColor",
+    align: "center" as const,
+    draggable: true,
+    sweep: true,
+    speed: 0.7,
+    intro: "type" as const,
+    introDuration: 2.4,
+  };
+
   return (
     <section className="hero">
       <div className="hero-header">
@@ -59,49 +106,23 @@ function Hero() {
           preset="fade-in-blur"
           speedReveal={1.2}
         >
-          My name is Juan.
+          Hi I'm Juan,
         </TextReveal>
-        <motion.h1
-          className="hero-h1"
-          initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
-          animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-          transition={{ duration: 0.4, delay: 0.35 }}
-        >
-          <span className="abt-iref">
-            Product Designer who engineers.
-            <div className="abt-iref-pop">
-              <img src="/github-contrib.png" alt="GitHub contribution graph" className="abt-iref-img" />
-            </div>
-          </span>
-        </motion.h1>
+        <div className="hero-techtext-wrap">
+          <TechText text="a product designer" {...techProps} />
+        </div>
+        <div className="hero-techtext-wrap hero-techtext-wrap--lg">
+          <TechText text="who engineers." {...techProps} />
+        </div>
         <motion.p
           className="hero-body"
           initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
           animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
           transition={{ duration: 0.4, delay: 0.55 }}
         >
-          My path goes from the hypothesis to code.{" "}
-          <span className="abt-iref">
-            Designing systems
-            <div className="abt-iref-pop">
-              <img src="/design-system-mca.png" alt="MCA design system" className="abt-iref-img" />
-            </div>
-          </span>
-          , creating{" "}
-          <span className="abt-iref">
-            AI augmented workflows
-            <div className="abt-iref-pop">
-              <img src="/claude-cli.jpeg" alt="Claude Code CLI" className="abt-iref-img" />
-            </div>
-          </span>
-          {" "}and{" "}
-          <span className="abt-iref">
-            implementing on code
-            <div className="abt-iref-pop">
-              <img src="/code.jpg" alt="Code" className="abt-iref-img" />
-            </div>
-          </span>
-          .
+          My path goes from research to implementation.<br />
+          Pushing pixels <FigmaCursor /> to design in Figma.<br />
+          Pushing green pixels <GreenPixel /> to ship code on GitHub.
         </motion.p>
       </div>
     </section>

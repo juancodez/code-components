@@ -36,11 +36,12 @@ export default function ExloApp() {
 
           <video
             className="mc-hero-video"
-            src="https://hfwprc33skjcbclm.public.blob.vercel-storage.com/exlo-demo.mp4"
+            src="/exlo-video.mp4"
             poster="/exlo-01.png"
-            controls
+            autoPlay
+            loop
+            muted
             playsInline
-            preload="none"
           />
 
           <div className="mc-subtitle-block">
@@ -211,6 +212,22 @@ export default function ExloApp() {
               className="mc-challenge-img"
               style={{ borderRadius: "12px", marginTop: "8px", border: "1px solid #e4e7ec" }}
             />
+            <p className="mc-body-text" style={{ maxWidth: "62ch", marginTop: "24px" }}>
+              That rejection pushed me to encode the whole pre-submission checklist into a reusable Claude Code skill:{" "}
+              <strong>Figma Plugin Publisher</strong>. Every time I start a new plugin, it runs all checks before I touch the Figma dashboard.
+            </p>
+            <a
+              href="https://github.com/juancodez/SKILLS/tree/main/figma-plugin-publisher"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mc-inline-link"
+              style={{ display: "inline-flex", alignItems: "center", gap: "6px", marginTop: "8px" }}
+            >
+              View the skill on GitHub
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                <path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
           </div>
         </section>
 
@@ -218,7 +235,7 @@ export default function ExloApp() {
         <section className="mc-section" id="ecosystem">
           <div className="mc-section-inner">
             <h2 className="mc-section-title">The story doesn't end here.<br />Three more plugins have been shipped.</h2>
-            <p className="mc-body-text" style={{ maxWidth: "62ch" }}>
+            <p className="mc-body-text" style={{ maxWidth: "80ch" }}>
               Using Exlo to fix workflows opened my eyes to other critical gaps in digital production.<br />In the same week, Figma approved three more plugins.<br />They were all built with Claude Code and they all solve real issues that designers face every day.
             </p>
 
@@ -276,10 +293,11 @@ export default function ExloApp() {
 
             <video
               className="mc-hero-video"
-              src="https://hfwprc33skjcbclm.public.blob.vercel-storage.com/Exim-TypeScala-Exle.mp4"
+              src="/Exim-TypeScala-Exle.mp4"
               poster="/aprobado.png"
               playsInline
               controls
+              preload="none"
               style={{ marginTop: "8px", border: "1px solid #d0d5dd" }}
             />
 

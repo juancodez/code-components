@@ -25,9 +25,25 @@
   gap: 12px;
 }
 
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(48px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-48px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
 .tslider-card-row .tblock-wrap {
   flex: 1;
   min-width: 0;
+}
+
+.tslider-card-row .tblock-wrap[data-dir="right"] {
+  animation: slide-in-right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tslider-card-row .tblock-wrap[data-dir="left"] {
+  animation: slide-in-left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .tslider-card-row .tblock-card {

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { Avatar } from "./components/Avatar";
-import { TextReveal } from "./components/ui/text-reveal";
+import TechText from "./components/TechText/TechText";
 import { CardStudioTile } from "./tiles/CardStudioTile";
 import { BalanceTile } from "./tiles/BalanceTile";
 import { ChecklistTile } from "./tiles/ChecklistTile";
@@ -43,6 +43,33 @@ const CARDS = [
   },
 ];
 
+const techProps = {
+  fontWeight: 600 as const,
+  fontSize: 140,
+  reveal: "letter" as const,
+  dashLength: 4,
+  dashGap: 2,
+  specks: 10,
+  clickKick: true,
+  guides: false,
+  letterSpacing: 0.04,
+  accentColor: "currentColor",
+  reach: 180,
+  softness: 0.7,
+  lineStyle: "dashed" as const,
+  strokeWidth: 1.5,
+  bounce: 0.4,
+  selection: true,
+  labels: false,
+  color: "currentColor",
+  align: "center" as const,
+  draggable: true,
+  sweep: true,
+  speed: 0.7,
+  intro: "type" as const,
+  introDuration: 2.4,
+};
+
 function PostHero() {
   return (
     <section className="hero post-hero">
@@ -52,22 +79,20 @@ function PostHero() {
         </div>
       </div>
       <div className="hero-about">
-        <TextReveal
-          as="h1"
-          className="hero-h1"
-          per="word"
-          preset="fade-in-blur"
-          speedReveal={1.2}
-        >
-          Design Engineering Labs
-        </TextReveal>
+        <div className="hero-techtext-wrap">
+          <TechText text="Design Engineering" {...techProps} />
+        </div>
+        <div className="hero-techtext-wrap hero-techtext-wrap--lg">
+          <TechText text="Labs" {...techProps} />
+        </div>
         <motion.p
           className="hero-body"
           initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
           animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-          transition={{ duration: 0.4, delay: 0.35 }}
+          transition={{ duration: 0.4, delay: 0.55 }}
         >
-          Click around to discover the different interactions.<br />These are interactive UI components built to explore motion, state and interaction. Copy the code.
+          Click around to discover the different interactions.<br />
+          Interactive UI components built to explore motion, state and interaction. Copy the code.
         </motion.p>
       </div>
     </section>

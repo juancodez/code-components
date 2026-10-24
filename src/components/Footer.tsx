@@ -32,6 +32,7 @@ export function Footer() {
             <ul className="cf-list">
               <li><a href="index.html"   className="cf-link">Work</a></li>
               <li><a href="post.html"    className="cf-link">Labs</a></li>
+              <li><a href="skills.html"  className="cf-link">Claude Skills</a></li>
               <li><a href="about.html"   className="cf-link">About</a></li>
               <li>
                 <button className="cf-link cf-imprint-btn" onClick={() => setImprintOpen(true)}>
@@ -92,7 +93,7 @@ export function Footer() {
         </div>
 
         <div className="cf-bar">
-          <p className="cf-copy">©2026 Juan Gomez Vara — All rights reserved</p>
+          <p className="cf-copy">©2026 Juan Gomez Vara. All rights reserved</p>
           <a
             href="#top"
             className="cf-backtop"

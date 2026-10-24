@@ -47,26 +47,28 @@ const DATA = [
 
 export function TestimonialSlider() {
   const [idx, setIdx] = useState(0);
+  const [dir, setDir] = useState<"left" | "right">("right");
   const t = DATA[idx];
+
+  function go(next: number) {
+    setDir(next > idx ? "right" : "left");
+    setIdx(next);
+  }
 
   return (
     <section className="tslider-section">
       <div className="tslider-inner">
-        <div className="tslider-header">
-          <span className="mc-section-label">Testimonials</span>
-        </div>
-
         <div className="tslider-card-row">
           <button
             className="tslider-btn"
-            onClick={() => setIdx(i => Math.max(0, i - 1))}
+            onClick={() => go(Math.max(0, idx - 1))}
             disabled={idx === 0}
             aria-label="Previous testimonial"
           >
             <RiArrowLeftLine size={16} />
           </button>
 
-        <div className="tblock-wrap">
+        <div className="tblock-wrap" key={idx} data-dir={dir}>
           <div className="tblock-card">
             <div className="tblock-accent" aria-hidden="true" />
             <RiDoubleQuotesR className="tblock-icon" aria-hidden="true" />
@@ -111,7 +113,7 @@ export function TestimonialSlider() {
 
           <button
             className="tslider-btn"
-            onClick={() => setIdx(i => Math.min(DATA.length - 1, i + 1))}
+            onClick={() => go(Math.min(DATA.length - 1, idx + 1))}
             disabled={idx === DATA.length - 1}
             aria-label="Next testimonial"
           >
@@ -124,7 +126,7 @@ export function TestimonialSlider() {
             <button
               key={i}
               className={`tslider-dot${i === idx ? " tslider-dot--active" : ""}`}
-              onClick={() => setIdx(i)}
+              onClick={() => go(i)}
               aria-label={`Go to testimonial ${i + 1}`}
             />
           ))}
