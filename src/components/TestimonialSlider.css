@@ -49,12 +49,11 @@
 .tslider-card-row .tblock-card {
   display: flex;
   flex-direction: column;
-  height: 380px;
+  min-height: 320px;
 }
 
 .tslider-card-row .tblock-quote {
   flex: 1;
-  overflow-y: auto;
 }
 
 .tslider-btn {
