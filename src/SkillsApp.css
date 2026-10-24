@@ -80,7 +80,7 @@
 }
 
 .skill-title {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
   color: #1d2939;
   letter-spacing: -0.02em;
@@ -90,7 +90,7 @@
 
 .skill-desc {
   font-size: 14px;
-  color: #98a1b2;
+  color: #667085;
   margin: 0;
   line-height: 1.5;
   display: -webkit-box;
@@ -273,7 +273,7 @@
 }
 
 .gs-title {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 600;
   color: #1d2939;
   margin: 0;

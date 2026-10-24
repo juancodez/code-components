@@ -284,13 +284,13 @@
 .hero-h1 {
   font-size: 38px;
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.05;
   letter-spacing: -0.03em;
   color: #1d2939;
   margin: 0;
 }
 .hero-body {
-  font-size: 20px;
+  font-size: 26px;
   line-height: 1.65;
   color: #667085;
   margin: 0;
@@ -301,7 +301,7 @@
 .hero-techtext-wrap {
   width: 100%;
   height: 150px;
-  color: #fff;
+  color: #1d2939;
   overflow: hidden;
 }
 .hero-techtext-wrap--lg {
@@ -612,7 +612,7 @@
 }
 .project-title {
   font-family: 'Author', system-ui, sans-serif;
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 600;
   color: #0c0c0c;
   margin: 0;
@@ -807,7 +807,7 @@
 }
 
 .abt-text {
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.7;
   color: #344054;
   margin: 0 0 12px;
@@ -1686,6 +1686,7 @@
 [data-theme="dark"] .hero-body     { color: #8fa3be; }
 [data-theme="dark"] .hero-name     { color: #e2e8f4; }
 [data-theme="dark"] .hero-role     { color: #7a96b4; }
+[data-theme="dark"] .hero-techtext-wrap { color: #fff; }
 [data-theme="dark"] .ticker-item   { color: #3a5470; }
 
 /* Buttons */
