@@ -37,11 +37,7 @@ const DATA = [
     initials: "SA",
     linkedIn: "https://www.linkedin.com/in/shankarananth8/",
     img: "/shankar.webp",
-    metrics: [
-      { value: "+508%", label: "user acquisitions" },
-      { value: "2.84%", label: "conversion rate" },
-      { value: "4 wks",  label: "sprint delivery"  },
-    ],
+    metrics: [] as { value: string; label: string }[],
   },
 ];
 

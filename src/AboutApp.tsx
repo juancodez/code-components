@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { Avatar } from "./components/Avatar";
-import { TextReveal } from "./components/ui/text-reveal";
+import TechText from "./components/TechText/TechText";
 import { MusicPlayer } from "./sections/MusicPlayer";
 import { VideoDeck } from "./sections/VideoDeck";
 import { MediumCard } from "./sections/MediumCard";
@@ -83,23 +83,43 @@ export default function AboutApp() {
           </div>
         </div>
         <div className="hero-about">
-          <TextReveal
-            as="h1"
-            className="hero-h1"
-            per="word"
-            preset="fade-in-blur"
-            speedReveal={1.2}
-          >
-            Juan Gomez Vara
-          </TextReveal>
-          <motion.h1
-            className="hero-h1"
+          <div className="hero-techtext-wrap">
+            <TechText
+              text="My story"
+              fontWeight={600}
+              fontSize={140}
+              reveal="letter"
+              dashLength={4}
+              dashGap={2}
+              specks={10}
+              clickKick
+              guides={false}
+              letterSpacing={0.04}
+              accentColor="currentColor"
+              reach={180}
+              softness={0.88}
+              lineStyle="dashed"
+              strokeWidth={1.5}
+              bounce={0.15}
+              selection
+              labels
+              color="currentColor"
+              align="center"
+              draggable
+              sweep
+              speed={0.35}
+              intro="assemble"
+              introDuration={2.8}
+            />
+          </div>
+          <motion.p
+            className="hero-body"
             initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
             animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-            transition={{ duration: 0.4, delay: 0.35 }}
+            transition={{ duration: 0.4, delay: 0.55 }}
           >
-            Product Designer who engineers.
-          </motion.h1>
+            Feel free to click around ;-)
+          </motion.p>
         </div>
       </section>
 

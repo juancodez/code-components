@@ -4,6 +4,9 @@ import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { Avatar } from "./components/Avatar";
 import TechText from "./components/TechText/TechText";
+import agentsClaudeImg from "../assets/agents-claude.jpg";
+import vibePlanImg from "../assets/vibe-plan-01.webp";
+import claudeSeniorImg from "../assets/claude-senior.jpg";
 import "./App.css";
 import "./SkillsApp.css";
 
@@ -15,6 +18,7 @@ type Skill = {
   gradient: string;
   image?: string;
   installCmd: string;
+  githubUrl?: string;
 };
 
 const SKILLS: Skill[] = [
@@ -22,25 +26,29 @@ const SKILLS: Skill[] = [
     slug: "ux-research-orchestra",
     title: "UX Research Orchestra",
     category: "Research",
-    description: "7-agent market research pipeline: Scout → Profiler → Quant → Benchmarker → Comparative → Hypothesis → Report.",
+    description: "A collection of tools and workflows designed to improve and automate market analysis and benchmarking for UX research.",
     gradient: "linear-gradient(145deg, #1a1a1a 0%, #2a2a2a 100%)",
+    image: agentsClaudeImg,
     installCmd: "npx @juangv/skills install ux-research-orchestra",
+    githubUrl: "https://github.com/juancodez/UX-Research-Orchestra-Markt-Phase-1",
   },
   {
     slug: "vibe-plan",
     title: "Vibe Plan",
     category: "Planning",
-    description: "10-phase project planning companion: intake → research → exec plan → tech plan → specs → CLAUDE.md.",
+    description: "Plan everything before touching code. Exec plan → tech plan → ordered .md specs → CLAUDE.md guardrails → phased builds. The more you plan, the less you fix.",
     gradient: "linear-gradient(145deg, #0f2027 0%, #203a43 55%, #2c5364 100%)",
+    image: vibePlanImg,
     installCmd: "npx @juangv/skills install vibe-plan",
   },
   {
-    slug: "get-that-job",
-    title: "Get That Job",
-    category: "Career",
-    description: "Full job application package in one command. Match analysis, tailored CV, cover letter, email, interview prep.",
+    slug: "figma-plugin-publisher",
+    title: "Figma Plugin Publisher",
+    category: "Design Ops",
+    description: "A Claude Code skill for debugging, fixing, and resubmitting Figma Community plugins. Built from real rejections — updated each time a new pattern is discovered.",
     gradient: "linear-gradient(145deg, #0a1628 0%, #1a3a5c 55%, #2563eb 100%)",
-    installCmd: "npx @juangv/skills install get-that-job",
+    installCmd: "npx @juangv/skills install figma-plugin-publisher",
+    githubUrl: "https://github.com/juancodez/SKILLS/tree/main/figma-plugin-publisher",
   },
   {
     slug: "design-review",
@@ -48,23 +56,8 @@ const SKILLS: Skill[] = [
     category: "Design",
     description: "Senior designer's eye for QA. Finds visual inconsistency, spacing issues, hierarchy problems, slow interactions.",
     gradient: "linear-gradient(145deg, #1a0f0a 0%, #3d1a0c 55%, #c05621 100%)",
+    image: claudeSeniorImg,
     installCmd: "npx @juangv/skills install design-review",
-  },
-  {
-    slug: "klaro-design",
-    title: "Klaro Design",
-    category: "Design System",
-    description: "Design system for Klaro — the AI-native fiscal app for Spanish-speaking freelancers in Germany.",
-    gradient: "linear-gradient(145deg, #001a10 0%, #003320 55%, #00684a 100%)",
-    installCmd: "npx @juangv/skills install klaro-design",
-  },
-  {
-    slug: "figma-plugin-publisher",
-    title: "Figma Plugin Publisher",
-    category: "Figma",
-    description: "Debug and fix Figma Community plugin rejections. Covers missing files, encoding issues, undefined globals, and pre-submission checklist.",
-    gradient: "linear-gradient(145deg, #1a1a1a 0%, #2a2a2a 100%)",
-    installCmd: "npx @juangv/skills install figma-plugin-publisher",
   },
 ];
 
@@ -130,12 +123,12 @@ function SkillCard({ skill }: { skill: Skill }) {
           <button className="skill-btn" onClick={close}>Back</button>
           <a
             className="skill-btn skill-btn-primary"
-            href={`https://github.com/juancodez/skills/${skill.slug}`}
+            href={skill.githubUrl ?? `https://github.com/juancodez/skills/${skill.slug}`}
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
           >
-            GitHub →
+            View on GitHub
           </a>
         </div>
       </div>
@@ -185,19 +178,19 @@ const techProps = {
   letterSpacing: 0.04,
   accentColor: "currentColor",
   reach: 180,
-  softness: 0.7,
+  softness: 0.88,
   lineStyle: "dashed" as const,
   strokeWidth: 1.5,
-  bounce: 0.4,
+  bounce: 0.15,
   selection: true,
   labels: true,
   color: "currentColor",
   align: "center" as const,
   draggable: true,
   sweep: true,
-  speed: 0.7,
-  intro: "type" as const,
-  introDuration: 2.4,
+  speed: 0.35,
+  intro: "assemble" as const,
+  introDuration: 2.8,
 };
 
 export default function SkillsApp() {

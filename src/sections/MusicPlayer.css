@@ -42,7 +42,7 @@
 .mp-card-art {
   width: 120px;
   height: 120px;
-  border-radius: 10px;
+  border-radius: 4px;
   object-fit: cover;
   display: block;
   flex-shrink: 0;
@@ -51,7 +51,7 @@
 .mp-am-badge {
   width: 54px;
   height: 54px;
-  border-radius: 14px;
+  border-radius: 6px;
   background: linear-gradient(160deg, #fa5679 0%, #fa2350 50%, #d21048 100%);
   display: flex;
   align-items: center;

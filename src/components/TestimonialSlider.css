@@ -1,19 +1,15 @@
 .tslider-section {
   width: 100%;
   border-top: 1px solid #f2f4f7;
-  display: flex;
-  justify-content: center;
-  padding: 0 40px;
-  box-sizing: border-box;
 }
 
 .tslider-inner {
   width: 100%;
-  max-width: 860px;
   padding: 60px 40px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  box-sizing: border-box;
 }
 
 .tslider-header {
@@ -52,11 +48,12 @@
 .tslider-card-row .tblock-card {
   display: flex;
   flex-direction: column;
-  min-height: 380px;
+  height: 380px;
 }
 
 .tslider-card-row .tblock-quote {
   flex: 1;
+  overflow-y: auto;
 }
 
 .tslider-btn {

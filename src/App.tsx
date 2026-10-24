@@ -30,8 +30,6 @@ const PROJECTS: Project[] = [
   {
     slug: "design-system",
     bg: "linear-gradient(145deg, #1a0533 0%, #3b1054 55%, #7c3aed 100%)",
-    video: "https://hfwprc33skjcbclm.public.blob.vercel-storage.com/juan-taller.mp4",
-    poster: "/publish-04-04.png",
     title: "Design system: how we redesigned a live bank without breaking it",
     subtitle: "The invisible work that made hashbank possible",
   },
@@ -76,19 +74,19 @@ function Hero() {
     letterSpacing: 0.04,
     accentColor: "currentColor",
     reach: 180,
-    softness: 0.7,
+    softness: 0.88,
     lineStyle: "dashed" as const,
     strokeWidth: 1.5,
-    bounce: 0.4,
+    bounce: 0.15,
     selection: true,
     labels: true,
     color: "currentColor",
     align: "center" as const,
     draggable: true,
     sweep: true,
-    speed: 0.7,
-    intro: "type" as const,
-    introDuration: 2.4,
+    speed: 0.35,
+    intro: "assemble" as const,
+    introDuration: 2.8,
   };
 
   return (
