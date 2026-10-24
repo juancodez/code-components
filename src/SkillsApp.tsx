@@ -6,7 +6,7 @@ import { Avatar } from "./components/Avatar";
 import TechText from "./components/TechText/TechText";
 import agentsClaudeImg from "../assets/agents-claude.jpg";
 import vibePlanImg from "../assets/vibe-plan-01.webp";
-import claudeSeniorImg from "../assets/claude-senior.jpg";
+import claudeSeniorImg from "../assets/figma-claude-code.jpg";
 import "./App.css";
 import "./SkillsApp.css";
 
@@ -51,13 +51,14 @@ const SKILLS: Skill[] = [
     githubUrl: "https://github.com/juancodez/SKILLS/tree/main/figma-plugin-publisher",
   },
   {
-    slug: "design-review",
-    title: "Design Review",
-    category: "Design",
-    description: "Senior designer's eye for QA. Finds visual inconsistency, spacing issues, hierarchy problems, slow interactions.",
+    slug: "senior-eye",
+    title: "Senior Eye",
+    category: "UI Design Review",
+    description: "Hiring-bar design critique. Runs the Visual Layer (Refactoring UI) + Judgment Layer (KTP) checklist on your screens — highest-impact fix first, no flattery.",
     gradient: "linear-gradient(145deg, #1a0f0a 0%, #3d1a0c 55%, #c05621 100%)",
     image: claudeSeniorImg,
-    installCmd: "npx @juangv/skills install design-review",
+    installCmd: "npx @juangv/skills install senior-eye",
+    githubUrl: "https://github.com/juancodez/SKILLS/tree/main/senior-eye",
   },
 ];
 
@@ -159,9 +160,9 @@ function GettingStarted() {
     <div className="gs-section">
       <h2 className="gs-title">Getting Started with Claude Code</h2>
       <p className="gs-body">Install Claude Code skills directly to your project using npx:</p>
-      <CopyBlock cmd="npx giorris-claude-skills" />
+      <CopyBlock cmd="npx @juangv/skills" />
       <p className="gs-body gs-body--sm">Or install a specific skill:</p>
-      <CopyBlock cmd="npx giorris-claude-skills install ai-component-metadata" />
+      <CopyBlock cmd="npx @juangv/skills install senior-eye" />
     </div>
   );
 }

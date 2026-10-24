@@ -4,7 +4,8 @@
 }
 
 .tslider-inner {
-  width: 100%;
+  width: 55%;
+  margin: 0 auto;
   padding: 60px 40px;
   display: flex;
   flex-direction: column;
