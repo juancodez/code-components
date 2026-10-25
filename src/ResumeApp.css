@@ -33,7 +33,7 @@
   font-size: var(--fs-base);
   font-weight: 400;
   letter-spacing: 0;
-  color: #667085;
+  color: #344054;
   margin: 6px 0 0;
   line-height: var(--lh-normal);
 }
@@ -54,7 +54,7 @@
   align-items: center;
   gap: 5px;
   font-size: var(--fs-base);
-  color: #475467;
+  color: #344054;
   text-decoration: none;
   padding: 3px 8px;
   border-radius: 6px;
@@ -245,7 +245,7 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
 }
 
 .cv-edu-degree { display: block; font-size: var(--fs-body); font-weight: 600; color: #1d2939; letter-spacing: -0.01em; }
-.cv-edu-school { display: block; font-size: var(--fs-base); color: #667085; margin-top: 1px; }
+.cv-edu-school { display: block; font-size: var(--fs-base); color: #344054; margin-top: 1px; }
 .cv-edu-year { font-size: var(--fs-base); color: #c2c8d4; white-space: nowrap; flex-shrink: 0; padding-top: 1px; }
 
 .cv-lang-list { display: flex; flex-direction: column; gap: 8px; }
@@ -260,7 +260,7 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
 .cv-lang-badge {
   font-size: var(--fs-base);
   font-weight: 600;
-  color: #667085;
+  color: #344054;
   background: #f2f4f7;
   padding: 2px 10px;
   border-radius: 999px;
@@ -278,7 +278,7 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
 .cv-skill-cat {
   font-size: var(--fs-base);
   font-weight: 600;
-  color: #98a1b2;
+  color: #344054;
   min-width: 88px;
   flex-shrink: 0;
   padding-top: 4px;
@@ -289,11 +289,11 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
 
 /* ── DARK MODE ── */
 html[data-theme="dark"] .cv-name { color: #ffffff; }
-html[data-theme="dark"] .cv-subtitle { color: #4a5568; }
+html[data-theme="dark"] .cv-subtitle { color: #8899b4; }
 html[data-theme="dark"] .cv-header,
 html[data-theme="dark"] .cv-contact,
 html[data-theme="dark"] .cv-section { border-color: #1a2744; }
-html[data-theme="dark"] .cv-contact-item { color: #4a5568; }
+html[data-theme="dark"] .cv-contact-item { color: #8899b4; }
 html[data-theme="dark"] a.cv-contact-item:hover { color: #ffffff; background: #1a2744; }
 html[data-theme="dark"] .cv-dot { background: #2d3f5c; }
 html[data-theme="dark"] .cv-section-label { color: #ffffff; }
@@ -307,7 +307,7 @@ html[data-theme="dark"] .cv-exp-location { color: #3a5470; }
 html[data-theme="dark"] .cv-edu-degree,
 html[data-theme="dark"] .cv-lang-name { color: #c5d3e8; }
 html[data-theme="dark"] .cv-shipped-name { color: #ffffff; }
-html[data-theme="dark"] .cv-edu-school { color: #4a5568; }
+html[data-theme="dark"] .cv-edu-school { color: #8899b4; }
 html[data-theme="dark"] .cv-edu-year,
 html[data-theme="dark"] .cv-talk-venue,
 html[data-theme="dark"] .cv-shipped-link { color: #2d3f5c; }
