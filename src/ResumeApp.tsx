@@ -152,7 +152,8 @@ export default function ResumeApp() {
                 <ul className="cv-bullets">
                   {e.bullets.map((b, i) => (
                     <li key={i} className="cv-bullet">
-                      <span className="cv-bullet-lead">{b.split(' ')[0]}</span>{b.slice(b.indexOf(' '))}
+                      <span className="cv-bullet-dot" aria-hidden="true" />
+                      <span><span className="cv-bullet-lead">{b.split(' ')[0]}</span>{b.slice(b.indexOf(' '))}</span>
                     </li>
                   ))}
                 </ul>
