@@ -3,8 +3,8 @@
 
 .cv-main {
   width: 100%;
-  max-width: 800px;
-  padding: 48px 24px 80px;
+  max-width: 900px;
+  padding: 52px 40px 80px;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -50,6 +50,9 @@
 }
 
 .cv-contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   font-size: var(--fs-base);
   color: #98a1b2;
   text-decoration: none;
@@ -337,7 +340,7 @@ html[data-theme="dark"] .cv-talk-link:hover { color: #ffffff; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 680px) {
-  .cv-main { padding: 32px 16px 60px; }
+  .cv-main { padding: 32px 20px 60px; }
   .cv-name { font-size: var(--fs-heading); }
   .cv-section-label { font-size: var(--fs-subhead); }
   .cv-exp-role { font-size: var(--fs-body); }

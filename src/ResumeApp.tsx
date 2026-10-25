@@ -1,3 +1,4 @@
+import { RiMailLine, RiLinkedinBoxLine, RiGlobalLine, RiGithubLine, RiMapPinLine } from "@remixicon/react";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import "./App.css";
@@ -118,15 +119,15 @@ export default function ResumeApp() {
         </div>
 
         <nav className="cv-contact" aria-label="Contact">
-          <a href="mailto:juangomezvara@gmail.com" className="cv-contact-item">juangomezvara@gmail.com</a>
+          <a href="mailto:juangomezvara@gmail.com" className="cv-contact-item"><RiMailLine size={16} aria-hidden="true" />juangomezvara@gmail.com</a>
           <span className="cv-dot" />
-          <a href="https://www.linkedin.com/in/juangomezvara" className="cv-contact-item">linkedin.com/in/juangomezvara</a>
+          <a href="https://www.linkedin.com/in/juangomezvara" className="cv-contact-item"><RiLinkedinBoxLine size={16} aria-hidden="true" />linkedin.com/in/juangomezvara</a>
           <span className="cv-dot" />
-          <a href="https://juangomezvara.com" className="cv-contact-item">juangomezvara.com</a>
+          <a href="https://juangomezvara.com" className="cv-contact-item"><RiGlobalLine size={16} aria-hidden="true" />juangomezvara.com</a>
           <span className="cv-dot" />
-          <a href="https://github.com/juancodez" className="cv-contact-item">github.com/juancodez</a>
+          <a href="https://github.com/juancodez" className="cv-contact-item"><RiGithubLine size={16} aria-hidden="true" />github.com/juancodez</a>
           <span className="cv-dot" />
-          <span className="cv-contact-item">Berlin, Germany</span>
+          <span className="cv-contact-item"><RiMapPinLine size={16} aria-hidden="true" />Berlin, Germany</span>
         </nav>
 
         {/* About */}
