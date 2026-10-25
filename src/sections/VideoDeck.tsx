@@ -10,10 +10,24 @@ const VIDEOS = [
 export function VideoDeck() {
   const [idx, setIdx] = useState(0);
   const [playing, setPlaying] = useState(false);
-  const [muted, setMuted] = useState(true);
+  const [muted, setMuted] = useState(false);
   const [showList, setShowList] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const video = VIDEOS[idx];
+
+  // autoplay with sound on mount; muted fallback if browser blocks
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = false;
+    v.play()
+      .then(() => setPlaying(true))
+      .catch(() => {
+        v.muted = true;
+        setMuted(true);
+        v.play().then(() => setPlaying(true)).catch(() => {});
+      });
+  }, []);
 
   useEffect(() => {
     const v = videoRef.current;
