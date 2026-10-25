@@ -156,9 +156,6 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
 }
 
 .cv-bullet {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
   font-size: var(--fs-body);
   line-height: var(--lh-relaxed);
   color: #344054;
