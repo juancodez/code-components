@@ -31,7 +31,7 @@
 }
 
 .cv-subtitle {
-  font-size: var(--fs-base);
+  font-size: var(--fs-subhead);
   font-weight: 400;
   letter-spacing: 0;
   color: #344054;
