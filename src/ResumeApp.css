@@ -30,12 +30,12 @@
 }
 
 .cv-subtitle {
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #98a1b2;
-  margin: 8px 0 0;
+  font-size: var(--fs-base);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: #667085;
+  margin: 6px 0 0;
+  line-height: var(--lh-normal);
 }
 
 
@@ -76,12 +76,13 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
 .cv-section--last { border-bottom: none; }
 
 .cv-section-label {
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: #98a1b2;
-  margin: 0 0 16px;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: #1d2939;
+  margin: 0 0 20px;
+  line-height: var(--lh-tight);
 }
 
 .cv-body {
@@ -101,36 +102,44 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
   gap: 24px;
 }
 
-.cv-exp-item { display: flex; flex-direction: column; gap: 10px; }
+.cv-exp-item { display: flex; flex-direction: column; gap: 8px; }
 
-.cv-exp-header {
+.cv-exp-company-row {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: baseline;
   gap: 12px;
 }
 
-.cv-exp-role {
-  display: block;
-  font-size: var(--fs-subhead);
-  font-weight: 600;
+.cv-exp-company {
+  font-size: var(--fs-body);
+  font-weight: 700;
   color: #1d2939;
   letter-spacing: -0.02em;
-}
-
-.cv-exp-company {
-  display: block;
-  font-size: var(--fs-base);
-  color: #667085;
-  margin-top: 2px;
+  line-height: var(--lh-tight);
 }
 
 .cv-exp-date {
   font-size: var(--fs-sm);
-  color: #98a1b2;
+  font-weight: 700;
+  color: #1d2939;
   white-space: nowrap;
   flex-shrink: 0;
-  padding-top: 2px;
+}
+
+.cv-exp-role {
+  display: block;
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: #344054;
+  letter-spacing: -0.01em;
+  line-height: var(--lh-tight);
+}
+
+.cv-exp-location {
+  font-weight: 400;
+  color: #98a1b2;
+  font-size: var(--fs-sm);
 }
 
 .cv-bullets {
@@ -146,8 +155,8 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  font-size: var(--fs-base);
-  line-height: var(--lh-normal);
+  font-size: var(--fs-body);
+  line-height: var(--lh-relaxed);
   color: #344054;
 }
 
@@ -284,16 +293,18 @@ html[data-theme="dark"] .cv-section { border-color: #1a2744; }
 html[data-theme="dark"] .cv-contact-item { color: #4a5568; }
 html[data-theme="dark"] a.cv-contact-item:hover { color: #e2e8f4; background: #1a2744; }
 html[data-theme="dark"] .cv-dot { background: #2d3f5c; }
-html[data-theme="dark"] .cv-section-label { color: #4a5568; }
+html[data-theme="dark"] .cv-section-label { color: #e2e8f4; }
+html[data-theme="dark"] .cv-subtitle { color: #8899b4; }
 html[data-theme="dark"] .cv-body,
 html[data-theme="dark"] .cv-bullet { color: #8899b4; }
-html[data-theme="dark"] .cv-exp-role,
+html[data-theme="dark"] .cv-exp-company { color: #e2e8f4; }
+html[data-theme="dark"] .cv-exp-date { color: #e2e8f4; }
+html[data-theme="dark"] .cv-exp-role { color: #c5d3e8; }
+html[data-theme="dark"] .cv-exp-location { color: #3a5470; }
 html[data-theme="dark"] .cv-edu-degree,
 html[data-theme="dark"] .cv-lang-name,
 html[data-theme="dark"] .cv-shipped-name { color: #c5d3e8; }
-html[data-theme="dark"] .cv-exp-company,
 html[data-theme="dark"] .cv-edu-school { color: #4a5568; }
-html[data-theme="dark"] .cv-exp-date,
 html[data-theme="dark"] .cv-edu-year,
 html[data-theme="dark"] .cv-talk-venue,
 html[data-theme="dark"] .cv-shipped-link { color: #2d3f5c; }
@@ -314,7 +325,7 @@ html[data-theme="dark"] .cv-talk-link:hover { color: #e2e8f4; }
   [class*="footer"] { display: none !important; }
   .cv-main { padding: 24px 0 40px; max-width: 100%; }
   .cv-name { color: #1d2939 !important; }
-  .cv-section-label { color: #98a1b2 !important; }
+  .cv-section-label { color: #1d2939 !important; }
   .cv-header,
   .cv-contact,
   .cv-section { border-color: #f2f4f7 !important; }
@@ -328,6 +339,7 @@ html[data-theme="dark"] .cv-talk-link:hover { color: #e2e8f4; }
 @media (max-width: 680px) {
   .cv-main { padding: 32px 16px 60px; }
   .cv-name { font-size: var(--fs-heading); }
+  .cv-section-label { font-size: var(--fs-subhead); }
   .cv-exp-role { font-size: var(--fs-body); }
   .cv-shipped-name,
   .cv-talk-title,
@@ -336,8 +348,7 @@ html[data-theme="dark"] .cv-talk-link:hover { color: #e2e8f4; }
   .cv-header { flex-direction: column; gap: 12px; }
   .cv-shipped-grid { grid-template-columns: 1fr; }
   .cv-two-col { grid-template-columns: 1fr; gap: 24px; }
-  .cv-exp-header { flex-direction: column; gap: 2px; }
-  .cv-exp-date { padding-top: 0; }
+  .cv-exp-company-row { flex-direction: column; gap: 2px; }
   .cv-talk-item { flex-direction: column; gap: 2px; }
   .cv-talk-venue { white-space: normal; }
   .cv-skill-row { flex-direction: column; gap: 6px; }

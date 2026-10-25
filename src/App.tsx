@@ -5,9 +5,10 @@ import { Avatar } from "./components/Avatar";
 import { TextReveal } from "./components/ui/text-reveal";
 import { TestimonialSlider } from "./components/TestimonialSlider";
 import TechText from "./components/TechText/TechText";
+import { PixelOverlay, pixelNavigate } from "./components/PixelOverlay";
 import "./App.css";
 
-type Project = { slug: string; bg: string; video?: string; gif?: string; videoFit?: "cover" | "contain"; poster?: string; title: string; subtitle: string; href?: string; hoverLabel?: string };
+type Project = { slug: string; bg: string; video?: string; gif?: string; videoFit?: "cover" | "contain"; poster?: string; title: string; subtitle: string; href?: string; hoverLabel?: string; comingSoon?: boolean };
 
 const PROJECTS: Project[] = [
   {
@@ -160,11 +161,24 @@ export default function App() {
             ?? (p.slug === "hashbank" ? "microcasing.html"
             : p.slug === "exlo" ? "exlo.html"
             : `./projects/${p.slug}`);
-          return <a key={p.slug} className="project-card" href={href} target={p.href ? "_blank" : undefined} rel={p.href ? "noopener noreferrer" : undefined}>{inner}</a>;
+          const isExternal = !!p.href;
+          return (
+            <a
+              key={p.slug}
+              className="project-card"
+              href={href}
+              target={isExternal ? "_blank" : undefined}
+              rel={isExternal ? "noopener noreferrer" : undefined}
+              onClick={isExternal ? undefined : (e) => { e.preventDefault(); pixelNavigate(href); }}
+            >
+              {inner}
+            </a>
+          );
         })}
       </div>
       <TestimonialSlider />
       <Footer />
+      <PixelOverlay />
     </div>
   );
 }

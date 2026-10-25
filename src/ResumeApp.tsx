@@ -1,5 +1,6 @@
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
+import { PixelOverlay } from "./components/PixelOverlay";
 import "./App.css";
 import "./ResumeApp.css";
 
@@ -143,13 +144,11 @@ export default function ResumeApp() {
           <ul className="cv-exp-list">
             {EXPERIENCE.map(e => (
               <li key={e.role + e.company} className="cv-exp-item">
-                <div className="cv-exp-header">
-                  <div>
-                    <span className="cv-exp-role">{e.role}</span>
-                    <span className="cv-exp-company">{e.company} · {e.location}</span>
-                  </div>
+                <div className="cv-exp-company-row">
+                  <span className="cv-exp-company">{e.company}</span>
                   <span className="cv-exp-date">{e.date}</span>
                 </div>
+                <span className="cv-exp-role">{e.role} <span className="cv-exp-location">· {e.location}</span></span>
                 <ul className="cv-bullets">
                   {e.bullets.map((b, i) => (
                     <li key={i} className="cv-bullet">
@@ -250,6 +249,7 @@ export default function ResumeApp() {
       </main>
 
       <Footer />
+      <PixelOverlay />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useState, useRef, useLayoutEffect } from "react";
 import { HeaderToolbar } from "./HeaderToolbar";
+import { pixelNavigate } from "./PixelOverlay";
 
 const NAV_ITEMS = [
   { label: "Work",          href: "index.html"   },
@@ -69,7 +70,12 @@ export function Nav() {
             onMouseEnter={() => setHoveredIdx(i)}
             onMouseLeave={() => setHoveredIdx(null)}
             onMouseDown={click}
-            onClick={() => setActiveIdx(i)}
+            onClick={(e) => {
+              if (item.href.startsWith("#")) return;
+              e.preventDefault();
+              setActiveIdx(i);
+              pixelNavigate(item.href);
+            }}
           >
             {item.label}
           </a>
