@@ -287,7 +287,7 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
 .cv-skill-cat {
   font-size: var(--fs-base);
   font-weight: 600;
-  color: #344054;
+  color: #98a1b2;
   min-width: 88px;
   flex-shrink: 0;
   padding-top: 4px;
