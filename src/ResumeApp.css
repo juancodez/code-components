@@ -50,7 +50,7 @@
 }
 
 .cv-contact-item {
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
   color: #98a1b2;
   text-decoration: none;
   padding: 3px 8px;
@@ -112,16 +112,16 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
 }
 
 .cv-exp-company {
-  font-size: var(--fs-body);
-  font-weight: 700;
+  font-size: var(--fs-subhead);
+  font-weight: 600;
   color: #1d2939;
   letter-spacing: -0.02em;
   line-height: var(--lh-tight);
 }
 
 .cv-exp-date {
-  font-size: var(--fs-sm);
-  font-weight: 700;
+  font-size: var(--fs-base);
+  font-weight: 600;
   color: #1d2939;
   white-space: nowrap;
   flex-shrink: 0;
@@ -196,13 +196,13 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
   color: #98a1b2;
   margin-top: 2px;
 }
 
 .cv-tag {
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
   font-weight: 500;
   color: #344054;
   background: #f2f4f7;
@@ -223,7 +223,7 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
 .cv-talk-title { font-size: var(--fs-body); font-weight: 500; color: #344054; }
 .cv-talk-link { text-decoration: none; transition: color 130ms ease; }
 .cv-talk-link:hover { color: #1d2939; }
-.cv-talk-venue { font-size: var(--fs-sm); color: #98a1b2; white-space: nowrap; flex-shrink: 0; }
+.cv-talk-venue { font-size: var(--fs-base); color: #98a1b2; white-space: nowrap; flex-shrink: 0; }
 
 /* ── TWO-COL (Education + Languages) ── */
 .cv-two-col {
@@ -243,7 +243,7 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
 
 .cv-edu-degree { display: block; font-size: var(--fs-body); font-weight: 600; color: #1d2939; letter-spacing: -0.01em; }
 .cv-edu-school { display: block; font-size: var(--fs-base); color: #667085; margin-top: 1px; }
-.cv-edu-year { font-size: var(--fs-sm); color: #98a1b2; white-space: nowrap; flex-shrink: 0; padding-top: 1px; }
+.cv-edu-year { font-size: var(--fs-base); color: #98a1b2; white-space: nowrap; flex-shrink: 0; padding-top: 1px; }
 
 .cv-lang-list { display: flex; flex-direction: column; gap: 8px; }
 
@@ -255,7 +255,7 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
 
 .cv-lang-name { font-size: var(--fs-body); font-weight: 600; color: #1d2939; letter-spacing: -0.01em; }
 .cv-lang-badge {
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
   font-weight: 600;
   color: #667085;
   background: #f2f4f7;
@@ -273,7 +273,7 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
 }
 
 .cv-skill-cat {
-  font-size: var(--fs-xs);
+  font-size: var(--fs-base);
   font-weight: 600;
   color: #98a1b2;
   min-width: 88px;
