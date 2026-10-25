@@ -157,7 +157,7 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
 
 .cv-bullet {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   font-size: var(--fs-body);
   line-height: var(--lh-relaxed);
@@ -172,6 +172,7 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
   border-radius: 50%;
   background: #98a1b2;
   flex-shrink: 0;
+  margin-top: 14px;
 }
 
 /* ── SHIPPED ── */
