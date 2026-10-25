@@ -151,10 +151,7 @@ export default function ResumeApp() {
                 <span className="cv-exp-role">{e.role}</span>
                 <ul className="cv-bullets">
                   {e.bullets.map((b, i) => (
-                    <li key={i} className="cv-bullet">
-                      <span className="cv-bullet-dot" aria-hidden="true" />
-                      <span>{b}</span>
-                    </li>
+                    <li key={i} className="cv-bullet">{b}</li>
                   ))}
                 </ul>
               </li>
