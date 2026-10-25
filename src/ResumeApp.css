@@ -337,56 +337,72 @@ html[data-theme="dark"] .cv-talk-link:hover { color: #ffffff; }
 @media print {
   @page {
     size: A4;
-    margin: 18mm 20mm;
+    margin: 14mm 18mm;
   }
 
-  html, body {
+  /* Kill dark mode backgrounds */
+  html, body, .page, [data-theme="dark"] .page,
+  [data-theme="dark"] .cv-main {
     background: #fff !important;
     color: #344054 !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
 
-  /* Hide chrome */
+  /* Hide chrome + footer */
   .site-header,
   .header-tool-btn,
+  footer,
   [class*="footer"] { display: none !important; }
 
   .cv-main { padding: 0; max-width: 100%; }
 
-  /* Force light-mode colors */
-  .cv-name { color: #1d2939 !important; }
-  .cv-subtitle { color: #344054 !important; }
-  .cv-section-label { color: #1d2939 !important; }
-  .cv-contact-item { color: #344054 !important; }
-  .cv-exp-company { color: #1d2939 !important; }
-  .cv-exp-date { color: #1d2939 !important; }
-  .cv-exp-role { color: #344054 !important; }
-  .cv-bullet { color: #344054 !important; }
+  /* Scale down for 2 pages */
+  .cv-name { font-size: 22pt !important; color: #1d2939 !important; }
+  .cv-subtitle { font-size: 11pt !important; color: #344054 !important; }
+  .cv-section-label { font-size: 13pt !important; color: #1d2939 !important; margin-bottom: 10px !important; }
+  .cv-contact-item { font-size: 9pt !important; color: #344054 !important; }
+  .cv-exp-company { font-size: 11pt !important; color: #1d2939 !important; }
+  .cv-exp-date { font-size: 11pt !important; color: #1d2939 !important; }
+  .cv-exp-role { font-size: 10pt !important; color: #344054 !important; }
+  .cv-bullet { font-size: 9.5pt !important; line-height: 1.5 !important; color: #344054 !important; }
   .cv-bullet-dot { background: #98a1b2 !important; }
-  .cv-skill-cat { color: #98a1b2 !important; }
-  .cv-shipped-name { color: #1d2939 !important; }
-  .cv-shipped-desc,
-  .cv-shipped-url { color: #344054 !important; }
-  .cv-talk-title,
-  .cv-talk-venue { color: #344054 !important; }
-  .cv-edu-degree { color: #1d2939 !important; }
-  .cv-edu-school,
-  .cv-edu-year { color: #344054 !important; }
-  .cv-lang-name { color: #1d2939 !important; }
-  .cv-tag,
-  .cv-lang-badge { background: #f2f4f7 !important; color: #344054 !important; }
+  .cv-skill-cat { font-size: 8.5pt !important; color: #98a1b2 !important; }
+  .cv-tag { font-size: 8.5pt !important; }
+  .cv-shipped-name { font-size: 11pt !important; color: #1d2939 !important; }
+  .cv-shipped-desc { font-size: 9.5pt !important; color: #344054 !important; }
+  .cv-shipped-url { font-size: 9pt !important; color: #344054 !important; }
+  .cv-talk-title { font-size: 9.5pt !important; color: #344054 !important; }
+  .cv-talk-venue { font-size: 9pt !important; color: #344054 !important; }
+  .cv-edu-degree { font-size: 9.5pt !important; color: #1d2939 !important; }
+  .cv-edu-school { font-size: 9pt !important; color: #344054 !important; }
+  .cv-edu-year { font-size: 9pt !important; color: #344054 !important; }
+  .cv-lang-name { font-size: 9.5pt !important; color: #1d2939 !important; }
+  .cv-lang-badge { font-size: 8.5pt !important; background: #f2f4f7 !important; color: #344054 !important; }
+  .cv-body { font-size: 9.5pt !important; color: #344054 !important; }
+
+  /* Tighten spacing */
+  .cv-header { padding-bottom: 10px !important; }
+  .cv-contact { padding: 8px 0 !important; }
+  .cv-section { padding: 12px 0 !important; }
+  .cv-section-label { margin-bottom: 8px !important; }
+  .cv-exp-list { gap: 14px !important; }
+  .cv-exp-item { gap: 4px !important; }
+  .cv-bullets { gap: 3px !important; }
+  .cv-talks { gap: 5px !important; }
+  .cv-edu-list { gap: 8px !important; }
+  .cv-lang-list { gap: 5px !important; }
+  .cv-skills { gap: 6px !important; }
 
   /* Borders */
   .cv-header,
   .cv-contact,
-  .cv-section { border-color: #f2f4f7 !important; }
+  .cv-section { border-color: #e4e7ec !important; }
 
-  /* Avoid breaking entries across pages */
+  /* Page breaks */
   .cv-exp-item,
   .cv-edu-item,
-  .cv-talk-item { page-break-inside: avoid; }
-  .cv-section { page-break-inside: avoid; }
+  .cv-talk-item { page-break-inside: avoid; break-inside: avoid; }
 }
 
 /* ── RESPONSIVE ── */
