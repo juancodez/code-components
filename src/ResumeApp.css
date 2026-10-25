@@ -164,6 +164,8 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
   color: #344054;
 }
 
+.cv-bullet-lead { font-weight: 600; }
+
 .cv-bullet-dot {
   width: 5px;
   height: 5px;
