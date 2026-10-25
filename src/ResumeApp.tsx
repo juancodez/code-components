@@ -113,7 +113,7 @@ export default function ResumeApp() {
             <h1 className="cv-name">Juan Gomez Vara</h1>
             <p className="cv-subtitle">Product Designer · Design Systems · AI-Augmented Workflows</p>
           </div>
-          <button className="header-tool-btn" onClick={() => window.print()} aria-label="Print / Save as PDF">
+          <button className="header-tool-btn" onClick={() => window.open('/Juan-Gomez-Vara-Resume.pdf', '_blank')} aria-label="Download PDF">
             <PrintIcon />
           </button>
         </div>
