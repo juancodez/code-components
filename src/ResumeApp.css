@@ -1,5 +1,6 @@
 /* ── LAYOUT ── */
 .cv-site-header { margin-bottom: 0; }
+.cv-header .header-tool-btn { width: 52px; height: 52px; }
 
 .cv-main {
   width: 100%;
