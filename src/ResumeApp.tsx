@@ -67,7 +67,7 @@ const EXPERIENCE = [
 ];
 
 const SHIPPED = [
-  { name: "Klaro", tags: ["Product Design", "UX/UI", "AI Dev"], desc: "Tax declaration platform for Spanish-speaking freelancers in Germany.", href: "https://klaro-es.com/", label: "klaro-es.com" },
+  { name: "Klaro", tags: ["Product Design", "UX/UI", "AI Dev"], desc: "Founder of a tax declaration platform for Spanish-speaking freelancers in Germany, helping them to save between €800 and €1,000 per year.", href: "https://klaro-es.com/", label: "klaro-es.com" },
   { name: "Figma Plugins ×4", tags: ["DesignOps", "Workflow Tools"], desc: "File export, type scaling, and workflow automation tools published on Figma Community.", href: "https://www.figma.com/@juangomezvara", label: "figma.com/@juangomezvara" },
   { name: "Claude Skills", tags: ["AI Workflows", "Orchestration"], desc: "Workflow orchestration plugin for structured AI-assisted design and dev workflows.", href: "https://github.com/juancodez/SKILLS", label: "github.com/juancodez/SKILLS" },
 ];
@@ -170,9 +170,9 @@ export default function ResumeApp() {
               <li key={s.name} className="cv-exp-item">
                 <div className="cv-exp-company-row">
                   <a className="cv-shipped-name" href={s.href} target="_blank" rel="noopener noreferrer">{s.name}</a>
-                  <a className="cv-shipped-url" href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</a>
                 </div>
                 <p className="cv-shipped-desc">{s.desc}</p>
+                <a className="cv-shipped-url" href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</a>
               </li>
             ))}
           </ul>
