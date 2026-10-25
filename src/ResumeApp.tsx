@@ -172,9 +172,7 @@ export default function ResumeApp() {
                   <a className="cv-shipped-name" href={s.href} target="_blank" rel="noopener noreferrer">{s.name}</a>
                   <span className="cv-exp-date">{s.label}</span>
                 </div>
-                <div className="cv-shipped-tags">
-                  {s.tags.map(t => <span key={t} className="cv-tag">{t}</span>)}
-                </div>
+                <p className="cv-shipped-desc">{s.desc}</p>
               </li>
             ))}
           </ul>

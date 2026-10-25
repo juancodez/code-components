@@ -202,7 +202,7 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
   transition: color 130ms ease;
 }
 .cv-shipped-name:hover { color: #344054; }
-.cv-shipped-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.cv-shipped-desc { font-size: var(--fs-body); color: #344054; line-height: var(--lh-relaxed); margin: 0; }
 
 .cv-tag {
   font-size: var(--fs-base);
@@ -278,7 +278,7 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
 .cv-skill-cat {
   font-size: var(--fs-base);
   font-weight: 600;
-  color: #344054;
+  color: #1d2939;
   min-width: 88px;
   flex-shrink: 0;
   padding-top: 4px;
