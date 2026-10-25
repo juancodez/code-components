@@ -1303,7 +1303,7 @@
 
 .tblock-role {
   font-family: 'Author', system-ui, sans-serif;
-  font-size: 12px;
+  font-size: var(--fs-base);
   color: #98a1b2;
   line-height: 1.3;
 }

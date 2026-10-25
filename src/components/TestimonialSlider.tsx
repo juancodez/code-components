@@ -33,7 +33,7 @@ const DATA = [
       "I worked with Juan for my app's (Micro-casing) UX/UI design. Juan was very thorough and very professional, and I had a great time working with him. His discipline in learning about the customer journey in the industry related to the app was very much appreciated.",
     name: "Shankar Ananth",
     role: "CEO, Cerebral Games",
-    company: "Former McKinsey & Bain Consultant",
+    company: "Ex-Bain & McKinsey",
     initials: "SA",
     linkedIn: "https://www.linkedin.com/in/shankarananth8/",
     img: "/shankar.webp",
