@@ -43,11 +43,8 @@ const DATA = [
 
 export function TestimonialSlider() {
   const [idx, setIdx] = useState(0);
-  const [dir, setDir] = useState<"left" | "right">("right");
-  const t = DATA[idx];
 
   function go(next: number) {
-    setDir(next > idx ? "right" : "left");
     setIdx(next);
   }
 
@@ -64,48 +61,56 @@ export function TestimonialSlider() {
             <RiArrowLeftLine size={16} />
           </button>
 
-        <div className="tblock-wrap" key={idx} data-dir={dir}>
-          <div className="tblock-card">
-            <div className="tblock-accent" aria-hidden="true" />
-            <RiDoubleQuotesR className="tblock-icon" aria-hidden="true" />
-            <blockquote className="tblock-quote">{t.quote}</blockquote>
-            <SeparatorPrimitive.Root className="tblock-separator" decorative />
-            <div className="tblock-footer">
-              <div className="tblock-author">
-                <AvatarPrimitive.Root className="tblock-avatar">
-                  <AvatarPrimitive.Image src={t.img} alt={t.name} className="tblock-avatar-img" />
-                  <AvatarPrimitive.Fallback className="tblock-avatar-fallback">
-                    {t.initials}
-                  </AvatarPrimitive.Fallback>
-                </AvatarPrimitive.Root>
-                <div className="tblock-author-info">
-                  <a
-                    href={t.linkedIn}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="tblock-name"
-                  >
-                    {t.name}
-                  </a>
-                  <span className="tblock-role">
-                    {t.role},{" "}
-                    <span className="tblock-company">{t.company}</span>
-                  </span>
+          <div className="tslider-cards-wrapper">
+            {DATA.map((t, i) => (
+              <div
+                key={i}
+                className={`tblock-wrap${i === idx ? " tblock-wrap--active" : ""}`}
+                aria-hidden={i !== idx}
+              >
+                <div className="tblock-card">
+                  <div className="tblock-accent" aria-hidden="true" />
+                  <RiDoubleQuotesR className="tblock-icon" aria-hidden="true" />
+                  <blockquote className="tblock-quote">{t.quote}</blockquote>
+                  <SeparatorPrimitive.Root className="tblock-separator" decorative />
+                  <div className="tblock-footer">
+                    <div className="tblock-author">
+                      <AvatarPrimitive.Root className="tblock-avatar">
+                        <AvatarPrimitive.Image src={t.img} alt={t.name} className="tblock-avatar-img" />
+                        <AvatarPrimitive.Fallback className="tblock-avatar-fallback">
+                          {t.initials}
+                        </AvatarPrimitive.Fallback>
+                      </AvatarPrimitive.Root>
+                      <div className="tblock-author-info">
+                        <a
+                          href={t.linkedIn}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="tblock-name"
+                        >
+                          {t.name}
+                        </a>
+                        <span className="tblock-role">
+                          {t.role},{" "}
+                          <span className="tblock-company">{t.company}</span>
+                        </span>
+                      </div>
+                    </div>
+                    {t.metrics.length > 0 && (
+                      <div className="tblock-metrics">
+                        {t.metrics.map(m => (
+                          <div key={m.label} className="tblock-metric">
+                            <span className="tblock-metric-value">{m.value}</span>
+                            <span className="tblock-metric-label">{m.label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
-              {t.metrics.length > 0 && (
-                <div className="tblock-metrics">
-                  {t.metrics.map(m => (
-                    <div key={m.label} className="tblock-metric">
-                      <span className="tblock-metric-value">{m.value}</span>
-                      <span className="tblock-metric-label">{m.label}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+            ))}
           </div>
-        </div>
 
           <button
             className="tslider-btn"

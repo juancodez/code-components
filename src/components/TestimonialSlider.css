@@ -21,40 +21,38 @@
 
 .tslider-card-row {
   display: flex;
-  align-items: stretch;
+  align-items: center;
   gap: 12px;
-  min-height: 380px;
 }
 
-@keyframes slide-in-right {
-  from { opacity: 0; transform: translateX(48px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-@keyframes slide-in-left {
-  from { opacity: 0; transform: translateX(-48px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-.tslider-card-row .tblock-wrap {
+/* Grid stack: all cards in the same cell → tallest determines height */
+.tslider-cards-wrapper {
+  display: grid;
+  grid-template: 1fr / 1fr;
   flex: 1;
   min-width: 0;
+}
+
+.tslider-cards-wrapper > .tblock-wrap {
+  grid-area: 1 / 1;
   display: flex;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
 }
 
-.tslider-card-row .tblock-wrap[data-dir="right"] {
-  animation: slide-in-right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.tslider-card-row .tblock-wrap[data-dir="left"] {
-  animation: slide-in-left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+.tslider-cards-wrapper > .tblock-wrap--active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.tslider-card-row .tblock-card {
+.tslider-cards-wrapper .tblock-card {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
-.tslider-card-row .tblock-quote {
+.tslider-cards-wrapper .tblock-quote {
   flex: 1;
 }
 
