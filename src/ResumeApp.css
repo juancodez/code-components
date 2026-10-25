@@ -203,6 +203,16 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
   transition: color 130ms ease;
 }
 .cv-shipped-name:hover { color: #344054; }
+.cv-shipped-url {
+  font-size: var(--fs-base);
+  font-weight: 400;
+  color: #344054;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 130ms ease;
+}
+.cv-shipped-url:hover { color: #1d2939; text-decoration: underline; }
 .cv-shipped-desc { font-size: var(--fs-body); color: #344054; line-height: var(--lh-relaxed); margin: 0; }
 
 .cv-tag {
@@ -308,6 +318,8 @@ html[data-theme="dark"] .cv-exp-location { color: #3a5470; }
 html[data-theme="dark"] .cv-edu-degree,
 html[data-theme="dark"] .cv-lang-name { color: #c5d3e8; }
 html[data-theme="dark"] .cv-shipped-name { color: #ffffff; }
+html[data-theme="dark"] .cv-shipped-url { color: #8899b4; }
+html[data-theme="dark"] .cv-shipped-url:hover { color: #ffffff; }
 html[data-theme="dark"] .cv-edu-school { color: #8899b4; }
 html[data-theme="dark"] .cv-edu-year,
 html[data-theme="dark"] .cv-talk-venue { color: #8899b4; }

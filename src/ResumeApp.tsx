@@ -170,7 +170,7 @@ export default function ResumeApp() {
               <li key={s.name} className="cv-exp-item">
                 <div className="cv-exp-company-row">
                   <a className="cv-shipped-name" href={s.href} target="_blank" rel="noopener noreferrer">{s.name}</a>
-                  <span className="cv-exp-date">{s.label}</span>
+                  <a className="cv-shipped-url" href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</a>
                 </div>
                 <p className="cv-shipped-desc">{s.desc}</p>
               </li>
