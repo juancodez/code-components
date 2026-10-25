@@ -189,17 +189,17 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
 }
 .cv-shipped-item:hover { border-color: #e4e7ec; background: #f9f9f8; }
 
-.cv-shipped-name { font-size: var(--fs-body); font-weight: 600; color: #1d2939; letter-spacing: -0.02em; }
-.cv-shipped-tags { display: flex; flex-wrap: wrap; gap: 4px; }
-.cv-shipped-desc { font-size: var(--fs-base); color: #667085; line-height: var(--lh-normal); flex: 1; margin: 0; }
-.cv-shipped-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: var(--fs-base);
-  color: #98a1b2;
-  margin-top: 2px;
+.cv-shipped-name {
+  font-size: var(--fs-subhead);
+  font-weight: 600;
+  color: #1d2939;
+  letter-spacing: -0.02em;
+  line-height: var(--lh-tight);
+  text-decoration: none;
+  transition: color 130ms ease;
 }
+.cv-shipped-name:hover { color: #344054; }
+.cv-shipped-tags { display: flex; flex-wrap: wrap; gap: 4px; }
 
 .cv-tag {
   font-size: var(--fs-base);
@@ -285,25 +285,25 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
 .cv-skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
 
 /* ── DARK MODE ── */
-html[data-theme="dark"] .cv-name { color: #e2e8f4; }
+html[data-theme="dark"] .cv-name { color: #ffffff; }
 html[data-theme="dark"] .cv-subtitle { color: #4a5568; }
 html[data-theme="dark"] .cv-header,
 html[data-theme="dark"] .cv-contact,
 html[data-theme="dark"] .cv-section { border-color: #1a2744; }
 html[data-theme="dark"] .cv-contact-item { color: #4a5568; }
-html[data-theme="dark"] a.cv-contact-item:hover { color: #e2e8f4; background: #1a2744; }
+html[data-theme="dark"] a.cv-contact-item:hover { color: #ffffff; background: #1a2744; }
 html[data-theme="dark"] .cv-dot { background: #2d3f5c; }
-html[data-theme="dark"] .cv-section-label { color: #e2e8f4; }
+html[data-theme="dark"] .cv-section-label { color: #ffffff; }
 html[data-theme="dark"] .cv-subtitle { color: #8899b4; }
 html[data-theme="dark"] .cv-body,
 html[data-theme="dark"] .cv-bullet { color: #8899b4; }
-html[data-theme="dark"] .cv-exp-company { color: #e2e8f4; }
-html[data-theme="dark"] .cv-exp-date { color: #e2e8f4; }
+html[data-theme="dark"] .cv-exp-company { color: #ffffff; }
+html[data-theme="dark"] .cv-exp-date { color: #ffffff; }
 html[data-theme="dark"] .cv-exp-role { color: #c5d3e8; }
 html[data-theme="dark"] .cv-exp-location { color: #3a5470; }
 html[data-theme="dark"] .cv-edu-degree,
-html[data-theme="dark"] .cv-lang-name,
-html[data-theme="dark"] .cv-shipped-name { color: #c5d3e8; }
+html[data-theme="dark"] .cv-lang-name { color: #c5d3e8; }
+html[data-theme="dark"] .cv-shipped-name { color: #ffffff; }
 html[data-theme="dark"] .cv-edu-school { color: #4a5568; }
 html[data-theme="dark"] .cv-edu-year,
 html[data-theme="dark"] .cv-talk-venue,
@@ -315,7 +315,7 @@ html[data-theme="dark"] .cv-shipped-item { border-color: #1a2744; }
 html[data-theme="dark"] .cv-shipped-item:hover { border-color: #2d3f5c; background: #0f1e38; }
 html[data-theme="dark"] .cv-shipped-desc,
 html[data-theme="dark"] .cv-talk-title { color: #8899b4; }
-html[data-theme="dark"] .cv-talk-link:hover { color: #e2e8f4; }
+html[data-theme="dark"] .cv-talk-link:hover { color: #ffffff; }
 
 /* ── PRINT ── */
 @media print {

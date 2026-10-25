@@ -126,7 +126,7 @@
 .skill-back-title {
   font-size: var(--fs-body);
   font-weight: 600;
-  color: #e2e8f4;
+  color: #ffffff;
   margin: 0;
 }
 
@@ -151,7 +151,7 @@
 
 .skill-close-btn:hover {
   background: rgba(255, 255, 255, 0.08);
-  color: #e2e8f4;
+  color: #ffffff;
 }
 
 .skill-back-desc {
@@ -202,7 +202,7 @@
 
 .skill-copy-btn:hover {
   background: rgba(255, 255, 255, 0.06);
-  color: #e2e8f4;
+  color: #ffffff;
 }
 
 .skill-copy-btn.copied {
@@ -232,7 +232,7 @@
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: transparent;
-  color: #e2e8f4;
+  color: #ffffff;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
@@ -327,7 +327,7 @@
 
 .gs-copy-btn:hover {
   background: rgba(255,255,255,0.08);
-  color: #e2e8f4;
+  color: #ffffff;
 }
 
 .gs-copy-btn.copied {
@@ -340,7 +340,7 @@
   border-color: rgba(148,175,210,0.1);
 }
 
-[data-theme="dark"] .gs-title { color: #e2e8f4; }
+[data-theme="dark"] .gs-title { color: #ffffff; }
 [data-theme="dark"] .gs-body  { color: #8fa3be; }
 
 /* ===== DARK MODE — CARDS ===== */
@@ -368,7 +368,7 @@
   color: #8fa3be;
 }
 
-[data-theme="dark"] .skill-title { color: #e2e8f4; }
+[data-theme="dark"] .skill-title { color: #ffffff; }
 [data-theme="dark"] .skill-desc  { color: #8fa3be; }
 
 /* ===== RESPONSIVE ===== */

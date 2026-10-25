@@ -164,23 +164,19 @@ export default function ResumeApp() {
         {/* Shipped */}
         <section className="cv-section">
           <h2 className="cv-section-label">Shipped</h2>
-          <div className="cv-shipped-grid">
+          <ul className="cv-exp-list">
             {SHIPPED.map(s => (
-              <a key={s.name} className="cv-shipped-item" href={s.href} target="_blank" rel="noopener noreferrer">
-                <span className="cv-shipped-name">{s.name}</span>
+              <li key={s.name} className="cv-exp-item">
+                <div className="cv-exp-company-row">
+                  <a className="cv-shipped-name" href={s.href} target="_blank" rel="noopener noreferrer">{s.name}</a>
+                  <span className="cv-exp-date">{s.label}</span>
+                </div>
                 <div className="cv-shipped-tags">
                   {s.tags.map(t => <span key={t} className="cv-tag">{t}</span>)}
                 </div>
-                <p className="cv-shipped-desc">{s.desc}</p>
-                <span className="cv-shipped-link">
-                  <svg width="11" height="11" viewBox="0 0 20 20" fill="none" aria-hidden="true" style={{ opacity: 0.35, flexShrink: 0 }}>
-                    <path d="M 1.713 20 L 0 18.617 L 16.141 2.46 L 1.467 2.46 L 1.467 0 L 20 0 L 20 18.863 L 17.869 18.863 L 17.869 4.189 Z" fill="currentColor"/>
-                  </svg>
-                  {s.label}
-                </span>
-              </a>
+              </li>
             ))}
-          </div>
+          </ul>
         </section>
 
         {/* Talks & Writing */}
