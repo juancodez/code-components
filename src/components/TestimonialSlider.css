@@ -21,7 +21,7 @@
 
 .tslider-card-row {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: 12px;
 }
 
@@ -37,6 +37,7 @@
 .tslider-card-row .tblock-wrap {
   flex: 1;
   min-width: 0;
+  display: flex;
 }
 
 .tslider-card-row .tblock-wrap[data-dir="right"] {
@@ -49,6 +50,7 @@
 .tslider-card-row .tblock-card {
   display: flex;
   flex-direction: column;
+  flex: 1;
   min-height: 320px;
 }
 

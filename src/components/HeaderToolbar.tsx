@@ -58,18 +58,30 @@ export function HeaderToolbar() {
     return () => document.removeEventListener("keydown", onKey);
   }, []);
 
+  const onResumePage = window.location.pathname.includes("resume");
+
   return (
     <div className="header-tools">
-      <a
-        className="header-tool-btn header-tool-btn--cv"
-        href="/juan-gomez-vara-cv.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Download CV"
-      >
-        <CvIcon />
-        <Tip label="CV" />
-      </a>
+      {onResumePage ? (
+        <span
+          className="header-tool-btn header-tool-btn--cv"
+          data-active=""
+          aria-label="Resume (current page)"
+          aria-current="page"
+        >
+          <CvIcon />
+          <Tip label="Resume" />
+        </span>
+      ) : (
+        <a
+          className="header-tool-btn header-tool-btn--cv"
+          href="/resume.html"
+          aria-label="View Resume"
+        >
+          <CvIcon />
+          <Tip label="Resume" />
+        </a>
+      )}
       <button
         className="header-tool-btn"
         onClick={() => setTheme(t => t === "light" ? "dark" : "light")}

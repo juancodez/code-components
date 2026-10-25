@@ -72,7 +72,7 @@
   width: fit-content;
   padding: 3px 10px;
   border-radius: 999px;
-  font-size: 13px;
+  font-size: var(--fs-sm);
   font-weight: 500;
   letter-spacing: 0.01em;
   background: #f2f4f7;
@@ -80,19 +80,19 @@
 }
 
 .skill-title {
-  font-size: 17px;
+  font-size: var(--fs-subhead);
   font-weight: 600;
   color: #1d2939;
   letter-spacing: -0.02em;
   margin: 0;
-  line-height: 1.2;
+  line-height: var(--lh-tight);
 }
 
 .skill-desc {
-  font-size: 14px;
+  font-size: var(--fs-body);
   color: #667085;
   margin: 0;
-  line-height: 1.5;
+  line-height: var(--lh-normal);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -124,7 +124,7 @@
 }
 
 .skill-back-title {
-  font-size: 15px;
+  font-size: var(--fs-body);
   font-weight: 600;
   color: #e2e8f4;
   margin: 0;
@@ -155,10 +155,10 @@
 }
 
 .skill-back-desc {
-  font-size: 14px;
+  font-size: var(--fs-base);
   color: #8fa3be;
   margin: 0;
-  line-height: 1.6;
+  line-height: var(--lh-relaxed);
 }
 
 .skill-code-block {
@@ -281,10 +281,10 @@
 }
 
 .gs-body {
-  font-size: 16px;
+  font-size: var(--fs-body);
   color: #667085;
   margin: 0;
-  line-height: 1.6;
+  line-height: var(--lh-relaxed);
 }
 
 .gs-body--sm {

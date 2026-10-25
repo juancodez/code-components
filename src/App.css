@@ -1,3 +1,18 @@
+/* ===== TYPE SCALE — Major Third · 20px body ===== */
+:root {
+  --fs-xs:      12px;   /* labels, badges, code meta                 */
+  --fs-sm:      14px;   /* nav, secondary meta, tags                 */
+  --fs-base:    16px;   /* body-sm, subtitles, supporting text       */
+  --fs-body:    20px;   /* main reading body                         */
+  --fs-subhead: 24px;   /* subheadings, card titles                  */
+  --fs-heading: 32px;   /* section headings                          */
+  --fs-display: 40px;   /* hero, page display                        */
+
+  --lh-tight:   1.2;
+  --lh-normal:  1.5;
+  --lh-relaxed: 1.7;
+}
+
 /* ===== PAGE SHELL ===== */
 .page {
   min-height: 100vh;
@@ -612,7 +627,7 @@
 }
 .project-title {
   font-family: 'Author', system-ui, sans-serif;
-  font-size: 20px;
+  font-size: var(--fs-subhead);
   font-weight: 600;
   color: #0c0c0c;
   margin: 0;
@@ -621,7 +636,7 @@
 }
 .project-sub {
   font-family: 'Author', system-ui, sans-serif;
-  font-size: 16px;
+  font-size: var(--fs-body);
   color: #666;
   margin: 0;
   line-height: 1.5;
@@ -698,7 +713,7 @@
 }
 
 .post-entry-title {
-  font-size: 17px;
+  font-size: var(--fs-subhead);
   font-weight: 500;
   color: #0c0c0c;
   margin: 0;
@@ -706,8 +721,8 @@
 }
 
 .post-entry-desc {
-  font-size: 17px;
-  line-height: 1.65;
+  font-size: var(--fs-body);
+  line-height: var(--lh-relaxed);
   color: #666;
   margin: 0;
 }
@@ -1185,7 +1200,7 @@
 }
 
 .cf-link {
-  font-size: 17px;
+  font-size: var(--fs-body);
   color: #667085;
   text-decoration: none;
   display: inline-flex;
@@ -1222,7 +1237,7 @@
 }
 
 .cf-email {
-  font-size: clamp(17px, 2.2vw, 26px);
+  font-size: clamp(24px, 3.2vw, 40px);
   font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1.15;
@@ -1650,8 +1665,8 @@
   /* Home page project cards */
   .projects-wrap { gap: 32px; }
   .project-text { padding: 16px 18px 20px; }
-  .project-title { font-size: 17px; }
-  .project-sub { font-size: 14px; }
+  .project-title { font-size: var(--fs-body); }
+  .project-sub { font-size: var(--fs-base); }
   .footer-link-card { padding: 16px; }
   .footer-link-heading { font-size: 15px; }
   .footer-link-label { font-size: 13px; }
@@ -1660,8 +1675,8 @@
   .post-main { gap: 40px; padding: 32px 0 48px; }
   .post-list { gap: 32px; padding: 0 16px; }
   .post-footer-nav { padding: 0 16px; }
-  .post-entry-title { font-size: 15px; }
-  .post-entry-desc { font-size: 15px; }
+  .post-entry-title { font-size: var(--fs-body); }
+  .post-entry-desc { font-size: var(--fs-base); }
 }
 
 /* ===== DARK MODE — navy palette ===== */

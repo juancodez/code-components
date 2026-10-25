@@ -50,7 +50,7 @@ const SKILLS: Skill[] = [
     description: "A Claude Code skill for debugging, fixing, and resubmitting Figma Community plugins. Built from real rejections, updated each time a new pattern is discovered.",
     gradient: "linear-gradient(145deg, #0a1628 0%, #1a3a5c 55%, #2563eb 100%)",
     image: figmaClaudeImg,
-    imageFit: "contain",
+    imageFit: "cover",
     installCmd: "npx skills add https://github.com/juancodez/SKILLS --skill figma-plugin-publisher",
     githubUrl: "https://github.com/juancodez/SKILLS/tree/main/figma-plugin-publisher",
   },
@@ -101,7 +101,6 @@ function SkillCard({ skill }: { skill: Skill }) {
           }
         </div>
         <div className="skill-meta">
-          <span className="skill-pill">{skill.category}</span>
           <h3 className="skill-title">{skill.title}</h3>
           <p className="skill-desc">{skill.description}</p>
         </div>
