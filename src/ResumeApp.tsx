@@ -1,6 +1,5 @@
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
-import { PixelOverlay } from "./components/PixelOverlay";
 import "./App.css";
 import "./ResumeApp.css";
 
@@ -249,7 +248,6 @@ export default function ResumeApp() {
       </main>
 
       <Footer />
-      <PixelOverlay />
     </div>
   );
 }
