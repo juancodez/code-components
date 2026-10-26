@@ -15,20 +15,6 @@ export function VideoDeck() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const video = VIDEOS[idx];
 
-  // autoplay with sound on mount; muted fallback if browser blocks
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    v.muted = false;
-    v.play()
-      .then(() => setPlaying(true))
-      .catch(() => {
-        v.muted = true;
-        setMuted(true);
-        v.play().then(() => setPlaying(true)).catch(() => {});
-      });
-  }, []);
-
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
