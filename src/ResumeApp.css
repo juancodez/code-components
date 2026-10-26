@@ -218,7 +218,7 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
 .cv-tag {
   font-size: var(--fs-base);
   font-weight: 500;
-  color: #344054;
+  color: #1d2939;
   background: transparent;
   border: 1px solid #f2f4f7;
   padding: 3px 10px;
@@ -359,28 +359,28 @@ html[data-theme="dark"] .cv-talk-link:hover { color: #ffffff; }
   .cv-main { padding: 0; max-width: 100%; }
 
   /* Scale down for 2 pages */
-  .cv-name { font-size: 18pt !important; color: #1d2939 !important; }
-  .cv-subtitle { font-size: 9.5pt !important; color: #344054 !important; }
-  .cv-section-label { font-size: 11pt !important; color: #1d2939 !important; margin-bottom: 6px !important; }
-  .cv-contact-item { font-size: 8pt !important; color: #344054 !important; }
-  .cv-exp-company { font-size: 9.5pt !important; color: #1d2939 !important; }
-  .cv-exp-date { font-size: 9.5pt !important; color: #1d2939 !important; }
-  .cv-exp-role { font-size: 8.5pt !important; color: #344054 !important; }
-  .cv-bullet { font-size: 8pt !important; line-height: 1.4 !important; color: #344054 !important; gap: 6px !important; }
-  .cv-bullet-dot { background: #98a1b2 !important; margin-top: 5px !important; }
-  .cv-skill-cat { font-size: 8pt !important; color: #344054 !important; }
-  .cv-tag { font-size: 7.5pt !important; padding: 2px 7px !important; background: transparent !important; border: 1px solid #e4e7ec !important; }
-  .cv-shipped-name { font-size: 9.5pt !important; color: #1d2939 !important; }
-  .cv-shipped-desc { font-size: 8pt !important; color: #344054 !important; }
-  .cv-shipped-url { font-size: 8pt !important; color: #344054 !important; }
-  .cv-talk-title { font-size: 8pt !important; color: #344054 !important; }
-  .cv-talk-venue { font-size: 8pt !important; color: #344054 !important; }
-  .cv-edu-degree { font-size: 8pt !important; color: #1d2939 !important; }
-  .cv-edu-school { font-size: 7.5pt !important; color: #344054 !important; }
-  .cv-edu-year { font-size: 7.5pt !important; color: #344054 !important; }
-  .cv-lang-name { font-size: 8pt !important; color: #1d2939 !important; }
-  .cv-lang-badge { font-size: 7.5pt !important; background: #f2f4f7 !important; color: #344054 !important; }
-  .cv-body { font-size: 8pt !important; color: #344054 !important; }
+  .cv-name { font-size: 20pt !important; color: #1d2939 !important; }
+  .cv-subtitle { font-size: 10.5pt !important; color: #344054 !important; }
+  .cv-section-label { font-size: 12pt !important; color: #1d2939 !important; margin-bottom: 6px !important; }
+  .cv-contact-item { font-size: 9pt !important; color: #344054 !important; }
+  .cv-exp-company { font-size: 10pt !important; color: #1d2939 !important; }
+  .cv-exp-date { font-size: 10pt !important; color: #1d2939 !important; }
+  .cv-exp-role { font-size: 9pt !important; color: #344054 !important; }
+  .cv-bullet { font-size: 9pt !important; line-height: 1.4 !important; color: #344054 !important; gap: 6px !important; }
+  .cv-bullet-dot { background: #98a1b2 !important; margin-top: 6px !important; }
+  .cv-skill-cat { font-size: 9pt !important; color: #344054 !important; }
+  .cv-tag { font-size: 8.5pt !important; padding: 2px 7px !important; background: transparent !important; border: 1px solid #e4e7ec !important; color: #1d2939 !important; }
+  .cv-shipped-name { font-size: 10pt !important; color: #1d2939 !important; }
+  .cv-shipped-desc { font-size: 9pt !important; color: #344054 !important; }
+  .cv-shipped-url { font-size: 8.5pt !important; color: #344054 !important; }
+  .cv-talk-title { font-size: 9pt !important; color: #344054 !important; }
+  .cv-talk-venue { font-size: 8.5pt !important; color: #344054 !important; }
+  .cv-edu-degree { font-size: 9pt !important; color: #1d2939 !important; }
+  .cv-edu-school { font-size: 8.5pt !important; color: #344054 !important; }
+  .cv-edu-year { font-size: 8.5pt !important; color: #344054 !important; }
+  .cv-lang-name { font-size: 9pt !important; color: #1d2939 !important; }
+  .cv-lang-badge { font-size: 8.5pt !important; background: #f2f4f7 !important; color: #344054 !important; }
+  .cv-body { font-size: 9pt !important; color: #344054 !important; }
 
   /* Tighten spacing */
   .cv-header { padding-bottom: 6px !important; }
