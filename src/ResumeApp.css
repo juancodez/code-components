@@ -219,7 +219,8 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
   font-size: var(--fs-base);
   font-weight: 500;
   color: #344054;
-  background: #f2f4f7;
+  background: transparent;
+  border: 1px solid #d0d5dd;
   padding: 3px 10px;
   border-radius: 999px;
 }
@@ -289,7 +290,7 @@ a.cv-contact-item:hover { color: #1d2939; background: #f2f4f7; }
 .cv-skill-cat {
   font-size: var(--fs-base);
   font-weight: 600;
-  color: #98a1b2;
+  color: #344054;
   min-width: 88px;
   flex-shrink: 0;
   padding-top: 4px;
@@ -367,8 +368,8 @@ html[data-theme="dark"] .cv-talk-link:hover { color: #ffffff; }
   .cv-exp-role { font-size: 10pt !important; color: #344054 !important; }
   .cv-bullet { font-size: 9.5pt !important; line-height: 1.5 !important; color: #344054 !important; }
   .cv-bullet-dot { background: #98a1b2 !important; }
-  .cv-skill-cat { font-size: 8.5pt !important; color: #98a1b2 !important; }
-  .cv-tag { font-size: 8.5pt !important; }
+  .cv-skill-cat { font-size: 8.5pt !important; color: #344054 !important; }
+  .cv-tag { font-size: 8.5pt !important; background: transparent !important; border: 1px solid #d0d5dd !important; }
   .cv-shipped-name { font-size: 11pt !important; color: #1d2939 !important; }
   .cv-shipped-desc { font-size: 9.5pt !important; color: #344054 !important; }
   .cv-shipped-url { font-size: 9pt !important; color: #344054 !important; }
@@ -403,6 +404,7 @@ html[data-theme="dark"] .cv-talk-link:hover { color: #ffffff; }
   .cv-exp-item,
   .cv-edu-item,
   .cv-talk-item { page-break-inside: avoid; break-inside: avoid; }
+  .cv-section--shipped { page-break-before: always; break-before: page; }
 }
 
 /* ── RESPONSIVE ── */
