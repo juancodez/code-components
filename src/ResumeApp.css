@@ -338,7 +338,7 @@ html[data-theme="dark"] .cv-talk-link:hover { color: #ffffff; }
 @media print {
   @page {
     size: A4;
-    margin: 10mm 14mm;
+    margin: 8mm 12mm;
   }
 
   /* Kill dark mode backgrounds */
@@ -358,36 +358,40 @@ html[data-theme="dark"] .cv-talk-link:hover { color: #ffffff; }
 
   .cv-main { padding: 0; max-width: 100%; }
 
-  /* Scale down for 2 pages */
+  /* PAGE 1 — header + experience at 11pt */
   .cv-name { font-size: 22pt !important; color: #1d2939 !important; }
   .cv-subtitle { font-size: 12pt !important; color: #344054 !important; }
-  .cv-section-label { font-size: 14pt !important; color: #1d2939 !important; margin-bottom: 6px !important; }
   .cv-contact-item { font-size: 11pt !important; color: #344054 !important; }
+  .cv-body { font-size: 11pt !important; color: #344054 !important; }
   .cv-exp-company { font-size: 12pt !important; color: #1d2939 !important; }
   .cv-exp-date { font-size: 12pt !important; color: #1d2939 !important; }
   .cv-exp-role { font-size: 11pt !important; color: #344054 !important; }
-  .cv-bullet { font-size: 11pt !important; line-height: 1.4 !important; color: #344054 !important; gap: 6px !important; }
+  .cv-bullet { font-size: 11pt !important; line-height: 1.35 !important; color: #344054 !important; gap: 6px !important; }
   .cv-bullet-dot { background: #98a1b2 !important; margin-top: 7px !important; }
-  .cv-skill-cat { font-size: 11pt !important; color: #344054 !important; }
-  .cv-tag { font-size: 10.5pt !important; padding: 2px 7px !important; background: transparent !important; border: 1px solid #e4e7ec !important; color: #1d2939 !important; }
-  .cv-shipped-name { font-size: 12pt !important; color: #1d2939 !important; }
-  .cv-shipped-desc { font-size: 11pt !important; color: #344054 !important; }
-  .cv-shipped-url { font-size: 10.5pt !important; color: #344054 !important; }
-  .cv-talk-title { font-size: 11pt !important; color: #344054 !important; }
-  .cv-talk-venue { font-size: 10.5pt !important; color: #344054 !important; }
-  .cv-edu-degree { font-size: 11pt !important; color: #1d2939 !important; }
-  .cv-edu-school { font-size: 10.5pt !important; color: #344054 !important; }
-  .cv-edu-year { font-size: 10.5pt !important; color: #344054 !important; }
-  .cv-lang-name { font-size: 11pt !important; color: #1d2939 !important; }
-  .cv-lang-badge { font-size: 10.5pt !important; background: #f2f4f7 !important; color: #344054 !important; }
-  .cv-body { font-size: 11pt !important; color: #344054 !important; }
+  .cv-section-label { font-size: 14pt !important; color: #1d2939 !important; margin-bottom: 5px !important; }
 
-  /* Tighten spacing */
+  /* PAGE 2 — Shipped onward at 9.5pt */
+  .cv-section--shipped .cv-section-label,
+  .cv-section--shipped ~ .cv-section .cv-section-label { font-size: 12pt !important; }
+  .cv-shipped-name { font-size: 10pt !important; color: #1d2939 !important; }
+  .cv-shipped-desc { font-size: 9.5pt !important; color: #344054 !important; }
+  .cv-shipped-url { font-size: 9pt !important; color: #344054 !important; }
+  .cv-talk-title { font-size: 10pt !important; color: #344054 !important; }
+  .cv-talk-venue { font-size: 9pt !important; color: #344054 !important; }
+  .cv-edu-degree { font-size: 10pt !important; color: #1d2939 !important; }
+  .cv-edu-school { font-size: 9pt !important; color: #344054 !important; }
+  .cv-edu-year { font-size: 9pt !important; color: #344054 !important; }
+  .cv-lang-name { font-size: 10pt !important; color: #1d2939 !important; }
+  .cv-lang-badge { font-size: 9pt !important; background: #f2f4f7 !important; color: #344054 !important; }
+  .cv-skill-cat { font-size: 10pt !important; color: #344054 !important; }
+  .cv-tag { font-size: 9pt !important; padding: 2px 6px !important; background: transparent !important; border: 1px solid #e4e7ec !important; color: #1d2939 !important; }
+
+  /* Spacing */
   .cv-header { padding-bottom: 6px !important; }
   .cv-contact { padding: 5px 0 !important; }
   .cv-section { padding: 7px 0 !important; }
   .cv-section-label { margin-bottom: 5px !important; }
-  .cv-exp-list { gap: 9px !important; }
+  .cv-exp-list { gap: 10px !important; }
   .cv-exp-item { gap: 2px !important; }
   .cv-bullets { gap: 1px !important; }
   .cv-talks { gap: 3px !important; }
@@ -403,6 +407,7 @@ html[data-theme="dark"] .cv-talk-link:hover { color: #ffffff; }
   .cv-section { border-color: #e4e7ec !important; }
 
   /* Page breaks */
+  .cv-section--shipped { page-break-before: always; break-before: page; }
   .cv-exp-item,
   .cv-edu-item,
   .cv-talk-item { page-break-inside: avoid; break-inside: avoid; }
