@@ -163,7 +163,7 @@ export default function ResumeApp() {
         </section>
 
         {/* Shipped */}
-        <section className="cv-section cv-section--shipped">
+        <section className="cv-section">
           <h2 className="cv-section-label">Shipped</h2>
           <ul className="cv-exp-list">
             {SHIPPED.map(s => (
