@@ -160,6 +160,7 @@ export default function App() {
           const href = p.href
             ?? (p.slug === "hashbank" ? "microcasing.html"
             : p.slug === "exlo" ? "exlo.html"
+            : p.slug === "design-system" ? "design-systems.html"
             : `./projects/${p.slug}`);
           return <a key={p.slug} className="project-card" href={href} target={p.href ? "_blank" : undefined} rel={p.href ? "noopener noreferrer" : undefined}>{inner}</a>;
         })}
