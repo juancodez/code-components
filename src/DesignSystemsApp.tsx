@@ -68,6 +68,16 @@ function Placeholder({ label, ratio = "16/9" }: { label: string; ratio?: string 
 
 export default function DesignSystemsApp() {
   const [activeChallenge, setActiveChallenge] = useState(0);
+  const [lens, setLens] = useState<{ x: number; y: number; bgSize: number } | null>(null);
+
+  const handleLensMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setLens({
+      x: ((e.clientX - rect.left) / rect.width) * 100,
+      y: ((e.clientY - rect.top) / rect.height) * 100,
+      bgSize: rect.width * 2.5,
+    });
+  };
 
   return (
     <div className="page mc-page">
@@ -147,7 +157,29 @@ export default function DesignSystemsApp() {
                 via a plugin. One source. Every brand reads from it.
               </p>
             </div>
-            <Placeholder label="01. Hero composition: multi-brand tokens side by side, colour + type + spacing" ratio="4/3" />
+            <div
+              className="mc-challenge-img-wrap"
+              onMouseMove={handleLensMove}
+              onMouseLeave={() => setLens(null)}
+            >
+              <img
+                src="/01-escala-tokens-calendar.png"
+                alt="Hero composition: multi-brand tokens side by side"
+                style={{ width: "100%", display: "block" }}
+              />
+              {lens && (
+                <div
+                  className="mc-magnifier"
+                  style={{
+                    left: `${lens.x}%`,
+                    top: `${lens.y}%`,
+                    backgroundImage: `url(/01-escala-tokens-calendar.png)`,
+                    backgroundPosition: `${lens.x}% ${lens.y}%`,
+                    backgroundSize: `${lens.bgSize}px auto`,
+                  }}
+                />
+              )}
+            </div>
           </div>
         </section>
 
@@ -235,7 +267,7 @@ export default function DesignSystemsApp() {
         <section className="mc-section" id="problem">
           <div className="mc-section-inner">
             <h2 className="mc-section-title">
-              The same values, re-entered by hand,
+              The same values, re-entered by hand,<br />
               on every project, across every brand
             </h2>
             <div className="mc-branding-body">
@@ -283,7 +315,7 @@ export default function DesignSystemsApp() {
               <p className="mc-body-text">
                 Primitive tokens carry the raw values. Semantic tokens
                 give them meaning. A component binds to{" "}
-                <code style={{ fontFamily: "monospace", fontSize: "0.9em", background: "#f2f4f7", padding: "1px 6px", borderRadius: 4 }}>color.surface.primary</code>,
+                <code style={{ fontFamily: "monospace", fontSize: "0.9em", background: "#f2f4f7", color: "#1d2939", padding: "1px 6px", borderRadius: 4 }}>color.surface.primary</code>,
                 not to a hex code. Switching brand means remapping the
                 semantic layer. The component never changes.
               </p>
@@ -309,7 +341,30 @@ export default function DesignSystemsApp() {
                   reads from it.
                 </p>
               </div>
-              <Placeholder label="06. Token structure: naming convention, brand hierarchy, primitive to semantic chain" ratio="4/3" />
+              <div
+                className="mc-challenge-img-wrap"
+                onMouseMove={handleLensMove}
+                onMouseLeave={() => setLens(null)}
+                style={{ aspectRatio: "4/3" }}
+              >
+                <img
+                  src="/01-escala-tokens.png"
+                  alt="Token structure: naming convention, brand hierarchy, primitive to semantic chain"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+                {lens && (
+                  <div
+                    className="mc-magnifier"
+                    style={{
+                      left: `${lens.x}%`,
+                      top: `${lens.y}%`,
+                      backgroundImage: `url(/01-escala-tokens.png)`,
+                      backgroundPosition: `${lens.x}% ${lens.y}%`,
+                      backgroundSize: `${lens.bgSize}px auto`,
+                    }}
+                  />
+                )}
+              </div>
             </div>
             <div style={{ marginTop: 40 }}>
               <img
@@ -451,9 +506,6 @@ export default function DesignSystemsApp() {
             <div style={{ marginTop: 48 }}>
               <Placeholder label="12. Impact summary: four outcome cards" ratio="16/7" />
             </div>
-            <div style={{ marginTop: 32 }}>
-              <Placeholder label="13. Hour comparison chart: before vs. after across projects" ratio="16/7" />
-            </div>
           </div>
         </section>
 
@@ -487,35 +539,37 @@ export default function DesignSystemsApp() {
               <Placeholder label="14. Roadmap: Stage 1 Foundations (done) → Stage 2 Components + Storybook → Stage 3 Governance + Evolution" ratio="16/7" />
             </div>
 
-            <div className="mc-body" style={{ marginTop: 48 }}>
-              <div className="mc-body-text-col">
-                <p className="mc-body-text">
-                  <strong style={{ color: "#1d2939" }}>Core components.</strong>{" "}
-                  A set of base components: buttons, inputs, cards,
-                  navigation, built directly on the token layer, with
-                  documented contracts that define what each component
-                  accepts and how it should behave across brand contexts.
-                </p>
-                <p className="mc-body-text">
-                  <strong style={{ color: "#1d2939" }}>Storybook.</strong>{" "}
-                  A living component sandbox that designers, developers,
-                  and stakeholders can reference without opening Figma.
-                  Components render in isolation, tested across brand themes.
-                </p>
-              </div>
-              <div className="mc-body-text-col">
-                <p className="mc-body-text">
-                  <strong style={{ color: "#1d2939" }}>Governance.</strong>{" "}
-                  A versioned process for proposing and reviewing changes
-                  to foundations and components, from creative conception
-                  to version-controlled source in code.
-                </p>
-                <p className="mc-body-text">
-                  <strong style={{ color: "#1d2939" }}>Broader adoption.</strong>{" "}
-                  Expanding the system across additional agency brands and
-                  measuring the compounding effect on implementation speed
-                  as the component library grows.
-                </p>
+            <div style={{ marginTop: 48, background: "#fff", borderRadius: 16, padding: "40px 40px", border: "1px solid #f2f4f7" }}>
+              <div className="mc-body">
+                <div className="mc-body-text-col">
+                  <p className="mc-body-text">
+                    <strong style={{ color: "#1d2939" }}>Core components.</strong>{" "}
+                    A set of base components: buttons, inputs, cards,
+                    navigation, built directly on the token layer, with
+                    documented contracts that define what each component
+                    accepts and how it should behave across brand contexts.
+                  </p>
+                  <p className="mc-body-text">
+                    <strong style={{ color: "#1d2939" }}>Storybook.</strong>{" "}
+                    A living component sandbox that designers, developers,
+                    and stakeholders can reference without opening Figma.
+                    Components render in isolation, tested across brand themes.
+                  </p>
+                </div>
+                <div className="mc-body-text-col">
+                  <p className="mc-body-text">
+                    <strong style={{ color: "#1d2939" }}>Governance.</strong>{" "}
+                    A versioned process for proposing and reviewing changes
+                    to foundations and components, from creative conception
+                    to version-controlled source in code.
+                  </p>
+                  <p className="mc-body-text">
+                    <strong style={{ color: "#1d2939" }}>Broader adoption.</strong>{" "}
+                    Expanding the system across additional agency brands and
+                    measuring the compounding effect on implementation speed
+                    as the component library grows.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
