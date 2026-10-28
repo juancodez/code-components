@@ -21,12 +21,11 @@ const PROJECTS: Project[] = [
     subtitle: "Designed to save between €300 and €1,000 a year per user.",
   },
   {
-    slug: "design-system",
-    bg: "linear-gradient(145deg, #1a0533 0%, #3b1054 55%, #7c3aed 100%)",
-    video: "/escala-tokens.mp4",
-    hoverLabel: "Case Study coming soon",
-    title: "Building Multi-Brand Design Systems at Scale",
-    subtitle: "Streamlining code contribution workflows across diverse product lines to trim 15% off implementation costs and prevent visual drift.",
+    slug: "supplypro",
+    bg: "linear-gradient(145deg, #0a1f0a 0%, #1a3a1a 55%, #2d6a2d 100%)",
+    hoverLabel: "Read case study",
+    title: "Supply Pro",
+    subtitle: "Supply Pro is a B2B SaaS that helps restaurants recover up to €14,400 a year before poor supplier management reaches the kitchen.",
   },
   {
     slug: "hashbank",
@@ -160,7 +159,7 @@ export default function App() {
           const href = p.href
             ?? (p.slug === "hashbank" ? "microcasing.html"
             : p.slug === "exlo" ? "exlo.html"
-            : p.slug === "design-system" ? "design-systems.html"
+            : p.slug === "supplypro" ? "supplypro.html"
             : `./projects/${p.slug}`);
           return <a key={p.slug} className="project-card" href={href} target={p.href ? "_blank" : undefined} rel={p.href ? "noopener noreferrer" : undefined}>{inner}</a>;
         })}
