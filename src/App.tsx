@@ -11,16 +11,6 @@ type Project = { slug: string; bg: string; video?: string; gif?: string; videoFi
 
 const PROJECTS: Project[] = [
   {
-    slug: "data-table",
-    bg: "linear-gradient(145deg, #0f2027 0%, #203a43 55%, #2c5364 100%)",
-    video: "/klaro.mp4",
-    videoFit: "contain",
-    href: "https://www.klaro-es.com",
-    hoverLabel: "Case study coming soon · Click to see the live product",
-    title: "Klaro AI Native live product I engineer to help Spanish-speaking freelancers in Germany file their tax declaration.",
-    subtitle: "Designed to save between €300 and €1,000 a year per user.",
-  },
-  {
     slug: "supplypro",
     bg: "linear-gradient(145deg, #0a1f0a 0%, #1a3a1a 55%, #2d6a2d 100%)",
     hoverLabel: "Read case study",
@@ -28,11 +18,12 @@ const PROJECTS: Project[] = [
     subtitle: "Supply Pro is a B2B SaaS that helps restaurants recover up to €14,400 a year before poor supplier management reaches the kitchen.",
   },
   {
-    slug: "hashbank",
-    bg: "linear-gradient(145deg, #0f172a 0%, #1e3a5f 60%, #2563eb 100%)",
-    video: "/mca-thumbnail.mp4",
-    title: "Micro-casing Edtech app helping aspiring consultants land a spot at Mckinsey or Bain.",
-    subtitle: "The Redesign drove 508% growth",
+    slug: "design-system",
+    bg: "linear-gradient(145deg, #1a0533 0%, #3b1054 55%, #7c3aed 100%)",
+    video: "/escala-tokens.mp4",
+    hoverLabel: "Read case study",
+    title: "Building Multi-Brand Design Systems at Scale",
+    subtitle: "Streamlining code contribution workflows across diverse product lines to trim 15% off implementation costs and prevent visual drift.",
   },
   {
     slug: "exlo",
@@ -40,6 +31,13 @@ const PROJECTS: Project[] = [
     gif: "/exlo-gif.gif",
     title: "Exlo: Plugin for Figma",
     subtitle: "Helping Designers increase their workflow with a tool that allows multi export multifile at once",
+  },
+  {
+    slug: "hashbank",
+    bg: "linear-gradient(145deg, #0f172a 0%, #1e3a5f 60%, #2563eb 100%)",
+    video: "/mca-thumbnail.mp4",
+    title: "Micro-casing Edtech app helping aspiring consultants land a spot at Mckinsey or Bain.",
+    subtitle: "The Redesign drove 508% growth",
   },
 ];
 
@@ -157,9 +155,10 @@ export default function App() {
             </>
           );
           const href = p.href
-            ?? (p.slug === "hashbank" ? "microcasing.html"
-            : p.slug === "exlo" ? "exlo.html"
-            : p.slug === "supplypro" ? "supplypro.html"
+            ?? (p.slug === "hashbank"     ? "microcasing.html"
+            : p.slug === "exlo"           ? "exlo.html"
+            : p.slug === "supplypro"      ? "supplypro.html"
+            : p.slug === "design-system"  ? "design-systems.html"
             : `./projects/${p.slug}`);
           return <a key={p.slug} className="project-card" href={href} target={p.href ? "_blank" : undefined} rel={p.href ? "noopener noreferrer" : undefined}>{inner}</a>;
         })}
