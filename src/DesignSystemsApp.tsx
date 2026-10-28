@@ -406,7 +406,7 @@ export default function DesignSystemsApp() {
                   }}
                 >
                   <span style={{ fontFamily: "'Author', system-ui", fontSize: 13, fontWeight: 500, color: "#98a1b2", paddingTop: 2 }}>{s.step}</span>
-                  <span style={{ fontFamily: "'Author', system-ui", fontSize: 17, fontWeight: 600, color: "#1d2939", letterSpacing: "-0.01em" }}>{s.tool}</span>
+                  <span style={{ fontFamily: "'Author', system-ui", fontSize: 17, fontWeight: 600, color: "#fff", letterSpacing: "-0.01em" }}>{s.tool}</span>
                   <p className="mc-body-text" style={{ margin: 0 }}>{s.description}</p>
                 </div>
               ))}
@@ -503,9 +503,7 @@ export default function DesignSystemsApp() {
               ))}
             </div>
 
-            <div style={{ marginTop: 48 }}>
-              <Placeholder label="12. Impact summary: four outcome cards" ratio="16/7" />
-            </div>
+
           </div>
         </section>
 
@@ -539,18 +537,18 @@ export default function DesignSystemsApp() {
               <Placeholder label="14. Roadmap: Stage 1 Foundations (done) → Stage 2 Components + Storybook → Stage 3 Governance + Evolution" ratio="16/7" />
             </div>
 
-            <div style={{ marginTop: 48, background: "#fff", borderRadius: 16, padding: "40px 40px", border: "1px solid #f2f4f7" }}>
+            <div style={{ marginTop: 48 }}>
               <div className="mc-body">
                 <div className="mc-body-text-col">
                   <p className="mc-body-text">
-                    <strong style={{ color: "#1d2939" }}>Core components.</strong>{" "}
+                    <strong style={{ color: "#fff" }}>Core components.</strong>{" "}
                     A set of base components: buttons, inputs, cards,
                     navigation, built directly on the token layer, with
                     documented contracts that define what each component
                     accepts and how it should behave across brand contexts.
                   </p>
                   <p className="mc-body-text">
-                    <strong style={{ color: "#1d2939" }}>Storybook.</strong>{" "}
+                    <strong style={{ color: "#fff" }}>Storybook.</strong>{" "}
                     A living component sandbox that designers, developers,
                     and stakeholders can reference without opening Figma.
                     Components render in isolation, tested across brand themes.
@@ -558,13 +556,13 @@ export default function DesignSystemsApp() {
                 </div>
                 <div className="mc-body-text-col">
                   <p className="mc-body-text">
-                    <strong style={{ color: "#1d2939" }}>Governance.</strong>{" "}
+                    <strong style={{ color: "#fff" }}>Governance.</strong>{" "}
                     A versioned process for proposing and reviewing changes
                     to foundations and components, from creative conception
                     to version-controlled source in code.
                   </p>
                   <p className="mc-body-text">
-                    <strong style={{ color: "#1d2939" }}>Broader adoption.</strong>{" "}
+                    <strong style={{ color: "#fff" }}>Broader adoption.</strong>{" "}
                     Expanding the system across additional agency brands and
                     measuring the compounding effect on implementation speed
                     as the component library grows.
