@@ -1686,6 +1686,92 @@
   .post-entry-desc { font-size: var(--fs-base); }
 }
 
+/* ===== RESPONSIVE PATCHES — nav, hero, testimonials ===== */
+
+/* Tablet: shrink nav + toolbar so they fit together */
+@media (max-width: 900px) {
+  .nav-item { padding: 7px 13px; font-size: var(--fs-base); }
+  .header-tool-btn { width: 40px; height: 40px; }
+  .header-tool-btn--cv { padding: 0 12px; font-size: 12px; }
+  .site-header { padding: 20px 20px 0; }
+  .header-tools { right: 20px; }
+
+  /* Hero fluid */
+  .hero { padding: 36px 32px 44px; }
+  .hero-h1 { font-size: clamp(28px, 4.4vw, 38px); }
+  .hero-body { font-size: clamp(18px, 2.4vw, 26px); }
+  .hero-techtext-wrap { height: 120px; }
+  .hero-techtext-wrap--lg { height: 125px; margin-top: -50px; }
+
+  /* Testimonial */
+  .tslider-inner { width: 78%; padding: 48px 24px; }
+}
+
+/* Mobile: site-header stacks vertically; header-tools centered below */
+@media (max-width: 640px) {
+  .site-header {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 16px 0;
+  }
+  .nav-bar {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-bar::-webkit-scrollbar { display: none; }
+  .nav-item {
+    padding: 6px 11px;
+    font-size: var(--fs-sm);
+  }
+  .header-tools {
+    position: static;
+    right: auto;
+  }
+  .header-tool-btn { width: 38px; height: 38px; }
+  .header-tool-btn--cv { padding: 0 11px; font-size: 12px; }
+  .tool-tip { display: none; }
+
+  /* Hero compact */
+  .hero-h1 { font-size: clamp(24px, 8vw, 32px); line-height: 1.1; }
+  .hero-body { font-size: 16px; line-height: 1.55; }
+  .hero-techtext-wrap { height: 90px; }
+  .hero-techtext-wrap--lg { height: 95px; margin-top: -40px; }
+  .hero-name { font-size: 18px; }
+  .hero-role { font-size: 13px; }
+
+  /* Testimonial card tighter */
+  .tslider-inner { width: 100%; padding: 36px 16px; gap: 16px; }
+  .tslider-card-row { gap: 6px; }
+  .tblock-card { padding: 24px 20px; border-radius: 14px; }
+  .tblock-icon { width: 22px; height: 22px; margin-bottom: 18px; }
+  .tblock-quote { font-size: 16px; line-height: 1.55; }
+  .tblock-separator { margin: 24px 0; }
+  .tblock-footer { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .tblock-author { gap: 12px; }
+  .tblock-avatar { width: 44px; height: 44px; }
+  .tblock-name { font-size: 14px; }
+  .tblock-role { font-size: 13px; }
+  .tblock-metrics { gap: 20px; align-self: stretch; justify-content: flex-start; }
+  .tblock-metric-value { font-size: 16px; }
+
+  /* Figma pixel inline tweak so it stays with the text line */
+  .figma-push-wrap { width: 48px; height: 22px; }
+}
+
+/* Very small phones */
+@media (max-width: 400px) {
+  .nav-item { padding: 5px 9px; font-size: 13px; }
+  .header-tool-btn { width: 36px; height: 36px; }
+  .header-tool-btn--cv { padding: 0 10px; font-size: 11px; gap: 4px; }
+  .hero { padding: 24px 14px 32px; }
+  .hero-h1 { font-size: 22px; }
+  .tblock-card { padding: 20px 16px; }
+  .tblock-quote { font-size: 15px; }
+}
+
 /* ===== DARK MODE — navy palette ===== */
 [data-theme="dark"] .page          { background: #0c1729; color: #ffffff; }
 [data-theme="dark"] .page-white    { background: #0c1729; }
