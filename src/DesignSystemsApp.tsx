@@ -293,7 +293,11 @@ export default function DesignSystemsApp() {
                 once and have it propagate everywhere.
               </p>
             </div>
-            <Placeholder label="04. Problem map: four themes connecting to 'no shared token layer'" ratio="16/7" />
+            <img
+              src="/04-problemmap.webp"
+              alt="Problem map: four themes (consistency, speed, design-dev alignment, update propagation) connecting to 'no shared token layer'"
+              style={{ width: "100%", borderRadius: 8, display: "block" }}
+            />
           </div>
         </section>
 
@@ -350,7 +354,7 @@ export default function DesignSystemsApp() {
                 <img
                   src="/01-escala-tokens.png"
                   alt="Token structure: naming convention, brand hierarchy, primitive to semantic chain"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
                 />
                 {lens && (
                   <div
@@ -534,7 +538,11 @@ export default function DesignSystemsApp() {
             </div>
 
             <div style={{ marginTop: 40 }}>
-              <Placeholder label="14. Roadmap: Stage 1 Foundations (done) → Stage 2 Components + Storybook → Stage 3 Governance + Evolution" ratio="16/7" />
+              <img
+                src="/roadmap-ds.png"
+                alt="Design system roadmap: Stage 1 Foundations (done) → Stage 2 Components + Storybook → Stage 3 Governance + Evolution"
+                style={{ width: "100%", borderRadius: 8, display: "block" }}
+              />
             </div>
 
             <div style={{ marginTop: 48 }}>
