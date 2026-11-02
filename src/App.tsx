@@ -13,7 +13,7 @@ const PROJECTS: Project[] = [
   {
     slug: "supplypro",
     bg: "linear-gradient(145deg, #0a1f0a 0%, #1a3a1a 55%, #2d6a2d 100%)",
-    hoverLabel: "Read case study",
+    video: "/supply-pro-thumbnail.mp4",
     title: "Supply Pro",
     subtitle: "Supply Pro is a B2B SaaS that helps restaurants recover up to €14,400 a year before poor supplier management reaches the kitchen.",
   },
@@ -21,7 +21,6 @@ const PROJECTS: Project[] = [
     slug: "design-system",
     bg: "linear-gradient(145deg, #1a0533 0%, #3b1054 55%, #7c3aed 100%)",
     video: "/escala-tokens.mp4",
-    hoverLabel: "Read case study",
     title: "Building Multi-Brand Design Systems at Scale",
     subtitle: "Streamlining code contribution workflows across diverse product lines to trim 15% off implementation costs and prevent visual drift.",
   },
