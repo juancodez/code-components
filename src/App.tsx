@@ -23,6 +23,7 @@ const PROJECTS: Project[] = [
     video: "/escala-tokens.mp4",
     title: "Building Multi-Brand Design Systems at Scale",
     subtitle: "Streamlining code contribution workflows across diverse product lines to trim 15% off implementation costs and prevent visual drift.",
+    comingSoon: true,
   },
   {
     slug: "exlo",
@@ -148,12 +149,18 @@ export default function App() {
                   <span className="project-hover-label">{p.hoverLabel}</span>
                 </div>
               )}
+              {p.comingSoon && (
+                <span className="project-badge">Coming soon</span>
+              )}
               <div className="project-text">
                 <h2 className="project-title">{p.title}</h2>
                 <p className="project-sub">{p.subtitle}</p>
               </div>
             </>
           );
+          if (p.comingSoon) {
+            return <div key={p.slug} className="project-card project-card--disabled" aria-disabled="true">{inner}</div>;
+          }
           const href = p.href
             ?? (p.slug === "hashbank"     ? "microcasing.html"
             : p.slug === "exlo"           ? "exlo.html"
