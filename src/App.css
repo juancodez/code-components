@@ -1639,19 +1639,21 @@
 .project-card--disabled { cursor: not-allowed; }
 .project-badge {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 3;
-  padding: 6px 14px;
+  padding: 14px 28px;
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.7);
   color: #fff;
   font-family: Author, system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   backdrop-filter: blur(8px);
+  white-space: nowrap;
 }
 
 @media (max-width: 768px) {
@@ -1742,33 +1744,117 @@
   .tslider-inner { width: 78%; padding: 48px 24px; }
 }
 
-/* Mobile: site-header stacks vertically; header-tools centered below */
+/* Mobile: hamburger replaces nav + header-tools */
+.nav-burger { display: none; }
+
 @media (max-width: 640px) {
   .site-header {
-    flex-direction: column;
-    gap: 12px;
     padding: 16px 16px 0;
+    justify-content: space-between;
+    align-items: center;
   }
-  .nav-bar {
-    max-width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-  .nav-bar::-webkit-scrollbar { display: none; }
-  .nav-item {
-    padding: 6px 11px;
-    font-size: var(--fs-sm);
-  }
-  .header-tools {
-    position: static;
-    right: auto;
-  }
-  .header-tool-btn { width: 38px; height: 38px; }
-  .header-tool-btn--cv { padding: 0 11px; font-size: 12px; }
-  .tool-tip { display: none; }
+  .nav-bar, .header-tools { display: none !important; }
 
+  .nav-burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0 10px;
+    background: transparent;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: auto;
+  }
+  .nav-burger span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: #0c0c0c;
+    border-radius: 2px;
+  }
+  [data-theme="dark"] .nav-burger { border-color: rgba(255,255,255,0.14); }
+  [data-theme="dark"] .nav-burger span { background: #fff; }
+
+  .nav-sheet {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: var(--bg-page, #f2f2f0);
+    padding: 20px 20px 40px;
+    overflow-y: auto;
+    animation: nav-sheet-in 220ms ease-out;
+  }
+  [data-theme="dark"] .nav-sheet { background: #0e1724; }
+
+  .nav-sheet-head {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+  .nav-sheet-close {
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 10px;
+    color: #0c0c0c;
+    cursor: pointer;
+  }
+  [data-theme="dark"] .nav-sheet-close {
+    border-color: rgba(255,255,255,0.14);
+    color: #fff;
+  }
+
+  .nav-sheet-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .nav-sheet-item {
+    display: block;
+    width: 100%;
+    padding: 16px 12px;
+    font-family: Author, system-ui, sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: #0c0c0c;
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  [data-theme="dark"] .nav-sheet-item { color: #e9eef6; }
+  .nav-sheet-item--active { font-weight: 600; }
+  .nav-sheet-item--btn { color: #4b5563; }
+  [data-theme="dark"] .nav-sheet-item--btn { color: #9fb3c8; }
+
+  .nav-sheet-divider {
+    height: 1px;
+    background: rgba(0,0,0,0.08);
+    margin: 14px 12px;
+    list-style: none;
+  }
+  [data-theme="dark"] .nav-sheet-divider { background: rgba(255,255,255,0.08); }
+}
+
+@keyframes nav-sheet-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 640px) {
   /* Hero compact */
   .hero-h1 { font-size: clamp(24px, 8vw, 32px); line-height: 1.1; }
   .hero-body { font-size: 16px; line-height: 1.55; }

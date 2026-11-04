@@ -1,14 +1,5 @@
-import { useState, useEffect } from "react";
-
-type Theme = "light" | "dark";
-
-function getInitialTheme(): Theme {
-  try {
-    const s = localStorage.getItem("theme");
-    if (s === "dark" || s === "light") return s;
-  } catch {}
-  return "dark";
-}
+import { useEffect } from "react";
+import { useTheme } from "./useTheme";
 
 const SunIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -42,21 +33,16 @@ function Tip({ label, shortcut }: { label: string; shortcut?: string }) {
 }
 
 export function HeaderToolbar() {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme);
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+  const [theme, toggle] = useTheme();
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
-      if (e.key === "l" || e.key === "L") setTheme(t => t === "light" ? "dark" : "light");
+      if (e.key === "l" || e.key === "L") toggle();
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, []);
+  }, [toggle]);
 
   const onResumePage = window.location.pathname.includes("resume");
 
@@ -84,7 +70,7 @@ export function HeaderToolbar() {
       )}
       <button
         className="header-tool-btn"
-        onClick={() => setTheme(t => t === "light" ? "dark" : "light")}
+        onClick={toggle}
         aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
       >
         {theme === "light" ? <MoonIcon /> : <SunIcon />}

@@ -1,5 +1,6 @@
-import { useState, useRef, useLayoutEffect } from "react";
+import { useState, useRef, useLayoutEffect, useEffect } from "react";
 import { HeaderToolbar } from "./HeaderToolbar";
+import { useTheme } from "./useTheme";
 
 const NAV_ITEMS = [
   { label: "Work",          href: "index.html"   },
@@ -21,6 +22,8 @@ function getActiveIdx() {
 export function Nav() {
   const [activeIdx, setActiveIdx] = useState(getActiveIdx);
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [theme, toggleTheme] = useTheme();
   const targetIdx = hoveredIdx ?? activeIdx;
   const navRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
@@ -49,9 +52,22 @@ export function Nav() {
       setPill({ left: ir.left - nr.left, width: ir.width, ready: true });
     };
     measure();
-    // re-measure after fonts load — Author font changes item width
     document.fonts.ready.then(measure);
   }, [targetIdx]);
+
+  // lock body scroll when menu open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
+  // close on Escape
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setMenuOpen(false); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
 
   return (
     <>
@@ -76,6 +92,55 @@ export function Nav() {
         ))}
       </nav>
       <HeaderToolbar />
+
+      <button
+        className="nav-burger"
+        onClick={() => setMenuOpen(true)}
+        aria-label="Open menu"
+        aria-expanded={menuOpen}
+      >
+        <span /><span /><span />
+      </button>
+
+      {menuOpen && (
+        <div className="nav-sheet" role="dialog" aria-modal="true" aria-label="Menu">
+          <div className="nav-sheet-head">
+            <button
+              className="nav-sheet-close"
+              onClick={() => setMenuOpen(false)}
+              aria-label="Close menu"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <ul className="nav-sheet-list">
+            {NAV_ITEMS.map((item, i) => (
+              <li key={item.label}>
+                <a
+                  href={item.href}
+                  className={"nav-sheet-item" + (i === activeIdx ? " nav-sheet-item--active" : "")}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+            <li className="nav-sheet-divider" aria-hidden="true" />
+            <li>
+              <a href="/resume.html" className="nav-sheet-item" onClick={() => setMenuOpen(false)}>
+                Resume
+              </a>
+            </li>
+            <li>
+              <button className="nav-sheet-item nav-sheet-item--btn" onClick={toggleTheme}>
+                {theme === "light" ? "Dark theme" : "Light theme"}
+              </button>
+            </li>
+          </ul>
+        </div>
+      )}
     </>
   );
 }
