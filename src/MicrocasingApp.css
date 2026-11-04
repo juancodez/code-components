@@ -1348,3 +1348,23 @@
   .tblock-footer { flex-direction: column; align-items: flex-start; }
   .tblock-metrics { gap: 20px; }
 }
+
+/* ── responsive grid utilities ── */
+.mc-grid-2    { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.mc-grid-3    { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.mc-grid-4    { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.mc-screen-row{ display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+.mc-metrics-constrained { max-width: 75%; }
+
+@media (max-width: 1024px) {
+  .mc-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .mc-metrics-constrained { max-width: 100%; }
+}
+@media (max-width: 900px) {
+  .mc-grid-3 { grid-template-columns: 1fr; }
+  .mc-screen-row { grid-template-columns: 1fr; gap: 20px; }
+}
+@media (max-width: 640px) {
+  .mc-grid-2,
+  .mc-grid-4 { grid-template-columns: 1fr; }
+}

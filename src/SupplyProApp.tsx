@@ -205,7 +205,7 @@ export default function SupplyProApp() {
               </p>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, marginTop: 48 }}>
+            <div className="mc-grid-2" style={{ gap: 40, marginTop: 48 }}>
               <div className="mc-metric-item">
                 <p className="mc-metric-value">€4,300–€7,300</p>
                 <p className="mc-metric-label">Estimated annual labour cost from manually managing supplier problems per kitchen.</p>
@@ -241,7 +241,7 @@ export default function SupplyProApp() {
                 "Reduce ambiguity in the decisions required to resolve a supply disruption.",
               ].map(g => (
                 <li key={g} className="mc-body-text" style={{ display: "flex", gap: 14, alignItems: "flex-start", margin: 0 }}>
-                  <span style={{ marginTop: 10, width: 4, height: 4, borderRadius: "50%", background: "#667085", flexShrink: 0, display: "block" }} />
+                  <span style={{ marginTop: "0.6em", width: 4, height: 4, borderRadius: "50%", background: "#667085", flexShrink: 0, display: "block" }} />
                   {g}
                 </li>
               ))}
@@ -257,7 +257,7 @@ export default function SupplyProApp() {
               Supply Pro's success needs to be evaluated at two levels: the business problem it aims to address and the product's ability to help users act on that problem.
             </p>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginTop: 48, maxWidth: "75%" }}>
+            <div className="mc-grid-2 mc-metrics-constrained" style={{ marginTop: 48 }}>
               {[
                 {
                   tag: "Business metric 01",
@@ -331,7 +331,7 @@ export default function SupplyProApp() {
               </p>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 32, margin: "40px 0" }}>
+            <div className="mc-grid-3" style={{ gap: 32, margin: "40px 0" }}>
               {[
                 { value: "11", label: "Executive chefs and supplier stakeholders interviewed." },
                 { value: "5",  label: "Countries: Germany, Uruguay, France, Switzerland, Spain." },
@@ -392,7 +392,7 @@ export default function SupplyProApp() {
               </p>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, marginTop: 40 }}>
+            <div className="mc-grid-3" style={{ marginTop: 40 }}>
               {([
                 {
                   tag: "What worked", tagBg: "#d1fae5", tagColor: "#065f46",
@@ -446,20 +446,17 @@ export default function SupplyProApp() {
         {/* ── 07. Design System ────────────────────── */}
         <section className="mc-section" id="design-system">
           <div className="mc-section-inner">
-            <h2 className="mc-section-title">Using AI to connect design and code and reduce design drift</h2>
+            <h2 className="mc-section-title">From Claude Code to Figma: An AI-Powered Workflow</h2>
 
             <div className="mc-branding-body">
               <p className="mc-body-text">
-                A consistent product experience requires more than well-designed individual screens. For Supply Pro, I explored a connected workflow using Figma Console MCP and Claude Code to implement the code in Figma and align the design artefacts with the actual UI of the product.
-              </p>
-              <p className="mc-body-text">
-                Rather than maintaining two disconnected representations of the same interface, this approach created a closer relationship between the implemented components and their visual representation.
+                Using Claude Code and the Figma MCP integration, I created and refined components directly in code and brought them into Figma. This workflow connected implementation with design, keeping components consistent across both environments and syncing updates to GitHub for a shared, evolving source of truth.
               </p>
             </div>
 
             <ParallaxImg
-              src="/mcp-flujo.png"
-              alt="MCP workflow diagram — Codebase → MCP-powered workflow → Figma alignment"
+              src="/flujo-ia.png"
+              alt="AI to consistent design system — Plan, Generate with MCP, Review, Sync to GitHub, Use Consistently"
               style={{ width: "100%", borderRadius: 16, display: "block", marginTop: 40 }}
             />
           </div>
@@ -482,22 +479,22 @@ export default function SupplyProApp() {
                   num: "01",
                   title: "Early Warning Alert Screen",
                   body: "The Early Warning Screen uses a table layout designed for high-pressure kitchen environments. Critical information is easy to scan. Status badges communicate urgency at a glance, helping the chef understand what requires attention. From there, the chef makes a clear decision: accept a suggested alternative or dismiss it.",
-                  img: "/early-warning-system.png",
+                  img: "/early-warning-01.png",
                 },
                 {
                   num: "02",
-                  title: "Alternative Product Selection",
-                  body: "When a supplier is unavailable, the system suggests products from an alternative supplier. The chef selects only what is urgently needed. Alternatives are organized alphabetically to reduce search effort. Checkboxes support the selection of one or multiple products without switching screens. Price, delivery time, and availability help the chef evaluate the alternatives.",
-                  img: null,
+                  title: "Alternative Suppliers",
+                  body: "Supply Pro identifies alternative suppliers, allowing you to compare availability, pricing, and delivery times to select the best option. Ensure uninterrupted supply while optimizing costs and maintaining product quality.",
+                  img: "/alternative-suppliers-selection.png",
                 },
                 {
                   num: "03",
-                  title: "Dashboard Order Overview",
-                  body: "The dashboard gives the chef an overview of daily supply operations in one place. Four summary cards surface key information. Active alerts are positioned in the top-right area and highlighted in orange to make urgent issues easier to spot. The Recent Orders table uses the same status-badge system as the Early Warning Screen, maintaining a consistent visual language across the product.",
-                  img: null,
+                  title: "Alternative Product Selection",
+                  body: "When a supplier is unavailable, the system suggests products from an alternative supplier. The chef selects only what is urgently needed. Alternatives are organized alphabetically to reduce search effort. Checkboxes support the selection of one or multiple products without switching screens. Price, delivery time, and availability help the chef evaluate the alternatives.",
+                  img: "/early-warning-system.png",
                 },
               ].map(({ num, title, body, img }) => (
-                <div key={num} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 28, paddingTop: 40, paddingBottom: 40, borderTop: "1px solid #f2f4f7", alignItems: "start" }}>
+                <div key={num} className="mc-screen-row" style={{ paddingTop: 40, paddingBottom: 40, borderTop: "1px solid #f2f4f7" }}>
                   <div>
                     <h3 style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: "clamp(17px, 1.8vw, 22px)", fontWeight: 600, color: "#fff", margin: "0 0 12px", letterSpacing: "-0.01em" }}>{title}</h3>
                     <p className="mc-body-text" style={{ fontSize: 17 }}>{body}</p>
@@ -523,7 +520,7 @@ export default function SupplyProApp() {
               The long-term vision is for Supply Pro to become the operational memory of a professional kitchen: a system that not only identifies supply issues but also connects the kitchen and its suppliers throughout the delivery process.
             </p>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, marginTop: 40 }}>
+            <div className="mc-grid-3" style={{ marginTop: 40 }}>
               {[
                 {
                   version: "V1.5",
@@ -556,7 +553,7 @@ export default function SupplyProApp() {
           <div className="mc-section-inner">
             <h2 className="mc-section-title">What this project taught me</h2>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20, marginTop: 48 }}>
+            <div className="mc-grid-4" style={{ marginTop: 48 }}>
               {[
                 {
                   title: "Tight scope is a strategic decision.",

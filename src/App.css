@@ -1634,10 +1634,13 @@
   }
 }
 
+.nowrap-desktop { white-space: nowrap; }
+
 @media (max-width: 768px) {
   .hero-split { flex-direction: column-reverse; gap: 24px; }
   .hero-portrait { align-self: flex-start; }
   .hero-portrait .avatar { width: 160px; height: 190px; }
+  .nowrap-desktop { white-space: normal; }
 }
 
 /* Mobile */

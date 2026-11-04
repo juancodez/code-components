@@ -113,7 +113,7 @@ function Hero() {
             transition={{ duration: 0.4, delay: 0.55 }}
           >
             My path goes from research to implementation.<br />
-            <span style={{ whiteSpace: 'nowrap' }}>Designing AI-augmented workflows for consumer and B2B design.</span><br />
+            <span className="nowrap-desktop">Designing AI-augmented workflows for consumer and B2B design.</span><br />
             Pushing pixels <FigmaCursor /> to design in Figma.<br />
             Pushing green pixels <GreenPixel /> to ship code on GitHub.
           </motion.p>
