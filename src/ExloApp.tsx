@@ -1,4 +1,5 @@
 import { Nav } from "./components/Nav";
+import { ParallaxImg } from "./components/ParallaxImg";
 import { Footer } from "./components/Footer";
 import { CaseStudyNav } from "./components/CaseStudyNav";
 import { ExloPrototype } from "./components/ExloPrototype";
@@ -178,7 +179,7 @@ export default function ExloApp() {
                   The workshop covered the entire process, from identifying a genuine issue in Figma to developing and submitting a plugin to the Figma Community using AI-assisted development.
                 </p>
               </div>
-              <img
+              <ParallaxImg
                 src="/mokapp-course.jpg"
                 alt="Workshop Creación de plugins con IA — Mokapp, 22 de septiembre"
                 className="mc-challenge-img"
@@ -207,7 +208,7 @@ export default function ExloApp() {
             <p className="mc-body-text" style={{ maxWidth: "62ch" }}>
               The submission rules are non-obvious and underdocumented. I now keep a pre-submission checklist that covers every manifest field before each new plugin submission. Read the checklist before writing a single line of code.
             </p>
-            <img
+            <ParallaxImg
               src="/exlo-01.png"
               alt="Exlo live in the Figma Community — Your resource is live"
               className="mc-challenge-img"

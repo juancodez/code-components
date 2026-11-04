@@ -115,7 +115,7 @@
 
 .ba-row {
   display: grid;
-  grid-template-columns: max-content 1fr;
+  grid-template-columns: 220px 1fr;
   gap: 32px;
   align-items: center;
 }
@@ -378,6 +378,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  border-top: 1px solid rgba(255,255,255,0.08);
 }
 
 .mc-section-inner {

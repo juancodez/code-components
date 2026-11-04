@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ParallaxImg } from "./components/ParallaxImg";
 import { AnimatePresence, motion } from "framer-motion";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
@@ -339,7 +340,7 @@ export default function MicrocasingApp() {
                 To make the transition easier, I created a mini UI Kit that translates the Micro-casing app's design into reusable components and tokens.
               </p>
             </div>
-            <img
+            <ParallaxImg
               src={imgDesignSystem}
               alt="Micro-casing Design System"
               style={{ width: "100%", height: "auto", display: "block", borderRadius: 16, border: "1px solid #e4e7ec" }}

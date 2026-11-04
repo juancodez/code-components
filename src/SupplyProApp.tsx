@@ -4,6 +4,7 @@ import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { CaseStudyNav } from "./components/CaseStudyNav";
 import { BeforeAfter } from "./components/BeforeAfter";
+import { ParallaxImg } from "./components/ParallaxImg";
 import "./App.css";
 import "./MicrocasingApp.css";
 
@@ -143,15 +144,14 @@ export default function SupplyProApp() {
             Supply Pro — Prevent supply disruptions before they reach the kitchen.
           </h1>
 
-          <div style={{
-            width: "100%", aspectRatio: "16/7",
-            background: "linear-gradient(145deg, #0a1f0a 0%, #1a3a1a 55%, #2d6a2d 100%)",
-            borderRadius: 16, display: "flex", alignItems: "center", justifyContent: "center",
-          }}>
-            <span style={{ color: "rgba(255,255,255,0.25)", fontSize: 13, letterSpacing: "0.12em", textTransform: "uppercase", fontFamily: "Author, system-ui, sans-serif" }}>
-              Project preview
-            </span>
-          </div>
+          <video
+            src="/supply-pro-demo.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{ width: "100%", aspectRatio: "16/7", borderRadius: 16, objectFit: "cover", display: "block" }}
+          />
 
           <div className="mc-subtitle-block">
             <p className="mc-subtitle">
@@ -232,16 +232,16 @@ export default function SupplyProApp() {
 
             <Divider />
 
-            <h3 style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 17, fontWeight: 600, color: "#fff", margin: "0 0 16px" }}>Product Goals</h3>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
+            <h3 style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: "clamp(18px, 2vw, 26px)", fontWeight: 600, letterSpacing: "-0.02em", color: "#fff", margin: "0 0 16px" }}>Product Goals</h3>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 8 }}>
               {[
                 "Help chefs identify supply issues without unnecessary searching.",
                 "Enable a clear response to an alert within two minutes.",
                 "Support end-to-end task completion within five minutes.",
                 "Reduce ambiguity in the decisions required to resolve a supply disruption.",
               ].map(g => (
-                <li key={g} style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 20, color: "#667085", lineHeight: 1.6, display: "flex", gap: 14, alignItems: "flex-start" }}>
-                  <span style={{ marginTop: 8, width: 5, height: 5, borderRadius: "50%", background: "#d0d5dd", flexShrink: 0, display: "block" }} />
+                <li key={g} className="mc-body-text" style={{ display: "flex", gap: 14, alignItems: "flex-start", margin: 0 }}>
+                  <span style={{ marginTop: 10, width: 4, height: 4, borderRadius: "50%", background: "#667085", flexShrink: 0, display: "block" }} />
                   {g}
                 </li>
               ))}
@@ -252,47 +252,63 @@ export default function SupplyProApp() {
         {/* ── 02. KPIs ─────────────────────────────── */}
         <section className="mc-section" id="kpis">
           <div className="mc-section-inner">
-            <h2 className="mc-section-title">Measuring what matters</h2>
+            <h2 className="mc-section-title">The impact of Supply Pro on business gastronomy and the product itself.</h2>
             <p className="mc-body-text">
               Supply Pro's success needs to be evaluated at two levels: the business problem it aims to address and the product's ability to help users act on that problem.
             </p>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, marginTop: 48 }}>
-              <div style={{ borderTop: "1px solid #f2f4f7", paddingTop: 24 }}>
-                <p style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 16, fontWeight: 500, letterSpacing: "0.04em", textTransform: "uppercase", color: "#98a1b2", margin: "0 0 16px" }}>Business metric 01 — Labour Cost Recovery</p>
-                <p className="mc-metric-value" style={{ fontSize: "clamp(32px, 3.5vw, 52px)" }}>€4,300–€7,300</p>
-                <p className="mc-metric-label">Estimated annual labour cost per kitchen from manually managing supplier problems, at €28/hour for 3–5 hours/week.</p>
-              </div>
-              <div style={{ borderTop: "1px solid #f2f4f7", paddingTop: 24 }}>
-                <p style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 16, fontWeight: 500, letterSpacing: "0.04em", textTransform: "uppercase", color: "#98a1b2", margin: "0 0 16px" }}>Business metric 02 — Supply Chain Inefficiency</p>
-                <p className="mc-metric-value" style={{ fontSize: "clamp(32px, 3.5vw, 52px)" }}>€28,000</p>
-                <p className="mc-metric-label">Potential recovery at 10% efficiency gain for a mid-sized restaurant spending €280,000 annually on suppliers.</p>
-              </div>
-            </div>
-
-            <Divider />
-
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginTop: 48, maxWidth: "75%" }}>
               {[
                 {
-                  label: "Product metric 01 — Time to Action",
+                  tag: "Business metric 01",
+                  title: "Labour Cost Recovery",
+                  value: "€4,300–€7,300",
+                  desc: "Estimated annual labour cost per kitchen from manually managing supplier problems, at €28/hour for 3–5 hours/week.",
+                  note: null,
+                },
+                {
+                  tag: "Business metric 02",
+                  title: "Supply Chain Inefficiency",
+                  value: "€28,000",
+                  desc: "Potential recovery at 10% efficiency gain for a mid-sized restaurant spending €280,000 annually on suppliers.",
+                  note: null,
+                },
+                {
+                  tag: "Product metric 01",
+                  title: "Time to Action",
                   value: "< 2 min",
                   desc: "Time between receiving an alert and taking action.",
                   note: "Measures whether users can interpret the alert and decide how to respond without unnecessary friction.",
                 },
                 {
-                  label: "Product metric 02 — Task Completion Rate",
+                  tag: "Product metric 02",
+                  title: "Task Completion Rate",
                   value: "< 5 min",
                   desc: "End-to-end task: reviewing an alert and confirming an alternative order or dismissing it.",
                   note: "Evaluates whether users can move from identifying a problem to taking the intended action.",
                 },
-              ].map(({ label, value, desc, note }) => (
-                <div key={label} style={{ borderTop: "1px solid #f2f4f7", paddingTop: 24 }}>
-                  <p style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 16, fontWeight: 500, letterSpacing: "0.04em", textTransform: "uppercase", color: "#98a1b2", margin: "0 0 16px" }}>{label}</p>
-                  <p className="mc-metric-value" style={{ fontSize: "clamp(32px, 3.5vw, 52px)" }}>{value}</p>
-                  <p className="mc-metric-label">{desc}</p>
-                  <p className="mc-body-text" style={{ fontSize: 15, marginTop: 4 }}>{note}</p>
-                </div>
+              ].map(({ tag, title, value, desc, note }) => (
+                <motion.div
+                  key={tag}
+                  initial={{ y: 0, boxShadow: "none" }}
+                  whileHover={{ y: -4, boxShadow: "0 16px 40px rgba(0,0,0,0.35)" }}
+                  transition={{ type: "spring", stiffness: 320, damping: 24 }}
+                  style={{
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    borderRadius: 16,
+                    padding: "28px 28px 32px",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 10,
+                    background: "rgba(255,255,255,0.03)",
+                  }}
+                >
+                  <p style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", color: "#667085", margin: 0 }}>{tag}</p>
+                  <p style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 20, fontWeight: 600, color: "#fff", margin: 0, lineHeight: 1.3 }}>{title}</p>
+                  <p className="mc-metric-value" style={{ fontSize: "clamp(32px, 3vw, 48px)", margin: "8px 0 0" }}>{value}</p>
+                  <p className="mc-metric-label" style={{ marginTop: 4 }}>{desc}</p>
+                  {note && <p className="mc-body-text" style={{ marginTop: 2 }}>{note}</p>}
+                </motion.div>
               ))}
             </div>
 
@@ -318,7 +334,7 @@ export default function SupplyProApp() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 32, margin: "40px 0" }}>
               {[
                 { value: "11", label: "Executive chefs and supplier stakeholders interviewed." },
-                { value: "5",  label: "Countries — Germany, Uruguay, France, Switzerland, Spain." },
+                { value: "5",  label: "Countries: Germany, Uruguay, France, Switzerland, Spain." },
                 { value: "60%",label: "Of chefs reported being directly affected by late deliveries." },
               ].map(({ value, label }) => (
                 <div key={value} className="mc-metric-item">
@@ -334,7 +350,8 @@ export default function SupplyProApp() {
 
             <div style={{ marginTop: 40, padding: "24px 28px", borderLeft: "3px solid #fff" }}>
               <p className="mc-body-text" style={{ color: "#fff", margin: 0, fontSize: 20 }}>
-                <strong>Key Insight</strong> — The issue was not simply that deliveries could be late. It was that chefs often discovered problems too late to respond comfortably. Earlier visibility could turn a reactive, stressful process into a more controlled decision.
+                <strong>Key Insight</strong><br />
+                The issue was not simply that deliveries could be late. It was that chefs often discovered problems too late to respond comfortably. Earlier visibility could turn a reactive, stressful process into a more controlled decision.
               </p>
             </div>
           </div>
@@ -353,7 +370,7 @@ export default function SupplyProApp() {
                 },
 
               ].map(({ title, body }) => (
-                <div key={title} style={{ paddingTop: 32, paddingBottom: 32, borderTop: "1px solid #f2f4f7" }}>
+                <div key={title} style={{ paddingTop: 32, paddingBottom: 32 }}>
                   <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                     <h3 style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: "clamp(18px, 1.8vw, 24px)", fontWeight: 600, color: "#fff", margin: 0, letterSpacing: "-0.01em" }}>{title}</h3>
                     <p className="mc-body-text" style={{ marginTop: 8 }}>{body}</p>
@@ -388,9 +405,9 @@ export default function SupplyProApp() {
                   body: "Several terms were unclear or contradictory. Participants hesitated because they could not confidently predict the outcome of an action. Layout was fine — language was creating friction.",
                 },
                 {
-                  tag: "What changed", tagBg: "#dbeafe", tagColor: "#1e40af",
+                  tag: "What failed", tagBg: "#fee2e2", tagColor: "#991b1b",
                   title: "The language was rebuilt.",
-                  body: "Every label, status, and action was reviewed. Ambiguous terms were rewritten, terminology standardized, typographic scale adjusted, and visual hierarchy between actions was strengthened.",
+                  body: "The lack of consistency in the call to action and imagery slows down the decision-making process for users.",
                 },
               ] as const).map(({ tag, tagBg, tagColor, title, body }) => (
                 <div key={tag} style={{ border: "1px solid #f2f4f7", borderRadius: 16, padding: "24px", display: "flex", flexDirection: "column", gap: 10 }}>
@@ -413,7 +430,7 @@ export default function SupplyProApp() {
             <div className="ba-list">
               {([
                 { label: "Alternative Suppliers Screen", before: "/supply-pro-before-01.png", after: "/supply-pro-after-01.png" },
-                { label: "Order detail screen"  },
+                { label: "Order detail screen", before: "/supply-pro-before-02.png", after: "/supply-pro-after-02.png" },
               ] as { label: string; before?: string; after?: string }[]).map(({ label, before, after }) => (
                 <div className="ba-row" key={label}>
                   <span className="ba-row-label">{label}</span>
@@ -429,43 +446,22 @@ export default function SupplyProApp() {
         {/* ── 07. Design System ────────────────────── */}
         <section className="mc-section" id="design-system">
           <div className="mc-section-inner">
-            <h2 className="mc-section-title">Connecting design and code to reduce design drift</h2>
+            <h2 className="mc-section-title">Using AI to connect design and code and reduce design drift</h2>
 
             <div className="mc-branding-body">
               <p className="mc-body-text">
-                A consistent product experience requires more than well-designed individual screens. For Supply Pro, I explored a connected workflow using MCP to bring the code implementation into Figma and align the design artifacts with the product's actual UI.
+                A consistent product experience requires more than well-designed individual screens. For Supply Pro, I explored a connected workflow using Figma Console MCP and Claude Code to implement the code in Figma and align the design artefacts with the actual UI of the product.
               </p>
               <p className="mc-body-text">
                 Rather than maintaining two disconnected representations of the same interface, this approach created a closer relationship between the implemented components and their visual representation.
               </p>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, margin: "40px 0" }}>
-              {[
-                { num: "01", title: "Codebase", body: "The existing implementation provided the reference for the product's actual UI, including its components, styles, and interface patterns." },
-                { num: "02", title: "MCP-powered workflow", body: "I used MCP as part of the process for connecting the implementation with the design environment and bringing the relevant UI into Figma." },
-                { num: "03", title: "Figma alignment", body: "The resulting design artifacts helped make the interface easier to inspect and maintain, with a clearer relationship to the implementation." },
-              ].map(({ num, title, body }) => (
-                <div key={num} style={{ border: "1px solid #f2f4f7", borderRadius: 16, padding: "28px 24px", display: "flex", flexDirection: "column", gap: 10 }}>
-                  <span style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 13, fontWeight: 500, color: "#98a1b2", letterSpacing: "0.1em" }}>{num}</span>
-                  <p style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 20, fontWeight: 600, color: "#fff", margin: 0, lineHeight: 1.3 }}>{title}</p>
-                  <p className="mc-body-text" style={{ fontSize: 20 }}>{body}</p>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
-              {[
-                { title: "Reducing design drift", body: "Keeps what the team sees in Figma aligned with what users experience in the product." },
-                { title: "Consistency across components", body: "A shared visual language preserves patterns for buttons, tables, status badges, alerts, and form controls." },
-                { title: "A stronger foundation for iteration", body: "When design artifacts reflect the implementation more closely, future improvements start from a reliable reference." },
-              ].map(({ title, body }) => (
-                <div key={title} style={{ paddingTop: 20, borderTop: "1px solid #f2f4f7" }}>
-                  <p style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 20, fontWeight: 600, color: "#fff", margin: "0 0 8px" }}>{title}</p>
-                  <p className="mc-body-text" style={{ fontSize: 20 }}>{body}</p>
-                </div>
-              ))}
-            </div>
+            <ParallaxImg
+              src="/mcp-flujo.png"
+              alt="MCP workflow diagram — Codebase → MCP-powered workflow → Figma alignment"
+              style={{ width: "100%", borderRadius: 16, display: "block", marginTop: 40 }}
+            />
           </div>
         </section>
 
@@ -484,29 +480,34 @@ export default function SupplyProApp() {
               {[
                 {
                   num: "01",
-                  title: "Early Warning — Alert Screen",
+                  title: "Early Warning Alert Screen",
                   body: "The Early Warning Screen uses a table layout designed for high-pressure kitchen environments. Critical information is easy to scan. Status badges communicate urgency at a glance, helping the chef understand what requires attention. From there, the chef makes a clear decision: accept a suggested alternative or dismiss it.",
+                  img: "/early-warning-system.png",
                 },
                 {
                   num: "02",
                   title: "Alternative Product Selection",
                   body: "When a supplier is unavailable, the system suggests products from an alternative supplier. The chef selects only what is urgently needed. Alternatives are organized alphabetically to reduce search effort. Checkboxes support the selection of one or multiple products without switching screens. Price, delivery time, and availability help the chef evaluate the alternatives.",
+                  img: null,
                 },
                 {
                   num: "03",
-                  title: "Dashboard — Order Overview",
+                  title: "Dashboard Order Overview",
                   body: "The dashboard gives the chef an overview of daily supply operations in one place. Four summary cards surface key information. Active alerts are positioned in the top-right area and highlighted in orange to make urgent issues easier to spot. The Recent Orders table uses the same status-badge system as the Early Warning Screen, maintaining a consistent visual language across the product.",
+                  img: null,
                 },
-              ].map(({ num, title, body }) => (
-                <div key={num} style={{ display: "grid", gridTemplateColumns: "48px 1fr 1fr", gap: 28, paddingTop: 40, paddingBottom: 40, borderTop: "1px solid #f2f4f7", alignItems: "start" }}>
-                  <span style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 13, fontWeight: 500, color: "#98a1b2", letterSpacing: "0.1em", paddingTop: 3 }}>{num}</span>
+              ].map(({ num, title, body, img }) => (
+                <div key={num} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 28, paddingTop: 40, paddingBottom: 40, borderTop: "1px solid #f2f4f7", alignItems: "start" }}>
                   <div>
                     <h3 style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: "clamp(17px, 1.8vw, 22px)", fontWeight: 600, color: "#fff", margin: "0 0 12px", letterSpacing: "-0.01em" }}>{title}</h3>
                     <p className="mc-body-text" style={{ fontSize: 17 }}>{body}</p>
                   </div>
-                  <div style={{ background: "#f2f4f7", borderRadius: 12, aspectRatio: "4/3", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <span style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 12, color: "#98a1b2", letterSpacing: "0.08em", textTransform: "uppercase" }}>Screen {num}</span>
-                  </div>
+                  {img
+                    ? <img src={img} alt={title} style={{ width: "100%", borderRadius: 12, display: "block" }} />
+                    : <div style={{ background: "#f2f4f7", borderRadius: 12, aspectRatio: "4/3", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <span style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 12, color: "#98a1b2", letterSpacing: "0.08em", textTransform: "uppercase" }}>Screen {num}</span>
+                      </div>
+                  }
                 </div>
               ))}
             </div>
@@ -541,7 +542,7 @@ export default function SupplyProApp() {
                 },
               ].map(({ version, title, body }) => (
                 <div key={version} style={{ border: "1px solid #f2f4f7", borderRadius: 16, padding: "28px 24px", display: "flex", flexDirection: "column", gap: 12 }}>
-                  <span style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 13, fontWeight: 600, color: "#fff", letterSpacing: "0.06em" }}>{version}</span>
+                  <span style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 32, fontWeight: 700, color: "#fff", letterSpacing: "-0.02em" }}>{version}</span>
                   <p style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 20, fontWeight: 600, color: "#fff", margin: 0, lineHeight: 1.2, letterSpacing: "-0.01em" }}>{title}</p>
                   <p className="mc-body-text" style={{ fontSize: 20 }}>{body}</p>
                 </div>
@@ -555,7 +556,7 @@ export default function SupplyProApp() {
           <div className="mc-section-inner">
             <h2 className="mc-section-title">What this project taught me</h2>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20, marginTop: 48 }}>
               {[
                 {
                   title: "Tight scope is a strategic decision.",
@@ -574,10 +575,24 @@ export default function SupplyProApp() {
                   body: "The work connecting code and Figma reinforced the importance of keeping design artifacts close to the implemented product. A design system is not just a collection of components; it is part of how a product remains consistent as it evolves.",
                 },
               ].map(({ title, body }) => (
-                <div key={title} style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 40, paddingTop: 28, paddingBottom: 28, borderTop: "1px solid #f2f4f7" }}>
-                  <p style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 20, fontWeight: 600, color: "#fff", margin: 0, lineHeight: 1.4 }}>{title}</p>
-                  <p className="mc-body-text" style={{ fontSize: 20 }}>{body}</p>
-                </div>
+                <motion.div
+                  key={title}
+                  initial={{ y: 0, boxShadow: "none" }}
+                  whileHover={{ y: -4, boxShadow: "0 16px 40px rgba(0,0,0,0.35)" }}
+                  transition={{ type: "spring", stiffness: 320, damping: 24 }}
+                  style={{
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    borderRadius: 16,
+                    padding: "28px 28px 32px",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 12,
+                    background: "rgba(255,255,255,0.03)",
+                  }}
+                >
+                  <p style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 18, fontWeight: 600, color: "#fff", margin: 0, lineHeight: 1.4 }}>{title}</p>
+                  <p className="mc-body-text" style={{ fontSize: 18, margin: 0 }}>{body}</p>
+                </motion.div>
               ))}
             </div>
 
