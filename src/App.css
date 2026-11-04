@@ -1645,8 +1645,8 @@
   z-index: 3;
   padding: 14px 28px;
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.7);
-  color: #fff;
+  background: #fff;
+  color: #1d2939;
   font-family: Author, system-ui, sans-serif;
   font-size: 18px;
   font-weight: 600;

@@ -756,7 +756,7 @@
 
 .mc-challenge-body {
   font-family: 'Author', system-ui, sans-serif;
-  font-size: clamp(1rem, 0.875rem + 0.5vw, 1.125rem);
+  font-size: 20px;
   font-weight: 400;
   color: #667085;
   line-height: 1.7;
@@ -1364,7 +1364,11 @@
   .mc-grid-3 { grid-template-columns: 1fr; }
   .mc-screen-row { grid-template-columns: 1fr; gap: 20px; }
 }
+@media (max-width: 780px) {
+  .mc-body { grid-template-columns: 1fr; gap: 20px; }
+}
 @media (max-width: 640px) {
   .mc-grid-2,
   .mc-grid-4 { grid-template-columns: 1fr; }
+  .mc-section-inner { width: 100%; padding: 40px 20px; box-sizing: border-box; }
 }
