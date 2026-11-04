@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { CaseStudyNav } from "./components/CaseStudyNav";
+import { BeforeAfter } from "./components/BeforeAfter";
 import "./App.css";
 import "./MicrocasingApp.css";
 
@@ -109,13 +110,13 @@ function ChefTestimonials() {
 
 const SP_SECTIONS = [
   { id: "problem",       label: "Problem"        },
+  { id: "kpis",          label: "KPIs"           },
   { id: "research",      label: "Research"       },
   { id: "process",       label: "Process"        },
   { id: "testing",       label: "Testing"        },
   { id: "before-after",  label: "Before & After" },
   { id: "design-system", label: "Design System"  },
   { id: "solution",      label: "Solution"       },
-  { id: "kpis",          label: "KPIs"           },
   { id: "outlook",       label: "Outlook"        },
   { id: "lessons",       label: "Lessons"        },
 ];
@@ -167,7 +168,7 @@ export default function SupplyProApp() {
           <div className="mc-meta">
             <div className="mc-meta-row">
               <span className="mc-meta-label">Type</span>
-              <span className="mc-meta-value">Solo Product Design Case</span>
+              <span className="mc-meta-value">Solo Product Design Case with 3 PD and 1 Developer as Feedback Partners</span>
             </div>
             <div className="mc-meta-row">
               <span className="mc-meta-label">Role</span>
@@ -248,7 +249,62 @@ export default function SupplyProApp() {
           </div>
         </section>
 
-        {/* ── 02. Research ─────────────────────────── */}
+        {/* ── 02. KPIs ─────────────────────────────── */}
+        <section className="mc-section" id="kpis">
+          <div className="mc-section-inner">
+            <h2 className="mc-section-title">Measuring what matters</h2>
+            <p className="mc-body-text">
+              Supply Pro's success needs to be evaluated at two levels: the business problem it aims to address and the product's ability to help users act on that problem.
+            </p>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, marginTop: 48 }}>
+              <div style={{ borderTop: "1px solid #f2f4f7", paddingTop: 24 }}>
+                <p style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 16, fontWeight: 500, letterSpacing: "0.04em", textTransform: "uppercase", color: "#98a1b2", margin: "0 0 16px" }}>Business metric 01 — Labour Cost Recovery</p>
+                <p className="mc-metric-value" style={{ fontSize: "clamp(32px, 3.5vw, 52px)" }}>€4,300–€7,300</p>
+                <p className="mc-metric-label">Estimated annual labour cost per kitchen from manually managing supplier problems, at €28/hour for 3–5 hours/week.</p>
+              </div>
+              <div style={{ borderTop: "1px solid #f2f4f7", paddingTop: 24 }}>
+                <p style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 16, fontWeight: 500, letterSpacing: "0.04em", textTransform: "uppercase", color: "#98a1b2", margin: "0 0 16px" }}>Business metric 02 — Supply Chain Inefficiency</p>
+                <p className="mc-metric-value" style={{ fontSize: "clamp(32px, 3.5vw, 52px)" }}>€28,000</p>
+                <p className="mc-metric-label">Potential recovery at 10% efficiency gain for a mid-sized restaurant spending €280,000 annually on suppliers.</p>
+              </div>
+            </div>
+
+            <Divider />
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
+              {[
+                {
+                  label: "Product metric 01 — Time to Action",
+                  value: "< 2 min",
+                  desc: "Time between receiving an alert and taking action.",
+                  note: "Measures whether users can interpret the alert and decide how to respond without unnecessary friction.",
+                },
+                {
+                  label: "Product metric 02 — Task Completion Rate",
+                  value: "< 5 min",
+                  desc: "End-to-end task: reviewing an alert and confirming an alternative order or dismissing it.",
+                  note: "Evaluates whether users can move from identifying a problem to taking the intended action.",
+                },
+              ].map(({ label, value, desc, note }) => (
+                <div key={label} style={{ borderTop: "1px solid #f2f4f7", paddingTop: 24 }}>
+                  <p style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 16, fontWeight: 500, letterSpacing: "0.04em", textTransform: "uppercase", color: "#98a1b2", margin: "0 0 16px" }}>{label}</p>
+                  <p className="mc-metric-value" style={{ fontSize: "clamp(32px, 3.5vw, 52px)" }}>{value}</p>
+                  <p className="mc-metric-label">{desc}</p>
+                  <p className="mc-body-text" style={{ fontSize: 15, marginTop: 4 }}>{note}</p>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ marginTop: 40, padding: "20px 24px" }}>
+              <p className="mc-body-text" style={{ fontSize: 20, margin: 0 }}>
+                Usability testing evaluates whether the proposed interface supports the intended tasks. It does not, by itself, prove that Supply Pro has generated annual savings. Validating the business impact would require measuring the operational results of using the product over time.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 03. Research ─────────────────────────── */}
         <section className="mc-section" id="research">
           <div className="mc-section-inner">
             <h2 className="mc-section-title">11 interviews. 5 countries. One recurring operational problem.</h2>
@@ -350,48 +406,22 @@ export default function SupplyProApp() {
         {/* ── 06. Before & After ───────────────────── */}
         <section className="mc-section" id="before-after">
           <div className="mc-section-inner">
-            <h2 className="mc-section-title">From generic labels to clear language</h2>
-            <p className="mc-body-text">
-              The first usability test revealed that interface clarity depends on more than layout. The wording itself can either support or interrupt a decision.
+            <h2 className="mc-section-title">The Screens Before and After the Testing.</h2>
+            <p className="mc-body-text" style={{ maxWidth: "62ch", marginTop: -10 }}>
+              Two key screens were redesigned based on usability test findings. Drag the handle left and right to compare the original designs with the revised interface.
             </p>
-
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginTop: 32 }}>
-              <div style={{ border: "1px solid #f2f4f7", borderRadius: 16, padding: "28px 32px" }}>
-                <p style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#98a1b2", margin: "0 0 20px" }}>Before — first usability test</p>
-                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 14 }}>
-                  {[
-                    "Generic status terms created hesitation at decision points.",
-                    "Inconsistent terminology — same action described differently across screens.",
-                    "Unclear calls to action — users could not determine what would happen next.",
-                    "Flat visual hierarchy — primary and secondary actions carried similar weight.",
-                  ].map(item => (
-                    <li key={item} style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 16, color: "#667085", lineHeight: 1.55, display: "flex", gap: 12, alignItems: "flex-start" }}>
-                      <span style={{ color: "#fca5a5", fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✕</span> {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div style={{ border: "1px solid #f2f4f7", borderRadius: 16, padding: "28px 32px", background: "#f9fbf9" }}>
-                <p style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#4ade80", margin: "0 0 20px" }}>After — revised interface</p>
-                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 14 }}>
-                  {[
-                    "Clear status badges — each state communicates its meaning directly.",
-                    "Consistent action language following the same logic across screens.",
-                    "Primary actions are visually dominant; secondary actions recede.",
-                    "Scannable labels written for users working under time pressure.",
-                  ].map(item => (
-                    <li key={item} style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 16, color: "#667085", lineHeight: 1.55, display: "flex", gap: 12, alignItems: "flex-start" }}>
-                      <span style={{ color: "#4ade80", fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✓</span> {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <div style={{ marginTop: 24, padding: "20px 24px", background: "#f8f9fa", borderRadius: 12 }}>
-              <p className="mc-body-text" style={{ fontSize: 16, margin: 0 }}>
-                <strong style={{ color: "#fff" }}>The design decision</strong> — I kept the layout that testing showed to be effective and focused the iteration on the elements that created friction. This avoided redesigning the entire interface when the evidence pointed to a more specific problem.
-              </p>
+            <div className="ba-list">
+              {([
+                { label: "Alternative Suppliers Screen", before: "/supply-pro-before-01.png", after: "/supply-pro-after-01.png" },
+                { label: "Order detail screen"  },
+              ] as { label: string; before?: string; after?: string }[]).map(({ label, before, after }) => (
+                <div className="ba-row" key={label}>
+                  <span className="ba-row-label">{label}</span>
+                  <div className="ba-row-img">
+                    <BeforeAfter before={before} after={after} />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -481,61 +511,6 @@ export default function SupplyProApp() {
               ))}
             </div>
 
-          </div>
-        </section>
-
-        {/* ── 09. KPIs ─────────────────────────────── */}
-        <section className="mc-section" id="kpis">
-          <div className="mc-section-inner">
-            <h2 className="mc-section-title">Measuring what matters</h2>
-            <p className="mc-body-text">
-              Supply Pro's success needs to be evaluated at two levels: the business problem it aims to address and the product's ability to help users act on that problem.
-            </p>
-
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, marginTop: 48 }}>
-              <div style={{ borderTop: "1px solid #f2f4f7", paddingTop: 24 }}>
-                <p style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 11, fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "#98a1b2", margin: "0 0 16px" }}>Business metric 01 — Labour Cost Recovery</p>
-                <p className="mc-metric-value" style={{ fontSize: "clamp(32px, 3.5vw, 52px)" }}>€4,300–€7,300</p>
-                <p className="mc-metric-label">Estimated annual labour cost per kitchen from manually managing supplier problems, at €28/hour for 3–5 hours/week.</p>
-              </div>
-              <div style={{ borderTop: "1px solid #f2f4f7", paddingTop: 24 }}>
-                <p style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 11, fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "#98a1b2", margin: "0 0 16px" }}>Business metric 02 — Supply Chain Inefficiency</p>
-                <p className="mc-metric-value" style={{ fontSize: "clamp(32px, 3.5vw, 52px)" }}>€28,000</p>
-                <p className="mc-metric-label">Potential recovery at 10% efficiency gain for a mid-sized restaurant spending €280,000 annually on suppliers.</p>
-              </div>
-            </div>
-
-            <Divider />
-
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
-              {[
-                {
-                  label: "Product metric 01 — Time to Action",
-                  value: "< 2 min",
-                  desc: "Time between receiving an alert and taking action.",
-                  note: "Measures whether users can interpret the alert and decide how to respond without unnecessary friction.",
-                },
-                {
-                  label: "Product metric 02 — Task Completion Rate",
-                  value: "< 5 min",
-                  desc: "End-to-end task: reviewing an alert and confirming an alternative order or dismissing it.",
-                  note: "Evaluates whether users can move from identifying a problem to taking the intended action.",
-                },
-              ].map(({ label, value, desc, note }) => (
-                <div key={label} style={{ borderTop: "1px solid #f2f4f7", paddingTop: 24 }}>
-                  <p style={{ fontFamily: "Author, system-ui, sans-serif", fontSize: 11, fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "#98a1b2", margin: "0 0 16px" }}>{label}</p>
-                  <p className="mc-metric-value" style={{ fontSize: "clamp(32px, 3.5vw, 52px)" }}>{value}</p>
-                  <p className="mc-metric-label">{desc}</p>
-                  <p className="mc-body-text" style={{ fontSize: 15, marginTop: 4 }}>{note}</p>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ marginTop: 40, padding: "20px 24px" }}>
-              <p className="mc-body-text" style={{ fontSize: 20, margin: 0 }}>
-                Usability testing evaluates whether the proposed interface supports the intended tasks. It does not, by itself, prove that Supply Pro has generated annual savings. Validating the business impact would require measuring the operational results of using the product over time.
-              </p>
-            </div>
           </div>
         </section>
 

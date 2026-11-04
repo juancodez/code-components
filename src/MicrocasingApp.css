@@ -327,8 +327,6 @@
 /* metadata rows */
 .mc-meta {
   margin-top: 56px;
-  border-top: 1px solid #f2f4f7;
-  border-bottom: 1px solid #f2f4f7;
   padding: 20px 0;
   display: flex;
   flex-direction: column;
@@ -380,7 +378,6 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  border-top: 1px solid #f2f4f7;
 }
 
 .mc-section-inner {

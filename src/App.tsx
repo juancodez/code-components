@@ -62,16 +62,16 @@ function GreenPixel() {
 function Hero() {
   const techProps = {
     fontWeight: 600 as const,
-    fontSize: 140,
+    fontSize: 88,
     reveal: "letter" as const,
     dashLength: 4,
     dashGap: 2,
-    specks: 10,
+    specks: 6,
     clickKick: true,
     guides: false,
     letterSpacing: 0.04,
     accentColor: "currentColor",
-    reach: 180,
+    reach: 100,
     softness: 0.88,
     lineStyle: "dashed" as const,
     strokeWidth: 1.5,
@@ -79,7 +79,7 @@ function Hero() {
     selection: true,
     labels: true,
     color: "currentColor",
-    align: "center" as const,
+    align: "left" as const,
     draggable: true,
     sweep: true,
     speed: 0.35,
@@ -89,37 +89,38 @@ function Hero() {
 
   return (
     <section className="hero">
-      <div className="hero-header">
-        <div className="hero-identity">
+      <div className="hero-split">
+        <div className="hero-text">
+          <TextReveal
+            as="h1"
+            className="hero-h1"
+            per="word"
+            preset="fade-in-blur"
+            speedReveal={1.2}
+          >
+            Hi I'm Juan,
+          </TextReveal>
+          <div className="hero-techtext-wrap">
+            <TechText text="a product designer" {...techProps} />
+          </div>
+          <div className="hero-techtext-wrap hero-techtext-wrap--lg">
+            <TechText text="who engineers." {...techProps} />
+          </div>
+          <motion.p
+            className="hero-body"
+            initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
+            animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+            transition={{ duration: 0.4, delay: 0.55 }}
+          >
+            My path goes from research to implementation.<br />
+            I design in consumer and B2B Design.<br />
+            Pushing pixels <FigmaCursor /> to design in Figma.<br />
+            Pushing green pixels <GreenPixel /> to ship code on GitHub.
+          </motion.p>
+        </div>
+        <div className="hero-portrait">
           <Avatar />
         </div>
-      </div>
-      <div className="hero-about">
-        <TextReveal
-          as="h1"
-          className="hero-h1"
-          per="word"
-          preset="fade-in-blur"
-          speedReveal={1.2}
-        >
-          Hi I'm Juan,
-        </TextReveal>
-        <div className="hero-techtext-wrap">
-          <TechText text="a product designer" {...techProps} />
-        </div>
-        <div className="hero-techtext-wrap hero-techtext-wrap--lg">
-          <TechText text="who engineers." {...techProps} />
-        </div>
-        <motion.p
-          className="hero-body"
-          initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
-          animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-          transition={{ duration: 0.4, delay: 0.55 }}
-        >
-          My path goes from research to implementation.<br />
-          Pushing pixels <FigmaCursor /> to design in Figma.<br />
-          Pushing green pixels <GreenPixel /> to ship code on GitHub.
-        </motion.p>
       </div>
     </section>
   );

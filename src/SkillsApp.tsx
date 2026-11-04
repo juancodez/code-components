@@ -172,16 +172,16 @@ function GettingStarted() {
 
 const techProps = {
   fontWeight: 600 as const,
-  fontSize: 140,
+  fontSize: 88,
   reveal: "letter" as const,
   dashLength: 4,
   dashGap: 2,
-  specks: 10,
+  specks: 6,
   clickKick: true,
   guides: false,
   letterSpacing: 0.04,
   accentColor: "currentColor",
-  reach: 180,
+  reach: 100,
   softness: 0.88,
   lineStyle: "dashed" as const,
   strokeWidth: 1.5,
@@ -204,11 +204,6 @@ export default function SkillsApp() {
         <Nav />
       </header>
       <section className="hero">
-        <div className="hero-header">
-          <div className="hero-identity">
-            <Avatar />
-          </div>
-        </div>
         <div className="hero-about">
           <div className="hero-techtext-wrap">
             <TechText text="Claude Skills" {...techProps} />

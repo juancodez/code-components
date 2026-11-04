@@ -45,16 +45,16 @@ const CARDS = [
 
 const techProps = {
   fontWeight: 600 as const,
-  fontSize: 140,
+  fontSize: 88,
   reveal: "letter" as const,
   dashLength: 4,
   dashGap: 2,
-  specks: 10,
+  specks: 6,
   clickKick: true,
   guides: false,
   letterSpacing: 0.04,
   accentColor: "currentColor",
-  reach: 180,
+  reach: 100,
   softness: 0.88,
   lineStyle: "dashed" as const,
   strokeWidth: 1.5,
@@ -73,26 +73,19 @@ const techProps = {
 function PostHero() {
   return (
     <section className="hero post-hero">
-      <div className="hero-header">
-        <div className="hero-identity">
-          <Avatar />
-        </div>
-      </div>
       <div className="hero-about">
         <div className="hero-techtext-wrap">
           <TechText text="Design Engineering" {...techProps} />
         </div>
-        <div className="hero-techtext-wrap hero-techtext-wrap--lg">
-          <TechText text="Labs" {...techProps} />
-        </div>
         <motion.p
           className="hero-body"
-          initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
+initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
           animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
           transition={{ duration: 0.4, delay: 0.55 }}
         >
-          Click around to discover the different interactions.<br />
-          Interactive UI components built to explore motion, state and interaction. Copy the code.
+          Click around to discover the different interactions from the labs.<br />
+          Interactive UI components built to explore motion, state and interaction.<br />
+          Copy the code.
         </motion.p>
       </div>
     </section>
