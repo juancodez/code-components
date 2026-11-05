@@ -78,6 +78,7 @@ export default function AboutApp() {
       </header>
       <section className="hero">
         <div className="hero-about">
+          <Avatar />
           <div className="hero-techtext-wrap">
             <TechText
               text="My story"

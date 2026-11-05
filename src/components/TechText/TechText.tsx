@@ -232,9 +232,12 @@ const TechText = ({
       const inkWidth = m.actualBoundingBoxLeft + m.actualBoundingBoxRight;
       const inkHeight = m.actualBoundingBoxAscent + m.actualBoundingBoxDescent;
       const margin = width * 0.05;
-      const start = s.align === 'left' ? 0 : s.align === 'right' ? width - margin - inkWidth : (width - inkWidth) / 2;
+      // ponytail: pad left so first-glyph sprites don't clip at canvas x=0
+      const startPad = Math.ceil(s.strokeWidth * 2 + 4) + 2;
+      const start = s.align === 'left' ? startPad : s.align === 'right' ? width - margin - inkWidth : (width - inkWidth) / 2;
       const x = start + m.actualBoundingBoxLeft;
-      const baseline = (height - inkHeight) / 2 + m.actualBoundingBoxAscent;
+      // ponytail: 0.72 biases text toward bottom → headroom above 'd' ascender
+      const baseline = (height - inkHeight) * 0.72 + m.actualBoundingBoxAscent;
       const xHeight = baseline - probe.measureText('x').actualBoundingBoxAscent;
       const capHeight = baseline - probe.measureText('H').actualBoundingBoxAscent;
       const ascender = baseline - probe.measureText('d').actualBoundingBoxAscent;

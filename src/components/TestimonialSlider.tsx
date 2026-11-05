@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 import * as SeparatorPrimitive from "@radix-ui/react-separator";
-import { RiDoubleQuotesR, RiArrowLeftLine, RiArrowRightLine } from "@remixicon/react";
+import { RiDoubleQuotesR } from "@remixicon/react";
 import "../MicrocasingApp.css";
 import "./TestimonialSlider.css";
 
@@ -51,75 +51,45 @@ export function TestimonialSlider() {
   return (
     <section className="tslider-section">
       <div className="tslider-inner">
-        <div className="tslider-card-row">
-          <button
-            className="tslider-btn"
-            onClick={() => go(Math.max(0, idx - 1))}
-            disabled={idx === 0}
-            aria-label="Previous testimonial"
-          >
-            <RiArrowLeftLine size={16} />
-          </button>
-
-          <div className="tslider-cards-wrapper">
-            {DATA.map((t, i) => (
-              <div
-                key={i}
-                className={`tblock-wrap${i === idx ? " tblock-wrap--active" : ""}`}
-                aria-hidden={i !== idx}
-              >
-                <div className="tblock-card">
-                  <div className="tblock-accent" aria-hidden="true" />
-                  <RiDoubleQuotesR className="tblock-icon" aria-hidden="true" />
-                  <blockquote className="tblock-quote">{t.quote}</blockquote>
-                  <SeparatorPrimitive.Root className="tblock-separator" decorative />
-                  <div className="tblock-footer">
-                    <div className="tblock-author">
-                      <AvatarPrimitive.Root className="tblock-avatar">
-                        <AvatarPrimitive.Image src={t.img} alt={t.name} className="tblock-avatar-img" />
-                        <AvatarPrimitive.Fallback className="tblock-avatar-fallback">
-                          {t.initials}
-                        </AvatarPrimitive.Fallback>
-                      </AvatarPrimitive.Root>
-                      <div className="tblock-author-info">
-                        <a
-                          href={t.linkedIn}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="tblock-name"
-                        >
-                          {t.name}
-                        </a>
-                        <span className="tblock-role">
-                          {t.role},{" "}
-                          <span className="tblock-company">{t.company}</span>
-                        </span>
-                      </div>
+        <div className="tslider-cards-wrapper">
+          {DATA.map((t, i) => (
+            <div
+              key={i}
+              className={`tblock-wrap${i === idx ? " tblock-wrap--active" : ""}`}
+              aria-hidden={i !== idx}
+            >
+              <div className="tblock-card">
+                <div className="tblock-accent" aria-hidden="true" />
+                <RiDoubleQuotesR className="tblock-icon" aria-hidden="true" />
+                <blockquote className="tblock-quote">{t.quote}</blockquote>
+                <SeparatorPrimitive.Root className="tblock-separator" decorative />
+                <div className="tblock-footer">
+                  <div className="tblock-author">
+                    <AvatarPrimitive.Root className="tblock-avatar">
+                      <AvatarPrimitive.Image src={t.img} alt={t.name} className="tblock-avatar-img" />
+                      <AvatarPrimitive.Fallback className="tblock-avatar-fallback">
+                        {t.initials}
+                      </AvatarPrimitive.Fallback>
+                    </AvatarPrimitive.Root>
+                    <div className="tblock-author-info">
+                      <a
+                        href={t.linkedIn}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="tblock-name"
+                      >
+                        {t.name}
+                      </a>
+                      <span className="tblock-role">
+                        {t.role},{" "}
+                        <span className="tblock-company">{t.company}</span>
+                      </span>
                     </div>
-                    {t.metrics.length > 0 && (
-                      <div className="tblock-metrics">
-                        {t.metrics.map(m => (
-                          <div key={m.label} className="tblock-metric">
-                            <span className="tblock-metric-value">{m.value}</span>
-                            <span className="tblock-metric-label">{m.label}</span>
-                          </div>
-                        ))}
-                      </div>
-                    )}
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-
-          <button
-            className="tslider-btn"
-            onClick={() => go(Math.min(DATA.length - 1, idx + 1))}
-            disabled={idx === DATA.length - 1}
-            aria-label="Next testimonial"
-          >
-            <RiArrowRightLine size={16} />
-          </button>
+            </div>
+          ))}
         </div>
 
         <div className="tslider-dots">

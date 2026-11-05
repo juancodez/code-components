@@ -34,6 +34,7 @@ export function Footer() {
               <li><a href="post.html"    className="cf-link">Labs</a></li>
               <li><a href="skills.html"  className="cf-link">Claude Skills</a></li>
               <li><a href="about.html"   className="cf-link">About</a></li>
+              <li><a href="/Juan-Gomez-Vara-Resume.pdf" target="_blank" rel="noreferrer" className="cf-link">Resume</a></li>
               <li>
                 <button className="cf-link cf-imprint-btn" onClick={() => setImprintOpen(true)}>
                   Imprint

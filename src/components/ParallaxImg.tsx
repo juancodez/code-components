@@ -13,13 +13,18 @@ export function ParallaxImg({ containerStyle, strength = 0.07, style, ...imgProp
     const el = ref.current
     if (!el) return
     const onScroll = () => {
+      if (window.innerWidth <= 768) { setOffset(0); return; }
       const rect = el.getBoundingClientRect()
       const center = rect.top + rect.height / 2 - window.innerHeight / 2
       setOffset(center * strength)
     }
     window.addEventListener("scroll", onScroll, { passive: true })
+    window.addEventListener("resize", onScroll, { passive: true })
     onScroll()
-    return () => window.removeEventListener("scroll", onScroll)
+    return () => {
+      window.removeEventListener("scroll", onScroll)
+      window.removeEventListener("resize", onScroll)
+    }
   }, [strength])
 
   // pull borderRadius + border onto the container so clipping is clean

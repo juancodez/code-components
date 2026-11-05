@@ -4,9 +4,10 @@
 }
 
 .tslider-inner {
-  width: 55%;
+  width: 100%;
+  max-width: 620px;
   margin: 0 auto;
-  padding: 60px 40px;
+  padding: 60px 24px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -29,8 +30,7 @@
 .tslider-cards-wrapper {
   display: grid;
   grid-template: 1fr / 1fr;
-  flex: 1;
-  min-width: 0;
+  width: 100%;
 }
 
 .tslider-cards-wrapper > .tblock-wrap {
@@ -107,17 +107,7 @@
 /* ── Mobile ── */
 @media (max-width: 768px) {
   .tslider-inner {
-    width: 92%;
-    padding: 48px 0;
-  }
-
-  .tslider-card-row {
-    gap: 8px;
-  }
-
-  .tslider-btn {
-    width: 44px;
-    height: 44px;
+    padding: 48px 16px;
   }
 
   .tslider-dot {
