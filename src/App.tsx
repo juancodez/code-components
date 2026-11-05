@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
-import { Avatar } from "./components/Avatar";
 import { TextReveal } from "./components/ui/text-reveal";
 import { TestimonialSlider } from "./components/TestimonialSlider";
 import TechText from "./components/TechText/TechText";
@@ -15,7 +14,7 @@ const PROJECTS: Project[] = [
     bg: "linear-gradient(145deg, #0a1f0a 0%, #1a3a1a 55%, #2d6a2d 100%)",
     video: "/supply-pro-thumbnail.mp4",
     title: "Supply Pro",
-    subtitle: "Supply Pro is a B2B SaaS that helps restaurants recover up to €14,400 a year before poor supplier management reaches the kitchen.",
+    subtitle: "Supply Pro saves more than 10,000 euros on supply disruptions for high-end restaurants and hotels",
   },
   {
     slug: "design-system",
@@ -119,9 +118,6 @@ function Hero() {
             Pushing pixels <FigmaCursor /> to design in Figma.<br />
             Pushing green pixels <GreenPixel /> to ship code on GitHub.
           </motion.p>
-        </div>
-        <div className="hero-portrait">
-          <Avatar />
         </div>
       </div>
     </section>

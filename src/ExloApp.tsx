@@ -67,7 +67,7 @@ export default function ExloApp() {
             </div>
             <div className="mc-meta-row">
               <span className="mc-meta-label">Year</span>
-              <span className="mc-meta-value">2026</span>
+              <span className="mc-meta-value">September 2026</span>
             </div>
           </div>
 

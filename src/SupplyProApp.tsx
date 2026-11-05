@@ -182,6 +182,10 @@ export default function SupplyProApp() {
               <span className="mc-meta-label">Duration</span>
               <span className="mc-meta-value">4 Months</span>
             </div>
+            <div className="mc-meta-row">
+              <span className="mc-meta-label">Year</span>
+              <span className="mc-meta-value">May 2026</span>
+            </div>
           </div>
 
           <div className="mc-scope">
