@@ -28,7 +28,8 @@ const PROJECTS: Project[] = [
   {
     slug: "exlo",
     bg: "linear-gradient(145deg, #0a0f1e 0%, #1a2744 55%, #2e4a8f 100%)",
-    gif: "/exlo-gif.gif",
+    video: "/exlo-video.mp4",
+    poster: "/exlo-01.png",
     title: "Exlo: Plugin for Figma",
     subtitle: "Helping Designers increase their workflow with a tool that allows multi export multifile at once",
   },

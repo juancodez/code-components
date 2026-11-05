@@ -8,6 +8,6 @@ export default defineConfig({
     alias: { '@': `${import.meta.dirname}/src` },
   },
   build: {
-    assetsInlineLimit: 4 * 1024 * 1024,
+    assetsInlineLimit: 4096,
   },
 })
