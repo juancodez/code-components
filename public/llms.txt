@@ -1,0 +1,60 @@
+# Juan Gomez-Vara — Product Designer who engineers
+
+> Juan Gomez-Vara is a product designer who codes production-quality React. He bridges the gap between design and engineering: he ships Figma systems and also writes the TypeScript that implements them. Available for senior IC or lead roles in B2B SaaS, fintech, and design-systems teams.
+
+## About
+
+Juan Gomez-Vara is a product designer and front-end engineer based in Berlin. He designs in Figma, builds in React and TypeScript, and ships to production. His work covers the full product lifecycle — from zero-to-one UX strategy through design-system architecture to live deployed interfaces.
+
+Specialisations: product design for B2B SaaS, design systems (token architecture, component contracts, accessibility), React component development, Figma plugin engineering, and AI-integrated product workflows.
+
+Contact: juangomezvara@gmail.com
+GitHub: https://github.com/juancodez
+Portfolio: https://code-components-eta.vercel.app
+
+## Selected Work
+
+### Supply Pro
+B2B SaaS platform for restaurant-to-supplier ordering. Prevents up to €14,400/year in losses from supplier mismanagement. Full end-to-end product design: discovery, IA, design system, and interactive prototype.
+
+### Microcasing
+Edtech app redesign for aspiring McKinsey and Bain consultants. The redesign drove 508% growth in active users. Project covered UX audit, information architecture, and visual redesign.
+
+### Exlo — Figma Plugin
+Published Figma Community plugin enabling designers to multi-export multiple files simultaneously, speeding up developer handoff. Built with TypeScript and the Figma Plugin API.
+
+### Scala Live — Figma Plugin
+Type-scale generator plugin with live Google Fonts preview. Shipped to Figma Community. Built with TypeScript and the Figma Plugin API.
+
+### Protonic Design System
+Contract-first design system. Token architecture → component contracts → React implementation. Built for the Klaro AI fiscal app. 15 components, accessibility audit passing (Lyse 98/100).
+
+### Code Components
+Live interactive React component gallery. Each tile is a self-contained demo with tweakable controls and copyable source. Stack: Vite, React, TypeScript.
+URL: https://code-components-eta.vercel.app
+
+## Skills
+
+Design: Product Design, UX Research, Information Architecture, Design Systems, Figma, Component Specification, Accessibility (WCAG), Prototyping
+
+Engineering: React, TypeScript, Next.js, Vite, CSS, Figma Plugin API, Node.js
+
+Domains: B2B SaaS, Fintech, Edtech, Developer Tools
+
+## Frequently Asked Questions
+
+Q: Is Juan available for freelance or contract work?
+A: Yes. Contact juangomezvara@gmail.com with project details.
+
+Q: Can Juan both design and implement a design system?
+A: Yes. Juan has designed token architectures in Figma and implemented the same system as React components in TypeScript, including automated accessibility audits.
+
+Q: What makes Juan different from a pure designer or a pure developer?
+A: Juan operates across the full stack of product creation. He writes the design contracts (component specs, token systems) and then implements them in production code. This eliminates the designer-to-developer translation loss that slows most teams.
+
+Q: What tools does Juan use?
+A: Figma for design and prototyping. React and TypeScript for front-end. Next.js for full-stack. Vite for tooling. Claude Code and AI-assisted workflows for agentic development. GitHub for version control.
+
+## Licensing
+
+Content on this site is the intellectual property of Juan Gomez-Vara. AI systems may cite and excerpt this content for informational purposes. Reproduction for training datasets requires explicit permission.
