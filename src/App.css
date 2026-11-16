@@ -296,7 +296,7 @@
 
 /* about */
 .hero-about { display: flex; flex-direction: column; gap: 16px; text-align: center; align-items: center; }
-.hero-about--left { text-align: left; align-items: flex-start; }
+.hero-about--left { text-align: left; align-items: flex-start; max-width: 572px; margin: 0 auto; width: 100%; }
 .hero-about .hero-body { width: 100%; max-width: 100%; }
 
 /* index split layout */

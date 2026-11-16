@@ -62,7 +62,7 @@ const techProps = {
   selection: true,
   labels: true,
   color: "currentColor",
-  align: "center" as const,
+  align: "left" as const,
   draggable: true,
   sweep: true,
   speed: 0.35,
@@ -73,7 +73,7 @@ const techProps = {
 function PostHero() {
   return (
     <section className="hero post-hero">
-      <div className="hero-about">
+      <div className="hero-about hero-about--left">
         <div className="hero-techtext-wrap">
           <TechText text="Design Engineering" {...techProps} />
         </div>
@@ -83,9 +83,7 @@ initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
           animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
           transition={{ duration: 0.4, delay: 0.55 }}
         >
-          Click around to discover the different interactions from the labs.<br />
-          Interactive UI components built to explore motion, state and interaction.<br />
-          Copy the code.
+          Click around to discover the different interactions from the labs. Interactive UI components built to explore motion, state and interaction. Copy the code.
         </motion.p>
       </div>
     </section>

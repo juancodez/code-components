@@ -77,7 +77,7 @@ export default function AboutApp() {
         <Nav />
       </header>
       <section className="hero">
-        <div className="hero-about">
+        <div className="hero-about hero-about--left">
           <Avatar />
           <div className="hero-techtext-wrap">
             <TechText
@@ -100,7 +100,7 @@ export default function AboutApp() {
               selection
               labels
               color="currentColor"
-              align="center"
+              align="left"
               draggable
               sweep
               speed={0.35}

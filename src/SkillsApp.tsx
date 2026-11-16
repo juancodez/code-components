@@ -189,7 +189,7 @@ const techProps = {
   selection: true,
   labels: true,
   color: "currentColor",
-  align: "center" as const,
+  align: "left" as const,
   draggable: true,
   sweep: true,
   speed: 0.35,
@@ -204,7 +204,7 @@ export default function SkillsApp() {
         <Nav />
       </header>
       <section className="hero">
-        <div className="hero-about">
+        <div className="hero-about hero-about--left">
           <div className="hero-techtext-wrap">
             <TechText text="Claude Skills" {...techProps} />
           </div>
