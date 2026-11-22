@@ -324,6 +324,14 @@
   display: block;
 }
 
+.mc-confidential-note {
+  font-size: 13px;
+  color: #667085;
+  font-style: italic;
+  margin: 12px 0 0;
+  line-height: 1.5;
+}
+
 /* metadata rows */
 .mc-meta {
   margin-top: 56px;

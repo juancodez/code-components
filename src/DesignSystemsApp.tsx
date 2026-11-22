@@ -11,8 +11,9 @@ const DS_SECTIONS = [
   { id: "challenge",  label: "Challenge"     },
   { id: "problem",    label: "Problem"       },
   { id: "approach",   label: "Approach"      },
-  { id: "workflow",   label: "Workflow"      },
-  { id: "applying",   label: "In Practice"   },
+  { id: "workflow",     label: "Workflow"      },
+  { id: "limitations", label: "Limitations"  },
+  { id: "applying",    label: "In Practice"  },
   { id: "impact",     label: "Impact"        },
   { id: "future",     label: "Next Steps"    },
 ];
@@ -102,6 +103,8 @@ export default function DesignSystemsApp() {
             muted
             playsInline
           />
+
+          <p className="mc-confidential-note">*Note: All brand names, visual assets, and interface examples have been modified or recreated to protect confidential client information. The workflows and design principles reflect the actual process.*</p>
 
           <div className="mc-subtitle-block">
             <p className="mc-subtitle">
@@ -215,7 +218,7 @@ export default function DesignSystemsApp() {
                 there was no shared contract to be careful about.
               </p>
             </div>
-            <Placeholder label="02. Project overview: agency context, multiple brand logos, gap between guidelines and digital output" ratio="21/9" />
+            <img src="/project-overview.png" alt="Multiple brands, no shared foundation — and a clear need for structured foundations" style={{ width: "100%", borderRadius: 12, display: "block", marginTop: 32 }} />
           </div>
         </section>
 
@@ -254,10 +257,6 @@ export default function DesignSystemsApp() {
                 </AnimatePresence>
               </div>
               <div className="mc-challenge-right">
-                <Placeholder
-                  label="03. Before / after: brand guidelines interpretation vs. token-referenced design"
-                  ratio="4/3"
-                />
               </div>
             </div>
           </div>
@@ -433,7 +432,25 @@ export default function DesignSystemsApp() {
                   process overhead.
                 </p>
               </div>
-              <Placeholder label="09. Token implementation example: JSON value alongside Figma variable and code reference" ratio="4/3" />
+              <img src="/a-token-three-perspectives.png" alt="One token. Three perspectives: JSON, Figma Variables, and Code Reference" style={{ width: "100%", borderRadius: 12, display: "block", marginTop: 32 }} />
+            </div>
+          </div>
+        </section>
+
+        {/* Limitations */}
+        <section className="mc-section" id="limitations">
+          <div className="mc-section-inner">
+            <h2 className="mc-section-title">The typography in Escala Tokens has constraints</h2>
+            <div className="mc-branding-body">
+              <p className="mc-body-text">
+                Escala Tokens provided a structured way to manage and distribute the design foundations, but it also had limitations. One of the main challenges was custom typography: the platform did not fully support custom font definitions.
+              </p>
+              <p className="mc-body-text">
+                This meant typography required additional handling outside the standard token workflow. I had to account for these limitations when structuring the JSON output and applying the values in Figma, rather than assuming every design decision could be managed through the same pipeline.
+              </p>
+              <p className="mc-body-text">
+                The experience reinforced an important principle: a design system should be shaped around the capabilities and constraints of its tools, not the other way around.
+              </p>
             </div>
           </div>
         </section>
@@ -461,10 +478,7 @@ export default function DesignSystemsApp() {
                 no translation gap between the artboard and the build.
               </p>
             </div>
-            <Placeholder label="10. Tokens in context: same UI component rendered in three brand themes side by side" ratio="21/9" />
-            <div style={{ marginTop: 48 }}>
-              <Placeholder label="11. Interface consistency: before (local values) vs. after (token-referenced) for a real screen" ratio="16/7" />
-            </div>
+            <video className="mc-hero-video" style={{ aspectRatio: "21 / 9", objectFit: "cover" }} src="/multi-brand.mp4" autoPlay muted loop playsInline />
           </div>
         </section>
 
