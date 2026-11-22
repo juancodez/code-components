@@ -22,7 +22,6 @@ const PROJECTS: Project[] = [
     video: "/escala-tokens.mp4",
     title: "Building Multi-Brand Design Systems at Scale",
     subtitle: "Streamlining code contribution workflows across diverse product lines to trim 15% off implementation costs and prevent visual drift.",
-    comingSoon: true,
   },
   {
     slug: "exlo",
