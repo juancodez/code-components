@@ -234,6 +234,7 @@
 
 .mc-header {
   width: 75%;
+  max-width: 1280px;
   padding: 52px 0 60px;
   display: flex;
   flex-direction: column;
@@ -269,7 +270,7 @@
   font-family: 'Author', system-ui, sans-serif;
   font-size: 20px;
   font-weight: 400;
-  color: #667085;
+  color: #4a5568;
   margin: 0;
   letter-spacing: -0.01em;
   line-height: 1.6;
@@ -391,6 +392,7 @@
 
 .mc-section-inner {
   width: 75%;
+  max-width: 1280px;
   padding: 60px 0;
   display: flex;
   flex-direction: column;
@@ -436,7 +438,7 @@
   font-family: 'Author', system-ui, sans-serif;
   font-size: 20px;
   font-weight: 400;
-  color: #667085;
+  color: #4a5568;
   line-height: 1.7;
   margin: 0;
 }

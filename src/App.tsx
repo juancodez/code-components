@@ -81,7 +81,7 @@ function Hero() {
     color: "currentColor",
     align: "left" as const,
     draggable: true,
-    sweep: true,
+    sweep: false,
     speed: 0.35,
     intro: "assemble" as const,
     introDuration: 2.8,
@@ -101,10 +101,10 @@ function Hero() {
             Hi I'm Juan,
           </TextReveal>
           <div className="hero-techtext-wrap">
-            <TechText text="a product designer" {...techProps} />
+            <TechText text="a product designer" {...techProps} pinnedIndex={0} />
           </div>
           <div className="hero-techtext-wrap hero-techtext-wrap--lg">
-            <TechText text="who engineers." {...techProps} />
+            <TechText text="who engineers." {...techProps} pinnedIndex={0} />
           </div>
           <motion.p
             className="hero-body"

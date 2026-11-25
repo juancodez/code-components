@@ -58,6 +58,7 @@ export interface TechTextProps {
   intro?: 'none' | 'type' | 'assemble' | 'metrics';
   introDuration?: number;
   guides?: boolean;
+  pinnedIndex?: number;
   className?: string;
   style?: CSSProperties;
 }
@@ -121,6 +122,7 @@ const TechText = ({
   intro = 'none',
   introDuration = 2,
   guides = false,
+  pinnedIndex = -1,
   className = '',
   style
 }: TechTextProps) => {
@@ -134,7 +136,7 @@ const TechText = ({
       text, fontFamily, fontWeight, fontSize, letterSpacing, color, accentColor,
       align, reach, softness, dashLength, dashGap, strokeWidth, lineStyle, reveal,
       specks, selection, labels, draggable, bounce, sweep, speed, clickKick,
-      intro, introDuration, guides
+      intro, introDuration, guides, pinnedIndex
     };
     wakeRef.current();
   });
@@ -649,7 +651,7 @@ const TechText = ({
       } else {
         glyphs.forEach(glyph => { glyph.shown = 1; });
       }
-      const focus = introducing ? typing : dragging >= 0 ? dragging : active ? glyphAt(lens.x, lens.y) : -1;
+      const focus = introducing ? typing : dragging >= 0 ? dragging : active ? glyphAt(lens.x, lens.y) : s.pinnedIndex;
       if (focus >= 0 && s.selection) {
         const glyph = glyphs[focus];
         const bx1 = glyph.box.x1 + glyph.offset.x - 6, by1 = glyph.box.y1 + glyph.offset.y - 6;
