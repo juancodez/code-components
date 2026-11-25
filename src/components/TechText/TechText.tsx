@@ -710,7 +710,7 @@ const TechText = ({
       const settling = moving || introducing || kicks.length > 0 ||
         (guideAlpha > 0.005 && guideAlpha < 0.995) ||
         Math.abs(presence - (s.reveal === 'area' && active && dragging < 0 ? 1 : 0)) > 0.002 ||
-        (frame.alpha > 0.01 && frame.alpha < 0.99);
+        (focus >= 0 ? frame.alpha < 0.995 : frame.alpha > 0.01 && frame.alpha < 0.99);
       if ((active || settling) && visible && alive) raf = requestAnimationFrame(tick);
     };
 
